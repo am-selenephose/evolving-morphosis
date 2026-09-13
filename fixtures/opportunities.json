@@ -1,0 +1,48 @@
+{
+  "packet_id": "demo-professional-opportunities-001",
+  "opportunities": [
+    {
+      "id": "grant-alpha",
+      "title": "Community Climate Data Grant",
+      "source_url": "https://example.org/grants/climate-data",
+      "deadline": "2026-09-02T17:00:00Z",
+      "reward_usd": 5000,
+      "evidence": ["official listing captured", "eligibility checklist matched", "deadline verified"],
+      "requested_actions": ["review", "apply", "submit"],
+      "safe_next_step": "Prepare a requirements matrix without entering applicant identity."
+    },
+    {
+      "id": "grant-alpha-copy",
+      "title": "Community Climate Data Grant",
+      "source_url": "https://example.org/grants/climate-data",
+      "deadline": "2026-09-02T17:00:00Z",
+      "reward_usd": 5000,
+      "evidence": ["newsletter mirror"],
+      "requested_actions": ["apply"]
+    },
+    {
+      "id": "contract-beta",
+      "title": "Open Data Documentation Contract",
+      "source_url": "https://example.org/contracts/open-data-docs",
+      "deadline": "2026-09-20T12:00:00Z",
+      "reward_usd": 1800,
+      "evidence": ["buyer page verified", "scope downloaded"],
+      "requested_actions": ["review", "send"],
+      "safe_next_step": "Draft a scope-to-evidence mapping for human review."
+    },
+    {
+      "id": "expired-gamma",
+      "title": "Expired Research Award",
+      "source_url": "https://example.org/awards/expired",
+      "deadline": "2026-08-01T00:00:00Z",
+      "reward_usd": 900,
+      "evidence": ["archive page"],
+      "requested_actions": ["submit"]
+    },
+    {
+      "id": "invalid-delta",
+      "title": "Unverified Listing"
+    }
+  ]
+}
+
