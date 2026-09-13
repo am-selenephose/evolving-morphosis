@@ -43,6 +43,10 @@ Tests cover validation, expiry, deduplication, evidence hashes, risk gates, repl
 - `build-demo-video.sh` reproducibly renders the 56-second demo to `demo/actionqueue-demo.mp4`.
 - `SUBMISSION.md` contains the complete Devpost copy and final authorized-publication checklist.
 
+## Project status and disclosure
+
+Created during the 2026 Agents for Humans submission period. AI coding assistance was used to draft and review code and copy. The opportunity policy, synthetic fixture, tests, architecture, and verification are original to this project. No pre-existing product code is incorporated beyond standard libraries and the Strands Agents SDK.
+
 ## License
 
 MIT
