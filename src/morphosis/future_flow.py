@@ -6,6 +6,7 @@ from typing import Mapping
 
 from .evolution import (
     AdaptationPlan,
+    AdaptationVerification,
     CandidateIdentity,
     CapabilityRecord,
     CapabilityRegistry,
@@ -16,6 +17,7 @@ from .evolution import (
     bootstrap_candidate,
     build_evolution_bundle,
     compile_adaptation,
+    verify_adaptation_proposal,
     verify_probe_proposal,
 )
 
@@ -26,6 +28,7 @@ class FutureEvolutionReport:
     claimed_capability: CapabilityRecord
     observed_capability: CapabilityRecord
     adaptation: AdaptationPlan
+    adaptation_verification: AdaptationVerification
     runtime_bundle: EvolutionBundle
     source_bundle: EvolutionBundle
 
@@ -39,7 +42,8 @@ def evaluate_future_candidate(
     """Qualify an unknown model and build runtime/source Evolution Bundles.
 
     Candidate claims, probe descriptions, and compatibility proposals are inputs only.
-    Morphosis independently verifies the evidence and retains promotion authority.
+    Morphosis independently verifies both the capability and the proposed adaptation,
+    and retains promotion authority.
     """
     adapters = known_adapters or KnownAdapterRegistry({})
     identity = bootstrap_candidate(
@@ -77,13 +81,18 @@ def evaluate_future_candidate(
     observed = observed_registry.get(proposal.capability_id)
 
     adaptation_data = candidate.get("adaptation_proposal")
-    if not isinstance(adaptation_data, dict):
-        raise ValueError("candidate adaptation proposal is required")
+    adaptation_observation = candidate.get("adaptation_observation")
+    if not isinstance(adaptation_data, dict) or not isinstance(adaptation_observation, dict):
+        raise ValueError("candidate adaptation proposal and independent adaptation observation are required")
     fallback = adaptation_data.get("fallback")
     adaptation = compile_adaptation(
         capability_id=proposal.capability_id,
         native_supported=bool(adaptation_data.get("native_supported", False)),
         fallback=str(fallback) if fallback else None,
+    )
+    adaptation_verification = verify_adaptation_proposal(
+        adaptation,
+        observed_output=adaptation_observation,
     )
 
     runtime_data = candidate.get("runtime_change")
@@ -101,13 +110,20 @@ def evaluate_future_candidate(
         rollback=str(source_data.get("rollback", "")),
     )
 
-    gates_pass = observed.status == "SUPPORTED" and observed.proof_state == "OBSERVED"
+    capability_pass = observed.status == "SUPPORTED" and observed.proof_state == "OBSERVED"
+    adaptation_pass = adaptation_verification.accepted and adaptation_verification.proof_state == "OBSERVED"
+    gates_pass = capability_pass and adaptation_pass
     recommendation = "PROMOTE" if gates_pass else "REJECT"
+    tests_passed = (
+        probe_result.accepted
+        and probe_result.status == "SUPPORTED"
+        and adaptation_verification.accepted
+    )
     runtime_bundle = build_evolution_bundle(
         candidate_fingerprint=identity.candidate_fingerprint,
         parent_hash=parent_hash,
         changes=(runtime_change,),
-        tests_passed=probe_result.accepted and probe_result.status == "SUPPORTED",
+        tests_passed=tests_passed,
         invariants_passed=gates_pass,
         recommendation=recommendation,
     )
@@ -115,7 +131,7 @@ def evaluate_future_candidate(
         candidate_fingerprint=identity.candidate_fingerprint,
         parent_hash=parent_hash,
         changes=(source_change,),
-        tests_passed=probe_result.accepted and probe_result.status == "SUPPORTED",
+        tests_passed=tests_passed,
         invariants_passed=gates_pass,
         recommendation=recommendation,
     )
@@ -125,6 +141,7 @@ def evaluate_future_candidate(
         claimed_capability=claimed,
         observed_capability=observed,
         adaptation=adaptation,
+        adaptation_verification=adaptation_verification,
         runtime_bundle=runtime_bundle,
         source_bundle=source_bundle,
     )
