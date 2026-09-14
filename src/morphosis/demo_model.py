@@ -133,6 +133,8 @@ class DeterministicFutureModel(Model):
             f"Claim status: {result['claimed_capability']['status']} / {result['claimed_capability']['proof_state']}\n"
             f"Observed status: {result['observed_capability']['status']}\n"
             f"Adaptation: {result['adaptation']['mode']}\n"
+            f"Adaptation proof: {result['adaptation_verification']['proof_state']}\n"
+            f"Adaptation score: {result['adaptation_verification']['score']:.3f}\n"
             f"Runtime gate: {result['runtime_bundle']['approval']}\n"
             f"Source gate: {result['source_bundle']['approval']}\n"
             f"Evolution bundle: {result['runtime_bundle']['bundle_hash']}"
