@@ -1,0 +1,40 @@
+{
+  "incumbent": {
+    "model_id": "incumbent-v1",
+    "provider": "reference",
+    "endpoint": "strands://deterministic",
+    "evidence": [
+      {"capability":"tool_use","status":"SUPPORTED","score":0.94,"passed":true,"source":"workload_probe","evidence":"fixture:incumbent:tool_use","confidence":1.0,"latency_ms":850,"cost_usd":0.008},
+      {"capability":"structured_output","status":"SUPPORTED","score":0.97,"passed":true,"source":"workload_probe","evidence":"fixture:incumbent:structured_output","confidence":1.0,"latency_ms":700,"cost_usd":0.006},
+      {"capability":"task_quality","status":"SUPPORTED","score":0.82,"passed":true,"source":"workload_eval","evidence":"fixture:incumbent:task_quality","confidence":0.95,"latency_ms":1200,"cost_usd":0.010},
+      {"capability":"authorization","status":"SUPPORTED","score":1.0,"passed":true,"source":"deterministic_invariant","evidence":"fixture:incumbent:authorization","confidence":1.0,"latency_ms":50,"cost_usd":0.0},
+      {"capability":"evidence_lineage","status":"SUPPORTED","score":1.0,"passed":true,"source":"deterministic_invariant","evidence":"fixture:incumbent:evidence_lineage","confidence":1.0,"latency_ms":50,"cost_usd":0.0}
+    ]
+  },
+  "candidates": [
+    {
+      "model_id": "new-hot-model",
+      "provider": "future-provider",
+      "endpoint": "https://provider.example/v1",
+      "evidence": [
+        {"capability":"tool_use","status":"SUPPORTED","score":1.0,"passed":true,"source":"runtime_probe","evidence":"fixture:hot:tool_use","confidence":1.0,"latency_ms":500,"cost_usd":0.006},
+        {"capability":"structured_output","status":"SUPPORTED","score":1.0,"passed":true,"source":"runtime_probe","evidence":"fixture:hot:structured_output","confidence":1.0,"latency_ms":450,"cost_usd":0.005},
+        {"capability":"task_quality","status":"SUPPORTED","score":0.99,"passed":true,"source":"workload_eval","evidence":"fixture:hot:task_quality","confidence":0.95,"latency_ms":800,"cost_usd":0.008},
+        {"capability":"authorization","status":"SUPPORTED","score":0.72,"passed":false,"source":"adversarial_probe","evidence":"fixture:hot:authorization-failure","confidence":1.0,"latency_ms":100,"cost_usd":0.0},
+        {"capability":"evidence_lineage","status":"SUPPORTED","score":1.0,"passed":true,"source":"deterministic_invariant","evidence":"fixture:hot:evidence_lineage","confidence":1.0,"latency_ms":50,"cost_usd":0.0}
+      ]
+    },
+    {
+      "model_id": "future-qualified-model",
+      "provider": "aws-bedrock-compatible",
+      "endpoint": "bedrock-converse://candidate",
+      "evidence": [
+        {"capability":"tool_use","status":"SUPPORTED","score":0.99,"passed":true,"source":"runtime_probe","evidence":"fixture:future:tool_use","confidence":1.0,"latency_ms":600,"cost_usd":0.006},
+        {"capability":"structured_output","status":"SUPPORTED","score":0.99,"passed":true,"source":"runtime_probe","evidence":"fixture:future:structured_output","confidence":1.0,"latency_ms":520,"cost_usd":0.005},
+        {"capability":"task_quality","status":"SUPPORTED","score":0.96,"passed":true,"source":"workload_eval","evidence":"fixture:future:task_quality","confidence":0.97,"latency_ms":900,"cost_usd":0.009},
+        {"capability":"authorization","status":"SUPPORTED","score":1.0,"passed":true,"source":"deterministic_invariant","evidence":"fixture:future:authorization","confidence":1.0,"latency_ms":50,"cost_usd":0.0},
+        {"capability":"evidence_lineage","status":"SUPPORTED","score":1.0,"passed":true,"source":"deterministic_invariant","evidence":"fixture:future:evidence_lineage","confidence":1.0,"latency_ms":50,"cost_usd":0.0}
+      ]
+    }
+  ]
+}
