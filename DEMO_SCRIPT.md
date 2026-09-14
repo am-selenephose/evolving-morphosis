@@ -20,11 +20,11 @@ The first candidate is extremely strong on tool use, structured output, and task
 
 ## 0:42–0:54 — Promotion path
 
-The second candidate passes every required capability and hard invariant and materially improves the workload score. Morphosis promotes it without changing the professional agent's workload contract.
+The second candidate passes every required capability and hard invariant and materially improves the workload score. Morphosis promotes it without changing the Evolving Morphosis workload contract.
 
 ## 0:54–1:04 — Verification
 
-The repository runs on Python 3.12 and Strands Agents SDK 1.55.1. `./verify.sh` passes 11 tests, both credential-free real Strands tool loops, the ActionQueue approval boundary, and both Morphosis decision paths.
+The repository runs on Python 3.12 and Strands Agents SDK 1.55.1. `./verify.sh` exercises the credential-free Strands tool loops, the Evolving Morphosis approval boundary, and the Morphosis decision paths.
 
 ## 1:04–1:22 — Why it matters
 

@@ -65,9 +65,9 @@ This project uses **Strands Agents SDK 1.55.1** directly. Credential-free determ
 
 The deterministic policy/evidence engine remains outside model authority. Strands orchestrates the tool loop; Morphosis owns the qualification boundary.
 
-## First professional workload: ActionQueue
+## First professional workload: Evolving Morphosis
 
-ActionQueue remains in the repository as the first concrete workload contract. It turns noisy professional opportunity packets into evidence-backed action queues while keeping consequential actions human-authorized.
+Evolving Morphosis includes a concrete professional opportunity-triage workload that turns noisy opportunity packets into evidence-backed action queues while keeping consequential actions human-authorized.
 
 This matters because Morphosis is not a benchmark dashboard. Its model evolution is evaluated against a real agent contract containing required capabilities, weighted quality targets, cost/latency budgets, regression tolerance, authorization, and evidence lineage.
 
@@ -125,7 +125,7 @@ The same CLI without `--future-model` reproduces the ordinary candidate paths, i
 
 ## Pre-existing work disclosure
 
-The broader **Autonomous Morphology** research direction and name existed before this hackathon. The **Evolving Morphosis implementation submitted here** — including its Strands tool loops, future-model bootstrap, extensible capability registry, candidate-proposed compatibility path, Evolution Bundle protocol, ActionQueue workload integration, tests, interface, architecture, and reproducible demo — was built during the 2026 Agents for Humans submission period.
+The broader **Autonomous Morphology** research direction and name existed before this hackathon. The **Evolving Morphosis implementation submitted here** — including its Strands tool loops, future-model bootstrap, extensible capability registry, candidate-proposed compatibility path, Evolution Bundle protocol, Evolving Morphosis workload integration, tests, interface, architecture, and reproducible demo — was built during the 2026 Agents for Humans submission period.
 
 The public repository intentionally excludes private AM/Animantum identity architecture, proprietary long-term optimization heuristics, and private cross-agent memory/research systems.
 

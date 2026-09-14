@@ -33,7 +33,7 @@ let logs=[
   ['02:52:16','INFO','runtime Evolution Bundle → AUTO_APPLY with rollback'],
   ['02:52:16','WARN','source Evolution Bundle → HUMAN_APPROVAL_REQUIRED']
 ];
-const agents=[['ActionQueue','Professional opportunity triage','Human authorization','Healthy'],['Morphosis Discovery','Unknown-model capability intake','Self-report ≠ proof','Healthy'],['Morphogenesis','Compatibility proposal compiler','Independent verifier','Healthy'],['Promotion Control','Evolution Bundle gate','Human source authority','Healthy']];
+const agents=[['Evolving Morphosis','Professional opportunity triage workload','Human authorization','Healthy'],['Morphosis Discovery','Unknown-model capability intake','Self-report ≠ proof','Healthy'],['Morphogenesis','Compatibility proposal compiler','Independent verifier','Healthy'],['Promotion Control','Evolution Bundle gate','Human source authority','Healthy']];
 
 const $=(q,root=document)=>root.querySelector(q);const $$=(q,root=document)=>[...root.querySelectorAll(q)];
 function badgeClass(status){return status.toLowerCase().replace(/\s+/g,'-')}
