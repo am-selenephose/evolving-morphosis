@@ -1,4 +1,4 @@
-"""Evolving Morphosis: evidence-driven model qualification for durable agents."""
+"""Evolving Morphosis: evidence-driven model evolution for durable agents."""
 
 from .core import (
     CapabilityEvidence,
@@ -10,6 +10,7 @@ from .core import (
 )
 from .evolution import (
     AdaptationPlan,
+    AdaptationVerification,
     CandidateIdentity,
     CapabilityRecord,
     CapabilityRegistry,
@@ -24,6 +25,7 @@ from .evolution import (
     build_evolution_bundle,
     compile_adaptation,
     needs_requalification,
+    verify_adaptation_proposal,
     verify_probe_proposal,
 )
 from .future_flow import FutureEvolutionReport, evaluate_future_candidate
@@ -36,6 +38,7 @@ __all__ = [
     "build_profile",
     "decide_candidate",
     "AdaptationPlan",
+    "AdaptationVerification",
     "CandidateIdentity",
     "CapabilityRecord",
     "CapabilityRegistry",
@@ -50,6 +53,7 @@ __all__ = [
     "build_evolution_bundle",
     "compile_adaptation",
     "needs_requalification",
+    "verify_adaptation_proposal",
     "verify_probe_proposal",
     "FutureEvolutionReport",
     "evaluate_future_candidate",
