@@ -1,64 +1,30 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
-  <rect width="1600" height="900" fill="#07111f"/>
-  <defs>
-    <linearGradient id="g" x1="0" x2="1"><stop stop-color="#6ee7ff"/><stop offset="1" stop-color="#a78bfa"/></linearGradient>
-    <style>.t{font-family:Inter,Arial,sans-serif;fill:#eaf2ff}.m{font-family:Inter,Arial,sans-serif;fill:#91a4bf}.b{fill:#0d1b2e;stroke:#314560;stroke-width:2}.a{fill:#102640;stroke:url(#g);stroke-width:3}.h{font-weight:700}</style>
-    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#6ee7ff"/></marker>
-  </defs>
-  <text x="80" y="80" class="t h" font-size="42">EVOLVING MORPHOSIS</text>
-  <text x="80" y="118" class="m" font-size="21">Model-generation-resilient qualification control plane for agents</text>
-
-  <rect x="80" y="180" rx="20" ry="20" width="270" height="150" class="b"/>
-  <text x="105" y="220" class="t h" font-size="23">Candidate discovery</text>
-  <text x="105" y="258" class="m" font-size="18">Bedrock / providers</text>
-  <text x="105" y="286" class="m" font-size="18">OpenRouter / LiteLLM</text>
-  <text x="105" y="314" class="m" font-size="18">Ollama / future model X</text>
-
-  <rect x="445" y="180" rx="20" ry="20" width="300" height="150" class="a"/>
-  <text x="470" y="220" class="t h" font-size="23">Workload contract</text>
-  <text x="470" y="258" class="m" font-size="18">required capabilities</text>
-  <text x="470" y="286" class="m" font-size="18">quality / cost / latency</text>
-  <text x="470" y="314" class="m" font-size="18">hard invariants</text>
-
-  <rect x="840" y="180" rx="20" ry="20" width="300" height="150" class="a"/>
-  <text x="865" y="220" class="t h" font-size="23">Qualification engine</text>
-  <text x="865" y="258" class="m" font-size="18">runtime probes + evals</text>
-  <text x="865" y="286" class="m" font-size="18">observed capability evidence</text>
-  <text x="865" y="314" class="m" font-size="18">SHA-256 evidence manifest</text>
-
-  <rect x="1235" y="180" rx="20" ry="20" width="285" height="150" class="a"/>
-  <text x="1260" y="220" class="t h" font-size="23">Promotion control</text>
-  <text x="1260" y="258" class="m" font-size="18">PROMOTE</text>
-  <text x="1260" y="286" class="m" font-size="18">HOLD</text>
-  <text x="1260" y="314" class="m" font-size="18">REJECT</text>
-
-  <line x1="350" y1="255" x2="445" y2="255" stroke="#6ee7ff" stroke-width="3" marker-end="url(#arrow)"/>
-  <line x1="745" y1="255" x2="840" y2="255" stroke="#6ee7ff" stroke-width="3" marker-end="url(#arrow)"/>
-  <line x1="1140" y1="255" x2="1235" y2="255" stroke="#6ee7ff" stroke-width="3" marker-end="url(#arrow)"/>
-
-  <rect x="260" y="440" rx="24" ry="24" width="440" height="170" class="b"/>
-  <text x="290" y="485" class="t h" font-size="25">Qualified runtime pool</text>
-  <text x="290" y="526" class="m" font-size="19">Strands ModelRouter / provider adapter</text>
-  <text x="290" y="558" class="m" font-size="19">Only evidence-qualified candidates enter</text>
-  <text x="290" y="590" class="m" font-size="19">the serving pool.</text>
-
-  <rect x="900" y="440" rx="24" ry="24" width="440" height="170" class="b"/>
-  <text x="930" y="485" class="t h" font-size="25">Professional agent</text>
-  <text x="930" y="526" class="m" font-size="19">ActionQueue = first workload proof</text>
-  <text x="930" y="558" class="m" font-size="19">same tools + policy + evidence boundary</text>
-  <text x="930" y="590" class="m" font-size="19">across model generations</text>
-
-  <line x1="1375" y1="330" x2="1375" y2="385" stroke="#6ee7ff" stroke-width="3"/>
-  <line x1="1375" y1="385" x2="480" y2="385" stroke="#6ee7ff" stroke-width="3"/>
-  <line x1="480" y1="385" x2="480" y2="440" stroke="#6ee7ff" stroke-width="3" marker-end="url(#arrow)"/>
-  <line x1="700" y1="525" x2="900" y2="525" stroke="#6ee7ff" stroke-width="3" marker-end="url(#arrow)"/>
-
-  <rect x="260" y="690" rx="18" ry="18" width="1080" height="105" class="b"/>
-  <text x="290" y="730" class="t h" font-size="22">AWS-native path</text>
-  <text x="290" y="765" class="m" font-size="18">Amazon Bedrock candidate surface → Strands / AgentCore evaluation → Morphosis qualification → Strands routing → Agent runtime</text>
-
-  <path d="M1120 610 C1120 655 990 660 990 380 C990 350 1010 340 1030 330" fill="none" stroke="#a78bfa" stroke-width="3" stroke-dasharray="10 8" marker-end="url(#arrow)"/>
-  <text x="1060" y="650" class="m" font-size="17">telemetry / requalification loop</text>
-
-  <text x="80" y="855" class="m" font-size="17">Static metadata introduces a candidate. Observed workload evidence decides whether it is trusted.</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1080" viewBox="0 0 1600 1080">
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#020103"/><stop offset=".55" stop-color="#070207"/><stop offset="1" stop-color="#020103"/></linearGradient>
+  <filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="5" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  <filter id="soft" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="18"/></filter>
+  <style>
+    .title{font:700 34px Georgia,serif;fill:#fff7fb;letter-spacing:1px}.sub{font:500 13px ui-monospace,monospace;fill:#bd9aaa;letter-spacing:1.6px}.eyebrow{font:700 11px ui-monospace,monospace;fill:#ff8db7;letter-spacing:1.5px}.head{font:600 18px Georgia,serif;fill:#ffe0eb}.body{font:500 11px ui-monospace,monospace;fill:#b996a5}.tiny{font:500 9px ui-monospace,monospace;fill:#7f6570;letter-spacing:.5px}.pink{fill:#ff6da3}.green{fill:#53e6b1}.box{fill:#090409;stroke:#43152a;stroke-width:1}.box2{fill:#0d050c;stroke:#6b1e3d;stroke-width:1.2}.hot{fill:#12050d;stroke:#ff4e8d;stroke-width:1.3}.line{stroke:#80304f;stroke-width:1.2;fill:none}.hotline{stroke:#ff4f8d;stroke-width:1.5;fill:none;filter:url(#glow)}.dash{stroke:#6d2443;stroke-width:1;fill:none;stroke-dasharray:5 6}
+  </style>
+</defs>
+<rect width="1600" height="1080" fill="url(#bg)"/><ellipse cx="1040" cy="205" rx="460" ry="250" fill="#8c123e" opacity=".07" filter="url(#soft)"/><ellipse cx="800" cy="620" rx="430" ry="260" fill="#ff2f78" opacity=".035" filter="url(#soft)"/>
+<text x="70" y="68" class="eyebrow">EVOLVING MORPHOSIS · FUTURE-MODEL EVOLUTION CONTROL PLANE</text><text x="70" y="112" class="title">Models change. The agent contract survives.</text><text x="70" y="142" class="sub">KNOWN FAST PATH + UNKNOWN FUTURE-MODEL BOOTSTRAP → EVIDENCE → MORPHOGENESIS → SAFE PROMOTION</text><line x1="70" y1="168" x2="1530" y2="168" stroke="#35101f"/>
+<g transform="translate(70 205)"><rect width="410" height="180" rx="4" class="box2"/><text x="22" y="30" class="eyebrow">01A · KNOWN MODEL FAST LANE</text><text x="22" y="61" class="head">Optimized adapters first.</text><text x="22" y="91" class="body">Bedrock · OpenAI · Anthropic · Google · local</text><text x="22" y="115" class="body">provider profile · model metadata · cached transforms</text><text x="22" y="139" class="body">still requires observed workload qualification</text><circle cx="375" cy="29" r="5" fill="#53e6b1"/><text x="339" y="160" class="tiny">FAST / VERIFIED LATER</text></g>
+<g transform="translate(1120 205)"><rect width="410" height="180" rx="4" class="hot"/><text x="22" y="30" class="eyebrow">01B · UNKNOWN FUTURE LANE</text><text x="22" y="61" class="head">No hard-coded model entry required.</text><text x="22" y="91" class="body">minimal transport · endpoint · provider identity</text><text x="22" y="115" class="body">self-described claims enter as UNKNOWN</text><text x="22" y="139" class="body">novel capabilities may extend the namespace</text><circle cx="375" cy="29" r="5" fill="#ff4e8d" filter="url(#glow)"/><text x="306" y="160" class="tiny">UNTRUSTED / DISCOVERABLE</text></g>
+<path d="M480 295 C630 295 620 340 720 340" class="line"/><path d="M1120 295 C970 295 980 340 880 340" class="hotline"/><circle cx="800" cy="340" r="9" fill="#ff4e8d" filter="url(#glow)"/>
+<g transform="translate(610 315)"><rect width="380" height="110" rx="5" class="hot"/><text x="190" y="29" class="eyebrow" text-anchor="middle">02 · CAPABILITY EVIDENCE GRAPH</text><text x="190" y="56" class="head" text-anchor="middle">Claims are priors. Behavior is proof.</text><text x="190" y="82" class="body" text-anchor="middle">SUPPORTED · UNSUPPORTED · UNKNOWN · provenance · confidence · evidence hash</text></g>
+<g transform="translate(70 435)"><rect width="350" height="138" rx="4" class="box"/><text x="18" y="28" class="eyebrow">NOVEL CAPABILITY REGISTRY</text><text x="18" y="56" class="body">future.semantic_patch.v1</text><text x="18" y="79" class="body">candidate claim → <tspan class="pink">UNKNOWN</tspan></text><text x="18" y="102" class="body">probe evidence → <tspan class="green">OBSERVED</tspan></text><text x="18" y="122" class="tiny">extension namespace; core schema unchanged</text></g><path d="M420 504 C505 504 530 430 610 385" class="dash"/>
+<g transform="translate(495 470)"><rect width="610" height="190" rx="6" class="hot"/><text x="305" y="31" class="eyebrow" text-anchor="middle">03 · MORPHOGENESIS ENGINE</text><text x="305" y="64" class="head" text-anchor="middle">The runtime changes shape around the model.</text><g transform="translate(25 90)"><rect width="128" height="64" class="box"/><text x="64" y="25" class="body" text-anchor="middle">SCHEMA</text><text x="64" y="44" class="tiny" text-anchor="middle">transform</text></g><g transform="translate(169 90)"><rect width="128" height="64" class="box"/><text x="64" y="25" class="body" text-anchor="middle">TOOLS</text><text x="64" y="44" class="tiny" text-anchor="middle">binding</text></g><g transform="translate(313 90)"><rect width="128" height="64" class="box"/><text x="64" y="25" class="body" text-anchor="middle">CONTEXT</text><text x="64" y="44" class="tiny" text-anchor="middle">strategy</text></g><g transform="translate(457 90)"><rect width="128" height="64" class="box"/><text x="64" y="25" class="body" text-anchor="middle">FALLBACK</text><text x="64" y="44" class="tiny" text-anchor="middle">portable path</text></g></g>
+<g transform="translate(1150 435)"><rect width="380" height="225" rx="4" fill="#0b0509" stroke="#5d1b35"/><text x="20" y="28" class="eyebrow">MODEL-WRITABLE PROPOSAL ZONE</text><text x="20" y="58" class="body">✓ capability claim</text><text x="20" y="82" class="body">✓ bounded probe proposal</text><text x="20" y="106" class="body">✓ adapter/config transform</text><text x="20" y="130" class="body">✓ context / tool strategy</text><text x="20" y="154" class="body">✓ source patch proposal</text><line x1="20" y1="174" x2="360" y2="174" stroke="#30101d"/><text x="20" y="199" class="tiny">cannot mutate evaluator, invariants, evidence semantics,</text><text x="20" y="216" class="tiny">or source-merge authority</text></g><path d="M1105 565 L1150 565" class="dash"/>
+<path d="M800 660 L800 704" class="hotline"/>
+<g transform="translate(250 704)"><rect width="300" height="122" rx="4" class="box2"/><text x="150" y="29" class="eyebrow" text-anchor="middle">04 · SANDBOX GATE</text><text x="150" y="56" class="head" text-anchor="middle">Run before trust.</text><text x="150" y="82" class="body" text-anchor="middle">bounded probe · no side effects</text><text x="150" y="101" class="tiny" text-anchor="middle">candidate does not grade itself</text></g><path d="M550 765 L635 765" class="hotline"/>
+<g transform="translate(635 704)"><rect width="330" height="122" rx="4" class="hot"/><text x="165" y="29" class="eyebrow" text-anchor="middle">05 · INDEPENDENT META-EVAL</text><text x="165" y="56" class="head" text-anchor="middle">Held-out evidence wins.</text><text x="165" y="82" class="body" text-anchor="middle">workload · regression · policy · cost · latency</text><text x="165" y="101" class="tiny" text-anchor="middle">hard invariant failure ⇒ REJECT</text></g><path d="M965 765 L1050 765" class="hotline"/>
+<g transform="translate(1050 704)"><rect width="300" height="122" rx="4" class="box2"/><text x="150" y="29" class="eyebrow" text-anchor="middle">06 · EVOLUTION BUNDLE</text><text x="150" y="56" class="head" text-anchor="middle">Evidence + rollback + lineage.</text><text x="150" y="82" class="body" text-anchor="middle">PROMOTE · HOLD · REJECT</text><text x="150" y="101" class="tiny" text-anchor="middle">deterministic SHA-256 manifest</text></g>
+<path d="M1200 826 C1200 852 1030 850 1030 866" class="line"/><path d="M1200 826 C1200 852 1375 850 1375 866" class="line"/>
+<g transform="translate(850 866)"><rect width="360" height="92" rx="4" class="box2"/><text x="18" y="27" class="eyebrow">RUNTIME / CONFIG EVOLUTION</text><text x="18" y="53" class="body"><tspan class="green">AUTO_APPLY</tspan> only if all gates pass</text><text x="18" y="73" class="tiny">rollback metadata required · reversible</text></g>
+<g transform="translate(1225 866)"><rect width="305" height="92" rx="4" class="hot"/><text x="18" y="27" class="eyebrow">SOURCE EVOLUTION</text><text x="18" y="53" class="body"><tspan class="pink">HUMAN MERGE GATE</tspan></text><text x="18" y="73" class="tiny">model may propose; human approves</text></g>
+<g transform="translate(70 866)"><rect width="720" height="92" rx="4" class="box"/><text x="20" y="28" class="eyebrow">07 · SERVING PLANE</text><text x="20" y="55" class="head">Strands ModelRouter → workload agent → MCP tools / runtime</text><text x="20" y="76" class="tiny">qualified candidates enter the routing pool; the workload contract stays stable</text></g><path d="M850 912 L790 912" class="hotline"/>
+<g transform="translate(70 985)"><rect width="1460" height="34" rx="3" fill="#0c050b" stroke="#6b1c3b"/><text x="18" y="22" class="eyebrow">OBSERVABILITY LOOP</text><text x="215" y="22" class="body">traces → drift → requalification → rollback → evidence archive → future generations</text></g>
+<g transform="translate(70 1027)"><rect width="1460" height="30" rx="3" fill="#050305" stroke="#2f101e"/><text x="730" y="20" class="tiny" text-anchor="middle">INDEPENDENT GOVERNANCE ZONE · HARD INVARIANTS · EVALUATOR · EVIDENCE SEMANTICS · HUMAN SOURCE-MERGE AUTHORITY</text></g>
+<path d="M110 985 C80 905 45 780 45 530 C45 310 120 280 220 280" class="dash"/><polygon points="215,274 230,280 215,286" fill="#8b3151"/>
 </svg>
