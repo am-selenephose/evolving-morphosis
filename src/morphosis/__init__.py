@@ -26,6 +26,7 @@ from .evolution import (
     needs_requalification,
     verify_probe_proposal,
 )
+from .future_flow import FutureEvolutionReport, evaluate_future_candidate
 
 __all__ = [
     "CapabilityEvidence",
@@ -50,4 +51,6 @@ __all__ = [
     "compile_adaptation",
     "needs_requalification",
     "verify_probe_proposal",
+    "FutureEvolutionReport",
+    "evaluate_future_candidate",
 ]
