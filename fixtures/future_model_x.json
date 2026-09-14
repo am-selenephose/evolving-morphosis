@@ -25,6 +25,12 @@
     "native_supported": false,
     "fallback": "semantic-patch-wrapper"
   },
+  "adaptation_observation": {
+    "valid": true,
+    "score": 0.96,
+    "roundtrip_preserved": true,
+    "side_effect_free": true
+  },
   "runtime_change": {
     "kind": "runtime",
     "description": "install semantic-patch compatibility transform",
