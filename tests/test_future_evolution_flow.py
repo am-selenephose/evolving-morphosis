@@ -22,6 +22,7 @@ def test_unknown_future_model_can_teach_runtime_how_to_integrate_it() -> None:
     assert report.observed_capability.status == "SUPPORTED"
     assert report.observed_capability.proof_state == "OBSERVED"
     assert report.adaptation.mode == "ADAPTED"
+    assert report.adaptation.transforms == ("semantic-patch-wrapper",)
     assert report.runtime_bundle.approval == "AUTO_APPLY"
     assert report.source_bundle.approval == "HUMAN_APPROVAL_REQUIRED"
     assert report.runtime_bundle.bundle_hash != report.source_bundle.bundle_hash
