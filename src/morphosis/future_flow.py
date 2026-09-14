@@ -38,8 +38,8 @@ def evaluate_future_candidate(
 ) -> FutureEvolutionReport:
     """Qualify an unknown model and build runtime/source Evolution Bundles.
 
-    Candidate claims and candidate-authored probe descriptions are inputs only. The
-    verifier owns pass/fail, and the candidate never controls promotion authority.
+    Candidate claims, probe descriptions, and compatibility proposals are inputs only.
+    Morphosis independently verifies the evidence and retains promotion authority.
     """
     adapters = known_adapters or KnownAdapterRegistry({})
     identity = bootstrap_candidate(
@@ -76,10 +76,14 @@ def evaluate_future_candidate(
     observed_registry = registry.apply_probe_result(probe_result)
     observed = observed_registry.get(proposal.capability_id)
 
+    adaptation_data = candidate.get("adaptation_proposal")
+    if not isinstance(adaptation_data, dict):
+        raise ValueError("candidate adaptation proposal is required")
+    fallback = adaptation_data.get("fallback")
     adaptation = compile_adaptation(
         capability_id=proposal.capability_id,
-        native_supported=False,
-        fallback="compatibility-wrapper",
+        native_supported=bool(adaptation_data.get("native_supported", False)),
+        fallback=str(fallback) if fallback else None,
     )
 
     runtime_data = candidate.get("runtime_change")
