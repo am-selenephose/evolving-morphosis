@@ -3,15 +3,15 @@ requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "actionqueue"
-version = "0.1.0"
-description = "Evidence-backed action queue agent with explicit human approval gates"
+name = "evolving-morphosis"
+version = "0.2.0"
+description = "Evidence-driven model qualification and compatibility control plane for durable agents"
 requires-python = ">=3.11"
 dependencies = ["strands-agents==1.26.0"]
 
 [project.scripts]
 actionqueue = "actionqueue.cli:main"
+morphosis = "morphosis.cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
-
