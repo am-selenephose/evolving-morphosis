@@ -9,5 +9,5 @@ verify:
     - python -m pip install --upgrade pip
     - pip install -r requirements.txt
   script:
-    - PYTHONPATH=src python -m unittest discover -s tests -v
-    - PYTHONPATH=src python -m morphosis.cli
+    - PYTHONPATH=src python -m pytest -q
+    - PYTHONPATH=src python -m morphosis.cli --contract fixtures/morphosis_contract.json --candidates fixtures/morphosis_candidates.json
