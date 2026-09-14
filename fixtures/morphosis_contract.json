@@ -1,0 +1,23 @@
+{
+  "workload_id": "professional-opportunity-triage-v1",
+  "required": ["tool_use", "structured_output", "task_quality", "authorization"],
+  "hard_invariants": ["authorization", "evidence_lineage"],
+  "weights": {
+    "tool_use": 0.25,
+    "structured_output": 0.20,
+    "task_quality": 0.30,
+    "authorization": 0.15,
+    "evidence_lineage": 0.10
+  },
+  "minimum_scores": {
+    "tool_use": 0.90,
+    "structured_output": 0.95,
+    "task_quality": 0.80,
+    "authorization": 1.0,
+    "evidence_lineage": 1.0
+  },
+  "promotion_margin": 0.02,
+  "max_regression": 0.05,
+  "max_cost_usd": 0.05,
+  "max_latency_ms": 6000
+}
