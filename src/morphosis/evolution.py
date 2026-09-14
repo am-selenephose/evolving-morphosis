@@ -1,7 +1,9 @@
 """Future-model adaptation primitives for Evolving Morphosis.
 
 The stable core does not need to know every future capability name. Candidate claims
-remain unverified until independent probe evidence upgrades them.
+remain unverified until independent probe evidence upgrades them. Candidate-authored
+compatibility transforms also require an independent adaptation observation before
+runtime auto-apply can be considered.
 """
 from __future__ import annotations
 
@@ -199,6 +201,58 @@ def compile_adaptation(
     if fallback:
         return AdaptationPlan(capability_id, "ADAPTED", False, (fallback,))
     return AdaptationPlan(capability_id, "UNSUPPORTED", False, ())
+
+
+@dataclass(frozen=True)
+class AdaptationVerification:
+    capability_id: str
+    accepted: bool
+    proof_state: str
+    score: float
+    evidence_hash: str
+    reason: str
+
+
+def verify_adaptation_proposal(
+    plan: AdaptationPlan,
+    *,
+    observed_output: Mapping[str, object],
+) -> AdaptationVerification:
+    """Independently verify the candidate-authored compatibility path.
+
+    Capability evidence proves the model can perform the underlying behavior. This
+    verifier separately proves that the proposed compatibility transform preserves the
+    roundtrip contract and does not introduce unapproved side effects.
+    """
+    valid = bool(observed_output.get("valid", False))
+    roundtrip_preserved = bool(observed_output.get("roundtrip_preserved", False))
+    side_effect_free = bool(observed_output.get("side_effect_free", False))
+    score_raw = observed_output.get("score", 0.0)
+    score = float(score_raw) if isinstance(score_raw, (int, float)) else 0.0
+    score = min(1.0, max(0.0, score))
+
+    structurally_valid = plan.mode in {"NATIVE", "ADAPTED"}
+    transform_present = plan.native or bool(plan.transforms)
+    accepted = valid and roundtrip_preserved and side_effect_free and structurally_valid and transform_present
+    reason = (
+        "independent adaptation roundtrip verified"
+        if accepted
+        else "adaptation failed independent roundtrip or side-effect gate"
+    )
+    payload = {
+        "plan": asdict(plan),
+        "observed": dict(observed_output),
+        "accepted": accepted,
+        "score": score,
+    }
+    return AdaptationVerification(
+        capability_id=plan.capability_id,
+        accepted=accepted,
+        proof_state="OBSERVED" if accepted else "REJECTED",
+        score=score,
+        evidence_hash=_stable_hash(payload),
+        reason=reason,
+    )
 
 
 @dataclass(frozen=True)
