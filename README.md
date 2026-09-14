@@ -2,89 +2,136 @@
 
 **Models evolve. Your agents should evolve with them.**
 
-Evolving Morphosis is a Strands-based model-qualification control plane for durable agents. Instead of trusting a new model because it is newer, larger, cheaper, or advertised as more capable, Morphosis tests candidate behavior against the agent's actual workload contract and returns an auditable **PROMOTE / HOLD / REJECT** decision.
+Evolving Morphosis is a Strands-based **model-evolution control plane for professional AI/agent teams**. It automates the repetitive work that begins every time a new model generation appears: capability discovery, compatibility analysis, workload regression testing, adaptation, promotion, rollback, and requalification.
 
-**Live demo:** https://light-mindset-9rn4u6e.shipstatic.com
+Morphosis has two ingress lanes:
 
-The core idea is simple: **model metadata is a prior; observed workload behavior is proof.**
+- **Known-model fast path** — optimized adapters/profiles for models and providers we already understand.
+- **Unknown future-model path** — a model that did not exist when Morphosis was written can enter through a minimal transport boundary, describe novel capabilities, propose bounded probes and compatibility changes, and teach the runtime how it needs to be integrated.
+
+Neither lane inherits trust. **Metadata and self-report are priors; observed workload behavior is proof.**
+
+## The future-model proof
+
+The repository includes a synthetic `future-model-x` that advertises a capability that is absent from Morphosis's stable core schema:
+
+`future.semantic_patch.v1`
+
+Morphosis does not need a hard-coded model entry or closed capability enum. The flow is:
+
+1. Bootstrap the unknown endpoint into `UNKNOWN_BOOTSTRAP`.
+2. Record the self-reported novel capability as `UNKNOWN / UNVERIFIED`.
+3. Accept a bounded candidate-proposed probe description, but not its verdict.
+4. Independently verify the observation and register the novel namespaced capability dynamically.
+5. Consume the model's proposed compatibility transform (`semantic-patch-wrapper`).
+6. Compile it as an **ADAPTED** capability rather than falsely calling it native.
+7. Build deterministic SHA-256 **Evolution Bundles** containing change intent, evidence, rollback metadata, lineage, and promotion state.
+8. Mark a reversible runtime/config bundle `AUTO_APPLY` only after gates pass.
+9. Mark the same model's source-code adapter proposal `HUMAN_APPROVAL_REQUIRED` even when all tests pass.
+
+The candidate can help evolve the integration around itself. It cannot grade itself, weaken hard invariants, rewrite evidence semantics, or merge its own source changes.
 
 ## Why it exists
 
-Agent code is often coupled to assumptions about one model generation: tool calling, schema behavior, context handling, latency, cost, or safety. When a new model arrives, teams manually benchmark it, regression-test it, retune routing, and hope that a capability improvement did not break a critical invariant.
+Agent code is often coupled to one model generation's assumptions about tool calling, structured output, context, reasoning controls, latency, cost, or provider quirks. AI platform engineers repeatedly inspect release notes, compare API surfaces, patch adapters, rerun evaluations, select canaries, and monitor regressions whenever the model landscape changes.
 
-Morphosis makes that migration a repeatable agent workflow.
+A generic router solves a different problem: **which known candidate should handle this invocation?** Strands already provides `ModelRouter` for that serving layer.
 
-## What is implemented
-
-- Typed, provider-neutral capability evidence with `SUPPORTED / UNSUPPORTED / UNKNOWN` state.
-- Workload contracts defining required capabilities, weighted quality targets, cost/latency budgets, and hard invariants.
-- Stable SHA-256 evidence manifests for reproducibility and audit.
-- Deterministic candidate comparison with **PROMOTE / HOLD / REJECT** outcomes.
-- Regression blocking: a candidate cannot hide a serious loss behind a higher aggregate score.
-- Hard-invariant blocking: authorization and evidence-lineage failures force rejection.
-- A real Strands Agents SDK 1.55.1 tool loop around the qualification engine.
-- Credential-free synthetic fixtures reproducing both a rejected flashy candidate and a promoted qualified candidate.
-- ActionQueue retained as the first professional workload proving that Morphosis sits above a concrete agent rather than existing as benchmark-only infrastructure.
+Morphosis operates one level above routing: **which model deserves to become a candidate, what must change around it, and can that evolution be promoted without breaking the agent contract?**
 
 ## Architecture
 
-![Evolving Morphosis architecture](architecture.svg)
+![Evolving Morphosis v2 architecture](architecture.svg)
 
-The reference implementation separates five layers:
+The public reference implementation separates these boundaries:
 
-1. **Discovery evidence** — provider/model metadata can introduce a candidate, but cannot authorize it.
-2. **Workload contract** — the agent declares what it needs and what must never regress.
-3. **Qualification** — observed probes/evals produce evidence-bearing capability records.
-4. **Promotion control** — Morphosis compares candidate and incumbent and emits PROMOTE, HOLD, or REJECT.
-5. **Agent runtime** — qualified candidates can then be handed to a router such as Strands ModelRouter or another provider/runtime adapter.
+1. **Known Model Fast Lane** — optimized adapters accelerate models we already know.
+2. **Unknown Future Lane** — minimal bootstrap for arbitrary future endpoints; no hard-coded model name required.
+3. **Capability Evidence Graph** — namespaced capabilities with provenance, confidence, status, and evidence hashes.
+4. **Novel Capability Registry** — unknown capability identifiers can be added without editing the stable core schema.
+5. **Morphogenesis Engine** — candidate-proposed schema/tool/context/fallback adaptations are compiled around the model.
+6. **Sandbox / Independent Meta-Eval** — candidate proposals are tested outside candidate-controlled promotion logic.
+7. **Evolution Bundle** — content-addressed change + evidence + rollback + lineage + recommendation.
+8. **Promotion Boundary** — reversible runtime/config evolution may auto-apply; source evolution always stops for human merge approval.
+9. **Serving Plane** — qualified candidates can enter a Strands ModelRouter/runtime pool without rewriting the workload contract.
+10. **Observability Loop** — drift can trigger requalification or rollback.
 
-## AWS compatibility
+## Real Strands integration
 
-The hackathon build uses the Strands Agents SDK directly. The control-plane contract is provider-neutral, so an AWS deployment can use Amazon Bedrock as the model surface and Strands/AgentCore evaluation/runtime services around it without changing the workload contract or promotion logic.
+This project uses **Strands Agents SDK 1.55.1** directly. Credential-free deterministic model adapters drive real Strands tool-use loops for both:
 
-This repository does **not** claim a live AgentCore deployment. The included demo is intentionally credential-free and reproducible. AWS/Bedrock integration is an extension boundary, not a fabricated deployment claim.
+- incumbent-versus-candidate workload qualification; and
+- unknown future-model onboarding through the `evolve_future_model` tool.
 
-## Reproduce the demo
+The deterministic policy/evidence engine remains outside model authority. Strands orchestrates the tool loop; Morphosis owns the qualification boundary.
+
+## First professional workload: ActionQueue
+
+ActionQueue remains in the repository as the first concrete workload contract. It turns noisy professional opportunity packets into evidence-backed action queues while keeping consequential actions human-authorized.
+
+This matters because Morphosis is not a benchmark dashboard. Its model evolution is evaluated against a real agent contract containing required capabilities, weighted quality targets, cost/latency budgets, regression tolerance, authorization, and evidence lineage.
+
+A model can score better overall and still be **REJECTED** if it breaks authorization. A qualified model can be **PROMOTED** when it improves the workload without violating those invariants.
+
+## AWS / Bedrock compatibility
+
+The hackathon implementation is provider-neutral but AWS-native by design:
+
+- Amazon Bedrock can sit behind the known-model fast lane.
+- Strands is the real agent/orchestration layer used by this repository.
+- Qualified candidates are designed to feed a serving layer such as Strands ModelRouter.
+- The sandbox/evaluation boundaries map naturally to Amazon Bedrock AgentCore Code Interpreter and AgentCore Evaluations.
+- MCP/A2A-compatible tool and agent discovery can extend the same evidence model beyond foundation models.
+
+This repository **does not claim a live AgentCore deployment that is not present**. Those AgentCore components are documented extension boundaries, while the submitted Strands paths are reproducible without cloud credentials.
+
+## Reproduce
 
 ```bash
 python3.12 -m venv .venv
 .venv/bin/pip install -r requirements.txt
-PYTHONPATH=src .venv/bin/python -m morphosis.cli \
-  --contract fixtures/morphosis_contract.json \
-  --candidates fixtures/morphosis_candidates.json
-```
-
-Expected behavior:
-
-- `new-hot-model` scores extremely well on ordinary capabilities but violates the authorization invariant → **REJECT**.
-- `future-qualified-model` passes the same workload contract and materially improves the workload score → **PROMOTE**.
-
-Run the complete verification path:
-
-```bash
 ./verify.sh
 ```
 
-Verified locally on Python 3.12 + Strands Agents SDK 1.55.1: **11 tests pass**, both real Strands tool loops complete, ActionQueue approval gates remain intact, and Morphosis produces both REJECT and PROMOTE evidence paths.
+To run the future-model proof directly:
 
-## Workload contract
+```bash
+PYTHONPATH=src .venv/bin/python -m morphosis.cli \
+  --future-model fixtures/future_model_x.json
+```
 
-`fixtures/morphosis_contract.json` demonstrates the contract for professional opportunity triage. It declares required tool use, structured output, task quality, authorization, evidence lineage, weighted scoring, regression tolerance, latency, and cost limits.
+Expected future-model evidence includes:
 
-A future model does not need to be known when the agent is written. It only needs an adapter capable of producing the same evidence contract. That is the durability boundary: **new model, same workload contract.**
+- `Future model lane: UNKNOWN_BOOTSTRAP`
+- `Novel capability: future.semantic_patch.v1`
+- `Observed status: SUPPORTED`
+- `Adaptation: ADAPTED`
+- `Runtime gate: AUTO_APPLY`
+- `Source gate: HUMAN_APPROVAL_REQUIRED`
 
-## Safety and privacy
+The same CLI without `--future-model` reproduces the ordinary candidate paths, including a flashy high-scoring candidate rejected for an authorization failure and a workload-qualified candidate promoted over the incumbent.
 
-- Hard invariants cannot be traded away by a higher average score.
-- No external side effects are implemented in the demo.
-- Fixtures are synthetic.
-- Candidate/provider marketing claims never override observed failures.
-- Decisions preserve content-addressed evidence hashes.
-- ActionQueue's consequential actions remain human-authorized.
+## Hard boundaries
+
+- Unknown never means supported.
+- Self-report never equals proof.
+- Candidate cannot decide its own pass/fail.
+- A higher aggregate score cannot compensate for a hard-invariant failure.
+- Failed evolution never mutates the incumbent.
+- Automatic changes require rollback metadata.
+- Source-code changes generated/proposed by a model always require explicit human merge approval.
+- Evaluator logic, evidence semantics, hard invariants, and source-merge authority are outside the auto-writable surface.
+- Fixtures are synthetic and the demo performs no unapproved external side effects.
+
+## Pre-existing work disclosure
+
+The broader **Autonomous Morphology** research direction and name existed before this hackathon. The **Evolving Morphosis implementation submitted here** — including its Strands tool loops, future-model bootstrap, extensible capability registry, candidate-proposed compatibility path, Evolution Bundle protocol, ActionQueue workload integration, tests, interface, architecture, and reproducible demo — was built during the 2026 Agents for Humans submission period.
+
+The public repository intentionally excludes private AM/Animantum identity architecture, proprietary long-term optimization heuristics, and private cross-agent memory/research systems.
 
 ## Project status
 
-Created during the 2026 Agents for Humans submission period. AI coding assistance was used to draft and review code and documentation. Evolving Morphosis, its workload contract, fixtures, qualification policy, tests, architecture, and demo are original to this project. The project uses the open-source Strands Agents SDK and standard Python libraries.
+AI coding assistance was used to draft, implement, test, and review code and documentation. The project uses the open-source Strands Agents SDK and standard Python libraries.
 
 ## License
 
