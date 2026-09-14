@@ -22,7 +22,9 @@ grep -q "Morphosis verdict: PROMOTE" demo-output/morphosis.txt
 grep -q "Future model lane: UNKNOWN_BOOTSTRAP" demo-output/future-model.txt
 grep -q "Novel capability: future.semantic_patch.v1" demo-output/future-model.txt
 grep -q "Observed status: SUPPORTED" demo-output/future-model.txt
+grep -q "Adaptation: ADAPTED" demo-output/future-model.txt
+grep -q "Adaptation proof: OBSERVED" demo-output/future-model.txt
 grep -q "Runtime gate: AUTO_APPLY" demo-output/future-model.txt
 grep -q "Source gate: HUMAN_APPROVAL_REQUIRED" demo-output/future-model.txt
 
-echo "PASS: all tests, real Strands loops, ActionQueue approval gates, current-model qualification, and unknown future-model evolution"
+echo "PASS: tests + real Strands loops + ActionQueue gates + current-model qualification + future capability/adaptation verification"
