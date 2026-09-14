@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-import json
 import ast
+import json
 from collections.abc import AsyncGenerator, AsyncIterable
 from typing import Any
 
@@ -14,6 +14,17 @@ from strands.types.streaming import StreamEvent
 from strands.types.tools import ToolChoice, ToolSpec
 
 from actionqueue.core import render_markdown
+
+
+def _decode_tool_result(block: dict[str, Any]) -> Any:
+    content = block.get("json")
+    if content is not None:
+        return content
+    text = block["text"]
+    try:
+        return json.loads(text)
+    except json.JSONDecodeError:
+        return ast.literal_eval(text)
 
 
 class DeterministicDemoModel(Model):
@@ -63,11 +74,9 @@ class DeterministicDemoModel(Model):
             ):
                 yield event
             return
+
         self.turn += 1
-        block = tool_results[-1]["content"][0]
-        content = block.get("json")
-        if content is None:
-            content = ast.literal_eval(block["text"])
+        content = _decode_tool_result(tool_results[-1]["content"][0])
         report = render_markdown(content)
         async for event in self._text(f"ActionQueue completed with all consequential actions gated.\n\n{report}"):
             yield event
