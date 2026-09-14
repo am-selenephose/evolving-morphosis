@@ -1,0 +1,44 @@
+{
+  "model_id": "future-model-x",
+  "provider": "future-provider",
+  "endpoint": "https://future.invalid/v1",
+  "self_reported_capabilities": [
+    {
+      "capability_id": "future.semantic_patch.v1",
+      "claimed_supported": true,
+      "source": "candidate-self-report"
+    }
+  ],
+  "candidate_probe": {
+    "probe_id": "semantic-patch-roundtrip",
+    "capability_id": "future.semantic_patch.v1",
+    "kind": "fixture_roundtrip",
+    "timeout_ms": 1000,
+    "network_access": false,
+    "source_write": false
+  },
+  "independent_observation": {
+    "valid": true,
+    "score": 0.97
+  },
+  "adaptation_proposal": {
+    "native_supported": false,
+    "fallback": "semantic-patch-wrapper"
+  },
+  "adaptation_observation": {
+    "valid": true,
+    "score": 0.96,
+    "roundtrip_preserved": true,
+    "side_effect_free": true
+  },
+  "runtime_change": {
+    "kind": "runtime",
+    "description": "install semantic-patch compatibility transform",
+    "rollback": "restore:morphosis-v1"
+  },
+  "source_change": {
+    "kind": "source",
+    "description": "add optimized future-provider adapter",
+    "rollback": "git-revert:generated-adapter"
+  }
+}
