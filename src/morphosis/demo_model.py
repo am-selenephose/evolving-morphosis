@@ -13,6 +13,17 @@ from strands.types.streaming import StreamEvent
 from strands.types.tools import ToolChoice, ToolSpec
 
 
+def _decode_tool_result(block: dict[str, Any]) -> Any:
+    content = block.get("json")
+    if content is not None:
+        return content
+    text = block["text"]
+    try:
+        return json.loads(text)
+    except json.JSONDecodeError:
+        return ast.literal_eval(text)
+
+
 class DeterministicMorphosisModel(Model):
     """Drive a real Strands tool call without external model credentials."""
 
@@ -63,10 +74,7 @@ class DeterministicMorphosisModel(Model):
             return
 
         self.turn += 1
-        block = tool_results[-1]["content"][0]
-        result = block.get("json")
-        if result is None:
-            result = ast.literal_eval(block["text"])
+        result = _decode_tool_result(tool_results[-1]["content"][0])
         text = (
             f"Morphosis verdict: {result['verdict']}\n"
             f"Candidate: {result['candidate']}\n"
