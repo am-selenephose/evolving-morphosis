@@ -59,76 +59,22 @@
           </div>
 
           <div class="dashboard-grid">
-            <article class="panel ecosystem-panel">
-              <div class="panel-head"><div><span>MODEL ECOSYSTEM</span><small>Qualified and candidate runtimes</small></div><button data-view-link="models">View All →</button></div>
-              <div id="modelList" class="model-list"></div>
-              <button class="dashed-btn" id="discoverModel">＋ Discover candidate</button>
-            </article>
-
-            <article class="panel workspace-panel">
-              <div class="panel-head"><div><span>EVOLUTION WORKSPACE</span><small>Workload-scoped adaptation</small></div><div class="live-label">REAL-TIME <b>● LIVE</b></div></div>
-              <div class="evolution-stage"><canvas id="morphCanvas"></canvas><div class="stage-labels"><span>ENVIRONMENT<small>Real-world signals</small></span><span>AGENTS<small>Behavioral adaptation</small></span><span>MODELS<small>Continuous qualification</small></span><span>FEEDBACK<small>Evaluation + human input</small></span><span>EVOLUTION<small>A stronger system</small></span></div><div class="stage-brace">ADAPTIVE<br>INTELLIGENCE<br>IN MOTION</div></div>
-            </article>
-
-            <article class="panel recent-panel">
-              <div class="panel-head"><span>RECENT EVOLUTIONS</span><button data-view-link="evolution">View All →</button></div>
-              <div id="recentList" class="recent-list"></div>
-            </article>
-
-            <article class="panel workload-panel">
-              <div class="panel-head"><span>CURRENT WORKLOAD</span><b class="live-label">Live ●</b></div>
-              <div class="workload-wrap"><div class="donut"><div><strong>26</strong><small>TASKS</small></div></div><div class="legend"><p><i style="--c:#ff6fa8"></i>Inference <span>10 · 38%</span></p><p><i style="--c:#f24882"></i>Evaluation <span>7 · 27%</span></p><p><i style="--c:#c63e75"></i>Training <span>5 · 19%</span></p><p><i style="--c:#9e365f"></i>Agent Tasks <span>3 · 12%</span></p><p><i style="--c:#6d2946"></i>Other <span>1 · 4%</span></p></div></div>
-            </article>
-
-            <article class="panel pipeline-panel">
-              <div class="panel-head"><span>EVOLUTION PIPELINE</span><button data-view-link="evolution">View Runs →</button></div>
-              <div id="pipeline" class="pipeline"></div>
-            </article>
-
-            <article class="panel log-panel">
-              <div class="panel-head"><span>LIVE EVOLUTION LOG</span><div><small>Streaming</small><b class="pulse-dot"></b><button id="pauseLog">Pause Ⅱ</button></div></div>
-              <div id="liveLog" class="terminal"></div>
-            </article>
+            <article class="panel ecosystem-panel"><div class="panel-head"><div><span>MODEL ECOSYSTEM</span><small>Qualified and candidate runtimes</small></div><button data-view-link="models">View All →</button></div><div id="modelList" class="model-list"></div><button class="dashed-btn" id="discoverModel">＋ Discover candidate</button></article>
+            <article class="panel workspace-panel"><div class="panel-head"><div><span>EVOLUTION WORKSPACE</span><small>Workload-scoped adaptation</small></div><div class="live-label">REAL-TIME <b>● LIVE</b></div></div><div class="evolution-stage"><canvas id="morphCanvas"></canvas><div class="stage-labels"><span>ENVIRONMENT<small>Real-world signals</small></span><span>AGENTS<small>Behavioral adaptation</small></span><span>MODELS<small>Continuous qualification</small></span><span>FEEDBACK<small>Evaluation + human input</small></span><span>EVOLUTION<small>A stronger system</small></span></div><div class="stage-brace">ADAPTIVE<br>INTELLIGENCE<br>IN MOTION</div></div></article>
+            <article class="panel recent-panel"><div class="panel-head"><span>RECENT EVOLUTIONS</span><button data-view-link="evolution">View All →</button></div><div id="recentList" class="recent-list"></div></article>
+            <article class="panel workload-panel"><div class="panel-head"><span>CURRENT WORKLOAD</span><b class="live-label">Live ●</b></div><div class="workload-wrap"><div class="donut"><div><strong>26</strong><small>TASKS</small></div></div><div class="legend"><p><i style="--c:#ff6fa8"></i>Inference <span>10 · 38%</span></p><p><i style="--c:#f24882"></i>Evaluation <span>7 · 27%</span></p><p><i style="--c:#c63e75"></i>Training <span>5 · 19%</span></p><p><i style="--c:#9e365f"></i>Agent Tasks <span>3 · 12%</span></p><p><i style="--c:#6d2946"></i>Other <span>1 · 4%</span></p></div></div></article>
+            <article class="panel pipeline-panel"><div class="panel-head"><span>EVOLUTION PIPELINE</span><button data-view-link="evolution">View Runs →</button></div><div id="pipeline" class="pipeline"></div></article>
+            <article class="panel log-panel"><div class="panel-head"><span>LIVE EVOLUTION LOG</span><div><small>Streaming</small><b class="pulse-dot"></b><button id="pauseLog">Pause Ⅱ</button></div></div><div id="liveLog" class="terminal"></div></article>
           </div>
         </section>
 
-        <section class="view" id="view-evolution">
-          <div class="page-head"><div><div class="kicker">EVOLUTION LAB</div><h2>Qualify before you trust.</h2><p>Newer is not better by default. Candidates must prove they satisfy the workload contract.</p></div><button class="primary" id="runQualification">Run qualification →</button></div>
-          <div class="lab-grid">
-            <article class="panel contract-card"><div class="panel-head"><span>WORKLOAD CONTRACT</span><small>professional-opportunity-triage-v1</small></div><div id="contractMetrics" class="contract-metrics"></div><div class="policy-note">Hard invariants cannot be traded away by a higher average score.</div></article>
-            <article class="panel candidate-card"><div class="panel-head"><span>CANDIDATE</span><div class="segmented"><button data-candidate="hot" class="active">New hot model</button><button data-candidate="future">Future qualified</button></div></div><div id="candidateMetrics"></div><div id="decisionCard" class="decision-card"></div></article>
-          </div>
-          <article class="panel evidence-panel"><div class="panel-head"><span>DECISION EVIDENCE</span><small>content-addressed / reproducible</small></div><div id="evidenceTrace" class="evidence-trace"></div></article>
-        </section>
-
+        <section class="view" id="view-evolution"><div class="page-head"><div><div class="kicker">EVOLUTION LAB</div><h2>Qualify before you trust.</h2><p>Newer is not better by default. Candidates must prove they satisfy the workload contract.</p></div><button class="primary" id="runQualification">Run qualification →</button></div><div class="lab-grid"><article class="panel contract-card"><div class="panel-head"><span>WORKLOAD CONTRACT</span><small>professional-opportunity-triage-v1</small></div><div id="contractMetrics" class="contract-metrics"></div><div class="policy-note">Hard invariants cannot be traded away by a higher average score.</div></article><article class="panel candidate-card"><div class="panel-head"><span>CANDIDATE</span><div class="segmented"><button data-candidate="hot" class="active">New hot model</button><button data-candidate="future">Future qualified</button></div></div><div id="candidateMetrics"></div><div id="decisionCard" class="decision-card"></div></article></div><article class="panel evidence-panel"><div class="panel-head"><span>DECISION EVIDENCE</span><small>content-addressed / reproducible</small></div><div id="evidenceTrace" class="evidence-trace"></div></article></section>
         <section class="view" id="view-models"><div class="page-head"><div><div class="kicker">MODEL ECOSYSTEM</div><h2>Every model is a candidate,<br><em>not a promise.</em></h2><p>Provider metadata introduces a model. Observed workload evidence decides whether it belongs.</p></div><button class="primary" id="scanModels">Scan providers →</button></div><div id="modelCards" class="card-grid"></div></section>
-
-        <section class="view" id="view-agents"><div class="page-head"><div><div class="kicker">AGENT SKINS</div><h2>Same agent. Different minds.</h2><p>Workload contracts, evidence boundaries, tools, and human authority survive model generations.</p></div></div><div id="agentCards" class="card-grid"></div></section>
-
+        <section class="view" id="view-agents"><div class="page-head"><div><div class="kicker">AGENT RUNTIMES</div><h2>Same agent. Different minds.</h2><p>Workload contracts, evidence boundaries, tools, and human authority survive model generations.</p></div></div><div id="agentCards" class="card-grid"></div></section>
         <section class="view" id="view-evaluation"><div class="page-head"><div><div class="kicker">EVALUATION</div><h2>Measured behavior beats metadata.</h2><p>Tool use, structured output, task quality, latency, cost, and invariants are evaluated per workload.</p></div></div><div class="evaluation-grid"><article class="panel"><div class="panel-head"><span>QUALITY GATES</span></div><div id="qualityGates" class="gate-list"></div></article><article class="panel"><div class="panel-head"><span>REGRESSION WATCH</span></div><div class="big-number">0.058</div><p class="muted">Qualified candidate improvement over incumbent workload score.</p><div class="mini-chart" id="miniChart"></div></article></div></section>
-
-        <section class="view" id="view-deployments"><div class="page-head"><div><div class="kicker">DEPLOYMENTS</div><h2>Promotion is a controlled event.</h2><p>Qualified candidates enter a runtime pool only after workload evidence passes.</p></div></div><div class="deploy-grid"><article class="panel"><div class="panel-head"><span>RUNTIME POOL</span><b class="good-text">HEALTHY</b></div><div class="runtime-row"><b>incumbent-v1</b><span>Primary · 90%</span><button>Healthy</button></div><div class="runtime-row"><b>future-qualified-model</b><span>Canary · 10%</span><button class="pink">Qualified</button></div></article><article class="panel"><div class="panel-head"><span>PROVIDER BOUNDARIES</span></div><p class="muted">Strands Agents SDK 1.55.1 · Bedrock-compatible boundary · provider-neutral contract · no fabricated AgentCore deployment.</p></article></div></section>
-
+        <section class="view" id="view-deployments"><div class="page-head"><div><div class="kicker">DEPLOYMENTS</div><h2>Promotion is a controlled event.</h2><p>Qualified candidates enter a runtime pool only after workload evidence passes.</p></div></div><div class="deploy-grid"><article class="panel"><div class="panel-head"><span>RUNTIME POOL</span><b class="good-text">HEALTHY</b></div><div class="runtime-row"><b>incumbent-v1</b><span>Primary · 90%</span><button>Healthy</button></div><div class="runtime-row"><b>future-qualified-model</b><span>Canary · 10%</span><button class="pink">Qualified</button></div></article><article class="panel"><div class="panel-head"><span>PROVIDER BOUNDARIES</span></div><p class="muted">Strands Agents SDK 1.55.1 · Bedrock-compatible boundary · provider-neutral contract. This build does not claim an AgentCore deployment.</p></article></div></section>
         <section class="view" id="view-observability"><div class="page-head"><div><div class="kicker">OBSERVABILITY</div><h2>Evidence loops back.</h2><p>Production telemetry can trigger requalification without weakening hard policy invariants.</p></div></div><div class="obs-grid"><article class="panel"><div class="panel-head"><span>TELEMETRY</span></div><canvas id="telemetryCanvas"></canvas></article><article class="panel"><div class="panel-head"><span>REQUALIFICATION TRIGGERS</span></div><div class="trigger-list"><p><b>Schema drift</b><span>armed</span></p><p><b>Tool error spike</b><span>armed</span></p><p><b>Latency regression</b><span>armed</span></p><p><b>Policy violation</b><span>immediate reject</span></p></div></article></div></section>
-
-        <section class="view" id="view-architecture">
-          <div class="page-head"><div><div class="kicker">SYSTEM ARCHITECTURE</div><h2>A living qualification control plane.</h2><p>Modular, provider-neutral, workload-scoped, and designed so unknown future models can enter through evidence rather than hard-coded trust.</p></div><button class="primary" id="pulseArchitecture">Trace evolution →</button></div>
-          <div class="architecture-map" id="architectureMap">
-            <div class="arch-stage"><b>01 · MODEL SOURCES</b><span>AWS Bedrock</span><span>OpenAI / Anthropic</span><span>Google / OpenRouter</span><span>Ollama / vLLM</span><span>Future providers</span></div>
-            <div class="arch-arrow">→</div>
-            <div class="arch-stage"><b>02 · DISCOVERY</b><span>Model registry</span><span>Capability metadata</span><span>Provider normalization</span><span>Continuous scanning</span><span>Candidate quarantine</span></div>
-            <div class="arch-arrow">→</div>
-            <div class="arch-stage emphasized"><b>03 · QUALIFICATION</b><span>Runtime probes</span><span>Tool-use tests</span><span>Schema tests</span><span>Workload evals</span><span>Adversarial checks</span></div>
-            <div class="arch-arrow">→</div>
-            <div class="arch-stage"><b>04 · ADAPTATION</b><span>Compatibility compiler</span><span>Schema transforms</span><span>Tool adaptation</span><span>Context strategy</span><span>Portable fallbacks</span></div>
-            <div class="arch-arrow">→</div>
-            <div class="arch-stage"><b>05 · ROUTING</b><span>Strands ModelRouter</span><span>Canary / shadow</span><span>Fallback recovery</span><span>Cost / latency policy</span><span>Promotion control</span></div>
-            <div class="arch-arrow">→</div>
-            <div class="arch-stage"><b>06 · AGENT RUNTIME</b><span>Workload contract</span><span>Tools + memory</span><span>Evidence lineage</span><span>Human authority</span><span>Continuous monitoring</span></div>
-            <div class="feedback-rail"><b>OBSERVABILITY & FEEDBACK LOOP</b><span>traces</span><span>evaluation results</span><span>usage analytics</span><span>drift detection</span><span>requalification triggers</span><span>evidence store</span></div>
-            <div class="governance-rail"><b>SECURITY · GOVERNANCE · COST CONTROLS · POLICY INVARIANTS</b></div>
-          </div>
-        </section>
+        <section class="view" id="view-architecture"><div class="page-head"><div><div class="kicker">SYSTEM ARCHITECTURE</div><h2>A living qualification control plane.</h2><p>Modular, provider-neutral, workload-scoped, and designed so unknown future models can enter through evidence rather than hard-coded trust.</p></div><button class="primary" id="pulseArchitecture">Trace evolution →</button></div><div class="architecture-map" id="architectureMap"></div></section>
       </main>
     </section>
   </div>
