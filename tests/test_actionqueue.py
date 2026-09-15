@@ -43,7 +43,7 @@ class QueueTests(unittest.TestCase):
         agent = create_demo_agent(PACKET, NOW)
         result = asyncio.run(agent.invoke_async("Analyze the packet."))
         text = str(result)
-        self.assertIn("ActionQueue completed", text)
+        self.assertIn("Evolving Morphosis completed", text)
         self.assertIn("HUMAN APPROVAL REQUIRED", text)
         self.assertIn("`grant-alpha-copy`: duplicate", text)
         self.assertEqual(result.stop_reason, "end_turn")

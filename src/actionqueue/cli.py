@@ -1,4 +1,4 @@
-"""Command-line entry point for ActionQueue."""
+"""Command-line entry point for Evolving Morphosis."""
 
 from __future__ import annotations
 

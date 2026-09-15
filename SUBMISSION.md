@@ -41,7 +41,7 @@ Both converge into an extensible capability evidence graph. Candidate claims are
 
 The Morphogenesis Engine then compiles candidate-proposed compatibility changes such as schema transforms, tool mappings, context strategies, or portable fallbacks. Every proposed evolution becomes an immutable Evolution Bundle containing candidate identity, parent lineage, changes, test/invariant state, rollback metadata, recommendation, approval class, and deterministic hash.
 
-The first real workload is ActionQueue, a professional opportunity-triage agent with required tool use, structured output, task quality, cost/latency budgets, and hard invariants for human authorization and evidence lineage.
+The first real workload is Evolving Morphosis's professional opportunity-triage workload, with required tool use, structured output, task quality, cost/latency budgets, and hard invariants for human authorization and evidence lineage.
 
 ## Future-model demo
 
@@ -86,7 +86,7 @@ A third challenge was separating native capability from compatibility. If a mode
 - Incumbent-preserving failed evolution
 - Drift-triggered requalification primitive
 - Real Strands Agents SDK tool-use loops
-- ActionQueue retained as a concrete professional workload
+- Evolving Morphosis professional workload integration
 - Interactive raspberry/black browser console
 
 ## What we learned
@@ -125,7 +125,7 @@ Longer term, the same capability-evidence model can extend through MCP and A2A f
 
 ## Pre-existing work disclosure
 
-The broader **Autonomous Morphology** research direction and name existed before the hackathon. The submitted **Evolving Morphosis** implementation — Strands loops, future-model bootstrap, extensible capability registry, candidate-proposed compatibility path, Evolution Bundle protocol, ActionQueue workload integration, tests, UI, architecture, and reproducible demo — was built during the 2026 Agents for Humans submission period.
+The broader **Autonomous Morphology** research direction and name existed before the hackathon. The submitted **Evolving Morphosis** implementation — Strands loops, future-model bootstrap, extensible capability registry, candidate-proposed compatibility path, Evolution Bundle protocol, Evolving Morphosis workload integration, tests, UI, architecture, and reproducible demo — was built during the 2026 Agents for Humans submission period.
 
 Private AM/Animantum identity architecture, private long-term optimization heuristics, and private cross-agent memory/research systems are not part of this public submission.
 
@@ -147,7 +147,7 @@ Expected evidence includes `UNKNOWN_BOOTSTRAP`, `future.semantic_patch.v1`, `Obs
 
 ## Submission assets
 
-- Public repository: https://gitlab.com/am.statementforge/actionqueue-agents-for-humans
+- Public repository: https://gitlab.com/am.statementforge/evolving-morphosis
 - Architecture source: `architecture.svg`
 - Devpost architecture PNG: regenerate from the v2 SVG before final upload
 - Demo video public URL: upload the final v2 demo to **Public** YouTube or Vimeo before submission

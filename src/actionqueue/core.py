@@ -87,7 +87,7 @@ def build_action_queue(packet: dict[str, Any], now_iso: str) -> dict[str, Any]:
 
 def render_markdown(queue: dict[str, Any]) -> str:
     """Render the action queue as a human-reviewable Markdown report."""
-    lines = ["# ActionQueue report", "", f"Generated: {queue['generated_at']}", f"Result hash: `{queue['result_hash']}`", ""]
+    lines = ["# Evolving Morphosis report", "", f"Generated: {queue['generated_at']}", f"Result hash: `{queue['result_hash']}`", ""]
     for index, item in enumerate(queue["queue"], 1):
         gate = "HUMAN APPROVAL REQUIRED" if item["approval_required"] else "SAFE TO PREPARE"
         lines.extend(

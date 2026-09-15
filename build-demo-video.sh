@@ -19,7 +19,7 @@ make_slide() {
     "$demo_dir/$name.png"
 }
 
-make_slide title 'ActionQueue' $'Evidence in. Accountable decisions out.\n\nA Strands Agents SDK professional-work agent'
+make_slide title 'Evolving Morphosis' $'Evidence in. Accountable decisions out.\n\nA Strands Agents SDK professional-work agent'
 make_slide input 'Noisy packet in' $'Synthetic fixture includes:\n\n• valid opportunities\n• a duplicate\n• an expired listing\n• an incomplete record\n\nNo credentials or private data required.'
 make_slide result 'Evidence-backed queue out' $'2 viable records ranked\n1 expired record rejected\n1 duplicate removed\n1 invalid record rejected\n\nSources and SHA-256 evidence fingerprints retained.'
 make_slide gate 'Consequential actions stop here' $'APPLY  •  PUBLISH  •  SEND\nSIGN   •  SPEND    •  SUBMIT\n\nDEFAULT-DENY — explicit human approval required'

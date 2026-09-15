@@ -1,4 +1,4 @@
-"""Strands tools exposed to the ActionQueue agent."""
+"""Strands tools exposed to the Evolving Morphosis agent."""
 
 from __future__ import annotations
 

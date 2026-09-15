@@ -1,4 +1,4 @@
-"""ActionQueue Strands agent assembly."""
+"""Evolving Morphosis Strands agent assembly."""
 
 from __future__ import annotations
 
@@ -11,7 +11,7 @@ from actionqueue.demo_model import DeterministicDemoModel
 from actionqueue.tools import analyze_opportunity_packet
 
 
-SYSTEM_PROMPT = """You are ActionQueue, a professional-work triage agent.
+SYSTEM_PROMPT = """You are Evolving Morphosis, a professional-work triage agent.
 Use tools to normalize and deduplicate supplied opportunity evidence. Never submit, publish,
 send, sign, spend, or claim identity. Surface consequential actions as explicit human approval
 gates, preserve source URLs and evidence hashes, and finish with a concise review report.
