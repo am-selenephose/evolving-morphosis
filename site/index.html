@@ -6,68 +6,25 @@
   <meta name="theme-color" content="#030205" />
   <title>Evolving Morphosis</title>
   <link rel="stylesheet" href="app.css" />
+  <link rel="stylesheet" href="v2.css" />
   <link rel="stylesheet" href="fidelity.css" />
 </head>
 <body>
   <div class="app-shell">
     <aside class="sidebar" aria-label="Primary navigation">
-      <div class="brand-block">
-        <div class="brand-mark" aria-hidden="true">∞</div>
-        <div><div class="brand-name">EVOLVING<br>MORPHOSIS</div><div class="brand-sub">Adaptive intelligence<br>for a changing world</div></div>
-      </div>
+      <div class="brand-block"><div class="brand-mark" aria-hidden="true">∞</div><div><div class="brand-name">EVOLVING<br>MORPHOSIS</div><div class="brand-sub">Adaptive intelligence<br>for a changing world</div></div></div>
       <nav class="side-nav" id="sideNav">
-        <button class="nav-item active" data-view="overview"><span>⌂</span><b>Overview</b></button>
-        <button class="nav-item" data-view="evolution"><span>✣</span><b>Evolution Lab</b></button>
-        <button class="nav-item" data-view="models"><span>◈</span><b>Model Ecosystem</b></button>
-        <button class="nav-item" data-view="agents"><span>⌘</span><b>Agents</b></button>
-        <button class="nav-item" data-view="evaluation"><span>◫</span><b>Evaluation</b></button>
-        <button class="nav-item" data-view="deployments"><span>◉</span><b>Deployments</b></button>
-        <button class="nav-item" data-view="observability"><span>◌</span><b>Observability</b></button>
-        <button class="nav-item" data-view="architecture"><span>⌬</span><b>Architecture</b></button>
+        <button class="nav-item active" data-view="overview"><span>⌂</span><b>Overview</b></button><button class="nav-item" data-view="evolution"><span>✣</span><b>Evolution Lab</b></button><button class="nav-item" data-view="models"><span>◈</span><b>Model Ecosystem</b></button><button class="nav-item" data-view="agents"><span>⌘</span><b>Agents</b></button><button class="nav-item" data-view="evaluation"><span>◫</span><b>Evaluation</b></button><button class="nav-item" data-view="deployments"><span>◉</span><b>Deployments</b></button><button class="nav-item" data-view="observability"><span>◌</span><b>Observability</b></button><button class="nav-item" data-view="architecture"><span>⌬</span><b>Architecture</b></button>
       </nav>
-      <div class="sidebar-art" aria-hidden="true"><canvas id="sideCanvas"></canvas></div>
-      <div class="side-motto">EVOLVE<br>ADAPT<br>ALIGN<br>BEYOND</div>
-      <div class="side-foot">v0.3.0 · HACKATHON BUILD<br>MODELS CHANGE. CONTRACTS HOLD.</div>
+      <div class="sidebar-art" aria-hidden="true"><canvas id="sideCanvas"></canvas></div><div class="side-motto">EVOLVE<br>ADAPT<br>ALIGN<br>BEYOND</div><div class="side-foot">v0.3.0 · HACKATHON BUILD<br>MODELS CHANGE. CONTRACTS HOLD.</div>
     </aside>
-
     <section class="workspace">
-      <header class="topbar">
-        <div class="system-strip"><span class="status-dot mint"></span> SYSTEM ONLINE <i></i> <span id="agentCount">26 AGENTS</span> <i></i> 4 MODELS <i></i> GLOBAL</div>
-        <div class="top-actions">
-          <label class="search"><span>⌕</span><input id="globalSearch" placeholder="Search models, agents, runs…" /></label>
-          <button class="icon-btn" id="soundToggle" aria-label="Toggle animation">✦</button>
-          <div class="avatar">EM</div>
-          <div class="account"><b>Evolving Morphosis</b><small>Build. Evolve. Repeat.</small></div>
-        </div>
-      </header>
-
+      <header class="topbar"><div class="system-strip"><span class="status-dot mint"></span> SYSTEM ONLINE <i></i> <span id="agentCount">26 AGENTS</span> <i></i> 4 MODELS <i></i> GLOBAL</div><div class="top-actions"><label class="search"><span>⌕</span><input id="globalSearch" placeholder="Search models, agents, runs…" /></label><button class="icon-btn" id="soundToggle" aria-label="Toggle animation">✦</button><div class="avatar">EM</div><div class="account"><b>Evolving Morphosis</b><small>Build. Evolve. Repeat.</small></div></div></header>
       <main class="content">
         <section class="view active" id="view-overview">
-          <div class="overview-hero">
-            <canvas id="heroField" class="hero-field" aria-hidden="true"></canvas>
-            <div class="hero-copy">
-              <div class="kicker">EVOLUTION CONSOLE</div>
-              <h1>Models evolve.<br><em>Agents evolve too.</em></h1>
-              <p>A living qualification system for continual adaptation — where models, agents, workload contracts, and real-world evidence co-evolve.</p>
-              <div class="hero-stats">
-                <div><strong>26</strong><span>AGENTS ACTIVE</span><small>↑ 2</small></div>
-                <div><strong>4</strong><span>MODELS IN PLAY</span><small>↑ 1</small></div>
-                <div><strong>97.3%</strong><span>SYSTEM HEALTH</span><small class="spark">⌁⌁⌁</small></div>
-              </div>
-            </div>
-            <div class="hero-quote"><div class="vertical-words">ADAPT<br>COMPOSE<br>EVOLVE<br>REPEAT</div><blockquote>“Intelligence doesn’t end at a better model.<br>It compounds through what it becomes.”</blockquote><small>— EVOLVING MORPHOSIS</small><div class="vertical-words right">SAME<br>MISSION.<br>MORE<br>ADAPTIVE.</div></div>
-          </div>
-
-          <div class="dashboard-grid">
-            <article class="panel ecosystem-panel"><div class="panel-head"><div><span>MODEL ECOSYSTEM</span><small>Qualified and candidate runtimes</small></div><button data-view-link="models">View All →</button></div><div id="modelList" class="model-list"></div><button class="dashed-btn" id="discoverModel">＋ Discover candidate</button></article>
-            <article class="panel workspace-panel"><div class="panel-head"><div><span>EVOLUTION WORKSPACE</span><small>Workload-scoped adaptation</small></div><div class="live-label">REAL-TIME <b>● LIVE</b></div></div><div class="evolution-stage"><canvas id="morphCanvas"></canvas><div class="stage-labels"><span>ENVIRONMENT<small>Real-world signals</small></span><span>AGENTS<small>Behavioral adaptation</small></span><span>MODELS<small>Continuous qualification</small></span><span>FEEDBACK<small>Evaluation + human input</small></span><span>EVOLUTION<small>A stronger system</small></span></div><div class="stage-brace">ADAPTIVE<br>INTELLIGENCE<br>IN MOTION</div></div></article>
-            <article class="panel recent-panel"><div class="panel-head"><span>RECENT EVOLUTIONS</span><button data-view-link="evolution">View All →</button></div><div id="recentList" class="recent-list"></div></article>
-            <article class="panel workload-panel"><div class="panel-head"><span>CURRENT WORKLOAD</span><b class="live-label">Live ●</b></div><div class="workload-wrap"><div class="donut"><div><strong>26</strong><small>TASKS</small></div></div><div class="legend"><p><i style="--c:#ff6fa8"></i>Inference <span>10 · 38%</span></p><p><i style="--c:#f24882"></i>Evaluation <span>7 · 27%</span></p><p><i style="--c:#c63e75"></i>Training <span>5 · 19%</span></p><p><i style="--c:#9e365f"></i>Agent Tasks <span>3 · 12%</span></p><p><i style="--c:#6d2946"></i>Other <span>1 · 4%</span></p></div></div></article>
-            <article class="panel pipeline-panel"><div class="panel-head"><span>EVOLUTION PIPELINE</span><button data-view-link="evolution">View Runs →</button></div><div id="pipeline" class="pipeline"></div></article>
-            <article class="panel log-panel"><div class="panel-head"><span>LIVE EVOLUTION LOG</span><div><small>Streaming</small><b class="pulse-dot"></b><button id="pauseLog">Pause Ⅱ</button></div></div><div id="liveLog" class="terminal"></div></article>
-          </div>
+          <div class="overview-hero"><canvas id="heroField" class="hero-field" aria-hidden="true"></canvas><div class="hero-copy"><div class="kicker">EVOLUTION CONSOLE</div><h1>Models evolve.<br><em>Agents evolve too.</em></h1><p>A living qualification system for continual adaptation — where models, agents, workload contracts, and real-world evidence co-evolve.</p><div class="hero-stats"><div><strong>26</strong><span>AGENTS ACTIVE</span><small>↑ 2</small></div><div><strong>4</strong><span>MODELS IN PLAY</span><small>↑ 1</small></div><div><strong>97.3%</strong><span>SYSTEM HEALTH</span><small class="spark">⌁⌁⌁</small></div></div></div><div class="hero-quote"><blockquote>“Intelligence doesn’t end at a better model.<br>It compounds through what it becomes.”</blockquote><small>— EVOLVING MORPHOSIS</small><div class="vertical-words right">SAME<br>MISSION.<br>MORE<br>ADAPTIVE.</div></div></div>
+          <div class="dashboard-grid"><article class="panel ecosystem-panel"><div class="panel-head"><div><span>MODEL ECOSYSTEM</span><small>Qualified and candidate runtimes</small></div><button data-view-link="models">View All →</button></div><div id="modelList" class="model-list"></div><button class="dashed-btn" id="discoverModel">＋ Discover candidate</button></article><article class="panel workspace-panel"><div class="panel-head"><div><span>EVOLUTION WORKSPACE</span><small>Workload-scoped adaptation</small></div><div class="live-label">REAL-TIME <b>● LIVE</b></div></div><div class="evolution-stage"><canvas id="morphCanvas"></canvas><div class="stage-labels"><span>ENVIRONMENT<small>Real-world signals</small></span><span>AGENTS<small>Behavioral adaptation</small></span><span>MODELS<small>Continuous qualification</small></span><span>FEEDBACK<small>Evaluation + human input</small></span><span>EVOLUTION<small>A stronger system</small></span></div><div class="stage-brace">ADAPTIVE<br>INTELLIGENCE<br>IN MOTION</div></div></article><article class="panel recent-panel"><div class="panel-head"><span>RECENT EVOLUTIONS</span><button data-view-link="evolution">View All →</button></div><div id="recentList" class="recent-list"></div></article><article class="panel workload-panel"><div class="panel-head"><span>CURRENT WORKLOAD</span><b class="live-label">Live ●</b></div><div class="workload-wrap"><div class="donut"><div><strong>26</strong><small>TASKS</small></div></div><div class="legend"><p><i style="--c:#ff6fa8"></i>Inference <span>10 · 38%</span></p><p><i style="--c:#f24882"></i>Evaluation <span>7 · 27%</span></p><p><i style="--c:#c63e75"></i>Training <span>5 · 19%</span></p><p><i style="--c:#9e365f"></i>Agent Tasks <span>3 · 12%</span></p><p><i style="--c:#6d2946"></i>Other <span>1 · 4%</span></p></div></div></article><article class="panel pipeline-panel"><div class="panel-head"><span>EVOLUTION PIPELINE</span><button data-view-link="evolution">View Runs →</button></div><div id="pipeline" class="pipeline"></div></article><article class="panel log-panel"><div class="panel-head"><span>LIVE EVOLUTION LOG</span><div><small>Streaming</small><b class="pulse-dot"></b><button id="pauseLog">Pause Ⅱ</button></div></div><div id="liveLog" class="terminal"></div></article></div>
         </section>
-
         <section class="view" id="view-evolution"><div class="page-head"><div><div class="kicker">EVOLUTION LAB</div><h2>Qualify before you trust.</h2><p>Newer is not better by default. Candidates must prove they satisfy the workload contract.</p></div><button class="primary" id="runQualification">Run qualification →</button></div><div class="lab-grid"><article class="panel contract-card"><div class="panel-head"><span>WORKLOAD CONTRACT</span><small>professional-opportunity-triage-v1</small></div><div id="contractMetrics" class="contract-metrics"></div><div class="policy-note">Hard invariants cannot be traded away by a higher average score.</div></article><article class="panel candidate-card"><div class="panel-head"><span>CANDIDATE</span><div class="segmented"><button data-candidate="hot" class="active">New hot model</button><button data-candidate="future">Future qualified</button></div></div><div id="candidateMetrics"></div><div id="decisionCard" class="decision-card"></div></article></div><article class="panel evidence-panel"><div class="panel-head"><span>DECISION EVIDENCE</span><small>content-addressed / reproducible</small></div><div id="evidenceTrace" class="evidence-trace"></div></article></section>
         <section class="view" id="view-models"><div class="page-head"><div><div class="kicker">MODEL ECOSYSTEM</div><h2>Every model is a candidate,<br><em>not a promise.</em></h2><p>Provider metadata introduces a model. Observed workload evidence decides whether it belongs.</p></div><button class="primary" id="scanModels">Scan providers →</button></div><div id="modelCards" class="card-grid"></div></section>
         <section class="view" id="view-agents"><div class="page-head"><div><div class="kicker">AGENT RUNTIMES</div><h2>Same agent. Different minds.</h2><p>Workload contracts, evidence boundaries, tools, and human authority survive model generations.</p></div></div><div id="agentCards" class="card-grid"></div></section>
@@ -78,7 +35,7 @@
       </main>
     </section>
   </div>
-  <script src="app.js"></script>
-  <script src="fidelity.js"></script>
+  <script type="module" src="./app.js"></script>
+  <script type="module" src="./fidelity.js"></script>
 </body>
 </html>
