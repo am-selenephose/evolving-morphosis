@@ -147,7 +147,7 @@ Expected evidence includes `UNKNOWN_BOOTSTRAP`, `future.semantic_patch.v1`, `Obs
 
 ## Submission assets
 
-- Public repository: https://gitlab.com/am.statementforge/actionqueue-agents-for-humans
+- Public repository: https://gitlab.com/am.statementforge/evolving-morphosis
 - Architecture source: `architecture.svg`
 - Devpost architecture PNG: regenerate from the v2 SVG before final upload
 - Demo video public URL: upload the final v2 demo to **Public** YouTube or Vimeo before submission

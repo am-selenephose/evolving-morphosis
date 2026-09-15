@@ -1,6 +1,6 @@
-ActionQueue completed with all consequential actions gated.
+Evolving Morphosis completed with all consequential actions gated.
 
-# ActionQueue report
+# Evolving Morphosis report
 
 Generated: 2026-08-26T00:00:00Z
 Result hash: `69732b2df8b68230ae13c8294f035aeab9b2aa043c73a8d4bc728ae07851b65c`

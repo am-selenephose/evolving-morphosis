@@ -27,4 +27,4 @@ grep -q "Adaptation proof: OBSERVED" demo-output/future-model.txt
 grep -q "Runtime gate: AUTO_APPLY" demo-output/future-model.txt
 grep -q "Source gate: HUMAN_APPROVAL_REQUIRED" demo-output/future-model.txt
 
-echo "PASS: tests + real Strands loops + ActionQueue gates + current-model qualification + future capability/adaptation verification"
+echo "PASS: tests + real Strands loops + Evolving Morphosis gates + current-model qualification + future capability/adaptation verification"

@@ -28,7 +28,7 @@ def _decode_tool_result(block: dict[str, Any]) -> Any:
 
 
 class DeterministicDemoModel(Model):
-    """Select ActionQueue tools deterministically for offline demos and tests."""
+    """Select Evolving Morphosis tools deterministically for offline demos and tests."""
 
     def __init__(self, packet: dict[str, Any], now_iso: str) -> None:
         self.config: dict[str, Any] = {"model_id": "actionqueue-deterministic-demo-v1"}
@@ -78,7 +78,7 @@ class DeterministicDemoModel(Model):
         self.turn += 1
         content = _decode_tool_result(tool_results[-1]["content"][0])
         report = render_markdown(content)
-        async for event in self._text(f"ActionQueue completed with all consequential actions gated.\n\n{report}"):
+        async for event in self._text(f"Evolving Morphosis completed with all consequential actions gated.\n\n{report}"):
             yield event
 
     async def _tool_call(self, name: str, call_id: str, arguments: dict[str, Any]) -> AsyncIterable[StreamEvent]:

@@ -20,7 +20,7 @@ The important rule is simple: **metadata is a prior; observed workload behavior 
 
 In the reference demo, one synthetic “new hot model” performs extremely well on ordinary capability measures but fails the authorization invariant. Morphosis rejects it. A second candidate passes the same contract and materially improves the workload score, so it is promoted.
 
-The implementation uses the Strands Agents SDK for the agent/tool loop and keeps qualification deterministic and reproducible. Every decision receives a SHA-256 evidence hash. The first workload is ActionQueue, a professional opportunity-triage agent whose consequential actions remain human-authorized.
+The implementation uses the Strands Agents SDK for the agent/tool loop and keeps qualification deterministic and reproducible. Every decision receives a SHA-256 evidence hash. The first workload is Evolving Morphosis, a professional opportunity-triage agent whose consequential actions remain human-authorized.
 
 This architecture is intentionally model-generation resilient. The agent is not written for GPT-N, Claude-N, or one Bedrock model family. A future candidate only needs an adapter capable of producing evidence against the same workload contract.
 
@@ -28,7 +28,7 @@ That is the idea I want professional agents to inherit: **new model, same contra
 
 Project: Evolving Morphosis
 Live demo: https://light-mindset-9rn4u6e.shipstatic.com
-Source: https://gitlab.com/am.statementforge/actionqueue-agents-for-humans
+Source: https://gitlab.com/am.statementforge/evolving-morphosis
 
 ---
 
@@ -68,7 +68,7 @@ That is why I think the workload contract is a more durable abstraction than any
 
 Project: Evolving Morphosis
 Live demo: https://light-mindset-9rn4u6e.shipstatic.com
-Source: https://gitlab.com/am.statementforge/actionqueue-agents-for-humans
+Source: https://gitlab.com/am.statementforge/evolving-morphosis
 
 ---
 
@@ -88,7 +88,7 @@ That gives the repository two useful properties:
 
 **Honest separation of concerns.** The deterministic demo is not presented as a production intelligence model. It exists to prove orchestration, tool execution, policy behavior, and evidence handling. A live AWS deployment could swap the model/provider boundary while keeping the workload contract and qualification logic unchanged.
 
-The current verifier runs 11 tests on Python 3.12 and Strands Agents SDK 1.55.1. It covers the Morphosis decision engine, the original ActionQueue professional workload, both credential-free Strands tool loops, the authorization boundary, and both the REJECT and PROMOTE candidate paths.
+The current verifier runs 11 tests on Python 3.12 and Strands Agents SDK 1.55.1. It covers the Morphosis decision engine, the original Evolving Morphosis professional workload, both credential-free Strands tool loops, the authorization boundary, and both the REJECT and PROMOTE candidate paths.
 
 I like this pattern because it avoids a common demo trap: either requiring external credentials or mocking so much of the framework that the framework is no longer actually being exercised.
 
@@ -96,4 +96,4 @@ For agent systems, reproducibility is part of trust. A judge—or a future maint
 
 Project: Evolving Morphosis
 Live demo: https://light-mindset-9rn4u6e.shipstatic.com
-Source: https://gitlab.com/am.statementforge/actionqueue-agents-for-humans
+Source: https://gitlab.com/am.statementforge/evolving-morphosis
