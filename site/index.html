@@ -23,7 +23,7 @@
 
     <section class="workspace">
       <header class="topbar">
-        <div class="system-strip"><span class="status-dot mint"></span> SYSTEM ONLINE <i></i><span>26 AGENTS</span><i></i><span>4 MODELS</span><i></i><span>GLOBAL</span></div>
+        <div class="system-strip"><span class="status-dot mint"></span> SYSTEM ONLINE <i></i><span>4 DEMO AGENTS</span><i></i><span>4 MODEL PATHS</span><i></i><span>DEMO PROJECTION</span></div>
         <div class="top-actions">
           <button class="search-shell" id="openSearch" aria-label="Open search"><span>⌕</span><span>Search models, agents, runs...</span><kbd>⌘ K</kbd></button>
           <button class="icon-btn" id="notificationButton" aria-label="Notifications">♧<b class="notification-dot"></b></button>
@@ -42,9 +42,9 @@
               <h1>Models <em>evolve.</em><br/>Agents <em>evolve too.</em></h1>
               <p>A living qualification system for continual adaptation — where models, agents, workload contracts, and real-world evidence co-evolve.</p>
               <div class="hero-stats">
-                <div><strong>26</strong><span>AGENTS ACTIVE</span><small>↑ 2</small></div>
-                <div><strong>4</strong><span>MODELS IN PLAY</span><small>↑ 1</small></div>
-                <div><strong>97.3%</strong><span>SYSTEM HEALTH</span><small class="sparkline">⌁⌁⌁⌁</small></div>
+                <div><strong>26</strong><span>VERIFIED TESTS</span><small>baseline</small></div>
+                <div><strong>4</strong><span>MODEL PATHS</span><small>demo</small></div>
+                <div><strong>GATED</strong><span>SOURCE AUTHORITY</span><small class="sparkline">⌁⌁⌁⌁</small></div>
               </div>
             </div>
             <div class="hero-adapt">ADAPT<br/>COMPOSE<br/>EVOLVE<br/>REPEAT</div>
@@ -60,7 +60,7 @@
             </article>
 
             <article class="panel workspace-panel">
-              <div class="panel-head"><span>EVOLUTION WORKSPACE</span><div class="live-label">REAL-TIME <b>● LIVE</b></div></div>
+              <div class="panel-head"><span>EVOLUTION WORKSPACE</span><div class="live-label">DEMO LOOP <b>● ACTIVE</b></div></div>
               <div class="evolution-stage">
                 <canvas id="workspaceCanvas"></canvas>
                 <div class="stage-labels">
@@ -76,9 +76,9 @@
             </article>
 
             <article class="panel recent-panel"><div class="panel-head"><span>RECENT EVOLUTIONS</span><button data-view-link="evolution">View All →</button></div><div id="recentList" class="recent-list"></div></article>
-            <article class="panel workload-panel"><div class="panel-head"><span>CURRENT WORKLOAD</span><div class="live-label">Live <b>●</b></div></div><div class="workload-wrap"><div class="donut"><div><strong>26</strong><small>TASKS</small></div></div><div class="legend" id="workloadLegend"></div></div></article>
+            <article class="panel workload-panel"><div class="panel-head"><span>CURRENT WORKLOAD</span><div class="live-label">Demo <b>●</b></div></div><div class="workload-wrap"><div class="donut"><div><strong>26</strong><small>TASKS</small></div></div><div class="legend" id="workloadLegend"></div></div></article>
             <article class="panel pipeline-panel"><div class="panel-head"><span>EVOLUTION PIPELINE</span><button data-view-link="evolution">View Runs →</button></div><div id="pipeline" class="pipeline"></div></article>
-            <article class="panel log-panel"><div class="panel-head"><span>LIVE EVOLUTION LOG</span><div><small>Streaming</small><b class="pulse-dot"></b><button id="pauseLog">Pause Ⅱ</button></div></div><div id="liveLog" class="terminal"></div></article>
+            <article class="panel log-panel"><div class="panel-head"><span>LIVE EVOLUTION LOG</span><div><small>Demo stream</small><b class="pulse-dot"></b><button id="pauseLog">Pause Ⅱ</button></div></div><div id="liveLog" class="terminal"></div></article>
           </section>
         </section>
 
