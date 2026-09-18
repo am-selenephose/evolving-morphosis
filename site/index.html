@@ -18,15 +18,15 @@
       <div class="sidebar-visual"><canvas id="sidebarCanvas"></canvas></div>
       <div class="side-motto">EVOLVE<br/>ADAPT<br/>ALIGN<br/>BEYOND</div>
       <div class="side-rule"></div>
-      <div class="side-foot">v0.4.0 · EVOLUTION BUILD<br/>MODELS CHANGE. CONTRACTS HOLD.</div>
+      <div class="side-foot">v3.0.0 · REFERENCE BUILD<br/>MODELS CHANGE. CONTRACTS HOLD.</div>
     </aside>
 
     <section class="workspace">
       <header class="topbar">
-        <div class="system-strip"><span class="status-dot mint"></span> SYSTEM ONLINE <i></i><span>4 DEMO AGENTS</span><i></i><span>4 MODEL PATHS</span><i></i><span>DEMO PROJECTION</span></div>
+        <div class="system-strip" id="systemStrip">LOADING BACKEND PROJECTION</div>
         <div class="top-actions">
-          <button class="search-shell" id="openSearch" aria-label="Open search"><span>⌕</span><span>Search models, agents, runs...</span><kbd>⌘ K</kbd></button>
-          <button class="icon-btn" id="notificationButton" aria-label="Notifications">♧<b class="notification-dot"></b></button>
+          <button class="search-shell" id="openSearch" aria-label="Open search"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="10" cy="10" r="6"/><path d="m15 15 6 6"/></svg><span>Search models, agents, runs...</span><kbd>⌘ K</kbd></button>
+          <button class="icon-btn" id="notificationButton" aria-label="Notifications"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 17h14l-2-4V9a5 5 0 0 0-10 0v4zM10 20h4M12 2v2"/></svg><b class="notification-dot"></b></button>
           <div class="avatar">EM</div>
           <div class="account"><strong>Evolving Morphosis</strong><small>Build. Evolve. Repeat.</small></div>
         </div>
@@ -39,13 +39,9 @@
             <div class="hero-shade"></div>
             <div class="hero-copy">
               <div class="eyebrow">EVOLUTION CONSOLE</div>
-              <h1>Models <em>evolve.</em><br/>Agents <em>evolve too.</em></h1>
-              <p>A living qualification system for continual adaptation — where models, agents, workload contracts, and real-world evidence co-evolve.</p>
-              <div class="hero-stats">
-                <div><strong>26</strong><span>VERIFIED TESTS</span><small>baseline</small></div>
-                <div><strong>4</strong><span>MODEL PATHS</span><small>demo</small></div>
-                <div><strong>GATED</strong><span>SOURCE AUTHORITY</span><small class="sparkline">⌁⌁⌁⌁</small></div>
-              </div>
+              <h1>Models <em>evolve.</em><br/><span class="hero-line-wide">Agents <em>evolve too.</em></span></h1>
+              <p>A system for continual adaptation — where models,<br>agents, and workload evidence co-evolve.</p>
+              <div class="hero-stats" id="heroStats"></div>
             </div>
             <div class="hero-adapt">ADAPT<br/>COMPOSE<br/>EVOLVE<br/>REPEAT</div>
             <div class="hero-quote"><blockquote>“Intelligence doesn’t end<br/>at a better model.<br/>It compounds through<br/>what it becomes.”</blockquote><span>— EVOLVING MORPHOSIS</span></div>
@@ -60,7 +56,7 @@
             </article>
 
             <article class="panel workspace-panel">
-              <div class="panel-head"><span>EVOLUTION WORKSPACE</span><div class="live-label">DEMO LOOP <b>● ACTIVE</b></div></div>
+              <div class="panel-head"><span>EVOLUTION WORKSPACE</span><div class="live-label"><span class="projectionMode">BACKEND REPLAY</span> <b>●</b></div></div>
               <div class="evolution-stage">
                 <canvas id="workspaceCanvas"></canvas>
                 <div class="stage-labels">
@@ -76,9 +72,9 @@
             </article>
 
             <article class="panel recent-panel"><div class="panel-head"><span>RECENT EVOLUTIONS</span><button data-view-link="evolution">View All →</button></div><div id="recentList" class="recent-list"></div></article>
-            <article class="panel workload-panel"><div class="panel-head"><span>CURRENT WORKLOAD</span><div class="live-label">Demo <b>●</b></div></div><div class="workload-wrap"><div class="donut"><div><strong>26</strong><small>TASKS</small></div></div><div class="legend" id="workloadLegend"></div></div></article>
+            <article class="panel workload-panel"><div class="panel-head"><span>CURRENT WORKLOAD</span><div class="live-label"><span class="projectionMode">REPLAY</span></div></div><div class="workload-wrap"><div class="donut"><div><strong id="workloadTotal">—</strong><small>TASKS</small></div></div><div class="legend" id="workloadLegend"></div></div></article>
             <article class="panel pipeline-panel"><div class="panel-head"><span>EVOLUTION PIPELINE</span><button data-view-link="evolution">View Runs →</button></div><div id="pipeline" class="pipeline"></div></article>
-            <article class="panel log-panel"><div class="panel-head"><span>LIVE EVOLUTION LOG</span><div><small>Demo stream</small><b class="pulse-dot"></b><button id="pauseLog">Pause Ⅱ</button></div></div><div id="liveLog" class="terminal"></div></article>
+            <article class="panel log-panel"><div class="panel-head"><span>LIVE EVOLUTION LOG</span><div><small id="streamLabel">Backend ledger</small><b class="pulse-dot"></b><button id="pauseLog">Pause Ⅱ</button></div></div><div id="liveLog" class="terminal"></div></article>
           </section>
         </section>
 
@@ -95,10 +91,12 @@
     </section>
   </div>
 
-  <div class="overlay hidden" id="searchOverlay"><div class="search-modal"><div class="search-input-wrap"><span>⌕</span><input id="globalSearch" autocomplete="off" placeholder="Search models, agents, datasets, pages, runs..."/><kbd>ESC</kbd></div><div class="search-results" id="searchResults"></div></div></div>
+  <div class="overlay hidden" id="searchOverlay" role="dialog" aria-modal="true" aria-label="Search projections"><div class="search-modal"><div class="search-input-wrap"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="10" cy="10" r="6"/><path d="m15 15 6 6"/></svg><input id="globalSearch" autocomplete="off" placeholder="Search models, agents, datasets, pages, runs..."/><kbd>ESC</kbd></div><div class="search-results" id="searchResults"></div></div></div>
   <aside class="notification-drawer" id="notificationDrawer"><div class="drawer-head"><div><span>NOTIFICATIONS</span><small>Evolution events and policy changes</small></div><button id="closeNotifications">×</button></div><div id="notificationList" class="notification-list"></div></aside>
-  <div class="overlay hidden" id="addModelOverlay"><form class="modal-card" id="addModelForm"><div class="modal-head"><div><span>ADD MODEL TO ECOSYSTEM</span><small>Candidate claims remain unverified until evaluated.</small></div><button type="button" id="closeAddModel">×</button></div><label>Model name<input id="modelNameInput" required placeholder="future-model-y"/></label><label>Provider<input id="providerInput" required placeholder="provider-name"/></label><label>Endpoint<input id="endpointInput" required placeholder="https://example.invalid/v1"/></label><label>Capability claim<input id="capabilityInput" required placeholder="future.capability.v1"/></label><div class="modal-error" id="addModelError"></div><button class="primary-btn" type="submit">Add as UNVERIFIED candidate</button></form></div>
+  <div class="overlay hidden" id="addModelOverlay" role="dialog" aria-modal="true" aria-label="Add model"><form class="modal-card" id="addModelForm"><div class="modal-head"><div><span>ADD MODEL TO ECOSYSTEM</span><small>Candidate claims remain unverified until evaluated.</small></div><button type="button" id="closeAddModel">×</button></div><label>Model name<input id="modelNameInput" required placeholder="future-model-y"/></label><label>Provider<input id="providerInput" required placeholder="provider-name"/></label><label>Endpoint<input id="endpointInput" required placeholder="reference://native"/><small class="endpoint-help">For bounded local tests, use reference://native or reference://echo with provider reference. HTTP(S) endpoints are validated by the backend.</small></label><label>Capability claim<input id="capabilityInput" required placeholder="future.capability.v1"/></label><div class="modal-error" id="addModelError"></div><button class="primary-btn" type="submit">Add as UNVERIFIED candidate</button></form></div>
 
+  <div class="overlay hidden" id="detailOverlay" role="dialog" aria-modal="true" aria-label="Evidence detail"><section class="modal-card detail-card"><div class="modal-head"><strong id="detailTitle"></strong><button id="closeDetail" aria-label="Close detail">×</button></div><div id="detailBody"></div></section></div>
+  <div id="notice" class="notice" role="status" hidden></div>
   <script type="module" src="app.js"></script>
 </body>
 </html>
