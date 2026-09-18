@@ -1,0 +1,70 @@
+[
+  {
+    "adapter": "reference-json-v1",
+    "api_surface": "json-request-response-v1",
+    "capabilities": [
+      "future.semantic_patch.v1"
+    ],
+    "endpoint": "reference://native",
+    "inference_config": [],
+    "lane": "KNOWN_FAST_PATH",
+    "model": "reference-native",
+    "model_version": "unspecified",
+    "observed_at": "2026-09-15T06:00:00Z",
+    "provider": "reference",
+    "status": "PROMOTED",
+    "surface_id": "7e1bf4c6d855c0b6a0ed3c992abbbe4c60da412e72a90227c04200d5cf5c7725",
+    "tool_protocol": "json-tool-v1"
+  },
+  {
+    "adapter": null,
+    "api_surface": "json-request-response-v1",
+    "capabilities": [
+      "future.semantic_patch.v1"
+    ],
+    "endpoint": "reference://echo",
+    "inference_config": [],
+    "lane": "UNKNOWN_BOOTSTRAP",
+    "model": "future-model-x",
+    "model_version": "unspecified",
+    "observed_at": "2026-09-15T06:00:00Z",
+    "provider": "reference",
+    "status": "UNKNOWN",
+    "surface_id": "60528148aeec9ef8f6f0dbf6c3480d15fb52e398b6b29be24dd66b30f1f931dc",
+    "tool_protocol": "json-tool-v1"
+  },
+  {
+    "adapter": null,
+    "api_surface": "json-request-response-v1",
+    "capabilities": [
+      "future.semantic_patch.v1"
+    ],
+    "endpoint": "reference://broken",
+    "inference_config": [],
+    "lane": "UNKNOWN_BOOTSTRAP",
+    "model": "regression-candidate",
+    "model_version": "unspecified",
+    "observed_at": "2026-09-15T06:00:00Z",
+    "provider": "reference",
+    "status": "REJECT",
+    "surface_id": "881eae6f2cd78569074177aac4360f6cc3fb6123e7796f123e3e57bcc268a044",
+    "tool_protocol": "json-tool-v1"
+  },
+  {
+    "adapter": null,
+    "api_surface": "json-request-response-v1",
+    "capabilities": [
+      "future.semantic_patch.v1"
+    ],
+    "endpoint": "https://future.invalid/v1",
+    "inference_config": [],
+    "lane": "UNKNOWN_BOOTSTRAP",
+    "model": "unbound-future-model",
+    "model_version": "unspecified",
+    "observed_at": "2026-09-15T06:00:00Z",
+    "provider": "future-provider",
+    "status": "UNKNOWN",
+    "surface_id": "c262b6dfe58a7df02085490f35b0b2c3dbc641685fc34940c4b5d4c9627ac451",
+    "tool_protocol": "json-tool-v1"
+  }
+]

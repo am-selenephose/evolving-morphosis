@@ -1,0 +1,541 @@
+{
+  "edges": [
+    {
+      "from": "known",
+      "to": "identity"
+    },
+    {
+      "from": "unknown",
+      "to": "identity"
+    },
+    {
+      "from": "identity",
+      "to": "graph"
+    },
+    {
+      "from": "graph",
+      "to": "probe"
+    },
+    {
+      "from": "probe",
+      "to": "sandbox"
+    },
+    {
+      "from": "sandbox",
+      "to": "compiler"
+    },
+    {
+      "from": "compiler",
+      "to": "verification"
+    },
+    {
+      "from": "verification",
+      "to": "qualification"
+    },
+    {
+      "from": "qualification",
+      "to": "bundle"
+    },
+    {
+      "from": "bundle",
+      "to": "policy"
+    },
+    {
+      "from": "kernel",
+      "to": "policy"
+    },
+    {
+      "from": "policy",
+      "to": "shadow"
+    },
+    {
+      "from": "shadow",
+      "to": "canary"
+    },
+    {
+      "from": "canary",
+      "to": "serving"
+    },
+    {
+      "from": "serving",
+      "to": "observability"
+    },
+    {
+      "from": "observability",
+      "to": "graph"
+    },
+    {
+      "from": "observability",
+      "to": "archive"
+    },
+    {
+      "from": "archive",
+      "to": "compiler"
+    },
+    {
+      "from": "graph",
+      "to": "evidence"
+    },
+    {
+      "from": "bundle",
+      "to": "ledger"
+    }
+  ],
+  "nodes": [
+    {
+      "evidence": [],
+      "id": "kernel",
+      "implementation": "src/morphosis/os/kernel.py",
+      "inputs": [],
+      "label": "Constitutional Kernel",
+      "outputs": [
+        "policy"
+      ],
+      "plane": "governance",
+      "purpose": "Constitutional Kernel within the canonical Evolution OS",
+      "status": "IMPLEMENTED REFERENCE",
+      "trust": "INDEPENDENT AUTHORITY",
+      "x": 650,
+      "y": 60
+    },
+    {
+      "evidence": [],
+      "id": "known",
+      "implementation": "src/morphosis/os/application.py",
+      "inputs": [],
+      "label": "Known fast path",
+      "outputs": [
+        "identity"
+      ],
+      "plane": "intelligence",
+      "purpose": "Known fast path within the canonical Evolution OS",
+      "status": "IMPLEMENTED REFERENCE",
+      "trust": "MODEL PROPOSAL",
+      "x": 320,
+      "y": 150
+    },
+    {
+      "evidence": [],
+      "id": "unknown",
+      "implementation": "src/morphosis/os/application.py",
+      "inputs": [],
+      "label": "Unknown future path",
+      "outputs": [
+        "identity"
+      ],
+      "plane": "intelligence",
+      "purpose": "Unknown future path within the canonical Evolution OS",
+      "status": "IMPLEMENTED REFERENCE",
+      "trust": "MODEL PROPOSAL",
+      "x": 980,
+      "y": 150
+    },
+    {
+      "evidence": [
+        "c100162d082264befab3024c6c3ea4572188bd9ef10c755955a5961c6a944d68",
+        "1f805dd47b170378a03230fbdf950e69938ad6838a720af66f250c0ec977f374",
+        "1f825468dd1779a268eba9a14e1da5d63b91d884c263818a8629fd1f26f97f46",
+        "d1b6d182afae180d5f77f12c2706f131c14414d021d936c3f834d01f2a78ac58"
+      ],
+      "id": "identity",
+      "implementation": "src/morphosis/os/schemas.py",
+      "inputs": [
+        "known",
+        "unknown"
+      ],
+      "label": "Model surface identity",
+      "outputs": [
+        "graph"
+      ],
+      "plane": "intelligence",
+      "purpose": "Model surface identity within the canonical Evolution OS",
+      "status": "IMPLEMENTED REFERENCE",
+      "trust": "SYSTEM COMPILED",
+      "x": 650,
+      "y": 190
+    },
+    {
+      "evidence": [
+        "49717503200e2eb8518ca4bb10cab38c9195df5620c47f91edcdd6b335cfc03f",
+        "8d98c2b93f1c7ba4c6aa5f1b7d043588ee441315ebd03ff236292c31208d22ea",
+        "63f641bae3c026bda20d4b1291a71e12e13139f2d5c8017870fdf9a2d50289bb",
+        "d0391fd6302e2f76e6f8b560f47f82dba04ebe17abe4ab8e4873c81dbf6afd6c",
+        "7a04629d69fe7f2d1e0cc43783cc01817165846e0092f3b4f4b630f71663ab90",
+        "282bb9fffecff237c41222fa88e1bec3c8d59c234df9b4a8b9d9cf9f626a85f4"
+      ],
+      "id": "graph",
+      "implementation": "src/morphosis/os/graph.py",
+      "inputs": [
+        "identity",
+        "observability"
+      ],
+      "label": "Capability intelligence graph",
+      "outputs": [
+        "probe",
+        "evidence"
+      ],
+      "plane": "intelligence",
+      "purpose": "Capability intelligence graph within the canonical Evolution OS",
+      "status": "IMPLEMENTED REFERENCE",
+      "trust": "INDEPENDENT EVALUATION",
+      "x": 650,
+      "y": 280
+    },
+    {
+      "evidence": [
+        "16543447ce9e8f1bddc678b3c0b9ef4f8d6c0c0a531338c4fb4a16db1e1cbc4b",
+        "44e4d3748bcbde6d17316142189e827b04405734fc18f6d6f97281e0ee2d37e5",
+        "fcda64f3089425e6dd93765b60e0d9f2fe2dd78260b1c8810daa5e1423a6c38c",
+        "900c0fce75a1a668a390d90724431d969e09282de8aa17fcf80e27f8f5427a07",
+        "f4d58678d84d54e2b51378964b186849bb5b4ca74edd2aea48c6e2326dad90ba",
+        "ab838b12e8b175b93b83bfa170119ffd10dc6e1fdf37c77d6e2168c635164c07"
+      ],
+      "id": "probe",
+      "implementation": "src/morphosis/os/probes.py",
+      "inputs": [
+        "graph"
+      ],
+      "label": "Probe synthesis",
+      "outputs": [
+        "sandbox"
+      ],
+      "plane": "intelligence",
+      "purpose": "Probe synthesis within the canonical Evolution OS",
+      "status": "IMPLEMENTED REFERENCE",
+      "trust": "MODEL PROPOSAL",
+      "x": 480,
+      "y": 370
+    },
+    {
+      "evidence": [],
+      "id": "sandbox",
+      "implementation": "src/morphosis/os/probes.py",
+      "inputs": [
+        "probe"
+      ],
+      "label": "Sandbox fabric",
+      "outputs": [
+        "compiler"
+      ],
+      "plane": "intelligence",
+      "purpose": "Sandbox fabric within the canonical Evolution OS",
+      "status": "IMPLEMENTED REFERENCE",
+      "trust": "INDEPENDENT EVALUATION",
+      "x": 820,
+      "y": 370
+    },
+    {
+      "evidence": [
+        "798430e52310a0efcdd4825b77636c91b30fc6b074af4618e45c1f6b10995f73",
+        "b4f5c19bce9c8be10f4f9264d4473cda4b9c211bbecd0f010d8e67688309e836"
+      ],
+      "id": "compiler",
+      "implementation": "src/morphosis/os/compiler.py",
+      "inputs": [
+        "sandbox",
+        "archive"
+      ],
+      "label": "Morphogenesis compiler",
+      "outputs": [
+        "verification"
+      ],
+      "plane": "intelligence",
+      "purpose": "Morphogenesis compiler within the canonical Evolution OS",
+      "status": "IMPLEMENTED REFERENCE",
+      "trust": "SYSTEM COMPILED",
+      "x": 480,
+      "y": 460
+    },
+    {
+      "evidence": [
+        "16631eb6a14918d7476cb8f930375372b11c3a4dcf3b6ef77b8c100bbe88771f"
+      ],
+      "id": "verification",
+      "implementation": "src/morphosis/os/compiler.py",
+      "inputs": [
+        "compiler"
+      ],
+      "label": "Adaptation verification",
+      "outputs": [
+        "qualification"
+      ],
+      "plane": "intelligence",
+      "purpose": "Adaptation verification within the canonical Evolution OS",
+      "status": "IMPLEMENTED REFERENCE",
+      "trust": "INDEPENDENT EVALUATION",
+      "x": 820,
+      "y": 460
+    },
+    {
+      "evidence": [
+        "315a6078eaa7382ca489feae8a8388e46374567ddbd4897b07cf2e57311280e7",
+        "f0995380895ff7e7d94011bc4cae55164ae2d635cf6f380ca5ea804cfd7a6c50",
+        "bc10967b9c68ec70c57a40337d47238e11241f2f280d367fd4a4ca422954bab5",
+        "e1dd6baefb9db8c2cabe8d58fdd9c3977dfc1b17d792d0f602c882f7b18c923e",
+        "e100adbded33ecd6cd5bfb689e25945fe35314375a522c139adc5ef3ce445bb1",
+        "915e73c9c02f75e20baf749c44d8becee25cf8cc68d3d1e77d980eec58c0feaf",
+        "eadae59465293d8b33ae0e782c6596a5b253358bacec59f79682f483f06085b3",
+        "d95683a1812a9f961349d2cbe593bafcd58970f00b73a11ff1c850888428fef1",
+        "62e95fb6a3e75244a78b0d1495ab30e0940f6e11a7ce863b05d3b77f3dcd1801",
+        "c87fc26d51d6aae2c107f7169780daf847e8e34dee11a18869e0886956831149",
+        "65c7972f3fbff7391f73de512b39afee6832c705d744eb6fa9bf2bbdd610b05d"
+      ],
+      "id": "qualification",
+      "implementation": "src/morphosis/os/qualifier.py",
+      "inputs": [
+        "verification"
+      ],
+      "label": "Multi-objective qualification",
+      "outputs": [
+        "bundle"
+      ],
+      "plane": "intelligence",
+      "purpose": "Multi-objective qualification within the canonical Evolution OS",
+      "status": "IMPLEMENTED REFERENCE",
+      "trust": "INDEPENDENT EVALUATION",
+      "x": 650,
+      "y": 550
+    },
+    {
+      "evidence": [
+        "8e9675d0b364bbffe53ed7a3d502194ec8fe86108395e24d0cc3d98304104427"
+      ],
+      "id": "bundle",
+      "implementation": "src/morphosis/os/schemas.py",
+      "inputs": [
+        "qualification"
+      ],
+      "label": "Evolution Bundle v3",
+      "outputs": [
+        "policy",
+        "ledger"
+      ],
+      "plane": "intelligence",
+      "purpose": "Evolution Bundle v3 within the canonical Evolution OS",
+      "status": "IMPLEMENTED REFERENCE",
+      "trust": "SYSTEM COMPILED",
+      "x": 650,
+      "y": 640
+    },
+    {
+      "evidence": [],
+      "id": "policy",
+      "implementation": "src/morphosis/os/kernel.py",
+      "inputs": [
+        "bundle",
+        "kernel"
+      ],
+      "label": "Policy gate",
+      "outputs": [
+        "shadow"
+      ],
+      "plane": "governance",
+      "purpose": "Policy gate within the canonical Evolution OS",
+      "status": "IMPLEMENTED REFERENCE",
+      "trust": "HUMAN AUTHORITY",
+      "x": 650,
+      "y": 730
+    },
+    {
+      "evidence": [
+        "4a3b0dcc7758fdc079e7c1b77dc4fa22b0888568ad8e7bd2c059420e25848612"
+      ],
+      "id": "shadow",
+      "implementation": "src/morphosis/os/deployment.py",
+      "inputs": [
+        "policy"
+      ],
+      "label": "Shadow",
+      "outputs": [
+        "canary"
+      ],
+      "plane": "serving",
+      "purpose": "Shadow within the canonical Evolution OS",
+      "status": "IMPLEMENTED REFERENCE",
+      "trust": "SYSTEM COMPILED",
+      "x": 370,
+      "y": 820
+    },
+    {
+      "evidence": [
+        "735d5d7820608667e1faee2c12c4d3424117a81a10cca79e851ac0b7ca474785"
+      ],
+      "id": "canary",
+      "implementation": "src/morphosis/os/deployment.py",
+      "inputs": [
+        "shadow"
+      ],
+      "label": "Canary / ramp",
+      "outputs": [
+        "serving"
+      ],
+      "plane": "serving",
+      "purpose": "Canary / ramp within the canonical Evolution OS",
+      "status": "IMPLEMENTED REFERENCE",
+      "trust": "SYSTEM COMPILED",
+      "x": 650,
+      "y": 820
+    },
+    {
+      "evidence": [
+        "854983f17249977bec6ec0c190a13d52687d735c2c507cf52738b672f8856357"
+      ],
+      "id": "serving",
+      "implementation": "src/morphosis/os/agents.py",
+      "inputs": [
+        "canary"
+      ],
+      "label": "Strands serving admission",
+      "outputs": [
+        "observability"
+      ],
+      "plane": "serving",
+      "purpose": "Strands serving admission within the canonical Evolution OS",
+      "status": "STRANDS SHARED COMMANDS",
+      "trust": "INDEPENDENT AUTHORITY",
+      "x": 930,
+      "y": 820
+    },
+    {
+      "evidence": [],
+      "id": "observability",
+      "implementation": "src/morphosis/os/application.py",
+      "inputs": [
+        "serving"
+      ],
+      "label": "Observability / requalification",
+      "outputs": [
+        "graph",
+        "archive"
+      ],
+      "plane": "lineage",
+      "purpose": "Observability / requalification within the canonical Evolution OS",
+      "status": "IMPLEMENTED REFERENCE",
+      "trust": "INDEPENDENT AUTHORITY",
+      "x": 650,
+      "y": 910
+    },
+    {
+      "evidence": [],
+      "id": "evidence",
+      "implementation": "src/morphosis/os/storage.py",
+      "inputs": [
+        "graph"
+      ],
+      "label": "Evidence / artifact store",
+      "outputs": [],
+      "plane": "lineage",
+      "purpose": "Evidence / artifact store within the canonical Evolution OS",
+      "status": "IMPLEMENTED REFERENCE",
+      "trust": "INDEPENDENT AUTHORITY",
+      "x": 130,
+      "y": 460
+    },
+    {
+      "evidence": [],
+      "id": "ledger",
+      "implementation": "src/morphosis/os/storage.py",
+      "inputs": [
+        "bundle"
+      ],
+      "label": "Evolution ledger / revision DAG",
+      "outputs": [],
+      "plane": "lineage",
+      "purpose": "Evolution ledger / revision DAG within the canonical Evolution OS",
+      "status": "IMPLEMENTED REFERENCE",
+      "trust": "INDEPENDENT AUTHORITY",
+      "x": 1170,
+      "y": 460
+    },
+    {
+      "evidence": [],
+      "id": "archive",
+      "implementation": "src/morphosis/os/application.py",
+      "inputs": [
+        "observability"
+      ],
+      "label": "Failure memory",
+      "outputs": [
+        "compiler"
+      ],
+      "plane": "lineage",
+      "purpose": "Failure memory within the canonical Evolution OS",
+      "status": "IMPLEMENTED REFERENCE",
+      "trust": "PROPOSAL INPUT ONLY",
+      "x": 650,
+      "y": 1000
+    }
+  ],
+  "trace": [
+    "925938481b13e7568e8526c7de9befd50361b3a01a4d3ada6b9d80ef4748de1b",
+    "bdef858a01fb9dbb44fdcb80a3312f38471b8894836b03e0979a172bfd937fa9",
+    "8e9663689382a4a1f31f35bb5758526e79a0f2a6e648b5c7691f32a608845470",
+    "c100162d082264befab3024c6c3ea4572188bd9ef10c755955a5961c6a944d68",
+    "61195e1c8bc50df4b78b2d5d00c3671f3eb5ad4fadcbfddb88803c609d7d5b23",
+    "1f805dd47b170378a03230fbdf950e69938ad6838a720af66f250c0ec977f374",
+    "5c822feff0b92cc71c8a2cd59cbfb7a986e56e348b86b4e9753a6893c9cd52a8",
+    "1f825468dd1779a268eba9a14e1da5d63b91d884c263818a8629fd1f26f97f46",
+    "33d42258b9823c6c7d40f1d0b94dfb87b9417eeadd3e1f1683647c44208a7889",
+    "d1b6d182afae180d5f77f12c2706f131c14414d021d936c3f834d01f2a78ac58",
+    "3797479091c35951506dd5a25b135a89c2971c2671dbd7c3953163f59258cae9",
+    "16543447ce9e8f1bddc678b3c0b9ef4f8d6c0c0a531338c4fb4a16db1e1cbc4b",
+    "5510d9d22ef79c13406930885c83080af0e34639836b549a0ee767dd2b5a6dcd",
+    "49717503200e2eb8518ca4bb10cab38c9195df5620c47f91edcdd6b335cfc03f",
+    "44e4d3748bcbde6d17316142189e827b04405734fc18f6d6f97281e0ee2d37e5",
+    "482ce9255cdecc34156d1291dd26b4c139ab74f7debaf71184547ff4c4f7a508",
+    "8d98c2b93f1c7ba4c6aa5f1b7d043588ee441315ebd03ff236292c31208d22ea",
+    "fcda64f3089425e6dd93765b60e0d9f2fe2dd78260b1c8810daa5e1423a6c38c",
+    "a259152cbb1a472d524a85911901afb777088aa3344f2919c91daf129bda3904",
+    "63f641bae3c026bda20d4b1291a71e12e13139f2d5c8017870fdf9a2d50289bb",
+    "798430e52310a0efcdd4825b77636c91b30fc6b074af4618e45c1f6b10995f73",
+    "16631eb6a14918d7476cb8f930375372b11c3a4dcf3b6ef77b8c100bbe88771f",
+    "7b608c4d288ffbe3bcf45318d8cbdd345ffb66360df74840bc578498fbdd7d99",
+    "315a6078eaa7382ca489feae8a8388e46374567ddbd4897b07cf2e57311280e7",
+    "900c0fce75a1a668a390d90724431d969e09282de8aa17fcf80e27f8f5427a07",
+    "3f38264e6cb357ab52986b6d39d7aac1c577b4738a3f7de0741eed615960ae7a",
+    "d0391fd6302e2f76e6f8b560f47f82dba04ebe17abe4ab8e4873c81dbf6afd6c",
+    "f4d58678d84d54e2b51378964b186849bb5b4ca74edd2aea48c6e2326dad90ba",
+    "33efa1fddf107ea34ea0b6f008634821b238a8454849011b8b266cbd576cf01f",
+    "7a04629d69fe7f2d1e0cc43783cc01817165846e0092f3b4f4b630f71663ab90",
+    "ab838b12e8b175b93b83bfa170119ffd10dc6e1fdf37c77d6e2168c635164c07",
+    "1795ce037bfc6480146c00ccae39cb76e90f57c7308cbae298e6705e09d34a0d",
+    "282bb9fffecff237c41222fa88e1bec3c8d59c234df9b4a8b9d9cf9f626a85f4",
+    "b4f5c19bce9c8be10f4f9264d4473cda4b9c211bbecd0f010d8e67688309e836",
+    "f11ca476467a8fa81059c389691cb36b1f8bcfb2a9c5772755f830f3e18b24fe",
+    "935378e520d63cc6fb11637ad842725c4e0a68af885e5fc156e8a492b5067033",
+    "f0995380895ff7e7d94011bc4cae55164ae2d635cf6f380ca5ea804cfd7a6c50",
+    "ba31508fabf167843ee732577b8a2fd0bb3f4f18161b22df893764b305e7c63f",
+    "bc10967b9c68ec70c57a40337d47238e11241f2f280d367fd4a4ca422954bab5",
+    "f0fefa9f9982260fd5d62de00beafa27a501726e70ce3888b7d58c12d45df5c5",
+    "e1dd6baefb9db8c2cabe8d58fdd9c3977dfc1b17d792d0f602c882f7b18c923e",
+    "8e9675d0b364bbffe53ed7a3d502194ec8fe86108395e24d0cc3d98304104427",
+    "ecbd7a164276ba5fa2dd13e7e89d1f36658d024ae225b8c328c0722434d3f7f2",
+    "3a288d46947fbcb6ea100f5a5a45be2eb0b1d77fcbe0905f8f8ed73e8a669c75",
+    "e100adbded33ecd6cd5bfb689e25945fe35314375a522c139adc5ef3ce445bb1",
+    "6c23f7f42cc60ff9dac7e303c8657162739e14308bed58319f5ad9be7618d893",
+    "67a2b48cdba7b71290bae98c13443f2c2654b20cfc17acad61d6de8497173d94",
+    "915e73c9c02f75e20baf749c44d8becee25cf8cc68d3d1e77d980eec58c0feaf",
+    "c434588055e29691e86d4e1125f39aaeaf84b669e033e46e9dfa3a5cc24f8555",
+    "8dd06dbc3cf06004ace498e741cd2c655f271111dd4b92c4ab0eff3ab124b33c",
+    "e78433af6bc39613d8e24d36daf81b0bd08add4e9d0d54014ce40b615f290c15",
+    "eadae59465293d8b33ae0e782c6596a5b253358bacec59f79682f483f06085b3",
+    "637588a6285fadd93a6e940db6fd5b096127381b960646c3d903ff48a649f66e",
+    "a8131be0acd385b346b3d4c26f6a9ca96fbacf7c31aefb87ed9ec92b25fdb921",
+    "d95683a1812a9f961349d2cbe593bafcd58970f00b73a11ff1c850888428fef1",
+    "1cfad6fe87d831827d9a91d0dc574259e6897e077f50cee5bdd4bd796c8eff12",
+    "4a3b0dcc7758fdc079e7c1b77dc4fa22b0888568ad8e7bd2c059420e25848612",
+    "c041992c797c8db58352a5a7726fdee5dd58de7cc30967520dbf24a03a386628",
+    "62e95fb6a3e75244a78b0d1495ab30e0940f6e11a7ce863b05d3b77f3dcd1801",
+    "bc4dc0ddb81fc2a77df0a2e0a84a5b3dd801d50b98b7e58d3af99584d6f88d07",
+    "735d5d7820608667e1faee2c12c4d3424117a81a10cca79e851ac0b7ca474785",
+    "7ba6393c524f35f4031f4b7125d11763fc9cea424fc6ee0e5ba7d19acdd8e1a9",
+    "c87fc26d51d6aae2c107f7169780daf847e8e34dee11a18869e0886956831149",
+    "60d7de9263700cf66737c06c9e59d5b26ef6f210cfb3dfbc53838fc5a91c36a7",
+    "24a2c0065c633fae8f9140ac8d8a81f163ce452a4e92b89d0c516ba5e73cc87a",
+    "eed13df5186b22bee143fbc3a99115e7a4bf7eec31349b02ae70c7b248948ee2",
+    "65c7972f3fbff7391f73de512b39afee6832c705d744eb6fa9bf2bbdd610b05d",
+    "a71a885f7086e07c73c154f31e6e43f27d776b7a3a9b970b45a4266c92e5c007",
+    "854983f17249977bec6ec0c190a13d52687d735c2c507cf52738b672f8856357",
+    "17bed247c8feb44b644fcc44537b023953991fcae88e607b4c0eea7af5cf2966"
+  ]
+}
