@@ -33,7 +33,9 @@ def export(destination,architecture_path=None):
     for surface in surfaces:
         replay=MorphosisApplication(clock=lambda:FIXED);seed(replay);before=replay.snapshot()['sequence']
         result=replay.command('evaluate',{'surface_id':surface['surface_id']})
-        scenarios[surface['surface_id']]={'result':result,'snapshot':replay.snapshot(),'events':replay.events(before)}
+        after=replay.snapshot()
+        patch={key:value for key,value in after.items() if key!='events' and snapshot.get(key)!=value}
+        scenarios[surface['surface_id']]={'result':result,'patch':patch,'events':replay.events(before)}
     write(destination/'scenarios.json',scenarios)
     if architecture_path is not None:Path(architecture_path).write_text(architecture_svg(snapshot))
     return app

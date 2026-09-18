@@ -10,12 +10,12 @@ test('event delivery deduplicates and ignores stale sequence without losing next
  assert.equal(events,1);assert.equal(calls.length,1);assert.equal(client.sequence,9);
 });
 test('static mode reads backend artifacts only and replays exact scenario trace',async()=>{
- const scenario={result:{outcome:'HOLD'},snapshot:{sequence:12,qualifications:[{outcome:'HOLD'}]},events:[{sequence:11,event_type:'QualificationHeld'},{sequence:12,event_type:'BundleCreated'}]};
+ const scenario={result:{outcome:'HOLD'},patch:{sequence:12,qualifications:[{outcome:'HOLD'}]},events:[{sequence:11,event_type:'QualificationHeld'},{sequence:12,event_type:'BundleCreated'}]};
  const calls=[];const files={'generated/system.json':{sequence:10},'generated/events.json':[], 'generated/scenarios.json':{'surface-a':scenario}};
  const client=new ProjectionClient({live:false,fetcher:async url=>{calls.push(url);return {ok:true,json:async()=>files[url]}}});
  await client.load();const seen=[];client.onEvent=e=>seen.push(e.sequence);
  assert.deepEqual(await client.command('evaluate',{surface_id:'surface-a'}),scenario.result);
- assert.deepEqual(client.snapshot,scenario.snapshot);assert.deepEqual(seen,[11,12]);assert.ok(calls.every(x=>!x.startsWith('/api')));
+ assert.deepEqual(client.snapshot,{sequence:12,events:scenario.events,qualifications:[{outcome:'HOLD'}]});assert.deepEqual(seen,[11,12]);assert.ok(calls.every(x=>!x.startsWith('/api')));
  await assert.rejects(()=>client.command('bootstrap',{model:'invented'}),/live mode/i);
  assert.equal(client.snapshot.qualifications[0].outcome,'HOLD');
 });
