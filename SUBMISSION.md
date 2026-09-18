@@ -32,7 +32,7 @@ Our rule is: **metadata and self-report are priors; observed workload behavior i
 
 A real Strands Agents SDK 1.55.1 agent invokes bounded Morphosis tools. Deterministic policy code outside model authority owns the evidence and promotion boundary.
 
-The v2 pipeline has two entry paths:
+The v3 pipeline has two entry paths:
 
 1. **Known-model fast path** — optimized provider/model adapters accelerate candidates we already understand.
 2. **Unknown future-model bootstrap** — arbitrary future endpoints can enter without a pre-existing model name or closed capability enum.
@@ -149,7 +149,7 @@ Expected evidence includes `UNKNOWN_BOOTSTRAP`, `future.semantic_patch.v1`, `Obs
 
 - Public repository: https://gitlab.com/am.statementforge/evolving-morphosis
 - Architecture source: `architecture.svg`
-- Devpost architecture PNG: regenerate from the v2 SVG before final upload
-- Demo video public URL: upload the final v2 demo to **Public** YouTube or Vimeo before submission
+- Devpost architecture PNG: regenerate from the canonical v3 SVG before final upload
+- Demo video public URL: upload the final v3 demo to **Public** YouTube or Vimeo before submission
 - License: MIT
 - AWS Builder ID: enter the email actually shown in the entrant's AWS Builder ID profile
