@@ -41,7 +41,7 @@ Morphosis operates one level above routing: **which model deserves to become a c
 
 ## Architecture
 
-![Evolving Morphosis v2 architecture](architecture.svg)
+![Evolving Morphosis v3 architecture](architecture.svg)
 
 The public reference implementation separates these boundaries:
 
@@ -99,6 +99,15 @@ To run the future-model proof directly:
 PYTHONPATH=src .venv/bin/python -m morphosis.cli \
   --future-model fixtures/future_model_x.json
 ```
+
+To run the canonical live control plane (frontend + Python authority + resumable SSE ledger):
+
+```bash
+PYTHONPATH=src .venv/bin/python -m morphosis.os.api --seed-reference --port 8765
+# open http://127.0.0.1:8765/?live=1
+```
+
+The browser is a projection client only. It sends strict commands to `/api/v1/commands`, reloads canonical snapshots from `/api/v1/system`, and follows `/api/v1/events`; qualification, evidence, promotion, rollback and requalification remain Python-owned.
 
 Expected future-model evidence includes:
 

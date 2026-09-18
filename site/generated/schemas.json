@@ -1,0 +1,2120 @@
+{
+  "AdaptationVerification": {
+    "additionalProperties": false,
+    "properties": {
+      "adaptation_id": {
+        "title": "Adaptation Id",
+        "type": "string"
+      },
+      "checks": {
+        "items": {
+          "maxItems": 2,
+          "minItems": 2,
+          "prefixItems": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "boolean"
+            }
+          ],
+          "type": "array"
+        },
+        "title": "Checks",
+        "type": "array"
+      },
+      "cost_overhead_usd": {
+        "default": 0,
+        "title": "Cost Overhead Usd",
+        "type": "number"
+      },
+      "evaluator_version": {
+        "default": "morphosis-reference-v3.1",
+        "title": "Evaluator Version",
+        "type": "string"
+      },
+      "input_hash": {
+        "title": "Input Hash",
+        "type": "string"
+      },
+      "latency_overhead_ms": {
+        "default": 0,
+        "title": "Latency Overhead Ms",
+        "type": "number"
+      },
+      "observed_at": {
+        "title": "Observed At",
+        "type": "string"
+      },
+      "output_hash": {
+        "title": "Output Hash",
+        "type": "string"
+      },
+      "passed": {
+        "title": "Passed",
+        "type": "boolean"
+      },
+      "provenance": {
+        "default": "held-out-reference-corpus",
+        "title": "Provenance",
+        "type": "string"
+      },
+      "surface_id": {
+        "title": "Surface Id",
+        "type": "string"
+      }
+    },
+    "required": [
+      "surface_id",
+      "adaptation_id",
+      "passed",
+      "checks",
+      "input_hash",
+      "output_hash",
+      "observed_at"
+    ],
+    "title": "AdaptationVerification",
+    "type": "object"
+  },
+  "Assertion": {
+    "additionalProperties": false,
+    "properties": {
+      "kind": {
+        "default": "roundtrip",
+        "enum": [
+          "json_object",
+          "roundtrip",
+          "tool_fidelity",
+          "reject_invalid"
+        ],
+        "title": "Kind",
+        "type": "string"
+      }
+    },
+    "title": "Assertion",
+    "type": "object"
+  },
+  "CapabilityClaim": {
+    "additionalProperties": false,
+    "properties": {
+      "capability_id": {
+        "maxLength": 180,
+        "pattern": "^[A-Za-z0-9_-]+(?:\\.[A-Za-z0-9_-]+)+$",
+        "title": "Capability Id",
+        "type": "string"
+      },
+      "claimed_supported": {
+        "default": true,
+        "title": "Claimed Supported",
+        "type": "boolean"
+      },
+      "source": {
+        "default": "candidate-self-report",
+        "title": "Source",
+        "type": "string"
+      },
+      "surface_id": {
+        "title": "Surface Id",
+        "type": "string"
+      }
+    },
+    "required": [
+      "surface_id",
+      "capability_id"
+    ],
+    "title": "CapabilityClaim",
+    "type": "object"
+  },
+  "CapabilityDefinition": {
+    "additionalProperties": false,
+    "properties": {
+      "capability_id": {
+        "title": "Capability Id",
+        "type": "string"
+      },
+      "conflicts": {
+        "default": [],
+        "items": {
+          "type": "string"
+        },
+        "title": "Conflicts",
+        "type": "array"
+      },
+      "contract": {
+        "default": "json roundtrip preserving tool and arguments",
+        "title": "Contract",
+        "type": "string"
+      },
+      "dependencies": {
+        "default": [],
+        "items": {
+          "type": "string"
+        },
+        "title": "Dependencies",
+        "type": "array"
+      },
+      "version": {
+        "default": "1",
+        "title": "Version",
+        "type": "string"
+      }
+    },
+    "required": [
+      "capability_id"
+    ],
+    "title": "CapabilityDefinition",
+    "type": "object"
+  },
+  "CapabilityObservation": {
+    "additionalProperties": false,
+    "properties": {
+      "capability_id": {
+        "title": "Capability Id",
+        "type": "string"
+      },
+      "confidence": {
+        "maximum": 1,
+        "minimum": 0,
+        "title": "Confidence",
+        "type": "number"
+      },
+      "evaluator_version": {
+        "default": "morphosis-reference-v3.1",
+        "title": "Evaluator Version",
+        "type": "string"
+      },
+      "evidence_hash": {
+        "default": "",
+        "title": "Evidence Hash",
+        "type": "string"
+      },
+      "expires_at": {
+        "title": "Expires At",
+        "type": "string"
+      },
+      "family": {
+        "title": "Family",
+        "type": "string"
+      },
+      "observed_at": {
+        "title": "Observed At",
+        "type": "string"
+      },
+      "parent_evidence": {
+        "default": [],
+        "items": {
+          "type": "string"
+        },
+        "title": "Parent Evidence",
+        "type": "array"
+      },
+      "passed_count": {
+        "default": 1,
+        "minimum": 0,
+        "title": "Passed Count",
+        "type": "integer"
+      },
+      "probe_id": {
+        "title": "Probe Id",
+        "type": "string"
+      },
+      "provenance": {
+        "default": "reference-execution",
+        "title": "Provenance",
+        "type": "string"
+      },
+      "run_id": {
+        "title": "Run Id",
+        "type": "string"
+      },
+      "sample_count": {
+        "default": 1,
+        "minimum": 1,
+        "title": "Sample Count",
+        "type": "integer"
+      },
+      "score": {
+        "maximum": 1,
+        "minimum": 0,
+        "title": "Score",
+        "type": "number"
+      },
+      "source": {
+        "default": "independent-evaluator",
+        "title": "Source",
+        "type": "string"
+      },
+      "status": {
+        "enum": [
+          "SUPPORTED",
+          "UNSUPPORTED",
+          "DEGRADED"
+        ],
+        "title": "Status",
+        "type": "string"
+      },
+      "surface_id": {
+        "title": "Surface Id",
+        "type": "string"
+      },
+      "workload_hash": {
+        "default": "",
+        "title": "Workload Hash",
+        "type": "string"
+      }
+    },
+    "required": [
+      "surface_id",
+      "capability_id",
+      "probe_id",
+      "run_id",
+      "family",
+      "status",
+      "confidence",
+      "score",
+      "observed_at",
+      "expires_at"
+    ],
+    "title": "CapabilityObservation",
+    "type": "object"
+  },
+  "CapabilityState": {
+    "additionalProperties": false,
+    "properties": {
+      "capability_id": {
+        "title": "Capability Id",
+        "type": "string"
+      },
+      "confidence": {
+        "default": 0,
+        "title": "Confidence",
+        "type": "number"
+      },
+      "contradictory_evidence": {
+        "default": [],
+        "items": {
+          "type": "string"
+        },
+        "title": "Contradictory Evidence",
+        "type": "array"
+      },
+      "dependencies": {
+        "default": [],
+        "items": {
+          "type": "string"
+        },
+        "title": "Dependencies",
+        "type": "array"
+      },
+      "evidence": {
+        "default": [],
+        "items": {
+          "type": "string"
+        },
+        "title": "Evidence",
+        "type": "array"
+      },
+      "score": {
+        "default": 0,
+        "title": "Score",
+        "type": "number"
+      },
+      "status": {
+        "default": "UNKNOWN",
+        "enum": [
+          "UNKNOWN",
+          "SUPPORTED",
+          "UNSUPPORTED",
+          "DEGRADED",
+          "CONFLICTED"
+        ],
+        "title": "Status",
+        "type": "string"
+      },
+      "surface_id": {
+        "title": "Surface Id",
+        "type": "string"
+      }
+    },
+    "required": [
+      "surface_id",
+      "capability_id"
+    ],
+    "title": "CapabilityState",
+    "type": "object"
+  },
+  "DeploymentState": {
+    "additionalProperties": false,
+    "properties": {
+      "active_bundle": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Active Bundle"
+      },
+      "admitted": {
+        "default": [],
+        "items": {
+          "type": "string"
+        },
+        "title": "Admitted",
+        "type": "array"
+      },
+      "backend": {
+        "default": "reference-replay (no production traffic)",
+        "title": "Backend",
+        "type": "string"
+      },
+      "fallback_bundle": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Fallback Bundle"
+      }
+    },
+    "title": "DeploymentState",
+    "type": "object"
+  },
+  "DomainEvent": {
+    "additionalProperties": false,
+    "properties": {
+      "aggregate_id": {
+        "title": "Aggregate Id",
+        "type": "string"
+      },
+      "causation_id": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Causation Id"
+      },
+      "correlation_id": {
+        "title": "Correlation Id",
+        "type": "string"
+      },
+      "event_hash": {
+        "title": "Event Hash",
+        "type": "string"
+      },
+      "event_id": {
+        "title": "Event Id",
+        "type": "string"
+      },
+      "event_type": {
+        "title": "Event Type",
+        "type": "string"
+      },
+      "evidence": {
+        "default": [],
+        "items": {
+          "type": "string"
+        },
+        "title": "Evidence",
+        "type": "array"
+      },
+      "payload": {
+        "additionalProperties": true,
+        "title": "Payload",
+        "type": "object"
+      },
+      "previous_hash": {
+        "title": "Previous Hash",
+        "type": "string"
+      },
+      "schema_version": {
+        "default": "3.0",
+        "title": "Schema Version",
+        "type": "string"
+      },
+      "sequence": {
+        "title": "Sequence",
+        "type": "integer"
+      },
+      "timestamp": {
+        "title": "Timestamp",
+        "type": "string"
+      }
+    },
+    "required": [
+      "event_id",
+      "event_type",
+      "timestamp",
+      "aggregate_id",
+      "correlation_id",
+      "sequence",
+      "payload",
+      "previous_hash",
+      "event_hash"
+    ],
+    "title": "DomainEvent",
+    "type": "object"
+  },
+  "EvolutionBundle": {
+    "$defs": {
+      "AdaptationVerification": {
+        "additionalProperties": false,
+        "properties": {
+          "adaptation_id": {
+            "title": "Adaptation Id",
+            "type": "string"
+          },
+          "checks": {
+            "items": {
+              "maxItems": 2,
+              "minItems": 2,
+              "prefixItems": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "boolean"
+                }
+              ],
+              "type": "array"
+            },
+            "title": "Checks",
+            "type": "array"
+          },
+          "cost_overhead_usd": {
+            "default": 0,
+            "title": "Cost Overhead Usd",
+            "type": "number"
+          },
+          "evaluator_version": {
+            "default": "morphosis-reference-v3.1",
+            "title": "Evaluator Version",
+            "type": "string"
+          },
+          "input_hash": {
+            "title": "Input Hash",
+            "type": "string"
+          },
+          "latency_overhead_ms": {
+            "default": 0,
+            "title": "Latency Overhead Ms",
+            "type": "number"
+          },
+          "observed_at": {
+            "title": "Observed At",
+            "type": "string"
+          },
+          "output_hash": {
+            "title": "Output Hash",
+            "type": "string"
+          },
+          "passed": {
+            "title": "Passed",
+            "type": "boolean"
+          },
+          "provenance": {
+            "default": "held-out-reference-corpus",
+            "title": "Provenance",
+            "type": "string"
+          },
+          "surface_id": {
+            "title": "Surface Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "surface_id",
+          "adaptation_id",
+          "passed",
+          "checks",
+          "input_hash",
+          "output_hash",
+          "observed_at"
+        ],
+        "title": "AdaptationVerification",
+        "type": "object"
+      },
+      "MorphIR": {
+        "additionalProperties": false,
+        "properties": {
+          "author": {
+            "default": "candidate",
+            "enum": [
+              "system",
+              "candidate"
+            ],
+            "title": "Author",
+            "type": "string"
+          },
+          "capability_id": {
+            "title": "Capability Id",
+            "type": "string"
+          },
+          "mode": {
+            "default": "ADAPTED",
+            "enum": [
+              "NATIVE",
+              "ADAPTED",
+              "COMPOSED",
+              "FALLBACK",
+              "UNSUPPORTED"
+            ],
+            "title": "Mode",
+            "type": "string"
+          },
+          "nodes": {
+            "default": [],
+            "items": {
+              "$ref": "#/$defs/TransformNode"
+            },
+            "title": "Nodes",
+            "type": "array"
+          },
+          "schema_version": {
+            "default": "3.0",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "surface_id": {
+            "title": "Surface Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "surface_id",
+          "capability_id"
+        ],
+        "title": "MorphIR",
+        "type": "object"
+      },
+      "ObjectiveMeasurements": {
+        "additionalProperties": false,
+        "properties": {
+          "adaptation_complexity": {
+            "default": 1,
+            "minimum": 0,
+            "title": "Adaptation Complexity",
+            "type": "integer"
+          },
+          "confidence": {
+            "default": 1,
+            "maximum": 1,
+            "minimum": 0,
+            "title": "Confidence",
+            "type": "number"
+          },
+          "correctness": {
+            "default": 1,
+            "maximum": 1,
+            "minimum": 0,
+            "title": "Correctness",
+            "type": "number"
+          },
+          "cost_usd": {
+            "default": 0.001,
+            "minimum": 0,
+            "title": "Cost Usd",
+            "type": "number"
+          },
+          "determinism": {
+            "default": 1,
+            "maximum": 1,
+            "minimum": 0,
+            "title": "Determinism",
+            "type": "number"
+          },
+          "latency_ms": {
+            "default": 1,
+            "minimum": 0,
+            "title": "Latency Ms",
+            "type": "number"
+          },
+          "operational_risk": {
+            "default": 0.05,
+            "maximum": 1,
+            "minimum": 0,
+            "title": "Operational Risk",
+            "type": "number"
+          },
+          "quality": {
+            "default": 1,
+            "maximum": 1,
+            "minimum": 0,
+            "title": "Quality",
+            "type": "number"
+          },
+          "reliability": {
+            "default": 1,
+            "maximum": 1,
+            "minimum": 0,
+            "title": "Reliability",
+            "type": "number"
+          },
+          "safety": {
+            "default": 1,
+            "maximum": 1,
+            "minimum": 0,
+            "title": "Safety",
+            "type": "number"
+          },
+          "tool_fidelity": {
+            "default": 1,
+            "maximum": 1,
+            "minimum": 0,
+            "title": "Tool Fidelity",
+            "type": "number"
+          }
+        },
+        "title": "ObjectiveMeasurements",
+        "type": "object"
+      },
+      "PolicyDecision": {
+        "additionalProperties": false,
+        "properties": {
+          "evidence": {
+            "default": [],
+            "items": {
+              "type": "string"
+            },
+            "title": "Evidence",
+            "type": "array"
+          },
+          "kernel_version": {
+            "default": "constitutional-kernel-v3.1",
+            "title": "Kernel Version",
+            "type": "string"
+          },
+          "outcome": {
+            "enum": [
+              "ALLOW_PROBE",
+              "DENY_PROBE",
+              "ALLOW_SANDBOX_RUN",
+              "AUTO_APPLY_RUNTIME",
+              "REQUIRE_HUMAN_APPROVAL",
+              "HOLD",
+              "REJECT",
+              "ROLLBACK"
+            ],
+            "title": "Outcome",
+            "type": "string"
+          },
+          "reasons": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Reasons",
+            "type": "array"
+          }
+        },
+        "required": [
+          "outcome",
+          "reasons"
+        ],
+        "title": "PolicyDecision",
+        "type": "object"
+      },
+      "QualificationDecision": {
+        "additionalProperties": false,
+        "properties": {
+          "evidence": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Evidence",
+            "type": "array"
+          },
+          "measurements": {
+            "$ref": "#/$defs/ObjectiveMeasurements"
+          },
+          "outcome": {
+            "enum": [
+              "PROMOTE",
+              "PROMOTE_TO_SHADOW",
+              "PROMOTE_TO_CANARY",
+              "HOLD",
+              "REQUALIFY",
+              "REJECT",
+              "ROLLBACK"
+            ],
+            "title": "Outcome",
+            "type": "string"
+          },
+          "reasons": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Reasons",
+            "type": "array"
+          },
+          "regression": {
+            "title": "Regression",
+            "type": "number"
+          },
+          "uncertainty": {
+            "title": "Uncertainty",
+            "type": "number"
+          },
+          "workload_version": {
+            "title": "Workload Version",
+            "type": "string"
+          }
+        },
+        "required": [
+          "outcome",
+          "reasons",
+          "measurements",
+          "evidence",
+          "uncertainty",
+          "regression",
+          "workload_version"
+        ],
+        "title": "QualificationDecision",
+        "type": "object"
+      },
+      "TransformNode": {
+        "additionalProperties": false,
+        "properties": {
+          "op": {
+            "title": "Op",
+            "type": "string"
+          },
+          "parameters": {
+            "default": [],
+            "items": {
+              "maxItems": 2,
+              "minItems": 2,
+              "prefixItems": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "string"
+                }
+              ],
+              "type": "array"
+            },
+            "title": "Parameters",
+            "type": "array"
+          }
+        },
+        "required": [
+          "op"
+        ],
+        "title": "TransformNode",
+        "type": "object"
+      },
+      "WorkloadContract": {
+        "additionalProperties": false,
+        "properties": {
+          "allowed_providers": {
+            "default": [
+              "reference"
+            ],
+            "items": {
+              "type": "string"
+            },
+            "title": "Allowed Providers",
+            "type": "array"
+          },
+          "data_residency": {
+            "default": "local",
+            "title": "Data Residency",
+            "type": "string"
+          },
+          "evidence_ttl_seconds": {
+            "default": 86400,
+            "exclusiveMinimum": 0,
+            "title": "Evidence Ttl Seconds",
+            "type": "integer"
+          },
+          "failure_budget": {
+            "default": 0.01,
+            "maximum": 1,
+            "minimum": 0,
+            "title": "Failure Budget",
+            "type": "number"
+          },
+          "hard_invariants": {
+            "default": [
+              "safety",
+              "tool_fidelity",
+              "determinism"
+            ],
+            "items": {
+              "type": "string"
+            },
+            "title": "Hard Invariants",
+            "type": "array"
+          },
+          "human_approval_required": {
+            "default": false,
+            "title": "Human Approval Required",
+            "type": "boolean"
+          },
+          "incumbent_quality": {
+            "default": 0.9,
+            "maximum": 1,
+            "minimum": 0,
+            "title": "Incumbent Quality",
+            "type": "number"
+          },
+          "max_cost_usd": {
+            "default": 0.05,
+            "minimum": 0,
+            "title": "Max Cost Usd",
+            "type": "number"
+          },
+          "max_latency_ms": {
+            "default": 6000,
+            "minimum": 0,
+            "title": "Max Latency Ms",
+            "type": "number"
+          },
+          "max_regression": {
+            "default": 0.05,
+            "maximum": 1,
+            "minimum": 0,
+            "title": "Max Regression",
+            "type": "number"
+          },
+          "min_confidence": {
+            "default": 0.9,
+            "maximum": 1,
+            "minimum": 0,
+            "title": "Min Confidence",
+            "type": "number"
+          },
+          "minimum_quality": {
+            "default": 0.9,
+            "maximum": 1,
+            "minimum": 0,
+            "title": "Minimum Quality",
+            "type": "number"
+          },
+          "optional": {
+            "default": [],
+            "items": {
+              "type": "string"
+            },
+            "title": "Optional",
+            "type": "array"
+          },
+          "privacy": {
+            "default": "synthetic-data-only",
+            "title": "Privacy",
+            "type": "string"
+          },
+          "promotion_margin": {
+            "default": 0.02,
+            "maximum": 1,
+            "minimum": 0,
+            "title": "Promotion Margin",
+            "type": "number"
+          },
+          "reliability_target": {
+            "default": 0.99,
+            "maximum": 1,
+            "minimum": 0,
+            "title": "Reliability Target",
+            "type": "number"
+          },
+          "required": {
+            "default": [
+              "future.semantic_patch.v1"
+            ],
+            "items": {
+              "type": "string"
+            },
+            "title": "Required",
+            "type": "array"
+          },
+          "tools": {
+            "default": [],
+            "items": {
+              "type": "string"
+            },
+            "title": "Tools",
+            "type": "array"
+          },
+          "version": {
+            "default": "3.0",
+            "title": "Version",
+            "type": "string"
+          },
+          "workload_id": {
+            "default": "tool-roundtrip",
+            "title": "Workload Id",
+            "type": "string"
+          }
+        },
+        "title": "WorkloadContract",
+        "type": "object"
+      }
+    },
+    "additionalProperties": false,
+    "properties": {
+      "adaptation": {
+        "$ref": "#/$defs/MorphIR"
+      },
+      "adaptation_verification": {
+        "$ref": "#/$defs/AdaptationVerification"
+      },
+      "artifact_hashes": {
+        "items": {
+          "type": "string"
+        },
+        "title": "Artifact Hashes",
+        "type": "array"
+      },
+      "bundle_id": {
+        "title": "Bundle Id",
+        "type": "string"
+      },
+      "capability_evidence": {
+        "items": {
+          "type": "string"
+        },
+        "title": "Capability Evidence",
+        "type": "array"
+      },
+      "created_at": {
+        "title": "Created At",
+        "type": "string"
+      },
+      "dependencies": {
+        "items": {
+          "type": "string"
+        },
+        "title": "Dependencies",
+        "type": "array"
+      },
+      "evaluator_versions": {
+        "default": [
+          "morphosis-reference-v3.1"
+        ],
+        "items": {
+          "type": "string"
+        },
+        "title": "Evaluator Versions",
+        "type": "array"
+      },
+      "parent_revisions": {
+        "default": [],
+        "items": {
+          "type": "string"
+        },
+        "title": "Parent Revisions",
+        "type": "array"
+      },
+      "policy": {
+        "$ref": "#/$defs/PolicyDecision"
+      },
+      "probe_runs": {
+        "items": {
+          "type": "string"
+        },
+        "title": "Probe Runs",
+        "type": "array"
+      },
+      "provenance": {
+        "default": "local-reference-execution",
+        "title": "Provenance",
+        "type": "string"
+      },
+      "qualification": {
+        "$ref": "#/$defs/QualificationDecision"
+      },
+      "rollback_recipe": {
+        "title": "Rollback Recipe",
+        "type": "string"
+      },
+      "runtime_changes": {
+        "items": {
+          "maxItems": 2,
+          "minItems": 2,
+          "prefixItems": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "string"
+            }
+          ],
+          "type": "array"
+        },
+        "title": "Runtime Changes",
+        "type": "array"
+      },
+      "schema_version": {
+        "default": "3.0",
+        "title": "Schema Version",
+        "type": "string"
+      },
+      "source_patch": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Source Patch"
+      },
+      "surface_id": {
+        "title": "Surface Id",
+        "type": "string"
+      },
+      "workload_contract": {
+        "$ref": "#/$defs/WorkloadContract"
+      }
+    },
+    "required": [
+      "bundle_id",
+      "surface_id",
+      "workload_contract",
+      "capability_evidence",
+      "probe_runs",
+      "adaptation",
+      "adaptation_verification",
+      "qualification",
+      "policy",
+      "runtime_changes",
+      "rollback_recipe",
+      "dependencies",
+      "artifact_hashes",
+      "created_at"
+    ],
+    "title": "EvolutionBundle",
+    "type": "object"
+  },
+  "EvolutionTransaction": {
+    "additionalProperties": false,
+    "properties": {
+      "bundle_id": {
+        "title": "Bundle Id",
+        "type": "string"
+      },
+      "checks": {
+        "default": [],
+        "items": {
+          "type": "string"
+        },
+        "title": "Checks",
+        "type": "array"
+      },
+      "previous_bundle": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Previous Bundle"
+      },
+      "stage": {
+        "default": "PROPOSED",
+        "enum": [
+          "PROPOSED",
+          "VALIDATED",
+          "SANDBOXED",
+          "QUALIFIED",
+          "SHADOW",
+          "CANARY",
+          "RAMP",
+          "PROMOTED",
+          "REJECT",
+          "ROLLBACK"
+        ],
+        "title": "Stage",
+        "type": "string"
+      },
+      "transaction_id": {
+        "title": "Transaction Id",
+        "type": "string"
+      }
+    },
+    "required": [
+      "transaction_id",
+      "bundle_id"
+    ],
+    "title": "EvolutionTransaction",
+    "type": "object"
+  },
+  "ModelSurface": {
+    "additionalProperties": false,
+    "properties": {
+      "adapter": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Adapter"
+      },
+      "api_surface": {
+        "default": "json-request-response-v1",
+        "title": "Api Surface",
+        "type": "string"
+      },
+      "endpoint": {
+        "maxLength": 500,
+        "minLength": 1,
+        "title": "Endpoint",
+        "type": "string"
+      },
+      "inference_config": {
+        "default": [],
+        "items": {
+          "maxItems": 2,
+          "minItems": 2,
+          "prefixItems": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "string"
+            }
+          ],
+          "type": "array"
+        },
+        "title": "Inference Config",
+        "type": "array"
+      },
+      "lane": {
+        "default": "UNKNOWN_BOOTSTRAP",
+        "enum": [
+          "KNOWN_FAST_PATH",
+          "UNKNOWN_BOOTSTRAP"
+        ],
+        "title": "Lane",
+        "type": "string"
+      },
+      "model": {
+        "maxLength": 160,
+        "minLength": 1,
+        "title": "Model",
+        "type": "string"
+      },
+      "model_version": {
+        "default": "unspecified",
+        "title": "Model Version",
+        "type": "string"
+      },
+      "observed_at": {
+        "title": "Observed At",
+        "type": "string"
+      },
+      "provider": {
+        "maxLength": 120,
+        "minLength": 1,
+        "title": "Provider",
+        "type": "string"
+      },
+      "surface_id": {
+        "title": "Surface Id",
+        "type": "string"
+      },
+      "tool_protocol": {
+        "default": "json-tool-v1",
+        "title": "Tool Protocol",
+        "type": "string"
+      }
+    },
+    "required": [
+      "model",
+      "provider",
+      "endpoint",
+      "observed_at",
+      "surface_id"
+    ],
+    "title": "ModelSurface",
+    "type": "object"
+  },
+  "MorphIR": {
+    "$defs": {
+      "TransformNode": {
+        "additionalProperties": false,
+        "properties": {
+          "op": {
+            "title": "Op",
+            "type": "string"
+          },
+          "parameters": {
+            "default": [],
+            "items": {
+              "maxItems": 2,
+              "minItems": 2,
+              "prefixItems": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "string"
+                }
+              ],
+              "type": "array"
+            },
+            "title": "Parameters",
+            "type": "array"
+          }
+        },
+        "required": [
+          "op"
+        ],
+        "title": "TransformNode",
+        "type": "object"
+      }
+    },
+    "additionalProperties": false,
+    "properties": {
+      "author": {
+        "default": "candidate",
+        "enum": [
+          "system",
+          "candidate"
+        ],
+        "title": "Author",
+        "type": "string"
+      },
+      "capability_id": {
+        "title": "Capability Id",
+        "type": "string"
+      },
+      "mode": {
+        "default": "ADAPTED",
+        "enum": [
+          "NATIVE",
+          "ADAPTED",
+          "COMPOSED",
+          "FALLBACK",
+          "UNSUPPORTED"
+        ],
+        "title": "Mode",
+        "type": "string"
+      },
+      "nodes": {
+        "default": [],
+        "items": {
+          "$ref": "#/$defs/TransformNode"
+        },
+        "title": "Nodes",
+        "type": "array"
+      },
+      "schema_version": {
+        "default": "3.0",
+        "title": "Schema Version",
+        "type": "string"
+      },
+      "surface_id": {
+        "title": "Surface Id",
+        "type": "string"
+      }
+    },
+    "required": [
+      "surface_id",
+      "capability_id"
+    ],
+    "title": "MorphIR",
+    "type": "object"
+  },
+  "ObjectiveMeasurements": {
+    "additionalProperties": false,
+    "properties": {
+      "adaptation_complexity": {
+        "default": 1,
+        "minimum": 0,
+        "title": "Adaptation Complexity",
+        "type": "integer"
+      },
+      "confidence": {
+        "default": 1,
+        "maximum": 1,
+        "minimum": 0,
+        "title": "Confidence",
+        "type": "number"
+      },
+      "correctness": {
+        "default": 1,
+        "maximum": 1,
+        "minimum": 0,
+        "title": "Correctness",
+        "type": "number"
+      },
+      "cost_usd": {
+        "default": 0.001,
+        "minimum": 0,
+        "title": "Cost Usd",
+        "type": "number"
+      },
+      "determinism": {
+        "default": 1,
+        "maximum": 1,
+        "minimum": 0,
+        "title": "Determinism",
+        "type": "number"
+      },
+      "latency_ms": {
+        "default": 1,
+        "minimum": 0,
+        "title": "Latency Ms",
+        "type": "number"
+      },
+      "operational_risk": {
+        "default": 0.05,
+        "maximum": 1,
+        "minimum": 0,
+        "title": "Operational Risk",
+        "type": "number"
+      },
+      "quality": {
+        "default": 1,
+        "maximum": 1,
+        "minimum": 0,
+        "title": "Quality",
+        "type": "number"
+      },
+      "reliability": {
+        "default": 1,
+        "maximum": 1,
+        "minimum": 0,
+        "title": "Reliability",
+        "type": "number"
+      },
+      "safety": {
+        "default": 1,
+        "maximum": 1,
+        "minimum": 0,
+        "title": "Safety",
+        "type": "number"
+      },
+      "tool_fidelity": {
+        "default": 1,
+        "maximum": 1,
+        "minimum": 0,
+        "title": "Tool Fidelity",
+        "type": "number"
+      }
+    },
+    "title": "ObjectiveMeasurements",
+    "type": "object"
+  },
+  "PolicyDecision": {
+    "additionalProperties": false,
+    "properties": {
+      "evidence": {
+        "default": [],
+        "items": {
+          "type": "string"
+        },
+        "title": "Evidence",
+        "type": "array"
+      },
+      "kernel_version": {
+        "default": "constitutional-kernel-v3.1",
+        "title": "Kernel Version",
+        "type": "string"
+      },
+      "outcome": {
+        "enum": [
+          "ALLOW_PROBE",
+          "DENY_PROBE",
+          "ALLOW_SANDBOX_RUN",
+          "AUTO_APPLY_RUNTIME",
+          "REQUIRE_HUMAN_APPROVAL",
+          "HOLD",
+          "REJECT",
+          "ROLLBACK"
+        ],
+        "title": "Outcome",
+        "type": "string"
+      },
+      "reasons": {
+        "items": {
+          "type": "string"
+        },
+        "title": "Reasons",
+        "type": "array"
+      }
+    },
+    "required": [
+      "outcome",
+      "reasons"
+    ],
+    "title": "PolicyDecision",
+    "type": "object"
+  },
+  "ProbeRun": {
+    "additionalProperties": false,
+    "properties": {
+      "capability_id": {
+        "title": "Capability Id",
+        "type": "string"
+      },
+      "checks": {
+        "items": {
+          "type": "string"
+        },
+        "title": "Checks",
+        "type": "array"
+      },
+      "cost_usd": {
+        "title": "Cost Usd",
+        "type": "number"
+      },
+      "evaluator_version": {
+        "default": "morphosis-reference-v3.1",
+        "title": "Evaluator Version",
+        "type": "string"
+      },
+      "family": {
+        "title": "Family",
+        "type": "string"
+      },
+      "input_hash": {
+        "title": "Input Hash",
+        "type": "string"
+      },
+      "latency_ms": {
+        "title": "Latency Ms",
+        "type": "number"
+      },
+      "observed_at": {
+        "title": "Observed At",
+        "type": "string"
+      },
+      "output_hash": {
+        "title": "Output Hash",
+        "type": "string"
+      },
+      "passed": {
+        "title": "Passed",
+        "type": "boolean"
+      },
+      "passed_count": {
+        "default": 1,
+        "minimum": 0,
+        "title": "Passed Count",
+        "type": "integer"
+      },
+      "probe_id": {
+        "title": "Probe Id",
+        "type": "string"
+      },
+      "provenance": {
+        "default": "bounded-reference-interpreter",
+        "title": "Provenance",
+        "type": "string"
+      },
+      "run_id": {
+        "title": "Run Id",
+        "type": "string"
+      },
+      "sample_count": {
+        "default": 1,
+        "minimum": 1,
+        "title": "Sample Count",
+        "type": "integer"
+      },
+      "source": {
+        "title": "Source",
+        "type": "string"
+      },
+      "surface_id": {
+        "title": "Surface Id",
+        "type": "string"
+      }
+    },
+    "required": [
+      "run_id",
+      "probe_id",
+      "surface_id",
+      "capability_id",
+      "family",
+      "passed",
+      "output_hash",
+      "input_hash",
+      "observed_at",
+      "latency_ms",
+      "cost_usd",
+      "checks",
+      "source"
+    ],
+    "title": "ProbeRun",
+    "type": "object"
+  },
+  "ProbeSpec": {
+    "$defs": {
+      "Assertion": {
+        "additionalProperties": false,
+        "properties": {
+          "kind": {
+            "default": "roundtrip",
+            "enum": [
+              "json_object",
+              "roundtrip",
+              "tool_fidelity",
+              "reject_invalid"
+            ],
+            "title": "Kind",
+            "type": "string"
+          }
+        },
+        "title": "Assertion",
+        "type": "object"
+      }
+    },
+    "additionalProperties": false,
+    "properties": {
+      "assertions": {
+        "default": [
+          {
+            "kind": "roundtrip"
+          }
+        ],
+        "items": {
+          "$ref": "#/$defs/Assertion"
+        },
+        "title": "Assertions",
+        "type": "array"
+      },
+      "capability_id": {
+        "title": "Capability Id",
+        "type": "string"
+      },
+      "evaluator": {
+        "default": "morphosis-reference-v3.1",
+        "title": "Evaluator",
+        "type": "string"
+      },
+      "expected_properties": {
+        "default": [
+          "preserve tool",
+          "preserve arguments"
+        ],
+        "items": {
+          "type": "string"
+        },
+        "title": "Expected Properties",
+        "type": "array"
+      },
+      "family": {
+        "default": "roundtrip",
+        "enum": [
+          "conformance",
+          "roundtrip",
+          "differential",
+          "metamorphic",
+          "adversarial",
+          "regression",
+          "negative",
+          "tool-use",
+          "structured-output",
+          "context-window",
+          "failure-recovery"
+        ],
+        "title": "Family",
+        "type": "string"
+      },
+      "filesystem": {
+        "default": "temporary-only",
+        "enum": [
+          "temporary-only",
+          "none"
+        ],
+        "title": "Filesystem",
+        "type": "string"
+      },
+      "input_contract": {
+        "default": "json-tool-v1",
+        "title": "Input Contract",
+        "type": "string"
+      },
+      "max_bytes": {
+        "default": 65536,
+        "maximum": 1048576,
+        "minimum": 128,
+        "title": "Max Bytes",
+        "type": "integer"
+      },
+      "memory_mb": {
+        "default": 64,
+        "maximum": 128,
+        "minimum": 32,
+        "title": "Memory Mb",
+        "type": "integer"
+      },
+      "network": {
+        "default": false,
+        "title": "Network",
+        "type": "boolean"
+      },
+      "probe_id": {
+        "title": "Probe Id",
+        "type": "string"
+      },
+      "secrets": {
+        "default": [],
+        "items": {
+          "type": "string"
+        },
+        "title": "Secrets",
+        "type": "array"
+      },
+      "seed": {
+        "default": 17,
+        "title": "Seed",
+        "type": "integer"
+      },
+      "source": {
+        "default": "system-generated",
+        "enum": [
+          "built-in",
+          "system-generated",
+          "candidate-proposed"
+        ],
+        "title": "Source",
+        "type": "string"
+      },
+      "source_write": {
+        "default": false,
+        "title": "Source Write",
+        "type": "boolean"
+      },
+      "surface_id": {
+        "title": "Surface Id",
+        "type": "string"
+      },
+      "timeout_ms": {
+        "default": 1000,
+        "exclusiveMinimum": 0,
+        "maximum": 5000,
+        "title": "Timeout Ms",
+        "type": "integer"
+      },
+      "tools": {
+        "default": [],
+        "items": {
+          "type": "string"
+        },
+        "title": "Tools",
+        "type": "array"
+      },
+      "workload_hash": {
+        "default": "",
+        "title": "Workload Hash",
+        "type": "string"
+      }
+    },
+    "required": [
+      "probe_id",
+      "surface_id",
+      "capability_id"
+    ],
+    "title": "ProbeSpec",
+    "type": "object"
+  },
+  "QualificationDecision": {
+    "$defs": {
+      "ObjectiveMeasurements": {
+        "additionalProperties": false,
+        "properties": {
+          "adaptation_complexity": {
+            "default": 1,
+            "minimum": 0,
+            "title": "Adaptation Complexity",
+            "type": "integer"
+          },
+          "confidence": {
+            "default": 1,
+            "maximum": 1,
+            "minimum": 0,
+            "title": "Confidence",
+            "type": "number"
+          },
+          "correctness": {
+            "default": 1,
+            "maximum": 1,
+            "minimum": 0,
+            "title": "Correctness",
+            "type": "number"
+          },
+          "cost_usd": {
+            "default": 0.001,
+            "minimum": 0,
+            "title": "Cost Usd",
+            "type": "number"
+          },
+          "determinism": {
+            "default": 1,
+            "maximum": 1,
+            "minimum": 0,
+            "title": "Determinism",
+            "type": "number"
+          },
+          "latency_ms": {
+            "default": 1,
+            "minimum": 0,
+            "title": "Latency Ms",
+            "type": "number"
+          },
+          "operational_risk": {
+            "default": 0.05,
+            "maximum": 1,
+            "minimum": 0,
+            "title": "Operational Risk",
+            "type": "number"
+          },
+          "quality": {
+            "default": 1,
+            "maximum": 1,
+            "minimum": 0,
+            "title": "Quality",
+            "type": "number"
+          },
+          "reliability": {
+            "default": 1,
+            "maximum": 1,
+            "minimum": 0,
+            "title": "Reliability",
+            "type": "number"
+          },
+          "safety": {
+            "default": 1,
+            "maximum": 1,
+            "minimum": 0,
+            "title": "Safety",
+            "type": "number"
+          },
+          "tool_fidelity": {
+            "default": 1,
+            "maximum": 1,
+            "minimum": 0,
+            "title": "Tool Fidelity",
+            "type": "number"
+          }
+        },
+        "title": "ObjectiveMeasurements",
+        "type": "object"
+      }
+    },
+    "additionalProperties": false,
+    "properties": {
+      "evidence": {
+        "items": {
+          "type": "string"
+        },
+        "title": "Evidence",
+        "type": "array"
+      },
+      "measurements": {
+        "$ref": "#/$defs/ObjectiveMeasurements"
+      },
+      "outcome": {
+        "enum": [
+          "PROMOTE",
+          "PROMOTE_TO_SHADOW",
+          "PROMOTE_TO_CANARY",
+          "HOLD",
+          "REQUALIFY",
+          "REJECT",
+          "ROLLBACK"
+        ],
+        "title": "Outcome",
+        "type": "string"
+      },
+      "reasons": {
+        "items": {
+          "type": "string"
+        },
+        "title": "Reasons",
+        "type": "array"
+      },
+      "regression": {
+        "title": "Regression",
+        "type": "number"
+      },
+      "uncertainty": {
+        "title": "Uncertainty",
+        "type": "number"
+      },
+      "workload_version": {
+        "title": "Workload Version",
+        "type": "string"
+      }
+    },
+    "required": [
+      "outcome",
+      "reasons",
+      "measurements",
+      "evidence",
+      "uncertainty",
+      "regression",
+      "workload_version"
+    ],
+    "title": "QualificationDecision",
+    "type": "object"
+  },
+  "TelemetryEvent": {
+    "additionalProperties": false,
+    "properties": {
+      "cost_usd": {
+        "default": 0,
+        "minimum": 0,
+        "title": "Cost Usd",
+        "type": "number"
+      },
+      "fingerprint": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Fingerprint"
+      },
+      "latency_ms": {
+        "default": 0,
+        "minimum": 0,
+        "title": "Latency Ms",
+        "type": "number"
+      },
+      "policy_failures": {
+        "default": 0,
+        "minimum": 0,
+        "title": "Policy Failures",
+        "type": "integer"
+      },
+      "quality": {
+        "default": 1,
+        "maximum": 1,
+        "minimum": 0,
+        "title": "Quality",
+        "type": "number"
+      },
+      "schema_failures": {
+        "default": 0,
+        "minimum": 0,
+        "title": "Schema Failures",
+        "type": "integer"
+      },
+      "surface_id": {
+        "title": "Surface Id",
+        "type": "string"
+      },
+      "tool_failures": {
+        "default": 0,
+        "minimum": 0,
+        "title": "Tool Failures",
+        "type": "integer"
+      }
+    },
+    "required": [
+      "surface_id"
+    ],
+    "title": "TelemetryEvent",
+    "type": "object"
+  },
+  "TransformNode": {
+    "additionalProperties": false,
+    "properties": {
+      "op": {
+        "title": "Op",
+        "type": "string"
+      },
+      "parameters": {
+        "default": [],
+        "items": {
+          "maxItems": 2,
+          "minItems": 2,
+          "prefixItems": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "string"
+            }
+          ],
+          "type": "array"
+        },
+        "title": "Parameters",
+        "type": "array"
+      }
+    },
+    "required": [
+      "op"
+    ],
+    "title": "TransformNode",
+    "type": "object"
+  },
+  "WorkloadContract": {
+    "additionalProperties": false,
+    "properties": {
+      "allowed_providers": {
+        "default": [
+          "reference"
+        ],
+        "items": {
+          "type": "string"
+        },
+        "title": "Allowed Providers",
+        "type": "array"
+      },
+      "data_residency": {
+        "default": "local",
+        "title": "Data Residency",
+        "type": "string"
+      },
+      "evidence_ttl_seconds": {
+        "default": 86400,
+        "exclusiveMinimum": 0,
+        "title": "Evidence Ttl Seconds",
+        "type": "integer"
+      },
+      "failure_budget": {
+        "default": 0.01,
+        "maximum": 1,
+        "minimum": 0,
+        "title": "Failure Budget",
+        "type": "number"
+      },
+      "hard_invariants": {
+        "default": [
+          "safety",
+          "tool_fidelity",
+          "determinism"
+        ],
+        "items": {
+          "type": "string"
+        },
+        "title": "Hard Invariants",
+        "type": "array"
+      },
+      "human_approval_required": {
+        "default": false,
+        "title": "Human Approval Required",
+        "type": "boolean"
+      },
+      "incumbent_quality": {
+        "default": 0.9,
+        "maximum": 1,
+        "minimum": 0,
+        "title": "Incumbent Quality",
+        "type": "number"
+      },
+      "max_cost_usd": {
+        "default": 0.05,
+        "minimum": 0,
+        "title": "Max Cost Usd",
+        "type": "number"
+      },
+      "max_latency_ms": {
+        "default": 6000,
+        "minimum": 0,
+        "title": "Max Latency Ms",
+        "type": "number"
+      },
+      "max_regression": {
+        "default": 0.05,
+        "maximum": 1,
+        "minimum": 0,
+        "title": "Max Regression",
+        "type": "number"
+      },
+      "min_confidence": {
+        "default": 0.9,
+        "maximum": 1,
+        "minimum": 0,
+        "title": "Min Confidence",
+        "type": "number"
+      },
+      "minimum_quality": {
+        "default": 0.9,
+        "maximum": 1,
+        "minimum": 0,
+        "title": "Minimum Quality",
+        "type": "number"
+      },
+      "optional": {
+        "default": [],
+        "items": {
+          "type": "string"
+        },
+        "title": "Optional",
+        "type": "array"
+      },
+      "privacy": {
+        "default": "synthetic-data-only",
+        "title": "Privacy",
+        "type": "string"
+      },
+      "promotion_margin": {
+        "default": 0.02,
+        "maximum": 1,
+        "minimum": 0,
+        "title": "Promotion Margin",
+        "type": "number"
+      },
+      "reliability_target": {
+        "default": 0.99,
+        "maximum": 1,
+        "minimum": 0,
+        "title": "Reliability Target",
+        "type": "number"
+      },
+      "required": {
+        "default": [
+          "future.semantic_patch.v1"
+        ],
+        "items": {
+          "type": "string"
+        },
+        "title": "Required",
+        "type": "array"
+      },
+      "tools": {
+        "default": [],
+        "items": {
+          "type": "string"
+        },
+        "title": "Tools",
+        "type": "array"
+      },
+      "version": {
+        "default": "3.0",
+        "title": "Version",
+        "type": "string"
+      },
+      "workload_id": {
+        "default": "tool-roundtrip",
+        "title": "Workload Id",
+        "type": "string"
+      }
+    },
+    "title": "WorkloadContract",
+    "type": "object"
+  }
+}

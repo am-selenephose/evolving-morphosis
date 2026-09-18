@@ -4,3 +4,8 @@ __pycache__/
 dist/
 demo-output/
 
+work/*.sqlite
+work/*.sqlite-*
+work/*-red.txt
+work/*-green.txt
+work/contracts-run.txt

@@ -7,6 +7,17 @@ PY="${PYTHON:-$ROOT_DIR/.venv/bin/python}"
 
 "$PY" -m pytest -q
 
+node --test tests/frontend/*.test.mjs
+node --check site/app.js
+node --check site/data.js
+node --check site/visuals.js
+
+VERIFY_DIR="$(mktemp -d)"
+trap 'rm -rf "$VERIFY_DIR"' EXIT
+"$PY" -m morphosis.export_demo --output "$VERIFY_DIR/generated" --architecture-svg "$VERIFY_DIR/architecture.svg" >/dev/null
+diff -qr site/generated "$VERIFY_DIR/generated" >/dev/null
+cmp -s architecture.svg "$VERIFY_DIR/architecture.svg"
+
 rm -rf demo-output
 mkdir -p demo-output
 
@@ -27,4 +38,4 @@ grep -q "Adaptation proof: OBSERVED" demo-output/future-model.txt
 grep -q "Runtime gate: AUTO_APPLY" demo-output/future-model.txt
 grep -q "Source gate: HUMAN_APPROVAL_REQUIRED" demo-output/future-model.txt
 
-echo "PASS: tests + real Strands loops + Evolving Morphosis gates + current-model qualification + future capability/adaptation verification"
+echo "PASS: Python + frontend + deterministic projections/SVG + real Strands loops + Evolving Morphosis gates + current-model qualification + future capability/adaptation verification"
