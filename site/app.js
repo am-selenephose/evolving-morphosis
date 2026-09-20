@@ -3,7 +3,7 @@ import {VisualEngine} from './visuals.js';
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const esc=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const params=new URLSearchParams(location.search),live=params.get('live')==='1';
-const settings={motion:true,reducedMotion:matchMedia('(prefers-reduced-motion: reduce)').matches,quality:'balanced',visualTest:params.get('visualTest')==='1',logPaused:false};
+const settings={motion:true,reducedMotion:false,quality:'high',visualTest:params.get('visualTest')==='1',logPaused:false};
 const state={snapshot:null,route:'overview',surface:null,busy:false,pausedEvents:null,traceIndex:0};
 const visuals=new VisualEngine(()=>settings),client=new ProjectionClient({live});
 const icons={overview:'M3 11 12 3l9 8M5 10v10h5v-6h4v6h5V10',evolution:'M12 3 4 7v10l8 4 8-4V7zM8 9h8v6H8zM12 1v4m0 14v4M1 12h5m12 0h5',models:'m12 2 9 5v10l-9 5-9-5V7zM7 9l5-3 5 3v6l-5 3-5-3zM9 11h6v2H9z',agents:'m12 3 9 5-9 5-9-5zM3 8v9l9 5 9-5V8M12 13v9',evaluation:'M9 3H4v18h16V7l-4-4zM8 12l3 3 6-7',deployments:'M7 7a8 8 0 1 1-2 8M3 5v6h6M10 15l5-5m-5 0h5v5',observability:'M2 12h4l3-8 5 16 3-8h5M12 1v3m0 16v3',datasets:'M4 6c0-4 16-4 16 0s-16 4-16 0v12c0 4 16 4 16 0V6M4 12c0 4 16 4 16 0',infrastructure:'m12 2 9 5-9 5-9-5zM3 12l9 5 9-5M3 17l9 5 9-5M12 12v10',settings:'M9 3h6l1 4 4 1v7l-4 1-1 5H9l-1-5-4-1V8l4-1zM9 12a3 3 0 1 0 6 0 3 3 0 0 0-6 0'};
