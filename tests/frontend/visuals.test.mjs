@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 const source=await readFile(new URL('../../site/visuals.js',import.meta.url),'utf8');
 const {createFabricGeometry,eventImpulse,advanceTime,VisualEngine}=await import(`data:text/javascript;base64,${Buffer.from(source).toString('base64')}`);
-test('fabric is deterministic six-layer triangulated two-dimensional topology',()=>{
+test('fabric is deterministic six-layer triangulated topology for 3D deformation',()=>{
  const a=createFabricGeometry('workspace','balanced'),b=createFabricGeometry('workspace','balanced');
  assert.deepEqual(a.vertices,b.vertices);assert.deepEqual(a.triangles,b.triangles);
  assert.equal(a.layers,6);assert.ok(a.triangles.length>20000);assert.ok(a.lines.length>10000);
@@ -35,6 +35,18 @@ test('event consumption cannot mutate a backend projection and deduplicates even
  engine.impulse.pulse=.2;engine.consume({id:'e1',type:'probe.completed'});
  assert.equal(engine.impulse.pulse,.2);engine.dispose();
 });
+
+test('workspace shader has time-driven 3D camera rotation and pointer parallax',()=>{
+ const vertex=source.match(/const VERTEX=`([\s\S]*?)`;/)[1];
+ assert.match(vertex,/uniform vec2 uPointer/);
+ assert.match(vertex,/float yaw=.*uPointer\.x/);
+ assert.match(vertex,/float pitch=.*uPointer\.y/);
+ assert.match(vertex,/float cameraZ=2\.65/);
+ assert.match(vertex,/p\.z\+=sin\(uTime\*\.72\+layer\*\.9\)/);
+ assert.match(source,/uniform2f\(u\.Pointer/);
+ assert.match(source,/pointermove/);
+});
+
 test('vertex and fragment shader interfaces use matching float precision',()=>{
  const vertex=source.match(/const VERTEX=`([\s\S]*?)`;/)[1];
  const fragment=source.match(/const FRAGMENT=`([\s\S]*?)`;/)[1];

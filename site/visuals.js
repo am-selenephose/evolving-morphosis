@@ -26,13 +26,14 @@ const VERTEX=`
 precision highp float;
 attribute vec4 aFabric;
 uniform float uTime,uWorkspace,uPass,uDpr,uMotion,uStrand,uSidebar;
+uniform vec2 uPointer;
 uniform vec4 uImpulse;
 varying vec3 vPosition;
 varying vec2 vUV;
 varying float vLayer,vLight,vSeed,vDust;
 vec3 surface(vec2 uv,float layer){
  float x=uv.x*2.-1.,v=uv.y*2.-1.;
- float phase=layer*1.13+uTime*.19;
+ float phase=layer*1.13+uTime*.58;
  float fold=sin(x*4.7+phase)*.48+sin(x*9.1-layer*.7+v*2.8)*.15;
  float taper=pow(max(.001,1.-x*x),.62);
  float twist=v*1.9+sin(x*3.4+phase)*1.1;
@@ -40,7 +41,7 @@ vec3 surface(vec2 uv,float layer){
  float y=cos(twist)*taper*.23+fold*.19;
  // Warped sheets have breadth in both y and z, with separately phased ridges.
  y+=v*.10+sin(v*5.+x*3.-phase)*.055;
- y+=sin(x*11.-uTime*.8+layer)*.013*uMotion;
+ y+=sin(x*11.-uTime*1.85+layer)*.028*uMotion;
  y+=uImpulse.x*.026*sin(x*8.-uTime*3.);
  y+=uStrand*.025*sin(x*5.+layer);
  y-=uImpulse.w*.018*sin(x*11.-uTime*.8+layer);
@@ -83,8 +84,19 @@ void main(){
    p.z+=(jitter-.5)*.45;
   }
  }
- float perspective=1./(1.+p.z*.26);
- gl_Position=vec4(p.x*perspective,(p.y-p.z*.26)*perspective,p.z*.2,1.);
+ // Give the workspace a real moving camera transform instead of a flat 2D ribbon.
+ float yaw=(sin(uTime*.43)*.16+uPointer.x*.22)*uMotion;
+ float pitch=(cos(uTime*.31)*.07-uPointer.y*.12)*uMotion;
+ float cy=cos(yaw),sy=sin(yaw),cx=cos(pitch),sx=sin(pitch);
+ vec3 q=vec3(cy*p.x+sy*p.z,p.y,-sy*p.x+cy*p.z);
+ p=vec3(q.x,cx*q.y-sx*q.z,sx*q.y+cx*q.z);
+ if(uWorkspace>.5){
+  p.z+=sin(uTime*.72+layer*.9)*.09*uMotion;
+  p.y+=cos(uTime*.54+layer*.7)*.025*uMotion;
+ }
+ float cameraZ=2.65;
+ float perspective=cameraZ/(cameraZ+p.z*.72);
+ gl_Position=vec4(p.x*perspective,(p.y-p.z*.18)*perspective,p.z*.18,1.);
  vPosition=p;vUV=uv;vLayer=layer;vSeed=abs(aFabric.w);
  vLight=pow(1.-abs(normal.z),3.)*.8+pow(max(0.,dot(normal,normalize(vec3(-.3,.8,1.)))),9.);
  gl_PointSize=(uPass>2.5?18.:(.8+vSeed*.65))*uDpr;
@@ -117,13 +129,16 @@ function resource(gl,type,quality){
  if(!gl.getProgramParameter(program,gl.LINK_STATUS))throw Error(gl.getProgramInfoLog(program));
  const geometry=createFabricGeometry(type,quality),buffers={};
  for(const name of ['vertices','triangles','lines','nodes']){const buffer=gl.createBuffer();gl.bindBuffer(name==='vertices'?gl.ARRAY_BUFFER:gl.ELEMENT_ARRAY_BUFFER,buffer);gl.bufferData(name==='vertices'?gl.ARRAY_BUFFER:gl.ELEMENT_ARRAY_BUFFER,geometry[name],gl.STATIC_DRAW);buffers[name]=buffer;}
- const uniforms={};for(const name of ['Time','Workspace','Pass','Dpr','Motion','Impulse','Strand','Sidebar'])uniforms[name]=gl.getUniformLocation(program,`u${name}`);
+ const uniforms={};for(const name of ['Time','Workspace','Pass','Dpr','Motion','Impulse','Strand','Sidebar','Pointer'])uniforms[name]=gl.getUniformLocation(program,`u${name}`);
  return {program,geometry,buffers,uniforms,attribute:gl.getAttribLocation(program,'aFabric')};
 }
 function release(item){if(!item.resources)return;for(const buffer of Object.values(item.resources.buffers))item.gl.deleteBuffer(buffer);item.gl.deleteProgram(item.resources.program);item.resources=null;}
 export class VisualEngine{
  constructor(getSettings=()=>({})){
   this.getSettings=getSettings;this.canvases=new Map();this.time=12;this.last=null;this.raf=0;this.running=false;this.projection=null;this.seen=new Set();this.impulse={pulse:0,convergence:0,red:0,stability:0,strand:0};this.dirty=true;
+  this.pointer={x:0,y:0,tx:0,ty:0};
+  this.pointerMove=event=>{const w=Math.max(1,globalThis.innerWidth||1),h=Math.max(1,globalThis.innerHeight||1);this.pointer.tx=Math.max(-1,Math.min(1,event.clientX/w*2-1));this.pointer.ty=Math.max(-1,Math.min(1,event.clientY/h*2-1));};
+  globalThis.addEventListener?.('pointermove',this.pointerMove,{passive:true});
   this.tick=this.tick.bind(this);this.visibility=()=>{this.last=null;if(globalThis.document?.hidden){cancelAnimationFrame(this.raf);this.raf=0;}else this.schedule();};
   globalThis.document?.addEventListener('visibilitychange',this.visibility);
   this.resizeObserver=typeof ResizeObserver==='function'?new ResizeObserver(entries=>{for(const entry of entries){const item=this.canvases.get(entry.target.id);if(item)this.sizeOne(item,entry.contentRect);}this.dirty=true;this.schedule();}):null;
@@ -153,6 +168,7 @@ export class VisualEngine{
   this.raf=0;if(!this.running||globalThis.document?.hidden)return;
   const settings=this.getSettings()||{},delta=this.last===null?0:Math.max(0,(timestamp-this.last)/1000);this.last=timestamp;
   this.time=advanceTime(this.time,delta,settings);const animated=settings.motion!==false&&!settings.reducedMotion&&!settings.visualTest;
+  if(animated){this.pointer.x+=(this.pointer.tx-this.pointer.x)*.065;this.pointer.y+=(this.pointer.ty-this.pointer.y)*.065;}
   if(animated||this.dirty){this.draw(settings);this.dirty=false;}
   if(animated){const decay=Math.exp(-Math.min(delta,.05)*.65);for(const name in this.impulse)this.impulse[name]*=decay;this.schedule();}
  }
@@ -167,6 +183,7 @@ export class VisualEngine{
    gl.bindBuffer(gl.ARRAY_BUFFER,r.buffers.vertices);gl.enableVertexAttribArray(r.attribute);gl.vertexAttribPointer(r.attribute,4,gl.FLOAT,false,16,0);
    gl.uniform1f(u.Time,settings.visualTest?12:this.time);gl.uniform1f(u.Workspace,item.type==='workspace'?1:0);gl.uniform1f(u.Dpr,item.dpr);gl.uniform1f(u.Motion,settings.reducedMotion?0:1);
    gl.uniform1f(u.Sidebar,item.type==='sidebar'?1:0);
+   gl.uniform2f(u.Pointer,settings.visualTest?0:this.pointer.x,settings.visualTest?0:this.pointer.y);
    gl.uniform1f(u.Strand,settings.visualTest?0:this.impulse.strand);
    gl.uniform4f(u.Impulse,settings.visualTest?0:this.impulse.pulse,settings.visualTest?0:this.impulse.convergence,settings.visualTest?0:this.impulse.red,settings.visualTest?0:this.impulse.stability);
    gl.uniform1f(u.Pass,0);gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER,r.buffers.triangles);gl.drawElements(gl.TRIANGLES,r.geometry.triangles.length,gl.UNSIGNED_SHORT,0);triangles+=r.geometry.triangles.length/3;
@@ -176,5 +193,5 @@ export class VisualEngine{
   }
   if(this.debug){const frameTime=performance.now()-begin;Object.assign(this.performance,{frameTime,drawCalls:calls,triangles,points,quality:settings.quality||'balanced',fps:this.last&&this.previousTimestamp?1000/(this.last-this.previousTimestamp):0});this.previousTimestamp=this.last;}
  }
- dispose(){this.stop();this.resizeObserver?.disconnect();this.intersectionObserver?.disconnect();globalThis.document?.removeEventListener('visibilitychange',this.visibility);for(const item of this.canvases.values()){item.canvas.removeEventListener('webglcontextlost',item.lost);item.canvas.removeEventListener('webglcontextrestored',item.restored);release(item);}this.canvases.clear();this.seen.clear();}
+ dispose(){this.stop();this.resizeObserver?.disconnect();this.intersectionObserver?.disconnect();globalThis.document?.removeEventListener('visibilitychange',this.visibility);globalThis.removeEventListener?.('pointermove',this.pointerMove);for(const item of this.canvases.values()){item.canvas.removeEventListener('webglcontextlost',item.lost);item.canvas.removeEventListener('webglcontextrestored',item.restored);release(item);}this.canvases.clear();this.seen.clear();}
 }
