@@ -1,7 +1,7 @@
 // Organic surfaces are presentation only. No visual state is domain authority.
-const TIERS={high:[128,32],balanced:[96,24],reduced:[64,16]};
+const TIERS={high:[128,32],balanced:[96,24],safe:[48,12],reduced:[64,16]};
 export function createFabricGeometry(type='workspace',quality='balanced'){
- const [nu,nv]=TIERS[quality]||TIERS.balanced,layers=type==='workspace'?6:3;
+ const [nu,nv]=TIERS[quality]||TIERS.balanced,layers=type==='workspace'?(quality==='safe'?4:quality==='balanced'?5:6):(quality==='safe'?2:3);
  const vertices=[],triangles=[],lines=[],nodes=[];
  for(let l=0;l<layers;l++)for(let v=0;v<=nv;v++)for(let u=0;u<=nu;u++){
   const i=vertices.length/4;vertices.push(u/nu,v/nv,l,Math.sin(i*127.1+311.7)*43758.5453%1);
@@ -26,13 +26,14 @@ const VERTEX=`
 precision highp float;
 attribute vec4 aFabric;
 uniform float uTime,uWorkspace,uPass,uDpr,uMotion,uStrand,uSidebar;
+uniform vec2 uPointer;
 uniform vec4 uImpulse;
 varying vec3 vPosition;
 varying vec2 vUV;
 varying float vLayer,vLight,vSeed,vDust;
 vec3 surface(vec2 uv,float layer){
  float x=uv.x*2.-1.,v=uv.y*2.-1.;
- float phase=layer*1.13+uTime*.19;
+ float phase=layer*1.13+uTime*.58;
  float fold=sin(x*4.7+phase)*.48+sin(x*9.1-layer*.7+v*2.8)*.15;
  float taper=pow(max(.001,1.-x*x),.62);
  float twist=v*1.9+sin(x*3.4+phase)*1.1;
@@ -40,7 +41,7 @@ vec3 surface(vec2 uv,float layer){
  float y=cos(twist)*taper*.23+fold*.19;
  // Warped sheets have breadth in both y and z, with separately phased ridges.
  y+=v*.10+sin(v*5.+x*3.-phase)*.055;
- y+=sin(x*11.-uTime*.8+layer)*.013*uMotion;
+ y+=sin(x*11.-uTime*1.85+layer)*.028*uMotion;
  y+=uImpulse.x*.026*sin(x*8.-uTime*3.);
  y+=uStrand*.025*sin(x*5.+layer);
  y-=uImpulse.w*.018*sin(x*11.-uTime*.8+layer);
@@ -83,8 +84,19 @@ void main(){
    p.z+=(jitter-.5)*.45;
   }
  }
- float perspective=1./(1.+p.z*.26);
- gl_Position=vec4(p.x*perspective,(p.y-p.z*.26)*perspective,p.z*.2,1.);
+ // Give the workspace a real moving camera transform instead of a flat 2D ribbon.
+ float yaw=(sin(uTime*.43)*.16+uPointer.x*.22)*uMotion;
+ float pitch=(cos(uTime*.31)*.07-uPointer.y*.12)*uMotion;
+ float cy=cos(yaw),sy=sin(yaw),cx=cos(pitch),sx=sin(pitch);
+ vec3 q=vec3(cy*p.x+sy*p.z,p.y,-sy*p.x+cy*p.z);
+ p=vec3(q.x,cx*q.y-sx*q.z,sx*q.y+cx*q.z);
+ if(uWorkspace>.5){
+  p.z+=sin(uTime*.72+layer*.9)*.09*uMotion;
+  p.y+=cos(uTime*.54+layer*.7)*.025*uMotion;
+ }
+ float cameraZ=2.65;
+ float perspective=cameraZ/(cameraZ+p.z*.72);
+ gl_Position=vec4(p.x*perspective,(p.y-p.z*.18)*perspective,p.z*.18,1.);
  vPosition=p;vUV=uv;vLayer=layer;vSeed=abs(aFabric.w);
  vLight=pow(1.-abs(normal.z),3.)*.8+pow(max(0.,dot(normal,normalize(vec3(-.3,.8,1.)))),9.);
  gl_PointSize=(uPass>2.5?18.:(.8+vSeed*.65))*uDpr;
@@ -117,13 +129,16 @@ function resource(gl,type,quality){
  if(!gl.getProgramParameter(program,gl.LINK_STATUS))throw Error(gl.getProgramInfoLog(program));
  const geometry=createFabricGeometry(type,quality),buffers={};
  for(const name of ['vertices','triangles','lines','nodes']){const buffer=gl.createBuffer();gl.bindBuffer(name==='vertices'?gl.ARRAY_BUFFER:gl.ELEMENT_ARRAY_BUFFER,buffer);gl.bufferData(name==='vertices'?gl.ARRAY_BUFFER:gl.ELEMENT_ARRAY_BUFFER,geometry[name],gl.STATIC_DRAW);buffers[name]=buffer;}
- const uniforms={};for(const name of ['Time','Workspace','Pass','Dpr','Motion','Impulse','Strand','Sidebar'])uniforms[name]=gl.getUniformLocation(program,`u${name}`);
+ const uniforms={};for(const name of ['Time','Workspace','Pass','Dpr','Motion','Impulse','Strand','Sidebar','Pointer'])uniforms[name]=gl.getUniformLocation(program,`u${name}`);
  return {program,geometry,buffers,uniforms,attribute:gl.getAttribLocation(program,'aFabric')};
 }
 function release(item){if(!item.resources)return;for(const buffer of Object.values(item.resources.buffers))item.gl.deleteBuffer(buffer);item.gl.deleteProgram(item.resources.program);item.resources=null;}
 export class VisualEngine{
  constructor(getSettings=()=>({})){
-  this.getSettings=getSettings;this.canvases=new Map();this.time=12;this.last=null;this.raf=0;this.running=false;this.projection=null;this.seen=new Set();this.impulse={pulse:0,convergence:0,red:0,stability:0,strand:0};this.dirty=true;
+  this.getSettings=getSettings;this.canvases=new Map();this.time=12;this.last=null;this.raf=0;this.running=false;this.projection=null;this.seen=new Set();this.impulse={pulse:0,convergence:0,red:0,stability:0,strand:0};this.dirty=true;this.autoCeiling='high';this.frameSamples=[];
+  this.pointer={x:0,y:0,tx:0,ty:0};
+  this.pointerMove=event=>{const w=Math.max(1,globalThis.innerWidth||1),h=Math.max(1,globalThis.innerHeight||1);this.pointer.tx=Math.max(-1,Math.min(1,event.clientX/w*2-1));this.pointer.ty=Math.max(-1,Math.min(1,event.clientY/h*2-1));};
+  globalThis.addEventListener?.('pointermove',this.pointerMove,{passive:true});
   this.tick=this.tick.bind(this);this.visibility=()=>{this.last=null;if(globalThis.document?.hidden){cancelAnimationFrame(this.raf);this.raf=0;}else this.schedule();};
   globalThis.document?.addEventListener('visibilitychange',this.visibility);
   this.resizeObserver=typeof ResizeObserver==='function'?new ResizeObserver(entries=>{for(const entry of entries){const item=this.canvases.get(entry.target.id);if(item)this.sizeOne(item,entry.contentRect);}this.dirty=true;this.schedule();}):null;
@@ -134,15 +149,19 @@ export class VisualEngine{
  register(id,type){
   const canvas=document.getElementById(id);if(!canvas)return;
   const old=this.canvases.get(id);if(old?.canvas===canvas)return;if(old){release(old);this.resizeObserver?.unobserve(old.canvas);this.intersectionObserver?.unobserve(old.canvas);}
-  const gl=canvas.getContext('webgl',{alpha:true,antialias:true,premultipliedAlpha:true,powerPreference:'low-power'});
-  if(!gl){canvas.dataset.visualUnavailable='WebGL unavailable';return;}
-  const item={canvas,type,gl,visible:true,quality:null,resources:null,w:0,h:0};
-  item.lost=event=>{event.preventDefault();item.resources=null;item.lostContext=true;};
-  item.restored=()=>{item.lostContext=false;item.quality=null;this.dirty=true;this.schedule();};
+  let gl=null;
+  try{gl=canvas.getContext('webgl',{alpha:true,antialias:true,premultipliedAlpha:true,powerPreference:'high-performance',failIfMajorPerformanceCaveat:false});}catch(error){this.attachFallback(canvas,type,error?.message||'WebGL initialization failed');return;}
+  if(!gl){this.attachFallback(canvas,type,'WebGL unavailable');return;}
+  const item={canvas,type,gl,visible:true,quality:null,forcedQuality:null,resources:null,w:0,h:0,lostContext:false,restoreCount:0,remeasureAttempts:0,failed:false};
+  item.lost=event=>{event.preventDefault();item.resources=null;item.lostContext=true;item.restoreCount+=1;if(item.restoreCount>2){item.failed=true;this.attachFallback(canvas,type,'Repeated WebGL context loss');}};
+  item.restored=()=>{if(item.failed)return;item.lostContext=false;item.quality=null;item.forcedQuality='safe';item.restoreCount+=1;if(item.restoreCount>2){item.failed=true;this.attachFallback(canvas,type,'Repeated WebGL restore');return;}this.clearFallback(canvas);this.dirty=true;this.schedule();};
   canvas.addEventListener('webglcontextlost',item.lost);canvas.addEventListener('webglcontextrestored',item.restored);
   this.canvases.set(id,item);this.resizeObserver?.observe(canvas);this.intersectionObserver?.observe(canvas);this.sizeOne(item,canvas.getBoundingClientRect());this.dirty=true;this.schedule();
  }
- sizeOne(item,rect){item.w=rect.width;item.h=rect.height;item.dpr=Math.min(globalThis.devicePixelRatio||1,1.5);const w=Math.max(1,Math.round(rect.width*item.dpr)),h=Math.max(1,Math.round(rect.height*item.dpr));if(item.canvas.width!==w||item.canvas.height!==h){item.canvas.width=w;item.canvas.height=h;}this.dirty=true;}
+ attachFallback(canvas,type,reason='Visual renderer unavailable'){canvas.dataset.visualUnavailable=reason;canvas.dataset.visualType=type;canvas.parentElement?.classList.add('visual-fallback');globalThis.document?.documentElement?.setAttribute('data-visuals-ready','fallback');}
+ clearFallback(canvas){delete canvas.dataset.visualUnavailable;canvas.parentElement?.classList.remove('visual-fallback');}
+ sizeOne(item,rect){const width=Math.max(0,rect?.width||item.canvas.clientWidth||0),height=Math.max(0,rect?.height||item.canvas.clientHeight||0);if(width<2||height<2){if(item.remeasureAttempts<4){item.remeasureAttempts+=1;setTimeout(()=>{if(item.canvas.isConnected)this.sizeOne(item,item.canvas.getBoundingClientRect());},50*item.remeasureAttempts);}return;}item.remeasureAttempts=0;item.w=width;item.h=height;const requested=this.effectiveQuality(this.getSettings()?.quality||'balanced'),cap=requested==='high'?1.5:requested==='balanced'?1.25:1;item.dpr=Math.min(globalThis.devicePixelRatio||1,cap);const w=Math.max(1,Math.round(width*item.dpr)),h=Math.max(1,Math.round(height*item.dpr));if(item.canvas.width!==w||item.canvas.height!==h){item.canvas.width=w;item.canvas.height=h;}this.clearFallback(item.canvas);this.dirty=true;}
+ effectiveQuality(requested='balanced'){const rank={safe:0,reduced:0,balanced:1,high:2};const reverse=['safe','balanced','high'];const cap=rank[this.autoCeiling]??2,current=rank[requested]??1;return reverse[Math.min(cap,current)];}
  resize(){for(const item of this.canvases.values())this.sizeOne(item,item.canvas.getBoundingClientRect());this.schedule();}
  setProjection(projection){this.projection=projection;this.dirty=true;this.schedule();}
  consume(event){const id=event?.id||event?.event_id;if(id&&this.seen.has(id))return;const impulse=eventImpulse(event);if(!impulse)return;if(id){this.seen.add(id);if(this.seen.size>2048)this.seen.delete(this.seen.values().next().value);}Object.assign(this.impulse,impulse);this.dirty=true;this.schedule();}
@@ -153,28 +172,32 @@ export class VisualEngine{
   this.raf=0;if(!this.running||globalThis.document?.hidden)return;
   const settings=this.getSettings()||{},delta=this.last===null?0:Math.max(0,(timestamp-this.last)/1000);this.last=timestamp;
   this.time=advanceTime(this.time,delta,settings);const animated=settings.motion!==false&&!settings.reducedMotion&&!settings.visualTest;
+  if(animated){this.pointer.x+=(this.pointer.tx-this.pointer.x)*.065;this.pointer.y+=(this.pointer.ty-this.pointer.y)*.065;}
   if(animated||this.dirty){this.draw(settings);this.dirty=false;}
   if(animated){const decay=Math.exp(-Math.min(delta,.05)*.65);for(const name in this.impulse)this.impulse[name]*=decay;this.schedule();}
  }
  draw(settings=this.getSettings()||{}){
-  const begin=this.debug?performance.now():0;let calls=0,triangles=0,points=0;
+  const begin=performance.now();let calls=0,triangles=0,points=0;
   for(const item of this.canvases.values()){
-   if(!item.visible||!item.w||!item.h||item.lostContext)continue;
-   const gl=item.gl,quality=TIERS[settings.quality]?settings.quality:'balanced';
-   if(item.quality!==quality){release(item);item.resources=resource(gl,item.type,quality);item.quality=quality;}
+   if(!item.visible||!item.w||!item.h||item.lostContext||item.failed)continue;
+   const gl=item.gl,quality=item.forcedQuality||this.effectiveQuality(TIERS[settings.quality]?settings.quality:'balanced');
+   try{if(item.quality!==quality){release(item);item.resources=resource(gl,item.type,quality);item.quality=quality;}
    const r=item.resources,u=r.uniforms;
    gl.viewport(0,0,item.canvas.width,item.canvas.height);gl.clearColor(0,0,0,0);gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);gl.disable(gl.DEPTH_TEST);gl.enable(gl.BLEND);gl.blendFuncSeparate(gl.SRC_ALPHA,gl.ONE_MINUS_SRC_ALPHA,gl.ONE,gl.ONE_MINUS_SRC_ALPHA);gl.useProgram(r.program);
    gl.bindBuffer(gl.ARRAY_BUFFER,r.buffers.vertices);gl.enableVertexAttribArray(r.attribute);gl.vertexAttribPointer(r.attribute,4,gl.FLOAT,false,16,0);
    gl.uniform1f(u.Time,settings.visualTest?12:this.time);gl.uniform1f(u.Workspace,item.type==='workspace'?1:0);gl.uniform1f(u.Dpr,item.dpr);gl.uniform1f(u.Motion,settings.reducedMotion?0:1);
    gl.uniform1f(u.Sidebar,item.type==='sidebar'?1:0);
+   gl.uniform2f(u.Pointer,settings.visualTest?0:this.pointer.x,settings.visualTest?0:this.pointer.y);
    gl.uniform1f(u.Strand,settings.visualTest?0:this.impulse.strand);
    gl.uniform4f(u.Impulse,settings.visualTest?0:this.impulse.pulse,settings.visualTest?0:this.impulse.convergence,settings.visualTest?0:this.impulse.red,settings.visualTest?0:this.impulse.stability);
    gl.uniform1f(u.Pass,0);gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER,r.buffers.triangles);gl.drawElements(gl.TRIANGLES,r.geometry.triangles.length,gl.UNSIGNED_SHORT,0);triangles+=r.geometry.triangles.length/3;
    gl.blendFuncSeparate(gl.SRC_ALPHA,gl.ONE,gl.ONE,gl.ONE_MINUS_SRC_ALPHA);gl.uniform1f(u.Pass,1);gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER,r.buffers.lines);gl.drawElements(gl.LINES,r.geometry.lines.length,gl.UNSIGNED_SHORT,0);
    gl.uniform1f(u.Pass,2);gl.drawArrays(gl.POINTS,0,r.geometry.vertices.length/4);points+=r.geometry.vertices.length/4;
    gl.uniform1f(u.Pass,3);gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER,r.buffers.nodes);gl.drawElements(gl.POINTS,r.geometry.nodes.length,gl.UNSIGNED_SHORT,0);points+=r.geometry.nodes.length;calls+=4;
+   }catch(error){item.failed=true;release(item);this.attachFallback(item.canvas,item.type,error?.message||'WebGL render failure');console.error('Morphosis visual fallback',item.type,error);continue;}
   }
-  if(this.debug){const frameTime=performance.now()-begin;Object.assign(this.performance,{frameTime,drawCalls:calls,triangles,points,quality:settings.quality||'balanced',fps:this.last&&this.previousTimestamp?1000/(this.last-this.previousTimestamp):0});this.previousTimestamp=this.last;}
+  const frameTime=performance.now()-begin;this.frameSamples.push(frameTime);if(this.frameSamples.length>36)this.frameSamples.shift();if(this.frameSamples.length===36){const avg=this.frameSamples.reduce((a,b)=>a+b,0)/this.frameSamples.length;if(avg>30&&this.autoCeiling!=='safe'){this.autoCeiling='safe';for(const item of this.canvases.values())item.quality=null;this.dirty=true;}else if(avg>20&&this.autoCeiling==='high'){this.autoCeiling='balanced';for(const item of this.canvases.values())item.quality=null;this.dirty=true;}}
+  if(this.debug){Object.assign(this.performance,{frameTime,drawCalls:calls,triangles,points,quality:this.effectiveQuality(settings.quality||'balanced'),fps:this.last&&this.previousTimestamp?1000/(this.last-this.previousTimestamp):0});this.previousTimestamp=this.last;}
  }
- dispose(){this.stop();this.resizeObserver?.disconnect();this.intersectionObserver?.disconnect();globalThis.document?.removeEventListener('visibilitychange',this.visibility);for(const item of this.canvases.values()){item.canvas.removeEventListener('webglcontextlost',item.lost);item.canvas.removeEventListener('webglcontextrestored',item.restored);release(item);}this.canvases.clear();this.seen.clear();}
+ dispose(){this.stop();this.resizeObserver?.disconnect();this.intersectionObserver?.disconnect();globalThis.document?.removeEventListener('visibilitychange',this.visibility);globalThis.removeEventListener?.('pointermove',this.pointerMove);for(const item of this.canvases.values()){item.canvas.removeEventListener('webglcontextlost',item.lost);item.canvas.removeEventListener('webglcontextrestored',item.restored);release(item);}this.canvases.clear();this.seen.clear();}
 }
