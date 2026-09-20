@@ -13,8 +13,9 @@ COPY src ./src
 COPY site ./site
 COPY fixtures ./fixtures
 
-RUN python -m pip install --no-cache-dir --upgrade pip \
- && python -m pip install --no-cache-dir .
+RUN python -m pip install --no-cache-dir "setuptools>=68" wheel \
+ && python -m pip install --no-cache-dir -r requirements.txt \
+ && python -m pip install --no-cache-dir --no-deps --no-build-isolation .
 
 RUN useradd --create-home --uid 10001 morphosis \
  && mkdir -p /data \
