@@ -7,6 +7,7 @@ from collections.abc import AsyncGenerator, AsyncIterable
 from typing import Any
 
 from pydantic import BaseModel
+from morphosis.deterministic_output import deterministic_instance
 from strands.models import Model
 from strands.types.content import Messages, SystemContentBlock
 from strands.types.streaming import StreamEvent
@@ -43,8 +44,7 @@ class DeterministicMorphosisModel(Model):
     async def structured_output(
         self, output_model: type[BaseModel], prompt: Messages, system_prompt: str | None = None, **kwargs: Any
     ) -> AsyncGenerator[dict[str, Any], None]:
-        raise NotImplementedError("Morphosis demo uses the normal Strands tool loop")
-        yield {}
+        yield {"output": deterministic_instance(output_model)}
 
     async def stream(
         self,
@@ -99,8 +99,7 @@ class DeterministicFutureModel(Model):
     async def structured_output(
         self, output_model: type[BaseModel], prompt: Messages, system_prompt: str | None = None, **kwargs: Any
     ) -> AsyncGenerator[dict[str, Any], None]:
-        raise NotImplementedError("Morphosis future demo uses the normal Strands tool loop")
-        yield {}
+        yield {"output": deterministic_instance(output_model)}
 
     async def stream(
         self,

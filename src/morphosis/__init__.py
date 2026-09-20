@@ -1,5 +1,7 @@
 """Evolving Morphosis: evidence-driven model evolution for durable agents."""
 
+__version__ = "0.3.0"
+
 from .core import (
     CapabilityEvidence,
     CandidateProfile,

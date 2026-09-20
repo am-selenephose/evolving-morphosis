@@ -3,10 +3,10 @@
     "events": [
       {
         "aggregate_id": "52e5e07003f84e1c8ca063429e09435a8acfb687a67af7b99d9ef0b1bd3a98e9",
-        "causation_id": "17bed247c8feb44b644fcc44537b023953991fcae88e607b4c0eea7af5cf2966",
+        "causation_id": "86dbf0b2a0ea283883738f589bfc1d2c8119081671a28ec660da9c6a78021e59",
         "correlation_id": "22f413fd47943b61bf346f93a6e0d7d48310867aea61cc9039b1a41e96e37769",
-        "event_hash": "591efcd67703176d8895a604a1125a594da6c3e77eb9e46609ea614b7a56a1fc",
-        "event_id": "2984377b15026c6d8f1e8cb671e6584b383e0c7dda03bd8825f57a7e78f9f5c4",
+        "event_hash": "b38b6488faa32d626583a8966036433393a6bfec078fe7190660dbc788baf339",
+        "event_id": "8fc4753263f1e6ea7150d0f9f053b587c4a7127ce70f41dba11ee55ef15cea17",
         "event_type": "ProbeProposed",
         "evidence": [
           "6fe3fb2f310d40b9dba1c455e3a1b89e3cc86a0da962fd180cb69c7f61c1c38c"
@@ -46,26 +46,26 @@
             }
           }
         },
-        "previous_hash": "b8a64994e432a1af1c55e17045cad9ca02aa9bf9ed0756bf975e3555844d848a",
+        "previous_hash": "6f9be4ca0a04ef56a93c248854da97df2e04ac5f65fe28452dbcdada164bb860",
         "schema_version": "3.0",
         "sequence": 71,
         "timestamp": "2026-09-15T06:00:00Z"
       },
       {
-        "aggregate_id": "1b26d64b3a8e54f58364de7029ea3757908eb173367319599753a40b5b71d300",
-        "causation_id": "2984377b15026c6d8f1e8cb671e6584b383e0c7dda03bd8825f57a7e78f9f5c4",
+        "aggregate_id": "da83ec55374a4f8f6ef88451077ae13ef55cc283370670d388d36b772d041571",
+        "causation_id": "8fc4753263f1e6ea7150d0f9f053b587c4a7127ce70f41dba11ee55ef15cea17",
         "correlation_id": "22f413fd47943b61bf346f93a6e0d7d48310867aea61cc9039b1a41e96e37769",
-        "event_hash": "51b8bccac44f1e3d746a41208d06c65189c6435747e66d30a74187f7a83d423f",
-        "event_id": "2d73649b1f16c6d2aba8c54516d1e3295e59184399cd79a01f27a2696b51b7fb",
+        "event_hash": "c3aebff2750eacc3d644338800d322e3d1d0a06e6c299c187ddaa34f760b61d1",
+        "event_id": "31f7885e6ddf6dcea79482089d9b91a9d059ce84e37e67d93db38f54df7556e2",
         "event_type": "ProbeRunCompleted",
         "evidence": [
-          "a6a1436494936fd5c4f85dc98550a414832ab1e328df46aef5809e88c9072de4"
+          "ab3b1bca1facdaa07093c763ae26d0b754e8d8370ccb65508f1c5ce2d5d5452c"
         ],
         "payload": {
           "message": "future-model-x: roundtrip probe completed",
           "mutation": {
             "collection": "probe_runs",
-            "id": "1b26d64b3a8e54f58364de7029ea3757908eb173367319599753a40b5b71d300",
+            "id": "da83ec55374a4f8f6ef88451077ae13ef55cc283370670d388d36b772d041571",
             "value": {
               "capability_id": "future.semantic_patch.v1",
               "checks": [
@@ -83,40 +83,40 @@
               "passed": true,
               "passed_count": 16,
               "probe_id": "52e5e07003f84e1c8ca063429e09435a8acfb687a67af7b99d9ef0b1bd3a98e9",
-              "provenance": "executed-reference-interpreter; synthetic latency/cost budget inputs",
-              "run_id": "1b26d64b3a8e54f58364de7029ea3757908eb173367319599753a40b5b71d300",
+              "provenance": "bounded-reference-interpreter",
+              "run_id": "da83ec55374a4f8f6ef88451077ae13ef55cc283370670d388d36b772d041571",
               "sample_count": 16,
               "source": "system-generated",
               "surface_id": "60528148aeec9ef8f6f0dbf6c3480d15fb52e398b6b29be24dd66b30f1f931dc"
             }
           }
         },
-        "previous_hash": "591efcd67703176d8895a604a1125a594da6c3e77eb9e46609ea614b7a56a1fc",
+        "previous_hash": "b38b6488faa32d626583a8966036433393a6bfec078fe7190660dbc788baf339",
         "schema_version": "3.0",
         "sequence": 72,
         "timestamp": "2026-09-15T06:00:00Z"
       },
       {
-        "aggregate_id": "25c6b6019a16b41bb0e39613e9efbaa3d221eac25e553b5187d7bca811255ee9",
-        "causation_id": "2d73649b1f16c6d2aba8c54516d1e3295e59184399cd79a01f27a2696b51b7fb",
+        "aggregate_id": "3e95b5ccbd213b518c19156f069509c5def36c224c2b744a7b1834ef4ad0bdce",
+        "causation_id": "31f7885e6ddf6dcea79482089d9b91a9d059ce84e37e67d93db38f54df7556e2",
         "correlation_id": "22f413fd47943b61bf346f93a6e0d7d48310867aea61cc9039b1a41e96e37769",
-        "event_hash": "a1bcfbf554deea19dbee75cb4f095c085e1ea832f37405590557e19b43db69ca",
-        "event_id": "65fa374db755888c14a93979fcafad35720435ddfc7f960d41fd62838eee6a01",
+        "event_hash": "f06e875f779106282210415b23cab2cf4d6bbebc528802834743b56c7a0e3520",
+        "event_id": "769416c169f7b701337390cd3ed7f296632da084445e596b40ded97194afba50",
         "event_type": "CapabilityObserved",
         "evidence": [
-          "25c6b6019a16b41bb0e39613e9efbaa3d221eac25e553b5187d7bca811255ee9",
-          "a6a1436494936fd5c4f85dc98550a414832ab1e328df46aef5809e88c9072de4"
+          "3e95b5ccbd213b518c19156f069509c5def36c224c2b744a7b1834ef4ad0bdce",
+          "ab3b1bca1facdaa07093c763ae26d0b754e8d8370ccb65508f1c5ce2d5d5452c"
         ],
         "payload": {
           "message": "future.semantic_patch.v1: SUPPORTED",
           "mutation": {
             "collection": "evidence",
-            "id": "25c6b6019a16b41bb0e39613e9efbaa3d221eac25e553b5187d7bca811255ee9",
+            "id": "3e95b5ccbd213b518c19156f069509c5def36c224c2b744a7b1834ef4ad0bdce",
             "value": {
               "capability_id": "future.semantic_patch.v1",
               "confidence": 0.99,
               "evaluator_version": "morphosis-reference-v3.1",
-              "evidence_hash": "a6a1436494936fd5c4f85dc98550a414832ab1e328df46aef5809e88c9072de4",
+              "evidence_hash": "ab3b1bca1facdaa07093c763ae26d0b754e8d8370ccb65508f1c5ce2d5d5452c",
               "expires_at": "2026-09-16T06:00:00Z",
               "family": "roundtrip",
               "observed_at": "2026-09-15T06:00:00Z",
@@ -124,7 +124,7 @@
               "passed_count": 16,
               "probe_id": "52e5e07003f84e1c8ca063429e09435a8acfb687a67af7b99d9ef0b1bd3a98e9",
               "provenance": "reference-execution",
-              "run_id": "1b26d64b3a8e54f58364de7029ea3757908eb173367319599753a40b5b71d300",
+              "run_id": "da83ec55374a4f8f6ef88451077ae13ef55cc283370670d388d36b772d041571",
               "sample_count": 16,
               "score": 1.0,
               "source": "independent-evaluator",
@@ -134,17 +134,17 @@
             }
           }
         },
-        "previous_hash": "51b8bccac44f1e3d746a41208d06c65189c6435747e66d30a74187f7a83d423f",
+        "previous_hash": "c3aebff2750eacc3d644338800d322e3d1d0a06e6c299c187ddaa34f760b61d1",
         "schema_version": "3.0",
         "sequence": 73,
         "timestamp": "2026-09-15T06:00:00Z"
       },
       {
         "aggregate_id": "072d78ad95fb6f260f938f37b0e0cf397e1aba9e80f57382af5c8c7d013daaff",
-        "causation_id": "65fa374db755888c14a93979fcafad35720435ddfc7f960d41fd62838eee6a01",
+        "causation_id": "769416c169f7b701337390cd3ed7f296632da084445e596b40ded97194afba50",
         "correlation_id": "22f413fd47943b61bf346f93a6e0d7d48310867aea61cc9039b1a41e96e37769",
-        "event_hash": "bedd09f0cb30bf02b6e0da1039c4d9eafa05c3e6943880c5eb07a9abe8e5ef3b",
-        "event_id": "3f0a9248f1d6fa5ffd12bc27ea8231bc201bd2b9cea8a04d773c7e01967420b4",
+        "event_hash": "73c8eaa5b8d5cc2ae3c555f67aeede92bb7ee540100504d0e4bc1c0db3f8f696",
+        "event_id": "4ac8fa5b4891bbf4b631d547b40a87ac2e4cf66c38bc156156b557e7d7aaa0a2",
         "event_type": "ProbeProposed",
         "evidence": [
           "f90f6a44b7d7fac51368377e7502035b1243393399e73c869186950a125dbb86"
@@ -184,26 +184,26 @@
             }
           }
         },
-        "previous_hash": "a1bcfbf554deea19dbee75cb4f095c085e1ea832f37405590557e19b43db69ca",
+        "previous_hash": "f06e875f779106282210415b23cab2cf4d6bbebc528802834743b56c7a0e3520",
         "schema_version": "3.0",
         "sequence": 74,
         "timestamp": "2026-09-15T06:00:00Z"
       },
       {
-        "aggregate_id": "339cf2480f1a7f1cb30530ac48ccfe582f28bf977fc0094017917041ddd1d9ee",
-        "causation_id": "3f0a9248f1d6fa5ffd12bc27ea8231bc201bd2b9cea8a04d773c7e01967420b4",
+        "aggregate_id": "752e56f952e7f840a0620414ebc0c12e6485e404fad3a4feddb9d939a1c9367b",
+        "causation_id": "4ac8fa5b4891bbf4b631d547b40a87ac2e4cf66c38bc156156b557e7d7aaa0a2",
         "correlation_id": "22f413fd47943b61bf346f93a6e0d7d48310867aea61cc9039b1a41e96e37769",
-        "event_hash": "7bac6374e86c6fa9e919588df7cbfbec1b7e4c4e7b4acf2758599958eaa57561",
-        "event_id": "12d797733c8dd245e21beb11995bda4bc308e2a0e97e1711022c05f3be5502fa",
+        "event_hash": "130ec2dc8853737f9d2212270435693a36b4c4a9104ae81a6602553ca0921465",
+        "event_id": "4a929888ff6dc28c24e84b11a3b4227be395311bc1bc41afcac891279b0361ea",
         "event_type": "ProbeRunCompleted",
         "evidence": [
-          "b5e6e5d5ab3634e464d46454cdc80fe89227820513e93a36d71a10b9e796f306"
+          "44b928281a4f74cc62225545ff062bb632b1231c8c22bed77db0b4421e85fe3f"
         ],
         "payload": {
           "message": "future-model-x: metamorphic probe completed",
           "mutation": {
             "collection": "probe_runs",
-            "id": "339cf2480f1a7f1cb30530ac48ccfe582f28bf977fc0094017917041ddd1d9ee",
+            "id": "752e56f952e7f840a0620414ebc0c12e6485e404fad3a4feddb9d939a1c9367b",
             "value": {
               "capability_id": "future.semantic_patch.v1",
               "checks": [
@@ -221,40 +221,40 @@
               "passed": true,
               "passed_count": 16,
               "probe_id": "072d78ad95fb6f260f938f37b0e0cf397e1aba9e80f57382af5c8c7d013daaff",
-              "provenance": "executed-reference-interpreter; synthetic latency/cost budget inputs",
-              "run_id": "339cf2480f1a7f1cb30530ac48ccfe582f28bf977fc0094017917041ddd1d9ee",
+              "provenance": "bounded-reference-interpreter",
+              "run_id": "752e56f952e7f840a0620414ebc0c12e6485e404fad3a4feddb9d939a1c9367b",
               "sample_count": 16,
               "source": "system-generated",
               "surface_id": "60528148aeec9ef8f6f0dbf6c3480d15fb52e398b6b29be24dd66b30f1f931dc"
             }
           }
         },
-        "previous_hash": "bedd09f0cb30bf02b6e0da1039c4d9eafa05c3e6943880c5eb07a9abe8e5ef3b",
+        "previous_hash": "73c8eaa5b8d5cc2ae3c555f67aeede92bb7ee540100504d0e4bc1c0db3f8f696",
         "schema_version": "3.0",
         "sequence": 75,
         "timestamp": "2026-09-15T06:00:00Z"
       },
       {
-        "aggregate_id": "e103744ca9a33a4e5927f0190893f8d1190d57ea48733def72be52628106f16b",
-        "causation_id": "12d797733c8dd245e21beb11995bda4bc308e2a0e97e1711022c05f3be5502fa",
+        "aggregate_id": "ff07214315d289aba31c501f9ecfda3fc7fd26d0b1f9d5df231cef93de7882fd",
+        "causation_id": "4a929888ff6dc28c24e84b11a3b4227be395311bc1bc41afcac891279b0361ea",
         "correlation_id": "22f413fd47943b61bf346f93a6e0d7d48310867aea61cc9039b1a41e96e37769",
-        "event_hash": "5d7fa6d0f080b740ba4b94c970131abc81651260c7d46a1661caf42a5821694b",
-        "event_id": "aea41d88ac8b865a5c5fd376c602405d65f4931a6c30b599043313753172d9cc",
+        "event_hash": "3d321e2dd9dbdcf30d75f76bc18b67ab2adcf6431838214cc250ace6eef81d9e",
+        "event_id": "ddfc77d8f41aaf130a823ae205fc2fbd49be60702d04d8045c4d39bc7fc377ff",
         "event_type": "CapabilityObserved",
         "evidence": [
-          "e103744ca9a33a4e5927f0190893f8d1190d57ea48733def72be52628106f16b",
-          "b5e6e5d5ab3634e464d46454cdc80fe89227820513e93a36d71a10b9e796f306"
+          "ff07214315d289aba31c501f9ecfda3fc7fd26d0b1f9d5df231cef93de7882fd",
+          "44b928281a4f74cc62225545ff062bb632b1231c8c22bed77db0b4421e85fe3f"
         ],
         "payload": {
           "message": "future.semantic_patch.v1: SUPPORTED",
           "mutation": {
             "collection": "evidence",
-            "id": "e103744ca9a33a4e5927f0190893f8d1190d57ea48733def72be52628106f16b",
+            "id": "ff07214315d289aba31c501f9ecfda3fc7fd26d0b1f9d5df231cef93de7882fd",
             "value": {
               "capability_id": "future.semantic_patch.v1",
               "confidence": 0.99,
               "evaluator_version": "morphosis-reference-v3.1",
-              "evidence_hash": "b5e6e5d5ab3634e464d46454cdc80fe89227820513e93a36d71a10b9e796f306",
+              "evidence_hash": "44b928281a4f74cc62225545ff062bb632b1231c8c22bed77db0b4421e85fe3f",
               "expires_at": "2026-09-16T06:00:00Z",
               "family": "metamorphic",
               "observed_at": "2026-09-15T06:00:00Z",
@@ -262,7 +262,7 @@
               "passed_count": 16,
               "probe_id": "072d78ad95fb6f260f938f37b0e0cf397e1aba9e80f57382af5c8c7d013daaff",
               "provenance": "reference-execution",
-              "run_id": "339cf2480f1a7f1cb30530ac48ccfe582f28bf977fc0094017917041ddd1d9ee",
+              "run_id": "752e56f952e7f840a0620414ebc0c12e6485e404fad3a4feddb9d939a1c9367b",
               "sample_count": 16,
               "score": 1.0,
               "source": "independent-evaluator",
@@ -272,17 +272,17 @@
             }
           }
         },
-        "previous_hash": "7bac6374e86c6fa9e919588df7cbfbec1b7e4c4e7b4acf2758599958eaa57561",
+        "previous_hash": "130ec2dc8853737f9d2212270435693a36b4c4a9104ae81a6602553ca0921465",
         "schema_version": "3.0",
         "sequence": 76,
         "timestamp": "2026-09-15T06:00:00Z"
       },
       {
         "aggregate_id": "e84dc3b4f4a1e855627d3a32103e95c9632168b0fbb38e3d104f9e8cfe0bad9a",
-        "causation_id": "aea41d88ac8b865a5c5fd376c602405d65f4931a6c30b599043313753172d9cc",
+        "causation_id": "ddfc77d8f41aaf130a823ae205fc2fbd49be60702d04d8045c4d39bc7fc377ff",
         "correlation_id": "22f413fd47943b61bf346f93a6e0d7d48310867aea61cc9039b1a41e96e37769",
-        "event_hash": "4370907f36ca532de74379aeb5cebf22eb456ca6f682e884125ceef21d789bd9",
-        "event_id": "20a06ed7383b64d81b8e7b91b2b7f3f37db93a81289ac7c946ef851f0113d07b",
+        "event_hash": "8a2cb25737cabf7ec66fd8e647383d36cfdaef53501de8015ea62d746eea89d7",
+        "event_id": "26cd719c7fe48cfa48bbb27867264c23fe37fe68b3cb954617b4a5fe9bdc3c3f",
         "event_type": "ProbeProposed",
         "evidence": [
           "e12c3a63904227825bc6c6aa43ca88f9b4ccc079d2c0f82f92c8c11ecc37b37c"
@@ -322,26 +322,26 @@
             }
           }
         },
-        "previous_hash": "5d7fa6d0f080b740ba4b94c970131abc81651260c7d46a1661caf42a5821694b",
+        "previous_hash": "3d321e2dd9dbdcf30d75f76bc18b67ab2adcf6431838214cc250ace6eef81d9e",
         "schema_version": "3.0",
         "sequence": 77,
         "timestamp": "2026-09-15T06:00:00Z"
       },
       {
-        "aggregate_id": "f3aed082a124d936b50c48a2d03a84b31cf35fa07037fd8e72ea3d61f6ef9494",
-        "causation_id": "20a06ed7383b64d81b8e7b91b2b7f3f37db93a81289ac7c946ef851f0113d07b",
+        "aggregate_id": "b61f46ec39f2780a1f5f21c015b7d59b5dead917231bdccbf3db39584a220a73",
+        "causation_id": "26cd719c7fe48cfa48bbb27867264c23fe37fe68b3cb954617b4a5fe9bdc3c3f",
         "correlation_id": "22f413fd47943b61bf346f93a6e0d7d48310867aea61cc9039b1a41e96e37769",
-        "event_hash": "807bccc3fd2e7d4884dbeda4c16db7f40d5e1ff7570c6f6ec63e6399aaa28082",
-        "event_id": "83833cf08b24ad8d94512f0f5bb1a035df1d9c6423265b868069084e16799bf2",
+        "event_hash": "72193638132b9a7f320109c9147cbd32a11b15062ada2343ff469ef6cf770c30",
+        "event_id": "b95b0add1ee735431824ef04d67847d9f5b27f5acd3cb2687f27f7045be7976b",
         "event_type": "ProbeRunCompleted",
         "evidence": [
-          "81ba3427f69c5b43bed7f6220646f6d928b1715ba6cca599b8afba0e44541edd"
+          "5cfaf7b13e575818b7674a7a592cc15e1e2496908d5abb0793573830b79a2d09"
         ],
         "payload": {
           "message": "future-model-x: tool-use probe completed",
           "mutation": {
             "collection": "probe_runs",
-            "id": "f3aed082a124d936b50c48a2d03a84b31cf35fa07037fd8e72ea3d61f6ef9494",
+            "id": "b61f46ec39f2780a1f5f21c015b7d59b5dead917231bdccbf3db39584a220a73",
             "value": {
               "capability_id": "future.semantic_patch.v1",
               "checks": [
@@ -359,40 +359,40 @@
               "passed": true,
               "passed_count": 16,
               "probe_id": "e84dc3b4f4a1e855627d3a32103e95c9632168b0fbb38e3d104f9e8cfe0bad9a",
-              "provenance": "executed-reference-interpreter; synthetic latency/cost budget inputs",
-              "run_id": "f3aed082a124d936b50c48a2d03a84b31cf35fa07037fd8e72ea3d61f6ef9494",
+              "provenance": "bounded-reference-interpreter",
+              "run_id": "b61f46ec39f2780a1f5f21c015b7d59b5dead917231bdccbf3db39584a220a73",
               "sample_count": 16,
               "source": "system-generated",
               "surface_id": "60528148aeec9ef8f6f0dbf6c3480d15fb52e398b6b29be24dd66b30f1f931dc"
             }
           }
         },
-        "previous_hash": "4370907f36ca532de74379aeb5cebf22eb456ca6f682e884125ceef21d789bd9",
+        "previous_hash": "8a2cb25737cabf7ec66fd8e647383d36cfdaef53501de8015ea62d746eea89d7",
         "schema_version": "3.0",
         "sequence": 78,
         "timestamp": "2026-09-15T06:00:00Z"
       },
       {
-        "aggregate_id": "05948ec60778761d4fa6681cbaf4fa3a0bfef95bb9ab22057386077fe7840a8f",
-        "causation_id": "83833cf08b24ad8d94512f0f5bb1a035df1d9c6423265b868069084e16799bf2",
+        "aggregate_id": "67b529bd0093903c30b9f0758416fa5560010600cc08bbf9fdc2340e9ba574d6",
+        "causation_id": "b95b0add1ee735431824ef04d67847d9f5b27f5acd3cb2687f27f7045be7976b",
         "correlation_id": "22f413fd47943b61bf346f93a6e0d7d48310867aea61cc9039b1a41e96e37769",
-        "event_hash": "e7c7e29b2b687ae39a26d5a43fc28af1c079924e1b9725afcb647ee287638406",
-        "event_id": "ade885dc54f83deaa6459f6c51cb5d72e81cadcd31627a63a749e80786ab9ae5",
+        "event_hash": "afd5689a78497950b0d8be67fdf412d845700633179488832edd1bb21ce5b243",
+        "event_id": "e315385cb7721f8cd4f2275edf48737247a9c11c97aa4db75e3596da32fa2569",
         "event_type": "CapabilityObserved",
         "evidence": [
-          "05948ec60778761d4fa6681cbaf4fa3a0bfef95bb9ab22057386077fe7840a8f",
-          "81ba3427f69c5b43bed7f6220646f6d928b1715ba6cca599b8afba0e44541edd"
+          "67b529bd0093903c30b9f0758416fa5560010600cc08bbf9fdc2340e9ba574d6",
+          "5cfaf7b13e575818b7674a7a592cc15e1e2496908d5abb0793573830b79a2d09"
         ],
         "payload": {
           "message": "future.semantic_patch.v1: SUPPORTED",
           "mutation": {
             "collection": "evidence",
-            "id": "05948ec60778761d4fa6681cbaf4fa3a0bfef95bb9ab22057386077fe7840a8f",
+            "id": "67b529bd0093903c30b9f0758416fa5560010600cc08bbf9fdc2340e9ba574d6",
             "value": {
               "capability_id": "future.semantic_patch.v1",
               "confidence": 0.99,
               "evaluator_version": "morphosis-reference-v3.1",
-              "evidence_hash": "81ba3427f69c5b43bed7f6220646f6d928b1715ba6cca599b8afba0e44541edd",
+              "evidence_hash": "5cfaf7b13e575818b7674a7a592cc15e1e2496908d5abb0793573830b79a2d09",
               "expires_at": "2026-09-16T06:00:00Z",
               "family": "tool-use",
               "observed_at": "2026-09-15T06:00:00Z",
@@ -400,7 +400,7 @@
               "passed_count": 16,
               "probe_id": "e84dc3b4f4a1e855627d3a32103e95c9632168b0fbb38e3d104f9e8cfe0bad9a",
               "provenance": "reference-execution",
-              "run_id": "f3aed082a124d936b50c48a2d03a84b31cf35fa07037fd8e72ea3d61f6ef9494",
+              "run_id": "b61f46ec39f2780a1f5f21c015b7d59b5dead917231bdccbf3db39584a220a73",
               "sample_count": 16,
               "score": 1.0,
               "source": "independent-evaluator",
@@ -410,17 +410,17 @@
             }
           }
         },
-        "previous_hash": "807bccc3fd2e7d4884dbeda4c16db7f40d5e1ff7570c6f6ec63e6399aaa28082",
+        "previous_hash": "72193638132b9a7f320109c9147cbd32a11b15062ada2343ff469ef6cf770c30",
         "schema_version": "3.0",
         "sequence": 79,
         "timestamp": "2026-09-15T06:00:00Z"
       },
       {
         "aggregate_id": "60528148aeec9ef8f6f0dbf6c3480d15fb52e398b6b29be24dd66b30f1f931dc",
-        "causation_id": "ade885dc54f83deaa6459f6c51cb5d72e81cadcd31627a63a749e80786ab9ae5",
+        "causation_id": "e315385cb7721f8cd4f2275edf48737247a9c11c97aa4db75e3596da32fa2569",
         "correlation_id": "22f413fd47943b61bf346f93a6e0d7d48310867aea61cc9039b1a41e96e37769",
-        "event_hash": "3eb67a98c74c79aca3bdcbc8d007ab255731d256f901e879460cbe96af5c9c20",
-        "event_id": "f92387452b23b7a4ff5bbb438b3b86cd746f3bb5747fcc9db969b635483022eb",
+        "event_hash": "de4adcc346b91d075cf1f04e4780a896f2bf19a6435ab0843f003d3c5b711232",
+        "event_id": "88c42187861bf16c5bd4ff1d1cd598c929a2ad58bb9266b8c1ba8418d6835d90",
         "event_type": "AdaptationCompiled",
         "evidence": [
           "001e647b6f586fd0563779bbc2866e6ecd7fc66c945e1d04b2bd6a579870f072"
@@ -445,17 +445,17 @@
             }
           }
         },
-        "previous_hash": "e7c7e29b2b687ae39a26d5a43fc28af1c079924e1b9725afcb647ee287638406",
+        "previous_hash": "afd5689a78497950b0d8be67fdf412d845700633179488832edd1bb21ce5b243",
         "schema_version": "3.0",
         "sequence": 80,
         "timestamp": "2026-09-15T06:00:00Z"
       },
       {
         "aggregate_id": "60528148aeec9ef8f6f0dbf6c3480d15fb52e398b6b29be24dd66b30f1f931dc",
-        "causation_id": "f92387452b23b7a4ff5bbb438b3b86cd746f3bb5747fcc9db969b635483022eb",
+        "causation_id": "88c42187861bf16c5bd4ff1d1cd598c929a2ad58bb9266b8c1ba8418d6835d90",
         "correlation_id": "22f413fd47943b61bf346f93a6e0d7d48310867aea61cc9039b1a41e96e37769",
-        "event_hash": "ebca16198f78a2f246d4035fd2facd89e679646b9a20d37063ad2b00da59a4d4",
-        "event_id": "b44901971f6399007efdeba6ceb072c26a1882b0eddadf689be4ac01e7757aeb",
+        "event_hash": "b095a35301a1dce4e1e93ad978e4cacc3276e3cad96ea43683a735f8288b686a",
+        "event_id": "61633bf384dd316d7262c33542fa2785e30dbbbc96f08717655485967d1b60f8",
         "event_type": "AdaptationVerified",
         "evidence": [
           "8d380880bab1c92979cc618c1029994f2ededcacc7021d79abd8dc90643b652e"
@@ -513,20 +513,20 @@
             }
           }
         },
-        "previous_hash": "3eb67a98c74c79aca3bdcbc8d007ab255731d256f901e879460cbe96af5c9c20",
+        "previous_hash": "de4adcc346b91d075cf1f04e4780a896f2bf19a6435ab0843f003d3c5b711232",
         "schema_version": "3.0",
         "sequence": 81,
         "timestamp": "2026-09-15T06:00:00Z"
       },
       {
         "aggregate_id": "60528148aeec9ef8f6f0dbf6c3480d15fb52e398b6b29be24dd66b30f1f931dc:122b0185ef4538eda51bc35c319e2c50f0520232a8655d89c918f6983160d1cb",
-        "causation_id": "b44901971f6399007efdeba6ceb072c26a1882b0eddadf689be4ac01e7757aeb",
+        "causation_id": "61633bf384dd316d7262c33542fa2785e30dbbbc96f08717655485967d1b60f8",
         "correlation_id": "22f413fd47943b61bf346f93a6e0d7d48310867aea61cc9039b1a41e96e37769",
-        "event_hash": "f77a90890a0b3524fe89b14fc443b40e4a7a8ded0864ef73e564fa87af5d9c8a",
-        "event_id": "def28db1ff5c357b3217d0aac37e40f32bf7499f7df83b35c851a0adfce9fa6e",
+        "event_hash": "712c4d177d30983cae0eeeebec7c1f87c7b0f3082d6de5b25f1fcd50c41fd218",
+        "event_id": "d7315a92d3e3d42ce6fd41ab8c04501c44edbdec2e72040895f5da6f4e5f3212",
         "event_type": "WorkloadQualificationRecorded",
         "evidence": [
-          "b18ef4d431228efad3687cc2bc05fc576c540bf0c149a941a897196a9953a13e"
+          "74de6070dda0fce9f1c517a1aae97d26a5b017d09b5f0f43703dfe146d7f06d9"
         ],
         "payload": {
           "message": "Workload-scoped decision: tool-roundtrip",
@@ -535,9 +535,9 @@
             "id": "60528148aeec9ef8f6f0dbf6c3480d15fb52e398b6b29be24dd66b30f1f931dc:122b0185ef4538eda51bc35c319e2c50f0520232a8655d89c918f6983160d1cb",
             "value": {
               "evidence": [
-                "05948ec60778761d4fa6681cbaf4fa3a0bfef95bb9ab22057386077fe7840a8f",
-                "25c6b6019a16b41bb0e39613e9efbaa3d221eac25e553b5187d7bca811255ee9",
-                "e103744ca9a33a4e5927f0190893f8d1190d57ea48733def72be52628106f16b"
+                "3e95b5ccbd213b518c19156f069509c5def36c224c2b744a7b1834ef4ad0bdce",
+                "67b529bd0093903c30b9f0758416fa5560010600cc08bbf9fdc2340e9ba574d6",
+                "ff07214315d289aba31c501f9ecfda3fc7fd26d0b1f9d5df231cef93de7882fd"
               ],
               "measurements": {
                 "adaptation_complexity": 1,
@@ -566,20 +566,20 @@
             }
           }
         },
-        "previous_hash": "ebca16198f78a2f246d4035fd2facd89e679646b9a20d37063ad2b00da59a4d4",
+        "previous_hash": "b095a35301a1dce4e1e93ad978e4cacc3276e3cad96ea43683a735f8288b686a",
         "schema_version": "3.0",
         "sequence": 82,
         "timestamp": "2026-09-15T06:00:00Z"
       },
       {
         "aggregate_id": "60528148aeec9ef8f6f0dbf6c3480d15fb52e398b6b29be24dd66b30f1f931dc",
-        "causation_id": "def28db1ff5c357b3217d0aac37e40f32bf7499f7df83b35c851a0adfce9fa6e",
+        "causation_id": "d7315a92d3e3d42ce6fd41ab8c04501c44edbdec2e72040895f5da6f4e5f3212",
         "correlation_id": "22f413fd47943b61bf346f93a6e0d7d48310867aea61cc9039b1a41e96e37769",
-        "event_hash": "dc3f11b12007a29192f7a94b48174ce52da84c1984b45970e674b8bc7d8f39aa",
-        "event_id": "953feb788df2edd08d7d549bc6774c009dee1d92c6ff74c4ceb5184dc9b02f16",
+        "event_hash": "70ec284f39f961eb58900265236f6e58420a54318a324e03d213aab80ff99a18",
+        "event_id": "2e8bc77ce8a2def8ad5b4202d34f7e3558aff33260e7d7a0edfe55bc487754a3",
         "event_type": "QualificationCompleted",
         "evidence": [
-          "b18ef4d431228efad3687cc2bc05fc576c540bf0c149a941a897196a9953a13e"
+          "74de6070dda0fce9f1c517a1aae97d26a5b017d09b5f0f43703dfe146d7f06d9"
         ],
         "payload": {
           "message": "future-model-x: PROMOTE_TO_SHADOW",
@@ -588,9 +588,9 @@
             "id": "60528148aeec9ef8f6f0dbf6c3480d15fb52e398b6b29be24dd66b30f1f931dc",
             "value": {
               "evidence": [
-                "05948ec60778761d4fa6681cbaf4fa3a0bfef95bb9ab22057386077fe7840a8f",
-                "25c6b6019a16b41bb0e39613e9efbaa3d221eac25e553b5187d7bca811255ee9",
-                "e103744ca9a33a4e5927f0190893f8d1190d57ea48733def72be52628106f16b"
+                "3e95b5ccbd213b518c19156f069509c5def36c224c2b744a7b1834ef4ad0bdce",
+                "67b529bd0093903c30b9f0758416fa5560010600cc08bbf9fdc2340e9ba574d6",
+                "ff07214315d289aba31c501f9ecfda3fc7fd26d0b1f9d5df231cef93de7882fd"
               ],
               "measurements": {
                 "adaptation_complexity": 1,
@@ -619,7 +619,7 @@
             }
           }
         },
-        "previous_hash": "f77a90890a0b3524fe89b14fc443b40e4a7a8ded0864ef73e564fa87af5d9c8a",
+        "previous_hash": "712c4d177d30983cae0eeeebec7c1f87c7b0f3082d6de5b25f1fcd50c41fd218",
         "schema_version": "3.0",
         "sequence": 83,
         "timestamp": "2026-09-15T06:00:00Z"
@@ -820,15 +820,15 @@
           },
           {
             "evidence": [
-              "49717503200e2eb8518ca4bb10cab38c9195df5620c47f91edcdd6b335cfc03f",
-              "8d98c2b93f1c7ba4c6aa5f1b7d043588ee441315ebd03ff236292c31208d22ea",
-              "63f641bae3c026bda20d4b1291a71e12e13139f2d5c8017870fdf9a2d50289bb",
-              "d0391fd6302e2f76e6f8b560f47f82dba04ebe17abe4ab8e4873c81dbf6afd6c",
-              "7a04629d69fe7f2d1e0cc43783cc01817165846e0092f3b4f4b630f71663ab90",
-              "282bb9fffecff237c41222fa88e1bec3c8d59c234df9b4a8b9d9cf9f626a85f4",
-              "65fa374db755888c14a93979fcafad35720435ddfc7f960d41fd62838eee6a01",
-              "aea41d88ac8b865a5c5fd376c602405d65f4931a6c30b599043313753172d9cc",
-              "ade885dc54f83deaa6459f6c51cb5d72e81cadcd31627a63a749e80786ab9ae5"
+              "cbece62e2dd0a1b09169a3c7effbf9adc4cc6cd68789c5048fd270c138633b40",
+              "6ec229705f842cf74addb58788af12a76ce509a22b65656d7413e6d8f5d157a1",
+              "3fa59179a6a10eb4587692937d33bf763f8d9b620fb06e04b4b122d4f1d63a44",
+              "d75d2fd7cfd14f62d5f912e990ff92f2e5b94e359f0346be87cd6bde0b93d5c8",
+              "a5c34daf0a2b9d9afcf08830772a3bd7cd1d4567c19fd2289f3b2ca4ffd94c23",
+              "0bfc8a4d670adc1f9052db955eb456e8468b7febe297ef7eec4fc89bef0dd353",
+              "769416c169f7b701337390cd3ed7f296632da084445e596b40ded97194afba50",
+              "ddfc77d8f41aaf130a823ae205fc2fbd49be60702d04d8045c4d39bc7fc377ff",
+              "e315385cb7721f8cd4f2275edf48737247a9c11c97aa4db75e3596da32fa2569"
             ],
             "id": "graph",
             "implementation": "src/morphosis/os/graph.py",
@@ -851,14 +851,14 @@
           {
             "evidence": [
               "16543447ce9e8f1bddc678b3c0b9ef4f8d6c0c0a531338c4fb4a16db1e1cbc4b",
-              "44e4d3748bcbde6d17316142189e827b04405734fc18f6d6f97281e0ee2d37e5",
-              "fcda64f3089425e6dd93765b60e0d9f2fe2dd78260b1c8810daa5e1423a6c38c",
-              "900c0fce75a1a668a390d90724431d969e09282de8aa17fcf80e27f8f5427a07",
-              "f4d58678d84d54e2b51378964b186849bb5b4ca74edd2aea48c6e2326dad90ba",
-              "ab838b12e8b175b93b83bfa170119ffd10dc6e1fdf37c77d6e2168c635164c07",
-              "2984377b15026c6d8f1e8cb671e6584b383e0c7dda03bd8825f57a7e78f9f5c4",
-              "3f0a9248f1d6fa5ffd12bc27ea8231bc201bd2b9cea8a04d773c7e01967420b4",
-              "20a06ed7383b64d81b8e7b91b2b7f3f37db93a81289ac7c946ef851f0113d07b"
+              "f77bc708835a1c596aea6f08acbdf234b897db5427aadbeec4d8cde1501e265d",
+              "0d0dc1172ce3853d4cc4773f031c47f5beefbeb147ddd1fef66d3177c5296e78",
+              "97ef45998085688217512557ea594f1ed8136058fb62794ac79f6b7d23457edd",
+              "b30f321cdb293608e6a1a72e570969f788ab97d71ea2a1dc8c77ac2d09ce0029",
+              "81b5581c9f939f192b5aca6398e553a51929e0b1a6402f18d9fe57bfe6836c11",
+              "8fc4753263f1e6ea7150d0f9f053b587c4a7127ce70f41dba11ee55ef15cea17",
+              "4ac8fa5b4891bbf4b631d547b40a87ac2e4cf66c38bc156156b557e7d7aaa0a2",
+              "26cd719c7fe48cfa48bbb27867264c23fe37fe68b3cb954617b4a5fe9bdc3c3f"
             ],
             "id": "probe",
             "implementation": "src/morphosis/os/probes.py",
@@ -896,9 +896,9 @@
           },
           {
             "evidence": [
-              "798430e52310a0efcdd4825b77636c91b30fc6b074af4618e45c1f6b10995f73",
-              "b4f5c19bce9c8be10f4f9264d4473cda4b9c211bbecd0f010d8e67688309e836",
-              "f92387452b23b7a4ff5bbb438b3b86cd746f3bb5747fcc9db969b635483022eb"
+              "e8bda8121ecc2e48f618d4207e04fbf6d18f8387ff218aa893d45f0602e03938",
+              "7d818ff49cf324973aa22ab09585cb4d03c6c3f62368b09096ebbd47b4439ec0",
+              "88c42187861bf16c5bd4ff1d1cd598c929a2ad58bb9266b8c1ba8418d6835d90"
             ],
             "id": "compiler",
             "implementation": "src/morphosis/os/compiler.py",
@@ -919,8 +919,8 @@
           },
           {
             "evidence": [
-              "16631eb6a14918d7476cb8f930375372b11c3a4dcf3b6ef77b8c100bbe88771f",
-              "b44901971f6399007efdeba6ceb072c26a1882b0eddadf689be4ac01e7757aeb"
+              "45ea5bc2c80db4f8979e32d4e05c338371bb94a678b50643501c5d7274f3e2d5",
+              "61633bf384dd316d7262c33542fa2785e30dbbbc96f08717655485967d1b60f8"
             ],
             "id": "verification",
             "implementation": "src/morphosis/os/compiler.py",
@@ -940,18 +940,18 @@
           },
           {
             "evidence": [
-              "315a6078eaa7382ca489feae8a8388e46374567ddbd4897b07cf2e57311280e7",
-              "f0995380895ff7e7d94011bc4cae55164ae2d635cf6f380ca5ea804cfd7a6c50",
-              "bc10967b9c68ec70c57a40337d47238e11241f2f280d367fd4a4ca422954bab5",
-              "e1dd6baefb9db8c2cabe8d58fdd9c3977dfc1b17d792d0f602c882f7b18c923e",
-              "e100adbded33ecd6cd5bfb689e25945fe35314375a522c139adc5ef3ce445bb1",
-              "915e73c9c02f75e20baf749c44d8becee25cf8cc68d3d1e77d980eec58c0feaf",
-              "eadae59465293d8b33ae0e782c6596a5b253358bacec59f79682f483f06085b3",
-              "d95683a1812a9f961349d2cbe593bafcd58970f00b73a11ff1c850888428fef1",
-              "62e95fb6a3e75244a78b0d1495ab30e0940f6e11a7ce863b05d3b77f3dcd1801",
-              "c87fc26d51d6aae2c107f7169780daf847e8e34dee11a18869e0886956831149",
-              "65c7972f3fbff7391f73de512b39afee6832c705d744eb6fa9bf2bbdd610b05d",
-              "953feb788df2edd08d7d549bc6774c009dee1d92c6ff74c4ceb5184dc9b02f16"
+              "20cd1df808539a53e6a6622e313de3126df0e8693817e81b0f851ab2ed47e371",
+              "1a415356cf797308753a6ab4e7a07702cdd7dc01aecbb9e96893381cf0743f9d",
+              "1841f10c93fd55862f0c4aa8e8d0a1c2e0b64845645e3809c53554b7c96023cc",
+              "ed6f588bc991c4b4fce4823e03f42389c6c38a05ff4e4a9147fa47cff73cc914",
+              "f6b6c4b4c523044e8f4e61fc86878e85f6a7ad8e081c3a447a1a8f1d8a06f530",
+              "34ee0d8123b4fec27597d81fe15af815995959cb966e38632c95f9cf09392f3a",
+              "e8b920feecf68d9d2f9a8283ccbff3a806b0e838bc72aba2635744e3857c4ba7",
+              "eb4cf07d33662a420b3ba2b7e6166dd994a0ca4e39bbd4cf9021701eb1f42ef9",
+              "9a7b298bf00a4973858c44c57d6ca24559cfde196c2842328bb7e92b2f2ac0c5",
+              "7a43a16c8428694e80526872dddd5a40fe44aa49917ffadeefb0bb530fbfac1d",
+              "09639e60242b4aa37f14dbe2c457f0e8a9816acb364dea11c3bfd6843693c850",
+              "2e8bc77ce8a2def8ad5b4202d34f7e3558aff33260e7d7a0edfe55bc487754a3"
             ],
             "id": "qualification",
             "implementation": "src/morphosis/os/qualifier.py",
@@ -971,7 +971,7 @@
           },
           {
             "evidence": [
-              "8e9675d0b364bbffe53ed7a3d502194ec8fe86108395e24d0cc3d98304104427"
+              "d2576837ff4bd71aff29f3400305e18770d96d460b5075c6078084670fc04c39"
             ],
             "id": "bundle",
             "implementation": "src/morphosis/os/schemas.py",
@@ -1011,7 +1011,7 @@
           },
           {
             "evidence": [
-              "4a3b0dcc7758fdc079e7c1b77dc4fa22b0888568ad8e7bd2c059420e25848612"
+              "24cdeb4dc519820ced1f5f428f86230cfe354d45665913bbbe250d9670bc7888"
             ],
             "id": "shadow",
             "implementation": "src/morphosis/os/deployment.py",
@@ -1031,7 +1031,7 @@
           },
           {
             "evidence": [
-              "735d5d7820608667e1faee2c12c4d3424117a81a10cca79e851ac0b7ca474785"
+              "ff2dc4f08aeb8dea1b4b166812573a4e6ad3ee3e3431890c839ef9fffa6b538f"
             ],
             "id": "canary",
             "implementation": "src/morphosis/os/deployment.py",
@@ -1051,7 +1051,7 @@
           },
           {
             "evidence": [
-              "854983f17249977bec6ec0c190a13d52687d735c2c507cf52738b672f8856357"
+              "fd1029c4cde7daac9bff5ce029062448a9d89d80ca6bb14312b8ab81424b31f2"
             ],
             "id": "serving",
             "implementation": "src/morphosis/os/agents.py",
@@ -1152,77 +1152,77 @@
           "d1b6d182afae180d5f77f12c2706f131c14414d021d936c3f834d01f2a78ac58",
           "3797479091c35951506dd5a25b135a89c2971c2671dbd7c3953163f59258cae9",
           "16543447ce9e8f1bddc678b3c0b9ef4f8d6c0c0a531338c4fb4a16db1e1cbc4b",
-          "5510d9d22ef79c13406930885c83080af0e34639836b549a0ee767dd2b5a6dcd",
-          "49717503200e2eb8518ca4bb10cab38c9195df5620c47f91edcdd6b335cfc03f",
-          "44e4d3748bcbde6d17316142189e827b04405734fc18f6d6f97281e0ee2d37e5",
-          "482ce9255cdecc34156d1291dd26b4c139ab74f7debaf71184547ff4c4f7a508",
-          "8d98c2b93f1c7ba4c6aa5f1b7d043588ee441315ebd03ff236292c31208d22ea",
-          "fcda64f3089425e6dd93765b60e0d9f2fe2dd78260b1c8810daa5e1423a6c38c",
-          "a259152cbb1a472d524a85911901afb777088aa3344f2919c91daf129bda3904",
-          "63f641bae3c026bda20d4b1291a71e12e13139f2d5c8017870fdf9a2d50289bb",
-          "798430e52310a0efcdd4825b77636c91b30fc6b074af4618e45c1f6b10995f73",
-          "16631eb6a14918d7476cb8f930375372b11c3a4dcf3b6ef77b8c100bbe88771f",
-          "7b608c4d288ffbe3bcf45318d8cbdd345ffb66360df74840bc578498fbdd7d99",
-          "315a6078eaa7382ca489feae8a8388e46374567ddbd4897b07cf2e57311280e7",
-          "900c0fce75a1a668a390d90724431d969e09282de8aa17fcf80e27f8f5427a07",
-          "3f38264e6cb357ab52986b6d39d7aac1c577b4738a3f7de0741eed615960ae7a",
-          "d0391fd6302e2f76e6f8b560f47f82dba04ebe17abe4ab8e4873c81dbf6afd6c",
-          "f4d58678d84d54e2b51378964b186849bb5b4ca74edd2aea48c6e2326dad90ba",
-          "33efa1fddf107ea34ea0b6f008634821b238a8454849011b8b266cbd576cf01f",
-          "7a04629d69fe7f2d1e0cc43783cc01817165846e0092f3b4f4b630f71663ab90",
-          "ab838b12e8b175b93b83bfa170119ffd10dc6e1fdf37c77d6e2168c635164c07",
-          "1795ce037bfc6480146c00ccae39cb76e90f57c7308cbae298e6705e09d34a0d",
-          "282bb9fffecff237c41222fa88e1bec3c8d59c234df9b4a8b9d9cf9f626a85f4",
-          "b4f5c19bce9c8be10f4f9264d4473cda4b9c211bbecd0f010d8e67688309e836",
-          "f11ca476467a8fa81059c389691cb36b1f8bcfb2a9c5772755f830f3e18b24fe",
-          "935378e520d63cc6fb11637ad842725c4e0a68af885e5fc156e8a492b5067033",
-          "f0995380895ff7e7d94011bc4cae55164ae2d635cf6f380ca5ea804cfd7a6c50",
-          "ba31508fabf167843ee732577b8a2fd0bb3f4f18161b22df893764b305e7c63f",
-          "bc10967b9c68ec70c57a40337d47238e11241f2f280d367fd4a4ca422954bab5",
-          "f0fefa9f9982260fd5d62de00beafa27a501726e70ce3888b7d58c12d45df5c5",
-          "e1dd6baefb9db8c2cabe8d58fdd9c3977dfc1b17d792d0f602c882f7b18c923e",
-          "8e9675d0b364bbffe53ed7a3d502194ec8fe86108395e24d0cc3d98304104427",
-          "ecbd7a164276ba5fa2dd13e7e89d1f36658d024ae225b8c328c0722434d3f7f2",
-          "3a288d46947fbcb6ea100f5a5a45be2eb0b1d77fcbe0905f8f8ed73e8a669c75",
-          "e100adbded33ecd6cd5bfb689e25945fe35314375a522c139adc5ef3ce445bb1",
-          "6c23f7f42cc60ff9dac7e303c8657162739e14308bed58319f5ad9be7618d893",
-          "67a2b48cdba7b71290bae98c13443f2c2654b20cfc17acad61d6de8497173d94",
-          "915e73c9c02f75e20baf749c44d8becee25cf8cc68d3d1e77d980eec58c0feaf",
-          "c434588055e29691e86d4e1125f39aaeaf84b669e033e46e9dfa3a5cc24f8555",
-          "8dd06dbc3cf06004ace498e741cd2c655f271111dd4b92c4ab0eff3ab124b33c",
-          "e78433af6bc39613d8e24d36daf81b0bd08add4e9d0d54014ce40b615f290c15",
-          "eadae59465293d8b33ae0e782c6596a5b253358bacec59f79682f483f06085b3",
-          "637588a6285fadd93a6e940db6fd5b096127381b960646c3d903ff48a649f66e",
-          "a8131be0acd385b346b3d4c26f6a9ca96fbacf7c31aefb87ed9ec92b25fdb921",
-          "d95683a1812a9f961349d2cbe593bafcd58970f00b73a11ff1c850888428fef1",
-          "1cfad6fe87d831827d9a91d0dc574259e6897e077f50cee5bdd4bd796c8eff12",
-          "4a3b0dcc7758fdc079e7c1b77dc4fa22b0888568ad8e7bd2c059420e25848612",
-          "c041992c797c8db58352a5a7726fdee5dd58de7cc30967520dbf24a03a386628",
-          "62e95fb6a3e75244a78b0d1495ab30e0940f6e11a7ce863b05d3b77f3dcd1801",
-          "bc4dc0ddb81fc2a77df0a2e0a84a5b3dd801d50b98b7e58d3af99584d6f88d07",
-          "735d5d7820608667e1faee2c12c4d3424117a81a10cca79e851ac0b7ca474785",
-          "7ba6393c524f35f4031f4b7125d11763fc9cea424fc6ee0e5ba7d19acdd8e1a9",
-          "c87fc26d51d6aae2c107f7169780daf847e8e34dee11a18869e0886956831149",
-          "60d7de9263700cf66737c06c9e59d5b26ef6f210cfb3dfbc53838fc5a91c36a7",
-          "24a2c0065c633fae8f9140ac8d8a81f163ce452a4e92b89d0c516ba5e73cc87a",
-          "eed13df5186b22bee143fbc3a99115e7a4bf7eec31349b02ae70c7b248948ee2",
-          "65c7972f3fbff7391f73de512b39afee6832c705d744eb6fa9bf2bbdd610b05d",
-          "a71a885f7086e07c73c154f31e6e43f27d776b7a3a9b970b45a4266c92e5c007",
-          "854983f17249977bec6ec0c190a13d52687d735c2c507cf52738b672f8856357",
-          "17bed247c8feb44b644fcc44537b023953991fcae88e607b4c0eea7af5cf2966",
-          "2984377b15026c6d8f1e8cb671e6584b383e0c7dda03bd8825f57a7e78f9f5c4",
-          "2d73649b1f16c6d2aba8c54516d1e3295e59184399cd79a01f27a2696b51b7fb",
-          "65fa374db755888c14a93979fcafad35720435ddfc7f960d41fd62838eee6a01",
-          "3f0a9248f1d6fa5ffd12bc27ea8231bc201bd2b9cea8a04d773c7e01967420b4",
-          "12d797733c8dd245e21beb11995bda4bc308e2a0e97e1711022c05f3be5502fa",
-          "aea41d88ac8b865a5c5fd376c602405d65f4931a6c30b599043313753172d9cc",
-          "20a06ed7383b64d81b8e7b91b2b7f3f37db93a81289ac7c946ef851f0113d07b",
-          "83833cf08b24ad8d94512f0f5bb1a035df1d9c6423265b868069084e16799bf2",
-          "ade885dc54f83deaa6459f6c51cb5d72e81cadcd31627a63a749e80786ab9ae5",
-          "f92387452b23b7a4ff5bbb438b3b86cd746f3bb5747fcc9db969b635483022eb",
-          "b44901971f6399007efdeba6ceb072c26a1882b0eddadf689be4ac01e7757aeb",
-          "def28db1ff5c357b3217d0aac37e40f32bf7499f7df83b35c851a0adfce9fa6e",
-          "953feb788df2edd08d7d549bc6774c009dee1d92c6ff74c4ceb5184dc9b02f16"
+          "a8bde8b644694f0e2873e26740e3777ccd0471ed9616de7b67d864b2e99f30ea",
+          "cbece62e2dd0a1b09169a3c7effbf9adc4cc6cd68789c5048fd270c138633b40",
+          "f77bc708835a1c596aea6f08acbdf234b897db5427aadbeec4d8cde1501e265d",
+          "3e5a3f202dae6b49c7d43d6373dfbab9d9f74f2353d3d7c5602b5b4d14bdb03f",
+          "6ec229705f842cf74addb58788af12a76ce509a22b65656d7413e6d8f5d157a1",
+          "0d0dc1172ce3853d4cc4773f031c47f5beefbeb147ddd1fef66d3177c5296e78",
+          "1e689b3d526e0a59bf175e3cbb2f176f8872d708642b8e753923130bd8a71954",
+          "3fa59179a6a10eb4587692937d33bf763f8d9b620fb06e04b4b122d4f1d63a44",
+          "e8bda8121ecc2e48f618d4207e04fbf6d18f8387ff218aa893d45f0602e03938",
+          "45ea5bc2c80db4f8979e32d4e05c338371bb94a678b50643501c5d7274f3e2d5",
+          "f84748e5f6261ccd8c96f5ab34000f639d07d454f9e1980fbc2594975a606999",
+          "20cd1df808539a53e6a6622e313de3126df0e8693817e81b0f851ab2ed47e371",
+          "97ef45998085688217512557ea594f1ed8136058fb62794ac79f6b7d23457edd",
+          "de5af543c52d65abbdf1734bd85531dc3398acbccbcff69a718b25780b58295a",
+          "d75d2fd7cfd14f62d5f912e990ff92f2e5b94e359f0346be87cd6bde0b93d5c8",
+          "b30f321cdb293608e6a1a72e570969f788ab97d71ea2a1dc8c77ac2d09ce0029",
+          "daadbdeb30cc31742af89efc5ff064d9d00aeeb249a00f36360687a91c67810a",
+          "a5c34daf0a2b9d9afcf08830772a3bd7cd1d4567c19fd2289f3b2ca4ffd94c23",
+          "81b5581c9f939f192b5aca6398e553a51929e0b1a6402f18d9fe57bfe6836c11",
+          "1c8e59ec9dbab2535ef3ddf485d482551e36630e8404ebb2417dc3352b169804",
+          "0bfc8a4d670adc1f9052db955eb456e8468b7febe297ef7eec4fc89bef0dd353",
+          "7d818ff49cf324973aa22ab09585cb4d03c6c3f62368b09096ebbd47b4439ec0",
+          "55043ed67c9bcc6c4d2940aa9fab3e5c3d7b018c664e8d1a1f7939520382288d",
+          "8c5748c4374b3869a6a3e53c2167cca71ce0b58fd1e86f305a0e3f7e04f306d0",
+          "1a415356cf797308753a6ab4e7a07702cdd7dc01aecbb9e96893381cf0743f9d",
+          "3732dd0c9afe2e24ad691e9e2cdcf7aaf67161766ef7fc3465e8ffcfc3273a0f",
+          "1841f10c93fd55862f0c4aa8e8d0a1c2e0b64845645e3809c53554b7c96023cc",
+          "10529b58cf108c93930dc7dba2c751ca3daee2cbfc44b6cac6edf872990663f0",
+          "ed6f588bc991c4b4fce4823e03f42389c6c38a05ff4e4a9147fa47cff73cc914",
+          "d2576837ff4bd71aff29f3400305e18770d96d460b5075c6078084670fc04c39",
+          "bce0e8495dee2e86913a947190df78ddb9c046d65beda7290c1e952a5de5a58c",
+          "6415e82a0d7760383e13a6b1850cbb604ab2efa7f6db1bd0b713be55e54d5352",
+          "f6b6c4b4c523044e8f4e61fc86878e85f6a7ad8e081c3a447a1a8f1d8a06f530",
+          "db303c7c28dc949b996a465c7ec0f82c4522c788eaffa33be4c0c9f63c070291",
+          "8db6dd5d5c7bc68c447bde8c1cd9e3b07e4916da559afe8278d01825361bc77c",
+          "34ee0d8123b4fec27597d81fe15af815995959cb966e38632c95f9cf09392f3a",
+          "0ccde22dc2599803fb31cceff69bcf5cfdcfa72b750b8525bb6ed46fcf036be1",
+          "8bf243825d4f7f3f1cfc9ce1d4f1f8e2d336c5f98a3113972c7b65f2ae1af9f1",
+          "e9155d9eea6d6ef8ddf8d79139e52f4ff721913a58f816b886e6f7478f48f69d",
+          "e8b920feecf68d9d2f9a8283ccbff3a806b0e838bc72aba2635744e3857c4ba7",
+          "9ceb9e0bc8031a3ee3dd3bddf5290c8ccab2b225baa373628d0b87b67a71c8a7",
+          "aa36eae0e3d1fe03b17ca870aed04d016e99db11d4748bf7f8f33fb1efad0d38",
+          "eb4cf07d33662a420b3ba2b7e6166dd994a0ca4e39bbd4cf9021701eb1f42ef9",
+          "5c41cb0ca24d17e8dd5ea2bc5ba7a249487e416662c1a9a8cf8d493e37b06065",
+          "24cdeb4dc519820ced1f5f428f86230cfe354d45665913bbbe250d9670bc7888",
+          "bd68dd7dddb04ab6c82fb78e70e3607475f3beedd2997e92fe89e113c570e523",
+          "9a7b298bf00a4973858c44c57d6ca24559cfde196c2842328bb7e92b2f2ac0c5",
+          "3856d23a7c445c5a8818ac8cf7927735681e53344010fd863f1eca0d53bcaf92",
+          "ff2dc4f08aeb8dea1b4b166812573a4e6ad3ee3e3431890c839ef9fffa6b538f",
+          "6a76908a34fbcce2335b419201fb56293c5c7d96fac5c0b04421063247c99494",
+          "7a43a16c8428694e80526872dddd5a40fe44aa49917ffadeefb0bb530fbfac1d",
+          "a95994d30ce9b2bf5dfb3c9a55cf8f8156c72d4084d332464ea7303f6dc0d2c6",
+          "bdc4265c1cca3beb49cc347c79e21cbac4399ad207bd6902e384249e70c1e19b",
+          "52158b809e850106466e6f291b3df7dee7cb6de2947a01ab06688c4c0eecce3b",
+          "09639e60242b4aa37f14dbe2c457f0e8a9816acb364dea11c3bfd6843693c850",
+          "0b86dc9d4a6e3a617c0f09908caa5fe66bad971e3f1634e8e34eaf6487f76a36",
+          "fd1029c4cde7daac9bff5ce029062448a9d89d80ca6bb14312b8ab81424b31f2",
+          "86dbf0b2a0ea283883738f589bfc1d2c8119081671a28ec660da9c6a78021e59",
+          "8fc4753263f1e6ea7150d0f9f053b587c4a7127ce70f41dba11ee55ef15cea17",
+          "31f7885e6ddf6dcea79482089d9b91a9d059ce84e37e67d93db38f54df7556e2",
+          "769416c169f7b701337390cd3ed7f296632da084445e596b40ded97194afba50",
+          "4ac8fa5b4891bbf4b631d547b40a87ac2e4cf66c38bc156156b557e7d7aaa0a2",
+          "4a929888ff6dc28c24e84b11a3b4227be395311bc1bc41afcac891279b0361ea",
+          "ddfc77d8f41aaf130a823ae205fc2fbd49be60702d04d8045c4d39bc7fc377ff",
+          "26cd719c7fe48cfa48bbb27867264c23fe37fe68b3cb954617b4a5fe9bdc3c3f",
+          "b95b0add1ee735431824ef04d67847d9f5b27f5acd3cb2687f27f7045be7976b",
+          "e315385cb7721f8cd4f2275edf48737247a9c11c97aa4db75e3596da32fa2569",
+          "88c42187861bf16c5bd4ff1d1cd598c929a2ad58bb9266b8c1ba8418d6835d90",
+          "61633bf384dd316d7262c33542fa2785e30dbbbc96f08717655485967d1b60f8",
+          "d7315a92d3e3d42ce6fd41ab8c04501c44edbdec2e72040895f5da6f4e5f3212",
+          "2e8bc77ce8a2def8ad5b4202d34f7e3558aff33260e7d7a0edfe55bc487754a3"
         ]
       },
       "capabilities": [
@@ -1232,9 +1232,9 @@
           "contradictory_evidence": [],
           "dependencies": [],
           "evidence": [
-            "67bcb1845063c39c61bb2e336b9c5526c987692d6d2c54cb0d5d6d6ce45507b8",
-            "d71dc7d0bcfa4348c3dd8b22e7ec6676fbcc46c9d15bf768f481274bc08eedd8",
-            "e698d3526de59dfb00f61142d9eea04a0d567a38d6baa4477890b1cdf3bf0904"
+            "26256ec27c5e754c84a10d4ca5615c862d8b1166f688eb96db994f3fad94d8ae",
+            "6f50074ca922ba2288f90ac050db0c529e69e20a4fccee6069c38f7b4cd43518",
+            "f8e5d164e79b6c5fbf5987f4980d7065199663fb3ee02ea4b376f66df5d9db49"
           ],
           "score": 1.0,
           "status": "SUPPORTED",
@@ -1246,9 +1246,9 @@
           "contradictory_evidence": [],
           "dependencies": [],
           "evidence": [
-            "05948ec60778761d4fa6681cbaf4fa3a0bfef95bb9ab22057386077fe7840a8f",
-            "25c6b6019a16b41bb0e39613e9efbaa3d221eac25e553b5187d7bca811255ee9",
-            "e103744ca9a33a4e5927f0190893f8d1190d57ea48733def72be52628106f16b"
+            "3e95b5ccbd213b518c19156f069509c5def36c224c2b744a7b1834ef4ad0bdce",
+            "67b529bd0093903c30b9f0758416fa5560010600cc08bbf9fdc2340e9ba574d6",
+            "ff07214315d289aba31c501f9ecfda3fc7fd26d0b1f9d5df231cef93de7882fd"
           ],
           "score": 1.0,
           "status": "SUPPORTED",
@@ -1260,9 +1260,9 @@
           "contradictory_evidence": [],
           "dependencies": [],
           "evidence": [
-            "821bd215bf7210f7c2d22feea0d0558f28c75ed55f31e1ab4bb91bc43a0a2f13",
-            "b0b0504b3191c17f8c820386b66701d116f5cf287f079cff1d1d870df83728a1",
-            "fd67ea485ddac8de80996181fc1dce60cc4c641b205824bba158a86966dbdfc9"
+            "247ef8531c2751abb29f0857e198c8fda99f3fa8b21a8aed1a6abefad576f1fc",
+            "527d2470737c22093b3e537df4e5999e75ca992507db8193d2fd8e67ef2909b1",
+            "cfb86238b54c911f204ebc50c25d61ca4a447867be83f5647ecf6bd0500b5b81"
           ],
           "score": 0.0,
           "status": "UNSUPPORTED",
@@ -1284,7 +1284,7 @@
           "capability_id": "future.semantic_patch.v1",
           "confidence": 0.99,
           "evaluator_version": "morphosis-reference-v3.1",
-          "evidence_hash": "b61d0833641385b02cbb381865211ceba29c1ec148503763c4299de04353ffaa",
+          "evidence_hash": "dbae88b7081ba5c9ca99a8404eee342a3f5ff46c6c62a166b8f191edd7386a4a",
           "expires_at": "2026-09-16T06:00:00Z",
           "family": "roundtrip",
           "observed_at": "2026-09-15T06:00:00Z",
@@ -1292,7 +1292,7 @@
           "passed_count": 16,
           "probe_id": "1536c5cef92aaf4b8710af70cf5916c506dc19b9a1abeed2b27e3ea9ac636b14",
           "provenance": "reference-execution",
-          "run_id": "52ac29fdcfe56ddeb48702ec3ae0e600535847afbc69ce75082b664cd82cce65",
+          "run_id": "ecd125db2596a7154b4b1dfa78183c332b6ce7c5c595c5c74e70d818131af163",
           "sample_count": 16,
           "score": 1.0,
           "source": "independent-evaluator",
@@ -1304,7 +1304,7 @@
           "capability_id": "future.semantic_patch.v1",
           "confidence": 0.99,
           "evaluator_version": "morphosis-reference-v3.1",
-          "evidence_hash": "d1dc72b678a0318d178efa41b69d066d0377d8f963aa15824c7a2af09dbf4248",
+          "evidence_hash": "c2bd5dd8e683e55462d7bcbba04bce141066765cab759eaad82490b699cc5112",
           "expires_at": "2026-09-16T06:00:00Z",
           "family": "metamorphic",
           "observed_at": "2026-09-15T06:00:00Z",
@@ -1312,7 +1312,7 @@
           "passed_count": 16,
           "probe_id": "e08d33b7864f996123ab67ee4b962fe2bf2e46a449acd0617980139c43f39ca4",
           "provenance": "reference-execution",
-          "run_id": "a9d5f355e4a944d2b83177eb7118fcab84bea9a1df3119ebc63a2b96353b14ee",
+          "run_id": "eec237acbfb4c8c0ac60f3d9e8f2a3e6dc4267e0afdd2c037cddb2054d441043",
           "sample_count": 16,
           "score": 1.0,
           "source": "independent-evaluator",
@@ -1324,7 +1324,7 @@
           "capability_id": "future.semantic_patch.v1",
           "confidence": 0.99,
           "evaluator_version": "morphosis-reference-v3.1",
-          "evidence_hash": "4ae3c426c680161b23d48c45ab0aaddc3d7906a66e6f4fdae9d78a4d62750d88",
+          "evidence_hash": "b8b4f35f5cfcd49ea8d54d657b937840bb80e7f751401f554e1acb480e55b912",
           "expires_at": "2026-09-16T06:00:00Z",
           "family": "tool-use",
           "observed_at": "2026-09-15T06:00:00Z",
@@ -1332,7 +1332,7 @@
           "passed_count": 16,
           "probe_id": "53d1857f2472165ad7a4f9e3d939274b0945c83e3a94569b8a04bd036a639bf5",
           "provenance": "reference-execution",
-          "run_id": "dfc7ae4e29992379a3c2f979415a1732dd3c5c46606dfef03979fe4f2a079622",
+          "run_id": "88b8e4f07a0abb748025925a30e56bb2eecf516ff33fbab6e0c8eb55ef1ff49a",
           "sample_count": 16,
           "score": 1.0,
           "source": "independent-evaluator",
@@ -1344,7 +1344,7 @@
           "capability_id": "future.semantic_patch.v1",
           "confidence": 0.99,
           "evaluator_version": "morphosis-reference-v3.1",
-          "evidence_hash": "b36ea4557baa55c0d108e76a1c6bc2d1b6e0aadbc6921bf83f063615398f6c40",
+          "evidence_hash": "480fb4898e2f1da90307a121a09a38377787bcf8b32c127f952657f6e7b5150a",
           "expires_at": "2026-09-16T06:00:00Z",
           "family": "roundtrip",
           "observed_at": "2026-09-15T06:00:00Z",
@@ -1352,7 +1352,7 @@
           "passed_count": 0,
           "probe_id": "841300f81e76e8b63d6efcc2ea6f41bad78d622cda800b650d7ef2e7d75f11bb",
           "provenance": "reference-execution",
-          "run_id": "e3a659413927eade7df2f96568706a3abf6ccd994b2153c005b98a4aedec74b4",
+          "run_id": "280e41f50ff61c37e82d6aaa273ca6c3fc69e98651fbd0825088c3ad4ca1b00d",
           "sample_count": 16,
           "score": 0.0,
           "source": "independent-evaluator",
@@ -1364,7 +1364,7 @@
           "capability_id": "future.semantic_patch.v1",
           "confidence": 0.99,
           "evaluator_version": "morphosis-reference-v3.1",
-          "evidence_hash": "21800ca5cbe6efa02755c40596e2a01a1c5e0c1aa4d77d9341895ad404268eee",
+          "evidence_hash": "03eb7128ee650eeb93cc7502d04b47d5a3c1873e7cf8e0f5a26e224923bc7aa3",
           "expires_at": "2026-09-16T06:00:00Z",
           "family": "metamorphic",
           "observed_at": "2026-09-15T06:00:00Z",
@@ -1372,7 +1372,7 @@
           "passed_count": 0,
           "probe_id": "7355da70fe764d0b18a0ce218fa5242b6cfa83a12de80a320ee4efc8d171d679",
           "provenance": "reference-execution",
-          "run_id": "edc4c1379abcffd251c8fcbbe649901b9ce5f8f10650cbd8882916ad09843905",
+          "run_id": "5e44b5669c531216524e1e03fdd4892b8a1a5b5bfeb2d1976e42a5651519a5c0",
           "sample_count": 16,
           "score": 0.0,
           "source": "independent-evaluator",
@@ -1384,7 +1384,7 @@
           "capability_id": "future.semantic_patch.v1",
           "confidence": 0.99,
           "evaluator_version": "morphosis-reference-v3.1",
-          "evidence_hash": "0b75c863773a1722c658eaafe25d78e78d8296988b06a9799f898dd0b0f2ab5c",
+          "evidence_hash": "4f1d78c1facfe123101f07574cc22685ef55a262b04dc185a564213f9f69aa4f",
           "expires_at": "2026-09-16T06:00:00Z",
           "family": "tool-use",
           "observed_at": "2026-09-15T06:00:00Z",
@@ -1392,7 +1392,7 @@
           "passed_count": 0,
           "probe_id": "c9208137cdd04ba1394d7bbbba41bd9efd198135be787010975b136348ea4122",
           "provenance": "reference-execution",
-          "run_id": "a2e8a7a625ab8dc897e19af28aa6dca98a6c4e38bbe494cf8e7e83de7b2a6399",
+          "run_id": "2435bab03fc67587295cd87e008dc155a00c2b8e503a0741bebbbb0ad4be55a7",
           "sample_count": 16,
           "score": 0.0,
           "source": "independent-evaluator",
@@ -1404,7 +1404,7 @@
           "capability_id": "future.semantic_patch.v1",
           "confidence": 0.99,
           "evaluator_version": "morphosis-reference-v3.1",
-          "evidence_hash": "a6a1436494936fd5c4f85dc98550a414832ab1e328df46aef5809e88c9072de4",
+          "evidence_hash": "ab3b1bca1facdaa07093c763ae26d0b754e8d8370ccb65508f1c5ce2d5d5452c",
           "expires_at": "2026-09-16T06:00:00Z",
           "family": "roundtrip",
           "observed_at": "2026-09-15T06:00:00Z",
@@ -1412,7 +1412,7 @@
           "passed_count": 16,
           "probe_id": "52e5e07003f84e1c8ca063429e09435a8acfb687a67af7b99d9ef0b1bd3a98e9",
           "provenance": "reference-execution",
-          "run_id": "1b26d64b3a8e54f58364de7029ea3757908eb173367319599753a40b5b71d300",
+          "run_id": "da83ec55374a4f8f6ef88451077ae13ef55cc283370670d388d36b772d041571",
           "sample_count": 16,
           "score": 1.0,
           "source": "independent-evaluator",
@@ -1424,7 +1424,7 @@
           "capability_id": "future.semantic_patch.v1",
           "confidence": 0.99,
           "evaluator_version": "morphosis-reference-v3.1",
-          "evidence_hash": "b5e6e5d5ab3634e464d46454cdc80fe89227820513e93a36d71a10b9e796f306",
+          "evidence_hash": "44b928281a4f74cc62225545ff062bb632b1231c8c22bed77db0b4421e85fe3f",
           "expires_at": "2026-09-16T06:00:00Z",
           "family": "metamorphic",
           "observed_at": "2026-09-15T06:00:00Z",
@@ -1432,7 +1432,7 @@
           "passed_count": 16,
           "probe_id": "072d78ad95fb6f260f938f37b0e0cf397e1aba9e80f57382af5c8c7d013daaff",
           "provenance": "reference-execution",
-          "run_id": "339cf2480f1a7f1cb30530ac48ccfe582f28bf977fc0094017917041ddd1d9ee",
+          "run_id": "752e56f952e7f840a0620414ebc0c12e6485e404fad3a4feddb9d939a1c9367b",
           "sample_count": 16,
           "score": 1.0,
           "source": "independent-evaluator",
@@ -1444,7 +1444,7 @@
           "capability_id": "future.semantic_patch.v1",
           "confidence": 0.99,
           "evaluator_version": "morphosis-reference-v3.1",
-          "evidence_hash": "81ba3427f69c5b43bed7f6220646f6d928b1715ba6cca599b8afba0e44541edd",
+          "evidence_hash": "5cfaf7b13e575818b7674a7a592cc15e1e2496908d5abb0793573830b79a2d09",
           "expires_at": "2026-09-16T06:00:00Z",
           "family": "tool-use",
           "observed_at": "2026-09-15T06:00:00Z",
@@ -1452,7 +1452,7 @@
           "passed_count": 16,
           "probe_id": "e84dc3b4f4a1e855627d3a32103e95c9632168b0fbb38e3d104f9e8cfe0bad9a",
           "provenance": "reference-execution",
-          "run_id": "f3aed082a124d936b50c48a2d03a84b31cf35fa07037fd8e72ea3d61f6ef9494",
+          "run_id": "b61f46ec39f2780a1f5f21c015b7d59b5dead917231bdccbf3db39584a220a73",
           "sample_count": 16,
           "score": 1.0,
           "source": "independent-evaluator",
@@ -1461,7 +1461,7 @@
           "workload_hash": "122b0185ef4538eda51bc35c319e2c50f0520232a8655d89c918f6983160d1cb"
         }
       ],
-      "ledger_head": "dc3f11b12007a29192f7a94b48174ce52da84c1984b45970e674b8bc7d8f39aa",
+      "ledger_head": "70ec284f39f961eb58900265236f6e58420a54318a324e03d213aab80ff99a18",
       "metrics": {
         "contracts": 1,
         "evidence": 9,
@@ -1555,8 +1555,8 @@
           "passed": true,
           "passed_count": 16,
           "probe_id": "1536c5cef92aaf4b8710af70cf5916c506dc19b9a1abeed2b27e3ea9ac636b14",
-          "provenance": "executed-reference-interpreter; synthetic latency/cost budget inputs",
-          "run_id": "52ac29fdcfe56ddeb48702ec3ae0e600535847afbc69ce75082b664cd82cce65",
+          "provenance": "bounded-reference-interpreter",
+          "run_id": "ecd125db2596a7154b4b1dfa78183c332b6ce7c5c595c5c74e70d818131af163",
           "sample_count": 16,
           "source": "system-generated",
           "surface_id": "7e1bf4c6d855c0b6a0ed3c992abbbe4c60da412e72a90227c04200d5cf5c7725"
@@ -1578,8 +1578,8 @@
           "passed": true,
           "passed_count": 16,
           "probe_id": "e08d33b7864f996123ab67ee4b962fe2bf2e46a449acd0617980139c43f39ca4",
-          "provenance": "executed-reference-interpreter; synthetic latency/cost budget inputs",
-          "run_id": "a9d5f355e4a944d2b83177eb7118fcab84bea9a1df3119ebc63a2b96353b14ee",
+          "provenance": "bounded-reference-interpreter",
+          "run_id": "eec237acbfb4c8c0ac60f3d9e8f2a3e6dc4267e0afdd2c037cddb2054d441043",
           "sample_count": 16,
           "source": "system-generated",
           "surface_id": "7e1bf4c6d855c0b6a0ed3c992abbbe4c60da412e72a90227c04200d5cf5c7725"
@@ -1601,8 +1601,8 @@
           "passed": true,
           "passed_count": 16,
           "probe_id": "53d1857f2472165ad7a4f9e3d939274b0945c83e3a94569b8a04bd036a639bf5",
-          "provenance": "executed-reference-interpreter; synthetic latency/cost budget inputs",
-          "run_id": "dfc7ae4e29992379a3c2f979415a1732dd3c5c46606dfef03979fe4f2a079622",
+          "provenance": "bounded-reference-interpreter",
+          "run_id": "88b8e4f07a0abb748025925a30e56bb2eecf516ff33fbab6e0c8eb55ef1ff49a",
           "sample_count": 16,
           "source": "system-generated",
           "surface_id": "7e1bf4c6d855c0b6a0ed3c992abbbe4c60da412e72a90227c04200d5cf5c7725"
@@ -1624,8 +1624,8 @@
           "passed": false,
           "passed_count": 0,
           "probe_id": "841300f81e76e8b63d6efcc2ea6f41bad78d622cda800b650d7ef2e7d75f11bb",
-          "provenance": "executed-reference-interpreter; synthetic latency/cost budget inputs",
-          "run_id": "e3a659413927eade7df2f96568706a3abf6ccd994b2153c005b98a4aedec74b4",
+          "provenance": "bounded-reference-interpreter",
+          "run_id": "280e41f50ff61c37e82d6aaa273ca6c3fc69e98651fbd0825088c3ad4ca1b00d",
           "sample_count": 16,
           "source": "system-generated",
           "surface_id": "881eae6f2cd78569074177aac4360f6cc3fb6123e7796f123e3e57bcc268a044"
@@ -1647,8 +1647,8 @@
           "passed": false,
           "passed_count": 0,
           "probe_id": "7355da70fe764d0b18a0ce218fa5242b6cfa83a12de80a320ee4efc8d171d679",
-          "provenance": "executed-reference-interpreter; synthetic latency/cost budget inputs",
-          "run_id": "edc4c1379abcffd251c8fcbbe649901b9ce5f8f10650cbd8882916ad09843905",
+          "provenance": "bounded-reference-interpreter",
+          "run_id": "5e44b5669c531216524e1e03fdd4892b8a1a5b5bfeb2d1976e42a5651519a5c0",
           "sample_count": 16,
           "source": "system-generated",
           "surface_id": "881eae6f2cd78569074177aac4360f6cc3fb6123e7796f123e3e57bcc268a044"
@@ -1670,8 +1670,8 @@
           "passed": false,
           "passed_count": 0,
           "probe_id": "c9208137cdd04ba1394d7bbbba41bd9efd198135be787010975b136348ea4122",
-          "provenance": "executed-reference-interpreter; synthetic latency/cost budget inputs",
-          "run_id": "a2e8a7a625ab8dc897e19af28aa6dca98a6c4e38bbe494cf8e7e83de7b2a6399",
+          "provenance": "bounded-reference-interpreter",
+          "run_id": "2435bab03fc67587295cd87e008dc155a00c2b8e503a0741bebbbb0ad4be55a7",
           "sample_count": 16,
           "source": "system-generated",
           "surface_id": "881eae6f2cd78569074177aac4360f6cc3fb6123e7796f123e3e57bcc268a044"
@@ -1693,8 +1693,8 @@
           "passed": true,
           "passed_count": 16,
           "probe_id": "52e5e07003f84e1c8ca063429e09435a8acfb687a67af7b99d9ef0b1bd3a98e9",
-          "provenance": "executed-reference-interpreter; synthetic latency/cost budget inputs",
-          "run_id": "1b26d64b3a8e54f58364de7029ea3757908eb173367319599753a40b5b71d300",
+          "provenance": "bounded-reference-interpreter",
+          "run_id": "da83ec55374a4f8f6ef88451077ae13ef55cc283370670d388d36b772d041571",
           "sample_count": 16,
           "source": "system-generated",
           "surface_id": "60528148aeec9ef8f6f0dbf6c3480d15fb52e398b6b29be24dd66b30f1f931dc"
@@ -1716,8 +1716,8 @@
           "passed": true,
           "passed_count": 16,
           "probe_id": "072d78ad95fb6f260f938f37b0e0cf397e1aba9e80f57382af5c8c7d013daaff",
-          "provenance": "executed-reference-interpreter; synthetic latency/cost budget inputs",
-          "run_id": "339cf2480f1a7f1cb30530ac48ccfe582f28bf977fc0094017917041ddd1d9ee",
+          "provenance": "bounded-reference-interpreter",
+          "run_id": "752e56f952e7f840a0620414ebc0c12e6485e404fad3a4feddb9d939a1c9367b",
           "sample_count": 16,
           "source": "system-generated",
           "surface_id": "60528148aeec9ef8f6f0dbf6c3480d15fb52e398b6b29be24dd66b30f1f931dc"
@@ -1739,8 +1739,8 @@
           "passed": true,
           "passed_count": 16,
           "probe_id": "e84dc3b4f4a1e855627d3a32103e95c9632168b0fbb38e3d104f9e8cfe0bad9a",
-          "provenance": "executed-reference-interpreter; synthetic latency/cost budget inputs",
-          "run_id": "f3aed082a124d936b50c48a2d03a84b31cf35fa07037fd8e72ea3d61f6ef9494",
+          "provenance": "bounded-reference-interpreter",
+          "run_id": "b61f46ec39f2780a1f5f21c015b7d59b5dead917231bdccbf3db39584a220a73",
           "sample_count": 16,
           "source": "system-generated",
           "surface_id": "60528148aeec9ef8f6f0dbf6c3480d15fb52e398b6b29be24dd66b30f1f931dc"
@@ -2003,9 +2003,9 @@
       "qualifications": [
         {
           "evidence": [
-            "67bcb1845063c39c61bb2e336b9c5526c987692d6d2c54cb0d5d6d6ce45507b8",
-            "d71dc7d0bcfa4348c3dd8b22e7ec6676fbcc46c9d15bf768f481274bc08eedd8",
-            "e698d3526de59dfb00f61142d9eea04a0d567a38d6baa4477890b1cdf3bf0904"
+            "26256ec27c5e754c84a10d4ca5615c862d8b1166f688eb96db994f3fad94d8ae",
+            "6f50074ca922ba2288f90ac050db0c529e69e20a4fccee6069c38f7b4cd43518",
+            "f8e5d164e79b6c5fbf5987f4980d7065199663fb3ee02ea4b376f66df5d9db49"
           ],
           "measurements": {
             "adaptation_complexity": 0,
@@ -2034,9 +2034,9 @@
         },
         {
           "evidence": [
-            "821bd215bf7210f7c2d22feea0d0558f28c75ed55f31e1ab4bb91bc43a0a2f13",
-            "b0b0504b3191c17f8c820386b66701d116f5cf287f079cff1d1d870df83728a1",
-            "fd67ea485ddac8de80996181fc1dce60cc4c641b205824bba158a86966dbdfc9"
+            "247ef8531c2751abb29f0857e198c8fda99f3fa8b21a8aed1a6abefad576f1fc",
+            "527d2470737c22093b3e537df4e5999e75ca992507db8193d2fd8e67ef2909b1",
+            "cfb86238b54c911f204ebc50c25d61ca4a447867be83f5647ecf6bd0500b5b81"
           ],
           "measurements": {
             "adaptation_complexity": 1,
@@ -2092,9 +2092,9 @@
         },
         {
           "evidence": [
-            "05948ec60778761d4fa6681cbaf4fa3a0bfef95bb9ab22057386077fe7840a8f",
-            "25c6b6019a16b41bb0e39613e9efbaa3d221eac25e553b5187d7bca811255ee9",
-            "e103744ca9a33a4e5927f0190893f8d1190d57ea48733def72be52628106f16b"
+            "3e95b5ccbd213b518c19156f069509c5def36c224c2b744a7b1834ef4ad0bdce",
+            "67b529bd0093903c30b9f0758416fa5560010600cc08bbf9fdc2340e9ba574d6",
+            "ff07214315d289aba31c501f9ecfda3fc7fd26d0b1f9d5df231cef93de7882fd"
           ],
           "measurements": {
             "adaptation_complexity": 1,
@@ -2353,9 +2353,9 @@
       },
       "decision": {
         "evidence": [
-          "05948ec60778761d4fa6681cbaf4fa3a0bfef95bb9ab22057386077fe7840a8f",
-          "25c6b6019a16b41bb0e39613e9efbaa3d221eac25e553b5187d7bca811255ee9",
-          "e103744ca9a33a4e5927f0190893f8d1190d57ea48733def72be52628106f16b"
+          "3e95b5ccbd213b518c19156f069509c5def36c224c2b744a7b1834ef4ad0bdce",
+          "67b529bd0093903c30b9f0758416fa5560010600cc08bbf9fdc2340e9ba574d6",
+          "ff07214315d289aba31c501f9ecfda3fc7fd26d0b1f9d5df231cef93de7882fd"
         ],
         "measurements": {
           "adaptation_complexity": 1,
@@ -2400,8 +2400,8 @@
           "passed": true,
           "passed_count": 16,
           "probe_id": "52e5e07003f84e1c8ca063429e09435a8acfb687a67af7b99d9ef0b1bd3a98e9",
-          "provenance": "executed-reference-interpreter; synthetic latency/cost budget inputs",
-          "run_id": "1b26d64b3a8e54f58364de7029ea3757908eb173367319599753a40b5b71d300",
+          "provenance": "bounded-reference-interpreter",
+          "run_id": "da83ec55374a4f8f6ef88451077ae13ef55cc283370670d388d36b772d041571",
           "sample_count": 16,
           "source": "system-generated",
           "surface_id": "60528148aeec9ef8f6f0dbf6c3480d15fb52e398b6b29be24dd66b30f1f931dc"
@@ -2423,8 +2423,8 @@
           "passed": true,
           "passed_count": 16,
           "probe_id": "072d78ad95fb6f260f938f37b0e0cf397e1aba9e80f57382af5c8c7d013daaff",
-          "provenance": "executed-reference-interpreter; synthetic latency/cost budget inputs",
-          "run_id": "339cf2480f1a7f1cb30530ac48ccfe582f28bf977fc0094017917041ddd1d9ee",
+          "provenance": "bounded-reference-interpreter",
+          "run_id": "752e56f952e7f840a0620414ebc0c12e6485e404fad3a4feddb9d939a1c9367b",
           "sample_count": 16,
           "source": "system-generated",
           "surface_id": "60528148aeec9ef8f6f0dbf6c3480d15fb52e398b6b29be24dd66b30f1f931dc"
@@ -2446,8 +2446,8 @@
           "passed": true,
           "passed_count": 16,
           "probe_id": "e84dc3b4f4a1e855627d3a32103e95c9632168b0fbb38e3d104f9e8cfe0bad9a",
-          "provenance": "executed-reference-interpreter; synthetic latency/cost budget inputs",
-          "run_id": "f3aed082a124d936b50c48a2d03a84b31cf35fa07037fd8e72ea3d61f6ef9494",
+          "provenance": "bounded-reference-interpreter",
+          "run_id": "b61f46ec39f2780a1f5f21c015b7d59b5dead917231bdccbf3db39584a220a73",
           "sample_count": 16,
           "source": "system-generated",
           "surface_id": "60528148aeec9ef8f6f0dbf6c3480d15fb52e398b6b29be24dd66b30f1f931dc"
@@ -2460,10 +2460,10 @@
     "events": [
       {
         "aggregate_id": "1536c5cef92aaf4b8710af70cf5916c506dc19b9a1abeed2b27e3ea9ac636b14",
-        "causation_id": "17bed247c8feb44b644fcc44537b023953991fcae88e607b4c0eea7af5cf2966",
+        "causation_id": "86dbf0b2a0ea283883738f589bfc1d2c8119081671a28ec660da9c6a78021e59",
         "correlation_id": "da2c542c98f0222b12a2c11d3423cf7ac7373b55d0fd7c5862c5aa0640f003a5",
-        "event_hash": "90cd13a0efb4b9fa4fd7268bcd3a3df3d5fff83cea59af27606cd47f64f137ca",
-        "event_id": "4d26bc0e48f10d31fd1d4dfda0b24f87e202a78db42e77e8d378f710f0090d6b",
+        "event_hash": "52fad503f5168897201df19d504b313fc29b9823b6ae8d2e05f12a3c760d6c23",
+        "event_id": "57b2a54fb8704bf6294e1e195cdcc47d0811b4e1517d909cc0d65444d9d61718",
         "event_type": "ProbeProposed",
         "evidence": [
           "af7914b237dbb3e6349693e485c4dc3650f4072248298188ab68bdaa3653b3d0"
@@ -2503,26 +2503,26 @@
             }
           }
         },
-        "previous_hash": "b8a64994e432a1af1c55e17045cad9ca02aa9bf9ed0756bf975e3555844d848a",
+        "previous_hash": "6f9be4ca0a04ef56a93c248854da97df2e04ac5f65fe28452dbcdada164bb860",
         "schema_version": "3.0",
         "sequence": 71,
         "timestamp": "2026-09-15T06:00:00Z"
       },
       {
-        "aggregate_id": "52ac29fdcfe56ddeb48702ec3ae0e600535847afbc69ce75082b664cd82cce65",
-        "causation_id": "4d26bc0e48f10d31fd1d4dfda0b24f87e202a78db42e77e8d378f710f0090d6b",
+        "aggregate_id": "ecd125db2596a7154b4b1dfa78183c332b6ce7c5c595c5c74e70d818131af163",
+        "causation_id": "57b2a54fb8704bf6294e1e195cdcc47d0811b4e1517d909cc0d65444d9d61718",
         "correlation_id": "da2c542c98f0222b12a2c11d3423cf7ac7373b55d0fd7c5862c5aa0640f003a5",
-        "event_hash": "cfcd9d27160adee43f30507a39e137d8de4ea68078c02eaebe990fd2cded1f88",
-        "event_id": "a61da82e51a1654ffb7d1acaacaa8f258cf88b31142777763ecf7bd991e6f9ef",
+        "event_hash": "16443ba9eb726878cce61fe809b18da9378e8bc3855de735156d7ee575c2e0a5",
+        "event_id": "657bd9f3eee72a858952125d8e82459766f4c4949f0f23f4064e08361c82fcbd",
         "event_type": "ProbeRunCompleted",
         "evidence": [
-          "b61d0833641385b02cbb381865211ceba29c1ec148503763c4299de04353ffaa"
+          "dbae88b7081ba5c9ca99a8404eee342a3f5ff46c6c62a166b8f191edd7386a4a"
         ],
         "payload": {
           "message": "reference-native: roundtrip probe completed",
           "mutation": {
             "collection": "probe_runs",
-            "id": "52ac29fdcfe56ddeb48702ec3ae0e600535847afbc69ce75082b664cd82cce65",
+            "id": "ecd125db2596a7154b4b1dfa78183c332b6ce7c5c595c5c74e70d818131af163",
             "value": {
               "capability_id": "future.semantic_patch.v1",
               "checks": [
@@ -2540,40 +2540,40 @@
               "passed": true,
               "passed_count": 16,
               "probe_id": "1536c5cef92aaf4b8710af70cf5916c506dc19b9a1abeed2b27e3ea9ac636b14",
-              "provenance": "executed-reference-interpreter; synthetic latency/cost budget inputs",
-              "run_id": "52ac29fdcfe56ddeb48702ec3ae0e600535847afbc69ce75082b664cd82cce65",
+              "provenance": "bounded-reference-interpreter",
+              "run_id": "ecd125db2596a7154b4b1dfa78183c332b6ce7c5c595c5c74e70d818131af163",
               "sample_count": 16,
               "source": "system-generated",
               "surface_id": "7e1bf4c6d855c0b6a0ed3c992abbbe4c60da412e72a90227c04200d5cf5c7725"
             }
           }
         },
-        "previous_hash": "90cd13a0efb4b9fa4fd7268bcd3a3df3d5fff83cea59af27606cd47f64f137ca",
+        "previous_hash": "52fad503f5168897201df19d504b313fc29b9823b6ae8d2e05f12a3c760d6c23",
         "schema_version": "3.0",
         "sequence": 72,
         "timestamp": "2026-09-15T06:00:00Z"
       },
       {
-        "aggregate_id": "67bcb1845063c39c61bb2e336b9c5526c987692d6d2c54cb0d5d6d6ce45507b8",
-        "causation_id": "a61da82e51a1654ffb7d1acaacaa8f258cf88b31142777763ecf7bd991e6f9ef",
+        "aggregate_id": "6f50074ca922ba2288f90ac050db0c529e69e20a4fccee6069c38f7b4cd43518",
+        "causation_id": "657bd9f3eee72a858952125d8e82459766f4c4949f0f23f4064e08361c82fcbd",
         "correlation_id": "da2c542c98f0222b12a2c11d3423cf7ac7373b55d0fd7c5862c5aa0640f003a5",
-        "event_hash": "e628c0e114b7cb191fbc25e0411b4b8d9dc1d5ea3f0a053e5016edbf963881e9",
-        "event_id": "0443c99df1f27e4d4dc1a7d20aed314132b9dea753e9aaddc7632a12083f8923",
+        "event_hash": "d6549f46803815f4c3179ae5741f9406a34492805f25067028ce78684d4fa6de",
+        "event_id": "98103bb7938edc03610279d5164095342d91842ef810d4c6d39ae6c6999a9347",
         "event_type": "CapabilityObserved",
         "evidence": [
-          "67bcb1845063c39c61bb2e336b9c5526c987692d6d2c54cb0d5d6d6ce45507b8",
-          "b61d0833641385b02cbb381865211ceba29c1ec148503763c4299de04353ffaa"
+          "6f50074ca922ba2288f90ac050db0c529e69e20a4fccee6069c38f7b4cd43518",
+          "dbae88b7081ba5c9ca99a8404eee342a3f5ff46c6c62a166b8f191edd7386a4a"
         ],
         "payload": {
           "message": "future.semantic_patch.v1: SUPPORTED",
           "mutation": {
             "collection": "evidence",
-            "id": "67bcb1845063c39c61bb2e336b9c5526c987692d6d2c54cb0d5d6d6ce45507b8",
+            "id": "6f50074ca922ba2288f90ac050db0c529e69e20a4fccee6069c38f7b4cd43518",
             "value": {
               "capability_id": "future.semantic_patch.v1",
               "confidence": 0.99,
               "evaluator_version": "morphosis-reference-v3.1",
-              "evidence_hash": "b61d0833641385b02cbb381865211ceba29c1ec148503763c4299de04353ffaa",
+              "evidence_hash": "dbae88b7081ba5c9ca99a8404eee342a3f5ff46c6c62a166b8f191edd7386a4a",
               "expires_at": "2026-09-16T06:00:00Z",
               "family": "roundtrip",
               "observed_at": "2026-09-15T06:00:00Z",
@@ -2581,7 +2581,7 @@
               "passed_count": 16,
               "probe_id": "1536c5cef92aaf4b8710af70cf5916c506dc19b9a1abeed2b27e3ea9ac636b14",
               "provenance": "reference-execution",
-              "run_id": "52ac29fdcfe56ddeb48702ec3ae0e600535847afbc69ce75082b664cd82cce65",
+              "run_id": "ecd125db2596a7154b4b1dfa78183c332b6ce7c5c595c5c74e70d818131af163",
               "sample_count": 16,
               "score": 1.0,
               "source": "independent-evaluator",
@@ -2591,17 +2591,17 @@
             }
           }
         },
-        "previous_hash": "cfcd9d27160adee43f30507a39e137d8de4ea68078c02eaebe990fd2cded1f88",
+        "previous_hash": "16443ba9eb726878cce61fe809b18da9378e8bc3855de735156d7ee575c2e0a5",
         "schema_version": "3.0",
         "sequence": 73,
         "timestamp": "2026-09-15T06:00:00Z"
       },
       {
         "aggregate_id": "e08d33b7864f996123ab67ee4b962fe2bf2e46a449acd0617980139c43f39ca4",
-        "causation_id": "0443c99df1f27e4d4dc1a7d20aed314132b9dea753e9aaddc7632a12083f8923",
+        "causation_id": "98103bb7938edc03610279d5164095342d91842ef810d4c6d39ae6c6999a9347",
         "correlation_id": "da2c542c98f0222b12a2c11d3423cf7ac7373b55d0fd7c5862c5aa0640f003a5",
-        "event_hash": "25f1b4583e5d8183d4830649eab519b044a37c3a5852f2410713290b3a20f90f",
-        "event_id": "62b1fc560f89851aaddd14bf3ef9ea5b1c80a9b9faf246baa889a694527c8c9f",
+        "event_hash": "f9f374fcf2c4a5a1de071733cce0a16030e92cf775a2e774331d43c7ce33fab2",
+        "event_id": "7a83763eb7f120ef1f4fc0254731c47bdbf2c191217181aca1045e7b1dc52bf1",
         "event_type": "ProbeProposed",
         "evidence": [
           "ddaff82d70e3c7aaceaf4cb0b21c8f67266b0a50c960c82ce4c7d1a1e9f303db"
@@ -2641,26 +2641,26 @@
             }
           }
         },
-        "previous_hash": "e628c0e114b7cb191fbc25e0411b4b8d9dc1d5ea3f0a053e5016edbf963881e9",
+        "previous_hash": "d6549f46803815f4c3179ae5741f9406a34492805f25067028ce78684d4fa6de",
         "schema_version": "3.0",
         "sequence": 74,
         "timestamp": "2026-09-15T06:00:00Z"
       },
       {
-        "aggregate_id": "a9d5f355e4a944d2b83177eb7118fcab84bea9a1df3119ebc63a2b96353b14ee",
-        "causation_id": "62b1fc560f89851aaddd14bf3ef9ea5b1c80a9b9faf246baa889a694527c8c9f",
+        "aggregate_id": "eec237acbfb4c8c0ac60f3d9e8f2a3e6dc4267e0afdd2c037cddb2054d441043",
+        "causation_id": "7a83763eb7f120ef1f4fc0254731c47bdbf2c191217181aca1045e7b1dc52bf1",
         "correlation_id": "da2c542c98f0222b12a2c11d3423cf7ac7373b55d0fd7c5862c5aa0640f003a5",
-        "event_hash": "3a4a0d7519acd57736cf974e508d1ecec21b8731286c02df750a63245a36dabb",
-        "event_id": "dc3590b6b868b4dc0cdf038439a29d68a1ce2377d64b3300f1f652cbb643e59f",
+        "event_hash": "377290f3b16f0e9b30f64afe6cfcb8008e64eb1382beb42085baf045dd072925",
+        "event_id": "c44a2e90598e6dbabe1fd1afd4545297071bf3aebeb6ffaff7cb4b7232558c19",
         "event_type": "ProbeRunCompleted",
         "evidence": [
-          "d1dc72b678a0318d178efa41b69d066d0377d8f963aa15824c7a2af09dbf4248"
+          "c2bd5dd8e683e55462d7bcbba04bce141066765cab759eaad82490b699cc5112"
         ],
         "payload": {
           "message": "reference-native: metamorphic probe completed",
           "mutation": {
             "collection": "probe_runs",
-            "id": "a9d5f355e4a944d2b83177eb7118fcab84bea9a1df3119ebc63a2b96353b14ee",
+            "id": "eec237acbfb4c8c0ac60f3d9e8f2a3e6dc4267e0afdd2c037cddb2054d441043",
             "value": {
               "capability_id": "future.semantic_patch.v1",
               "checks": [
@@ -2678,40 +2678,40 @@
               "passed": true,
               "passed_count": 16,
               "probe_id": "e08d33b7864f996123ab67ee4b962fe2bf2e46a449acd0617980139c43f39ca4",
-              "provenance": "executed-reference-interpreter; synthetic latency/cost budget inputs",
-              "run_id": "a9d5f355e4a944d2b83177eb7118fcab84bea9a1df3119ebc63a2b96353b14ee",
+              "provenance": "bounded-reference-interpreter",
+              "run_id": "eec237acbfb4c8c0ac60f3d9e8f2a3e6dc4267e0afdd2c037cddb2054d441043",
               "sample_count": 16,
               "source": "system-generated",
               "surface_id": "7e1bf4c6d855c0b6a0ed3c992abbbe4c60da412e72a90227c04200d5cf5c7725"
             }
           }
         },
-        "previous_hash": "25f1b4583e5d8183d4830649eab519b044a37c3a5852f2410713290b3a20f90f",
+        "previous_hash": "f9f374fcf2c4a5a1de071733cce0a16030e92cf775a2e774331d43c7ce33fab2",
         "schema_version": "3.0",
         "sequence": 75,
         "timestamp": "2026-09-15T06:00:00Z"
       },
       {
-        "aggregate_id": "e698d3526de59dfb00f61142d9eea04a0d567a38d6baa4477890b1cdf3bf0904",
-        "causation_id": "dc3590b6b868b4dc0cdf038439a29d68a1ce2377d64b3300f1f652cbb643e59f",
+        "aggregate_id": "26256ec27c5e754c84a10d4ca5615c862d8b1166f688eb96db994f3fad94d8ae",
+        "causation_id": "c44a2e90598e6dbabe1fd1afd4545297071bf3aebeb6ffaff7cb4b7232558c19",
         "correlation_id": "da2c542c98f0222b12a2c11d3423cf7ac7373b55d0fd7c5862c5aa0640f003a5",
-        "event_hash": "04bdd494fea2559de8b7d2679c14a020d55054255fe3ee14696a5b541bf3b509",
-        "event_id": "f9858eb60818567680286c00cc05a0e2c70df8325bab6155a1246672cb5abfab",
+        "event_hash": "1c5f3ae6e37e294a4bb9fba884cdbbaca41899c20081aaf20c05acc46b5cecdd",
+        "event_id": "38abd12155e40ec0889e8c39fa024649cc8b19f80838e46e36bffa1325ed66d9",
         "event_type": "CapabilityObserved",
         "evidence": [
-          "e698d3526de59dfb00f61142d9eea04a0d567a38d6baa4477890b1cdf3bf0904",
-          "d1dc72b678a0318d178efa41b69d066d0377d8f963aa15824c7a2af09dbf4248"
+          "26256ec27c5e754c84a10d4ca5615c862d8b1166f688eb96db994f3fad94d8ae",
+          "c2bd5dd8e683e55462d7bcbba04bce141066765cab759eaad82490b699cc5112"
         ],
         "payload": {
           "message": "future.semantic_patch.v1: SUPPORTED",
           "mutation": {
             "collection": "evidence",
-            "id": "e698d3526de59dfb00f61142d9eea04a0d567a38d6baa4477890b1cdf3bf0904",
+            "id": "26256ec27c5e754c84a10d4ca5615c862d8b1166f688eb96db994f3fad94d8ae",
             "value": {
               "capability_id": "future.semantic_patch.v1",
               "confidence": 0.99,
               "evaluator_version": "morphosis-reference-v3.1",
-              "evidence_hash": "d1dc72b678a0318d178efa41b69d066d0377d8f963aa15824c7a2af09dbf4248",
+              "evidence_hash": "c2bd5dd8e683e55462d7bcbba04bce141066765cab759eaad82490b699cc5112",
               "expires_at": "2026-09-16T06:00:00Z",
               "family": "metamorphic",
               "observed_at": "2026-09-15T06:00:00Z",
@@ -2719,7 +2719,7 @@
               "passed_count": 16,
               "probe_id": "e08d33b7864f996123ab67ee4b962fe2bf2e46a449acd0617980139c43f39ca4",
               "provenance": "reference-execution",
-              "run_id": "a9d5f355e4a944d2b83177eb7118fcab84bea9a1df3119ebc63a2b96353b14ee",
+              "run_id": "eec237acbfb4c8c0ac60f3d9e8f2a3e6dc4267e0afdd2c037cddb2054d441043",
               "sample_count": 16,
               "score": 1.0,
               "source": "independent-evaluator",
@@ -2729,17 +2729,17 @@
             }
           }
         },
-        "previous_hash": "3a4a0d7519acd57736cf974e508d1ecec21b8731286c02df750a63245a36dabb",
+        "previous_hash": "377290f3b16f0e9b30f64afe6cfcb8008e64eb1382beb42085baf045dd072925",
         "schema_version": "3.0",
         "sequence": 76,
         "timestamp": "2026-09-15T06:00:00Z"
       },
       {
         "aggregate_id": "53d1857f2472165ad7a4f9e3d939274b0945c83e3a94569b8a04bd036a639bf5",
-        "causation_id": "f9858eb60818567680286c00cc05a0e2c70df8325bab6155a1246672cb5abfab",
+        "causation_id": "38abd12155e40ec0889e8c39fa024649cc8b19f80838e46e36bffa1325ed66d9",
         "correlation_id": "da2c542c98f0222b12a2c11d3423cf7ac7373b55d0fd7c5862c5aa0640f003a5",
-        "event_hash": "d53762c255e634a173ac773109826d10a841d08a0c59016df4f52b5e23c41609",
-        "event_id": "b8fb180efde9d0ecc78cea73273c8260d9eb33c7ee8b6e0620fe75fb3fefdac5",
+        "event_hash": "7669343a6e59e9332eee9ee49f7ebf8a230dca57d33ccb131c4b74a6ffad32d8",
+        "event_id": "e7215d2cca65e54602caa99f19a019361b12e0a1b3877953b588e74a2bb9d80e",
         "event_type": "ProbeProposed",
         "evidence": [
           "a5f743aeab4316c22743639d7fe9284e4fe1e8d9ff5fb2aee22411049b4297f6"
@@ -2779,26 +2779,26 @@
             }
           }
         },
-        "previous_hash": "04bdd494fea2559de8b7d2679c14a020d55054255fe3ee14696a5b541bf3b509",
+        "previous_hash": "1c5f3ae6e37e294a4bb9fba884cdbbaca41899c20081aaf20c05acc46b5cecdd",
         "schema_version": "3.0",
         "sequence": 77,
         "timestamp": "2026-09-15T06:00:00Z"
       },
       {
-        "aggregate_id": "dfc7ae4e29992379a3c2f979415a1732dd3c5c46606dfef03979fe4f2a079622",
-        "causation_id": "b8fb180efde9d0ecc78cea73273c8260d9eb33c7ee8b6e0620fe75fb3fefdac5",
+        "aggregate_id": "88b8e4f07a0abb748025925a30e56bb2eecf516ff33fbab6e0c8eb55ef1ff49a",
+        "causation_id": "e7215d2cca65e54602caa99f19a019361b12e0a1b3877953b588e74a2bb9d80e",
         "correlation_id": "da2c542c98f0222b12a2c11d3423cf7ac7373b55d0fd7c5862c5aa0640f003a5",
-        "event_hash": "4f7e170e594c6ad98a5d57458762d60129da6e5cd0a2c2eb0d6592214f9ebce8",
-        "event_id": "29b53619dae9a843ec15171aac856d9ec6d92902c25680a82d44db1ac44ae028",
+        "event_hash": "d1a25e07c6d353d51fc769085cc4c934ee4d1c0f7f2be1bd9230c202e975bebd",
+        "event_id": "673aa7bf782ee8a19ec05ad4f4cfb35ebe3198708b36cd7fbb53032bdd8cf7b9",
         "event_type": "ProbeRunCompleted",
         "evidence": [
-          "4ae3c426c680161b23d48c45ab0aaddc3d7906a66e6f4fdae9d78a4d62750d88"
+          "b8b4f35f5cfcd49ea8d54d657b937840bb80e7f751401f554e1acb480e55b912"
         ],
         "payload": {
           "message": "reference-native: tool-use probe completed",
           "mutation": {
             "collection": "probe_runs",
-            "id": "dfc7ae4e29992379a3c2f979415a1732dd3c5c46606dfef03979fe4f2a079622",
+            "id": "88b8e4f07a0abb748025925a30e56bb2eecf516ff33fbab6e0c8eb55ef1ff49a",
             "value": {
               "capability_id": "future.semantic_patch.v1",
               "checks": [
@@ -2816,40 +2816,40 @@
               "passed": true,
               "passed_count": 16,
               "probe_id": "53d1857f2472165ad7a4f9e3d939274b0945c83e3a94569b8a04bd036a639bf5",
-              "provenance": "executed-reference-interpreter; synthetic latency/cost budget inputs",
-              "run_id": "dfc7ae4e29992379a3c2f979415a1732dd3c5c46606dfef03979fe4f2a079622",
+              "provenance": "bounded-reference-interpreter",
+              "run_id": "88b8e4f07a0abb748025925a30e56bb2eecf516ff33fbab6e0c8eb55ef1ff49a",
               "sample_count": 16,
               "source": "system-generated",
               "surface_id": "7e1bf4c6d855c0b6a0ed3c992abbbe4c60da412e72a90227c04200d5cf5c7725"
             }
           }
         },
-        "previous_hash": "d53762c255e634a173ac773109826d10a841d08a0c59016df4f52b5e23c41609",
+        "previous_hash": "7669343a6e59e9332eee9ee49f7ebf8a230dca57d33ccb131c4b74a6ffad32d8",
         "schema_version": "3.0",
         "sequence": 78,
         "timestamp": "2026-09-15T06:00:00Z"
       },
       {
-        "aggregate_id": "d71dc7d0bcfa4348c3dd8b22e7ec6676fbcc46c9d15bf768f481274bc08eedd8",
-        "causation_id": "29b53619dae9a843ec15171aac856d9ec6d92902c25680a82d44db1ac44ae028",
+        "aggregate_id": "f8e5d164e79b6c5fbf5987f4980d7065199663fb3ee02ea4b376f66df5d9db49",
+        "causation_id": "673aa7bf782ee8a19ec05ad4f4cfb35ebe3198708b36cd7fbb53032bdd8cf7b9",
         "correlation_id": "da2c542c98f0222b12a2c11d3423cf7ac7373b55d0fd7c5862c5aa0640f003a5",
-        "event_hash": "b9d93f3980af84aaac3d9b30046bb895de8e05f08770797ec3e58a0746712732",
-        "event_id": "28dd32265142097df8e5428a2862379d1916b36e6b8bcf87a2a6ae9d65bee6c0",
+        "event_hash": "0b48425e42434e79411adde996656fd391b95e3e583b64994979ea1ac1e56537",
+        "event_id": "6e17af9f63af9ae3091ff0efc060a054001f528273ab6c3384ade22dac45e2fd",
         "event_type": "CapabilityObserved",
         "evidence": [
-          "d71dc7d0bcfa4348c3dd8b22e7ec6676fbcc46c9d15bf768f481274bc08eedd8",
-          "4ae3c426c680161b23d48c45ab0aaddc3d7906a66e6f4fdae9d78a4d62750d88"
+          "f8e5d164e79b6c5fbf5987f4980d7065199663fb3ee02ea4b376f66df5d9db49",
+          "b8b4f35f5cfcd49ea8d54d657b937840bb80e7f751401f554e1acb480e55b912"
         ],
         "payload": {
           "message": "future.semantic_patch.v1: SUPPORTED",
           "mutation": {
             "collection": "evidence",
-            "id": "d71dc7d0bcfa4348c3dd8b22e7ec6676fbcc46c9d15bf768f481274bc08eedd8",
+            "id": "f8e5d164e79b6c5fbf5987f4980d7065199663fb3ee02ea4b376f66df5d9db49",
             "value": {
               "capability_id": "future.semantic_patch.v1",
               "confidence": 0.99,
               "evaluator_version": "morphosis-reference-v3.1",
-              "evidence_hash": "4ae3c426c680161b23d48c45ab0aaddc3d7906a66e6f4fdae9d78a4d62750d88",
+              "evidence_hash": "b8b4f35f5cfcd49ea8d54d657b937840bb80e7f751401f554e1acb480e55b912",
               "expires_at": "2026-09-16T06:00:00Z",
               "family": "tool-use",
               "observed_at": "2026-09-15T06:00:00Z",
@@ -2857,7 +2857,7 @@
               "passed_count": 16,
               "probe_id": "53d1857f2472165ad7a4f9e3d939274b0945c83e3a94569b8a04bd036a639bf5",
               "provenance": "reference-execution",
-              "run_id": "dfc7ae4e29992379a3c2f979415a1732dd3c5c46606dfef03979fe4f2a079622",
+              "run_id": "88b8e4f07a0abb748025925a30e56bb2eecf516ff33fbab6e0c8eb55ef1ff49a",
               "sample_count": 16,
               "score": 1.0,
               "source": "independent-evaluator",
@@ -2867,17 +2867,17 @@
             }
           }
         },
-        "previous_hash": "4f7e170e594c6ad98a5d57458762d60129da6e5cd0a2c2eb0d6592214f9ebce8",
+        "previous_hash": "d1a25e07c6d353d51fc769085cc4c934ee4d1c0f7f2be1bd9230c202e975bebd",
         "schema_version": "3.0",
         "sequence": 79,
         "timestamp": "2026-09-15T06:00:00Z"
       },
       {
         "aggregate_id": "7e1bf4c6d855c0b6a0ed3c992abbbe4c60da412e72a90227c04200d5cf5c7725",
-        "causation_id": "28dd32265142097df8e5428a2862379d1916b36e6b8bcf87a2a6ae9d65bee6c0",
+        "causation_id": "6e17af9f63af9ae3091ff0efc060a054001f528273ab6c3384ade22dac45e2fd",
         "correlation_id": "da2c542c98f0222b12a2c11d3423cf7ac7373b55d0fd7c5862c5aa0640f003a5",
-        "event_hash": "ae69924d2083599cf4fb4e77402a37291d8874e228f98ea4dbaaec011f07fbcc",
-        "event_id": "cacc665df334c6742ce549008108ff509ad56b80cf0605d7e609c211f63ab5aa",
+        "event_hash": "00e64ed0a0dec471967788c3f83b07c8b0d845435e91d4cecdc7fcdeb9448c32",
+        "event_id": "83ea147f8f9d13b0130253b867cdbf7cc9962010d0ef8d147f2454f7c68fe43b",
         "event_type": "AdaptationCompiled",
         "evidence": [
           "3e37d39c2734b97726c3f92f58f9fe6c5e44ed86fb72fe5fb83dc9b14cbced8d"
@@ -2897,17 +2897,17 @@
             }
           }
         },
-        "previous_hash": "b9d93f3980af84aaac3d9b30046bb895de8e05f08770797ec3e58a0746712732",
+        "previous_hash": "0b48425e42434e79411adde996656fd391b95e3e583b64994979ea1ac1e56537",
         "schema_version": "3.0",
         "sequence": 80,
         "timestamp": "2026-09-15T06:00:00Z"
       },
       {
         "aggregate_id": "7e1bf4c6d855c0b6a0ed3c992abbbe4c60da412e72a90227c04200d5cf5c7725",
-        "causation_id": "cacc665df334c6742ce549008108ff509ad56b80cf0605d7e609c211f63ab5aa",
+        "causation_id": "83ea147f8f9d13b0130253b867cdbf7cc9962010d0ef8d147f2454f7c68fe43b",
         "correlation_id": "da2c542c98f0222b12a2c11d3423cf7ac7373b55d0fd7c5862c5aa0640f003a5",
-        "event_hash": "55932519fb8cc9158e09b3d2dfd578a118bdcd300871462e4f1f118ad8a54bd2",
-        "event_id": "722c07000e46d3ffe79143f9c827a98a4387566d8a92d0831107c5710e5ef7e5",
+        "event_hash": "385f2699dfa835c743121efe16a05acad772154c06517607eb30170ac8616f32",
+        "event_id": "8767740e75bb7e2ec82f3097e30b0423b678ea98897aba7fe395f5741eeca099",
         "event_type": "AdaptationVerified",
         "evidence": [
           "a3726348f2428dd6fbb80ea43ddfe5f926ad2ea245c59989a216810c283f9294"
@@ -2965,20 +2965,20 @@
             }
           }
         },
-        "previous_hash": "ae69924d2083599cf4fb4e77402a37291d8874e228f98ea4dbaaec011f07fbcc",
+        "previous_hash": "00e64ed0a0dec471967788c3f83b07c8b0d845435e91d4cecdc7fcdeb9448c32",
         "schema_version": "3.0",
         "sequence": 81,
         "timestamp": "2026-09-15T06:00:00Z"
       },
       {
         "aggregate_id": "7e1bf4c6d855c0b6a0ed3c992abbbe4c60da412e72a90227c04200d5cf5c7725:122b0185ef4538eda51bc35c319e2c50f0520232a8655d89c918f6983160d1cb",
-        "causation_id": "722c07000e46d3ffe79143f9c827a98a4387566d8a92d0831107c5710e5ef7e5",
+        "causation_id": "8767740e75bb7e2ec82f3097e30b0423b678ea98897aba7fe395f5741eeca099",
         "correlation_id": "da2c542c98f0222b12a2c11d3423cf7ac7373b55d0fd7c5862c5aa0640f003a5",
-        "event_hash": "36303870f8619c8c8b5593dba160de50ef8ed78d977b1dfa71e701a42bc0037b",
-        "event_id": "09c66c029c4a4436fb442ec3a231f47a76c47f51c48912241cc725c90092e2f1",
+        "event_hash": "611cb3d67c1734e93c60222ed17e71d886bd41964c403b5ef0711904b8856d40",
+        "event_id": "ebcbb283017d574d43a5459abcaf1b37d18e800700a3c237370adb307e1a13aa",
         "event_type": "WorkloadQualificationRecorded",
         "evidence": [
-          "017e9b892805d51a6498c8e3c0825e60e3dae859ed1294bd65a1510957d8b250"
+          "7fd88852e1e49fb28e8ca52840d04035412e96ff169e43d58a4ac9548b517528"
         ],
         "payload": {
           "message": "Workload-scoped decision: tool-roundtrip",
@@ -2987,9 +2987,9 @@
             "id": "7e1bf4c6d855c0b6a0ed3c992abbbe4c60da412e72a90227c04200d5cf5c7725:122b0185ef4538eda51bc35c319e2c50f0520232a8655d89c918f6983160d1cb",
             "value": {
               "evidence": [
-                "67bcb1845063c39c61bb2e336b9c5526c987692d6d2c54cb0d5d6d6ce45507b8",
-                "d71dc7d0bcfa4348c3dd8b22e7ec6676fbcc46c9d15bf768f481274bc08eedd8",
-                "e698d3526de59dfb00f61142d9eea04a0d567a38d6baa4477890b1cdf3bf0904"
+                "26256ec27c5e754c84a10d4ca5615c862d8b1166f688eb96db994f3fad94d8ae",
+                "6f50074ca922ba2288f90ac050db0c529e69e20a4fccee6069c38f7b4cd43518",
+                "f8e5d164e79b6c5fbf5987f4980d7065199663fb3ee02ea4b376f66df5d9db49"
               ],
               "measurements": {
                 "adaptation_complexity": 0,
@@ -3018,20 +3018,20 @@
             }
           }
         },
-        "previous_hash": "55932519fb8cc9158e09b3d2dfd578a118bdcd300871462e4f1f118ad8a54bd2",
+        "previous_hash": "385f2699dfa835c743121efe16a05acad772154c06517607eb30170ac8616f32",
         "schema_version": "3.0",
         "sequence": 82,
         "timestamp": "2026-09-15T06:00:00Z"
       },
       {
         "aggregate_id": "7e1bf4c6d855c0b6a0ed3c992abbbe4c60da412e72a90227c04200d5cf5c7725",
-        "causation_id": "09c66c029c4a4436fb442ec3a231f47a76c47f51c48912241cc725c90092e2f1",
+        "causation_id": "ebcbb283017d574d43a5459abcaf1b37d18e800700a3c237370adb307e1a13aa",
         "correlation_id": "da2c542c98f0222b12a2c11d3423cf7ac7373b55d0fd7c5862c5aa0640f003a5",
-        "event_hash": "360b5575734822a62b62fb29259d729c0486d42148b36eb0439ea028f08374c8",
-        "event_id": "7f4a631ede7b228542e6d6e3f430375fd55b85e5bc3f0a121f309b1f560552af",
+        "event_hash": "317aa14c84ba4d2f2040933d418ddcb3c67fefc848e5ceb87d6a0216f635703d",
+        "event_id": "b7a55e821e5aac44b224584a2526e2ca20cbf74e3cc07b40a200f50f6d12e1ee",
         "event_type": "QualificationCompleted",
         "evidence": [
-          "017e9b892805d51a6498c8e3c0825e60e3dae859ed1294bd65a1510957d8b250"
+          "7fd88852e1e49fb28e8ca52840d04035412e96ff169e43d58a4ac9548b517528"
         ],
         "payload": {
           "message": "reference-native: PROMOTE_TO_SHADOW",
@@ -3040,9 +3040,9 @@
             "id": "7e1bf4c6d855c0b6a0ed3c992abbbe4c60da412e72a90227c04200d5cf5c7725",
             "value": {
               "evidence": [
-                "67bcb1845063c39c61bb2e336b9c5526c987692d6d2c54cb0d5d6d6ce45507b8",
-                "d71dc7d0bcfa4348c3dd8b22e7ec6676fbcc46c9d15bf768f481274bc08eedd8",
-                "e698d3526de59dfb00f61142d9eea04a0d567a38d6baa4477890b1cdf3bf0904"
+                "26256ec27c5e754c84a10d4ca5615c862d8b1166f688eb96db994f3fad94d8ae",
+                "6f50074ca922ba2288f90ac050db0c529e69e20a4fccee6069c38f7b4cd43518",
+                "f8e5d164e79b6c5fbf5987f4980d7065199663fb3ee02ea4b376f66df5d9db49"
               ],
               "measurements": {
                 "adaptation_complexity": 0,
@@ -3071,7 +3071,7 @@
             }
           }
         },
-        "previous_hash": "36303870f8619c8c8b5593dba160de50ef8ed78d977b1dfa71e701a42bc0037b",
+        "previous_hash": "611cb3d67c1734e93c60222ed17e71d886bd41964c403b5ef0711904b8856d40",
         "schema_version": "3.0",
         "sequence": 83,
         "timestamp": "2026-09-15T06:00:00Z"
@@ -3236,15 +3236,15 @@
           },
           {
             "evidence": [
-              "49717503200e2eb8518ca4bb10cab38c9195df5620c47f91edcdd6b335cfc03f",
-              "8d98c2b93f1c7ba4c6aa5f1b7d043588ee441315ebd03ff236292c31208d22ea",
-              "63f641bae3c026bda20d4b1291a71e12e13139f2d5c8017870fdf9a2d50289bb",
-              "d0391fd6302e2f76e6f8b560f47f82dba04ebe17abe4ab8e4873c81dbf6afd6c",
-              "7a04629d69fe7f2d1e0cc43783cc01817165846e0092f3b4f4b630f71663ab90",
-              "282bb9fffecff237c41222fa88e1bec3c8d59c234df9b4a8b9d9cf9f626a85f4",
-              "0443c99df1f27e4d4dc1a7d20aed314132b9dea753e9aaddc7632a12083f8923",
-              "f9858eb60818567680286c00cc05a0e2c70df8325bab6155a1246672cb5abfab",
-              "28dd32265142097df8e5428a2862379d1916b36e6b8bcf87a2a6ae9d65bee6c0"
+              "cbece62e2dd0a1b09169a3c7effbf9adc4cc6cd68789c5048fd270c138633b40",
+              "6ec229705f842cf74addb58788af12a76ce509a22b65656d7413e6d8f5d157a1",
+              "3fa59179a6a10eb4587692937d33bf763f8d9b620fb06e04b4b122d4f1d63a44",
+              "d75d2fd7cfd14f62d5f912e990ff92f2e5b94e359f0346be87cd6bde0b93d5c8",
+              "a5c34daf0a2b9d9afcf08830772a3bd7cd1d4567c19fd2289f3b2ca4ffd94c23",
+              "0bfc8a4d670adc1f9052db955eb456e8468b7febe297ef7eec4fc89bef0dd353",
+              "98103bb7938edc03610279d5164095342d91842ef810d4c6d39ae6c6999a9347",
+              "38abd12155e40ec0889e8c39fa024649cc8b19f80838e46e36bffa1325ed66d9",
+              "6e17af9f63af9ae3091ff0efc060a054001f528273ab6c3384ade22dac45e2fd"
             ],
             "id": "graph",
             "implementation": "src/morphosis/os/graph.py",
@@ -3267,14 +3267,14 @@
           {
             "evidence": [
               "16543447ce9e8f1bddc678b3c0b9ef4f8d6c0c0a531338c4fb4a16db1e1cbc4b",
-              "44e4d3748bcbde6d17316142189e827b04405734fc18f6d6f97281e0ee2d37e5",
-              "fcda64f3089425e6dd93765b60e0d9f2fe2dd78260b1c8810daa5e1423a6c38c",
-              "900c0fce75a1a668a390d90724431d969e09282de8aa17fcf80e27f8f5427a07",
-              "f4d58678d84d54e2b51378964b186849bb5b4ca74edd2aea48c6e2326dad90ba",
-              "ab838b12e8b175b93b83bfa170119ffd10dc6e1fdf37c77d6e2168c635164c07",
-              "4d26bc0e48f10d31fd1d4dfda0b24f87e202a78db42e77e8d378f710f0090d6b",
-              "62b1fc560f89851aaddd14bf3ef9ea5b1c80a9b9faf246baa889a694527c8c9f",
-              "b8fb180efde9d0ecc78cea73273c8260d9eb33c7ee8b6e0620fe75fb3fefdac5"
+              "f77bc708835a1c596aea6f08acbdf234b897db5427aadbeec4d8cde1501e265d",
+              "0d0dc1172ce3853d4cc4773f031c47f5beefbeb147ddd1fef66d3177c5296e78",
+              "97ef45998085688217512557ea594f1ed8136058fb62794ac79f6b7d23457edd",
+              "b30f321cdb293608e6a1a72e570969f788ab97d71ea2a1dc8c77ac2d09ce0029",
+              "81b5581c9f939f192b5aca6398e553a51929e0b1a6402f18d9fe57bfe6836c11",
+              "57b2a54fb8704bf6294e1e195cdcc47d0811b4e1517d909cc0d65444d9d61718",
+              "7a83763eb7f120ef1f4fc0254731c47bdbf2c191217181aca1045e7b1dc52bf1",
+              "e7215d2cca65e54602caa99f19a019361b12e0a1b3877953b588e74a2bb9d80e"
             ],
             "id": "probe",
             "implementation": "src/morphosis/os/probes.py",
@@ -3312,9 +3312,9 @@
           },
           {
             "evidence": [
-              "798430e52310a0efcdd4825b77636c91b30fc6b074af4618e45c1f6b10995f73",
-              "b4f5c19bce9c8be10f4f9264d4473cda4b9c211bbecd0f010d8e67688309e836",
-              "cacc665df334c6742ce549008108ff509ad56b80cf0605d7e609c211f63ab5aa"
+              "e8bda8121ecc2e48f618d4207e04fbf6d18f8387ff218aa893d45f0602e03938",
+              "7d818ff49cf324973aa22ab09585cb4d03c6c3f62368b09096ebbd47b4439ec0",
+              "83ea147f8f9d13b0130253b867cdbf7cc9962010d0ef8d147f2454f7c68fe43b"
             ],
             "id": "compiler",
             "implementation": "src/morphosis/os/compiler.py",
@@ -3335,8 +3335,8 @@
           },
           {
             "evidence": [
-              "16631eb6a14918d7476cb8f930375372b11c3a4dcf3b6ef77b8c100bbe88771f",
-              "722c07000e46d3ffe79143f9c827a98a4387566d8a92d0831107c5710e5ef7e5"
+              "45ea5bc2c80db4f8979e32d4e05c338371bb94a678b50643501c5d7274f3e2d5",
+              "8767740e75bb7e2ec82f3097e30b0423b678ea98897aba7fe395f5741eeca099"
             ],
             "id": "verification",
             "implementation": "src/morphosis/os/compiler.py",
@@ -3356,18 +3356,18 @@
           },
           {
             "evidence": [
-              "315a6078eaa7382ca489feae8a8388e46374567ddbd4897b07cf2e57311280e7",
-              "f0995380895ff7e7d94011bc4cae55164ae2d635cf6f380ca5ea804cfd7a6c50",
-              "bc10967b9c68ec70c57a40337d47238e11241f2f280d367fd4a4ca422954bab5",
-              "e1dd6baefb9db8c2cabe8d58fdd9c3977dfc1b17d792d0f602c882f7b18c923e",
-              "e100adbded33ecd6cd5bfb689e25945fe35314375a522c139adc5ef3ce445bb1",
-              "915e73c9c02f75e20baf749c44d8becee25cf8cc68d3d1e77d980eec58c0feaf",
-              "eadae59465293d8b33ae0e782c6596a5b253358bacec59f79682f483f06085b3",
-              "d95683a1812a9f961349d2cbe593bafcd58970f00b73a11ff1c850888428fef1",
-              "62e95fb6a3e75244a78b0d1495ab30e0940f6e11a7ce863b05d3b77f3dcd1801",
-              "c87fc26d51d6aae2c107f7169780daf847e8e34dee11a18869e0886956831149",
-              "65c7972f3fbff7391f73de512b39afee6832c705d744eb6fa9bf2bbdd610b05d",
-              "7f4a631ede7b228542e6d6e3f430375fd55b85e5bc3f0a121f309b1f560552af"
+              "20cd1df808539a53e6a6622e313de3126df0e8693817e81b0f851ab2ed47e371",
+              "1a415356cf797308753a6ab4e7a07702cdd7dc01aecbb9e96893381cf0743f9d",
+              "1841f10c93fd55862f0c4aa8e8d0a1c2e0b64845645e3809c53554b7c96023cc",
+              "ed6f588bc991c4b4fce4823e03f42389c6c38a05ff4e4a9147fa47cff73cc914",
+              "f6b6c4b4c523044e8f4e61fc86878e85f6a7ad8e081c3a447a1a8f1d8a06f530",
+              "34ee0d8123b4fec27597d81fe15af815995959cb966e38632c95f9cf09392f3a",
+              "e8b920feecf68d9d2f9a8283ccbff3a806b0e838bc72aba2635744e3857c4ba7",
+              "eb4cf07d33662a420b3ba2b7e6166dd994a0ca4e39bbd4cf9021701eb1f42ef9",
+              "9a7b298bf00a4973858c44c57d6ca24559cfde196c2842328bb7e92b2f2ac0c5",
+              "7a43a16c8428694e80526872dddd5a40fe44aa49917ffadeefb0bb530fbfac1d",
+              "09639e60242b4aa37f14dbe2c457f0e8a9816acb364dea11c3bfd6843693c850",
+              "b7a55e821e5aac44b224584a2526e2ca20cbf74e3cc07b40a200f50f6d12e1ee"
             ],
             "id": "qualification",
             "implementation": "src/morphosis/os/qualifier.py",
@@ -3387,7 +3387,7 @@
           },
           {
             "evidence": [
-              "8e9675d0b364bbffe53ed7a3d502194ec8fe86108395e24d0cc3d98304104427"
+              "d2576837ff4bd71aff29f3400305e18770d96d460b5075c6078084670fc04c39"
             ],
             "id": "bundle",
             "implementation": "src/morphosis/os/schemas.py",
@@ -3427,7 +3427,7 @@
           },
           {
             "evidence": [
-              "4a3b0dcc7758fdc079e7c1b77dc4fa22b0888568ad8e7bd2c059420e25848612"
+              "24cdeb4dc519820ced1f5f428f86230cfe354d45665913bbbe250d9670bc7888"
             ],
             "id": "shadow",
             "implementation": "src/morphosis/os/deployment.py",
@@ -3447,7 +3447,7 @@
           },
           {
             "evidence": [
-              "735d5d7820608667e1faee2c12c4d3424117a81a10cca79e851ac0b7ca474785"
+              "ff2dc4f08aeb8dea1b4b166812573a4e6ad3ee3e3431890c839ef9fffa6b538f"
             ],
             "id": "canary",
             "implementation": "src/morphosis/os/deployment.py",
@@ -3467,7 +3467,7 @@
           },
           {
             "evidence": [
-              "854983f17249977bec6ec0c190a13d52687d735c2c507cf52738b672f8856357"
+              "fd1029c4cde7daac9bff5ce029062448a9d89d80ca6bb14312b8ab81424b31f2"
             ],
             "id": "serving",
             "implementation": "src/morphosis/os/agents.py",
@@ -3568,80 +3568,80 @@
           "d1b6d182afae180d5f77f12c2706f131c14414d021d936c3f834d01f2a78ac58",
           "3797479091c35951506dd5a25b135a89c2971c2671dbd7c3953163f59258cae9",
           "16543447ce9e8f1bddc678b3c0b9ef4f8d6c0c0a531338c4fb4a16db1e1cbc4b",
-          "5510d9d22ef79c13406930885c83080af0e34639836b549a0ee767dd2b5a6dcd",
-          "49717503200e2eb8518ca4bb10cab38c9195df5620c47f91edcdd6b335cfc03f",
-          "44e4d3748bcbde6d17316142189e827b04405734fc18f6d6f97281e0ee2d37e5",
-          "482ce9255cdecc34156d1291dd26b4c139ab74f7debaf71184547ff4c4f7a508",
-          "8d98c2b93f1c7ba4c6aa5f1b7d043588ee441315ebd03ff236292c31208d22ea",
-          "fcda64f3089425e6dd93765b60e0d9f2fe2dd78260b1c8810daa5e1423a6c38c",
-          "a259152cbb1a472d524a85911901afb777088aa3344f2919c91daf129bda3904",
-          "63f641bae3c026bda20d4b1291a71e12e13139f2d5c8017870fdf9a2d50289bb",
-          "798430e52310a0efcdd4825b77636c91b30fc6b074af4618e45c1f6b10995f73",
-          "16631eb6a14918d7476cb8f930375372b11c3a4dcf3b6ef77b8c100bbe88771f",
-          "7b608c4d288ffbe3bcf45318d8cbdd345ffb66360df74840bc578498fbdd7d99",
-          "315a6078eaa7382ca489feae8a8388e46374567ddbd4897b07cf2e57311280e7",
-          "900c0fce75a1a668a390d90724431d969e09282de8aa17fcf80e27f8f5427a07",
-          "3f38264e6cb357ab52986b6d39d7aac1c577b4738a3f7de0741eed615960ae7a",
-          "d0391fd6302e2f76e6f8b560f47f82dba04ebe17abe4ab8e4873c81dbf6afd6c",
-          "f4d58678d84d54e2b51378964b186849bb5b4ca74edd2aea48c6e2326dad90ba",
-          "33efa1fddf107ea34ea0b6f008634821b238a8454849011b8b266cbd576cf01f",
-          "7a04629d69fe7f2d1e0cc43783cc01817165846e0092f3b4f4b630f71663ab90",
-          "ab838b12e8b175b93b83bfa170119ffd10dc6e1fdf37c77d6e2168c635164c07",
-          "1795ce037bfc6480146c00ccae39cb76e90f57c7308cbae298e6705e09d34a0d",
-          "282bb9fffecff237c41222fa88e1bec3c8d59c234df9b4a8b9d9cf9f626a85f4",
-          "b4f5c19bce9c8be10f4f9264d4473cda4b9c211bbecd0f010d8e67688309e836",
-          "f11ca476467a8fa81059c389691cb36b1f8bcfb2a9c5772755f830f3e18b24fe",
-          "935378e520d63cc6fb11637ad842725c4e0a68af885e5fc156e8a492b5067033",
-          "f0995380895ff7e7d94011bc4cae55164ae2d635cf6f380ca5ea804cfd7a6c50",
-          "ba31508fabf167843ee732577b8a2fd0bb3f4f18161b22df893764b305e7c63f",
-          "bc10967b9c68ec70c57a40337d47238e11241f2f280d367fd4a4ca422954bab5",
-          "f0fefa9f9982260fd5d62de00beafa27a501726e70ce3888b7d58c12d45df5c5",
-          "e1dd6baefb9db8c2cabe8d58fdd9c3977dfc1b17d792d0f602c882f7b18c923e",
-          "8e9675d0b364bbffe53ed7a3d502194ec8fe86108395e24d0cc3d98304104427",
-          "ecbd7a164276ba5fa2dd13e7e89d1f36658d024ae225b8c328c0722434d3f7f2",
-          "3a288d46947fbcb6ea100f5a5a45be2eb0b1d77fcbe0905f8f8ed73e8a669c75",
-          "e100adbded33ecd6cd5bfb689e25945fe35314375a522c139adc5ef3ce445bb1",
-          "6c23f7f42cc60ff9dac7e303c8657162739e14308bed58319f5ad9be7618d893",
-          "67a2b48cdba7b71290bae98c13443f2c2654b20cfc17acad61d6de8497173d94",
-          "915e73c9c02f75e20baf749c44d8becee25cf8cc68d3d1e77d980eec58c0feaf",
-          "c434588055e29691e86d4e1125f39aaeaf84b669e033e46e9dfa3a5cc24f8555",
-          "8dd06dbc3cf06004ace498e741cd2c655f271111dd4b92c4ab0eff3ab124b33c",
-          "e78433af6bc39613d8e24d36daf81b0bd08add4e9d0d54014ce40b615f290c15",
-          "eadae59465293d8b33ae0e782c6596a5b253358bacec59f79682f483f06085b3",
-          "637588a6285fadd93a6e940db6fd5b096127381b960646c3d903ff48a649f66e",
-          "a8131be0acd385b346b3d4c26f6a9ca96fbacf7c31aefb87ed9ec92b25fdb921",
-          "d95683a1812a9f961349d2cbe593bafcd58970f00b73a11ff1c850888428fef1",
-          "1cfad6fe87d831827d9a91d0dc574259e6897e077f50cee5bdd4bd796c8eff12",
-          "4a3b0dcc7758fdc079e7c1b77dc4fa22b0888568ad8e7bd2c059420e25848612",
-          "c041992c797c8db58352a5a7726fdee5dd58de7cc30967520dbf24a03a386628",
-          "62e95fb6a3e75244a78b0d1495ab30e0940f6e11a7ce863b05d3b77f3dcd1801",
-          "bc4dc0ddb81fc2a77df0a2e0a84a5b3dd801d50b98b7e58d3af99584d6f88d07",
-          "735d5d7820608667e1faee2c12c4d3424117a81a10cca79e851ac0b7ca474785",
-          "7ba6393c524f35f4031f4b7125d11763fc9cea424fc6ee0e5ba7d19acdd8e1a9",
-          "c87fc26d51d6aae2c107f7169780daf847e8e34dee11a18869e0886956831149",
-          "60d7de9263700cf66737c06c9e59d5b26ef6f210cfb3dfbc53838fc5a91c36a7",
-          "24a2c0065c633fae8f9140ac8d8a81f163ce452a4e92b89d0c516ba5e73cc87a",
-          "eed13df5186b22bee143fbc3a99115e7a4bf7eec31349b02ae70c7b248948ee2",
-          "65c7972f3fbff7391f73de512b39afee6832c705d744eb6fa9bf2bbdd610b05d",
-          "a71a885f7086e07c73c154f31e6e43f27d776b7a3a9b970b45a4266c92e5c007",
-          "854983f17249977bec6ec0c190a13d52687d735c2c507cf52738b672f8856357",
-          "17bed247c8feb44b644fcc44537b023953991fcae88e607b4c0eea7af5cf2966",
-          "4d26bc0e48f10d31fd1d4dfda0b24f87e202a78db42e77e8d378f710f0090d6b",
-          "a61da82e51a1654ffb7d1acaacaa8f258cf88b31142777763ecf7bd991e6f9ef",
-          "0443c99df1f27e4d4dc1a7d20aed314132b9dea753e9aaddc7632a12083f8923",
-          "62b1fc560f89851aaddd14bf3ef9ea5b1c80a9b9faf246baa889a694527c8c9f",
-          "dc3590b6b868b4dc0cdf038439a29d68a1ce2377d64b3300f1f652cbb643e59f",
-          "f9858eb60818567680286c00cc05a0e2c70df8325bab6155a1246672cb5abfab",
-          "b8fb180efde9d0ecc78cea73273c8260d9eb33c7ee8b6e0620fe75fb3fefdac5",
-          "29b53619dae9a843ec15171aac856d9ec6d92902c25680a82d44db1ac44ae028",
-          "28dd32265142097df8e5428a2862379d1916b36e6b8bcf87a2a6ae9d65bee6c0",
-          "cacc665df334c6742ce549008108ff509ad56b80cf0605d7e609c211f63ab5aa",
-          "722c07000e46d3ffe79143f9c827a98a4387566d8a92d0831107c5710e5ef7e5",
-          "09c66c029c4a4436fb442ec3a231f47a76c47f51c48912241cc725c90092e2f1",
-          "7f4a631ede7b228542e6d6e3f430375fd55b85e5bc3f0a121f309b1f560552af"
+          "a8bde8b644694f0e2873e26740e3777ccd0471ed9616de7b67d864b2e99f30ea",
+          "cbece62e2dd0a1b09169a3c7effbf9adc4cc6cd68789c5048fd270c138633b40",
+          "f77bc708835a1c596aea6f08acbdf234b897db5427aadbeec4d8cde1501e265d",
+          "3e5a3f202dae6b49c7d43d6373dfbab9d9f74f2353d3d7c5602b5b4d14bdb03f",
+          "6ec229705f842cf74addb58788af12a76ce509a22b65656d7413e6d8f5d157a1",
+          "0d0dc1172ce3853d4cc4773f031c47f5beefbeb147ddd1fef66d3177c5296e78",
+          "1e689b3d526e0a59bf175e3cbb2f176f8872d708642b8e753923130bd8a71954",
+          "3fa59179a6a10eb4587692937d33bf763f8d9b620fb06e04b4b122d4f1d63a44",
+          "e8bda8121ecc2e48f618d4207e04fbf6d18f8387ff218aa893d45f0602e03938",
+          "45ea5bc2c80db4f8979e32d4e05c338371bb94a678b50643501c5d7274f3e2d5",
+          "f84748e5f6261ccd8c96f5ab34000f639d07d454f9e1980fbc2594975a606999",
+          "20cd1df808539a53e6a6622e313de3126df0e8693817e81b0f851ab2ed47e371",
+          "97ef45998085688217512557ea594f1ed8136058fb62794ac79f6b7d23457edd",
+          "de5af543c52d65abbdf1734bd85531dc3398acbccbcff69a718b25780b58295a",
+          "d75d2fd7cfd14f62d5f912e990ff92f2e5b94e359f0346be87cd6bde0b93d5c8",
+          "b30f321cdb293608e6a1a72e570969f788ab97d71ea2a1dc8c77ac2d09ce0029",
+          "daadbdeb30cc31742af89efc5ff064d9d00aeeb249a00f36360687a91c67810a",
+          "a5c34daf0a2b9d9afcf08830772a3bd7cd1d4567c19fd2289f3b2ca4ffd94c23",
+          "81b5581c9f939f192b5aca6398e553a51929e0b1a6402f18d9fe57bfe6836c11",
+          "1c8e59ec9dbab2535ef3ddf485d482551e36630e8404ebb2417dc3352b169804",
+          "0bfc8a4d670adc1f9052db955eb456e8468b7febe297ef7eec4fc89bef0dd353",
+          "7d818ff49cf324973aa22ab09585cb4d03c6c3f62368b09096ebbd47b4439ec0",
+          "55043ed67c9bcc6c4d2940aa9fab3e5c3d7b018c664e8d1a1f7939520382288d",
+          "8c5748c4374b3869a6a3e53c2167cca71ce0b58fd1e86f305a0e3f7e04f306d0",
+          "1a415356cf797308753a6ab4e7a07702cdd7dc01aecbb9e96893381cf0743f9d",
+          "3732dd0c9afe2e24ad691e9e2cdcf7aaf67161766ef7fc3465e8ffcfc3273a0f",
+          "1841f10c93fd55862f0c4aa8e8d0a1c2e0b64845645e3809c53554b7c96023cc",
+          "10529b58cf108c93930dc7dba2c751ca3daee2cbfc44b6cac6edf872990663f0",
+          "ed6f588bc991c4b4fce4823e03f42389c6c38a05ff4e4a9147fa47cff73cc914",
+          "d2576837ff4bd71aff29f3400305e18770d96d460b5075c6078084670fc04c39",
+          "bce0e8495dee2e86913a947190df78ddb9c046d65beda7290c1e952a5de5a58c",
+          "6415e82a0d7760383e13a6b1850cbb604ab2efa7f6db1bd0b713be55e54d5352",
+          "f6b6c4b4c523044e8f4e61fc86878e85f6a7ad8e081c3a447a1a8f1d8a06f530",
+          "db303c7c28dc949b996a465c7ec0f82c4522c788eaffa33be4c0c9f63c070291",
+          "8db6dd5d5c7bc68c447bde8c1cd9e3b07e4916da559afe8278d01825361bc77c",
+          "34ee0d8123b4fec27597d81fe15af815995959cb966e38632c95f9cf09392f3a",
+          "0ccde22dc2599803fb31cceff69bcf5cfdcfa72b750b8525bb6ed46fcf036be1",
+          "8bf243825d4f7f3f1cfc9ce1d4f1f8e2d336c5f98a3113972c7b65f2ae1af9f1",
+          "e9155d9eea6d6ef8ddf8d79139e52f4ff721913a58f816b886e6f7478f48f69d",
+          "e8b920feecf68d9d2f9a8283ccbff3a806b0e838bc72aba2635744e3857c4ba7",
+          "9ceb9e0bc8031a3ee3dd3bddf5290c8ccab2b225baa373628d0b87b67a71c8a7",
+          "aa36eae0e3d1fe03b17ca870aed04d016e99db11d4748bf7f8f33fb1efad0d38",
+          "eb4cf07d33662a420b3ba2b7e6166dd994a0ca4e39bbd4cf9021701eb1f42ef9",
+          "5c41cb0ca24d17e8dd5ea2bc5ba7a249487e416662c1a9a8cf8d493e37b06065",
+          "24cdeb4dc519820ced1f5f428f86230cfe354d45665913bbbe250d9670bc7888",
+          "bd68dd7dddb04ab6c82fb78e70e3607475f3beedd2997e92fe89e113c570e523",
+          "9a7b298bf00a4973858c44c57d6ca24559cfde196c2842328bb7e92b2f2ac0c5",
+          "3856d23a7c445c5a8818ac8cf7927735681e53344010fd863f1eca0d53bcaf92",
+          "ff2dc4f08aeb8dea1b4b166812573a4e6ad3ee3e3431890c839ef9fffa6b538f",
+          "6a76908a34fbcce2335b419201fb56293c5c7d96fac5c0b04421063247c99494",
+          "7a43a16c8428694e80526872dddd5a40fe44aa49917ffadeefb0bb530fbfac1d",
+          "a95994d30ce9b2bf5dfb3c9a55cf8f8156c72d4084d332464ea7303f6dc0d2c6",
+          "bdc4265c1cca3beb49cc347c79e21cbac4399ad207bd6902e384249e70c1e19b",
+          "52158b809e850106466e6f291b3df7dee7cb6de2947a01ab06688c4c0eecce3b",
+          "09639e60242b4aa37f14dbe2c457f0e8a9816acb364dea11c3bfd6843693c850",
+          "0b86dc9d4a6e3a617c0f09908caa5fe66bad971e3f1634e8e34eaf6487f76a36",
+          "fd1029c4cde7daac9bff5ce029062448a9d89d80ca6bb14312b8ab81424b31f2",
+          "86dbf0b2a0ea283883738f589bfc1d2c8119081671a28ec660da9c6a78021e59",
+          "57b2a54fb8704bf6294e1e195cdcc47d0811b4e1517d909cc0d65444d9d61718",
+          "657bd9f3eee72a858952125d8e82459766f4c4949f0f23f4064e08361c82fcbd",
+          "98103bb7938edc03610279d5164095342d91842ef810d4c6d39ae6c6999a9347",
+          "7a83763eb7f120ef1f4fc0254731c47bdbf2c191217181aca1045e7b1dc52bf1",
+          "c44a2e90598e6dbabe1fd1afd4545297071bf3aebeb6ffaff7cb4b7232558c19",
+          "38abd12155e40ec0889e8c39fa024649cc8b19f80838e46e36bffa1325ed66d9",
+          "e7215d2cca65e54602caa99f19a019361b12e0a1b3877953b588e74a2bb9d80e",
+          "673aa7bf782ee8a19ec05ad4f4cfb35ebe3198708b36cd7fbb53032bdd8cf7b9",
+          "6e17af9f63af9ae3091ff0efc060a054001f528273ab6c3384ade22dac45e2fd",
+          "83ea147f8f9d13b0130253b867cdbf7cc9962010d0ef8d147f2454f7c68fe43b",
+          "8767740e75bb7e2ec82f3097e30b0423b678ea98897aba7fe395f5741eeca099",
+          "ebcbb283017d574d43a5459abcaf1b37d18e800700a3c237370adb307e1a13aa",
+          "b7a55e821e5aac44b224584a2526e2ca20cbf74e3cc07b40a200f50f6d12e1ee"
         ]
       },
-      "ledger_head": "360b5575734822a62b62fb29259d729c0486d42148b36eb0439ea028f08374c8",
+      "ledger_head": "317aa14c84ba4d2f2040933d418ddcb3c67fefc848e5ceb87d6a0216f635703d",
       "sequence": 83
     },
     "result": {
@@ -3701,9 +3701,9 @@
       },
       "decision": {
         "evidence": [
-          "67bcb1845063c39c61bb2e336b9c5526c987692d6d2c54cb0d5d6d6ce45507b8",
-          "d71dc7d0bcfa4348c3dd8b22e7ec6676fbcc46c9d15bf768f481274bc08eedd8",
-          "e698d3526de59dfb00f61142d9eea04a0d567a38d6baa4477890b1cdf3bf0904"
+          "26256ec27c5e754c84a10d4ca5615c862d8b1166f688eb96db994f3fad94d8ae",
+          "6f50074ca922ba2288f90ac050db0c529e69e20a4fccee6069c38f7b4cd43518",
+          "f8e5d164e79b6c5fbf5987f4980d7065199663fb3ee02ea4b376f66df5d9db49"
         ],
         "measurements": {
           "adaptation_complexity": 0,
@@ -3748,8 +3748,8 @@
           "passed": true,
           "passed_count": 16,
           "probe_id": "1536c5cef92aaf4b8710af70cf5916c506dc19b9a1abeed2b27e3ea9ac636b14",
-          "provenance": "executed-reference-interpreter; synthetic latency/cost budget inputs",
-          "run_id": "52ac29fdcfe56ddeb48702ec3ae0e600535847afbc69ce75082b664cd82cce65",
+          "provenance": "bounded-reference-interpreter",
+          "run_id": "ecd125db2596a7154b4b1dfa78183c332b6ce7c5c595c5c74e70d818131af163",
           "sample_count": 16,
           "source": "system-generated",
           "surface_id": "7e1bf4c6d855c0b6a0ed3c992abbbe4c60da412e72a90227c04200d5cf5c7725"
@@ -3771,8 +3771,8 @@
           "passed": true,
           "passed_count": 16,
           "probe_id": "e08d33b7864f996123ab67ee4b962fe2bf2e46a449acd0617980139c43f39ca4",
-          "provenance": "executed-reference-interpreter; synthetic latency/cost budget inputs",
-          "run_id": "a9d5f355e4a944d2b83177eb7118fcab84bea9a1df3119ebc63a2b96353b14ee",
+          "provenance": "bounded-reference-interpreter",
+          "run_id": "eec237acbfb4c8c0ac60f3d9e8f2a3e6dc4267e0afdd2c037cddb2054d441043",
           "sample_count": 16,
           "source": "system-generated",
           "surface_id": "7e1bf4c6d855c0b6a0ed3c992abbbe4c60da412e72a90227c04200d5cf5c7725"
@@ -3794,8 +3794,8 @@
           "passed": true,
           "passed_count": 16,
           "probe_id": "53d1857f2472165ad7a4f9e3d939274b0945c83e3a94569b8a04bd036a639bf5",
-          "provenance": "executed-reference-interpreter; synthetic latency/cost budget inputs",
-          "run_id": "dfc7ae4e29992379a3c2f979415a1732dd3c5c46606dfef03979fe4f2a079622",
+          "provenance": "bounded-reference-interpreter",
+          "run_id": "88b8e4f07a0abb748025925a30e56bb2eecf516ff33fbab6e0c8eb55ef1ff49a",
           "sample_count": 16,
           "source": "system-generated",
           "surface_id": "7e1bf4c6d855c0b6a0ed3c992abbbe4c60da412e72a90227c04200d5cf5c7725"
@@ -3808,10 +3808,10 @@
     "events": [
       {
         "aggregate_id": "841300f81e76e8b63d6efcc2ea6f41bad78d622cda800b650d7ef2e7d75f11bb",
-        "causation_id": "17bed247c8feb44b644fcc44537b023953991fcae88e607b4c0eea7af5cf2966",
+        "causation_id": "86dbf0b2a0ea283883738f589bfc1d2c8119081671a28ec660da9c6a78021e59",
         "correlation_id": "ae3520dee03151f24bed9d0a1393eb27a66a28ae324efe36bf53a52b6f8e47c2",
-        "event_hash": "8845f48417292c227cda5fe8156aa83ebdfc04cec1a526d24a45d06f3be66c64",
-        "event_id": "0d8cae9cd74775bc0077d8467b2734a0f9a647daeab4eab99be2c164aa195e4f",
+        "event_hash": "5dc83a5c79b9bae5fb21d4d76df2ef2a5e19cdb13a3e55251c022a2c3d3fc4f1",
+        "event_id": "5191c6f64b9e5c3e37d4755fedd9f34ac5742bede6e1628250285c24a5dc5956",
         "event_type": "ProbeProposed",
         "evidence": [
           "84d275bb23be6ddb14e47ed8350efe01e771c2c01b581c0c3a69bdb765702723"
@@ -3851,26 +3851,26 @@
             }
           }
         },
-        "previous_hash": "b8a64994e432a1af1c55e17045cad9ca02aa9bf9ed0756bf975e3555844d848a",
+        "previous_hash": "6f9be4ca0a04ef56a93c248854da97df2e04ac5f65fe28452dbcdada164bb860",
         "schema_version": "3.0",
         "sequence": 71,
         "timestamp": "2026-09-15T06:00:00Z"
       },
       {
-        "aggregate_id": "e3a659413927eade7df2f96568706a3abf6ccd994b2153c005b98a4aedec74b4",
-        "causation_id": "0d8cae9cd74775bc0077d8467b2734a0f9a647daeab4eab99be2c164aa195e4f",
+        "aggregate_id": "280e41f50ff61c37e82d6aaa273ca6c3fc69e98651fbd0825088c3ad4ca1b00d",
+        "causation_id": "5191c6f64b9e5c3e37d4755fedd9f34ac5742bede6e1628250285c24a5dc5956",
         "correlation_id": "ae3520dee03151f24bed9d0a1393eb27a66a28ae324efe36bf53a52b6f8e47c2",
-        "event_hash": "0b0f33e5dd8f6654422f5d73b78e4dd271daad1a218efa8103397f414d283815",
-        "event_id": "8b2cf3d452e1304fd27fbbfa33fd28e9dacb741cfcfcf25d63e534439cda367c",
+        "event_hash": "b1d737a9503117de50c05ee00a6a0ba310d931726bb75e49c8d3b2a48121712b",
+        "event_id": "9253d4651bf00572e19321dc9555c07f7f810f8f66ac576c58cdbab2164fe2ee",
         "event_type": "ProbeRunCompleted",
         "evidence": [
-          "b36ea4557baa55c0d108e76a1c6bc2d1b6e0aadbc6921bf83f063615398f6c40"
+          "480fb4898e2f1da90307a121a09a38377787bcf8b32c127f952657f6e7b5150a"
         ],
         "payload": {
           "message": "regression-candidate: roundtrip probe completed",
           "mutation": {
             "collection": "probe_runs",
-            "id": "e3a659413927eade7df2f96568706a3abf6ccd994b2153c005b98a4aedec74b4",
+            "id": "280e41f50ff61c37e82d6aaa273ca6c3fc69e98651fbd0825088c3ad4ca1b00d",
             "value": {
               "capability_id": "future.semantic_patch.v1",
               "checks": [
@@ -3888,40 +3888,40 @@
               "passed": false,
               "passed_count": 0,
               "probe_id": "841300f81e76e8b63d6efcc2ea6f41bad78d622cda800b650d7ef2e7d75f11bb",
-              "provenance": "executed-reference-interpreter; synthetic latency/cost budget inputs",
-              "run_id": "e3a659413927eade7df2f96568706a3abf6ccd994b2153c005b98a4aedec74b4",
+              "provenance": "bounded-reference-interpreter",
+              "run_id": "280e41f50ff61c37e82d6aaa273ca6c3fc69e98651fbd0825088c3ad4ca1b00d",
               "sample_count": 16,
               "source": "system-generated",
               "surface_id": "881eae6f2cd78569074177aac4360f6cc3fb6123e7796f123e3e57bcc268a044"
             }
           }
         },
-        "previous_hash": "8845f48417292c227cda5fe8156aa83ebdfc04cec1a526d24a45d06f3be66c64",
+        "previous_hash": "5dc83a5c79b9bae5fb21d4d76df2ef2a5e19cdb13a3e55251c022a2c3d3fc4f1",
         "schema_version": "3.0",
         "sequence": 72,
         "timestamp": "2026-09-15T06:00:00Z"
       },
       {
-        "aggregate_id": "fd67ea485ddac8de80996181fc1dce60cc4c641b205824bba158a86966dbdfc9",
-        "causation_id": "8b2cf3d452e1304fd27fbbfa33fd28e9dacb741cfcfcf25d63e534439cda367c",
+        "aggregate_id": "cfb86238b54c911f204ebc50c25d61ca4a447867be83f5647ecf6bd0500b5b81",
+        "causation_id": "9253d4651bf00572e19321dc9555c07f7f810f8f66ac576c58cdbab2164fe2ee",
         "correlation_id": "ae3520dee03151f24bed9d0a1393eb27a66a28ae324efe36bf53a52b6f8e47c2",
-        "event_hash": "225969d53d9a7a7d6e83cdf4dd0a01d66f74b1cb7d01b36e69c563e672f126b5",
-        "event_id": "108a8bd49b7bb5e8eb7e5df4568e81b1e1f310e6fadc13039349824d35c5015d",
+        "event_hash": "135a3bf7144f6aa0d64210ffc54008866167d5281b5310faee613b05d2c17fc9",
+        "event_id": "6ced52768ded2b65534c63234d1b95afa89f0d141d78fea44d89871bc8dfe0e3",
         "event_type": "CapabilityObserved",
         "evidence": [
-          "fd67ea485ddac8de80996181fc1dce60cc4c641b205824bba158a86966dbdfc9",
-          "b36ea4557baa55c0d108e76a1c6bc2d1b6e0aadbc6921bf83f063615398f6c40"
+          "cfb86238b54c911f204ebc50c25d61ca4a447867be83f5647ecf6bd0500b5b81",
+          "480fb4898e2f1da90307a121a09a38377787bcf8b32c127f952657f6e7b5150a"
         ],
         "payload": {
           "message": "future.semantic_patch.v1: UNSUPPORTED",
           "mutation": {
             "collection": "evidence",
-            "id": "fd67ea485ddac8de80996181fc1dce60cc4c641b205824bba158a86966dbdfc9",
+            "id": "cfb86238b54c911f204ebc50c25d61ca4a447867be83f5647ecf6bd0500b5b81",
             "value": {
               "capability_id": "future.semantic_patch.v1",
               "confidence": 0.99,
               "evaluator_version": "morphosis-reference-v3.1",
-              "evidence_hash": "b36ea4557baa55c0d108e76a1c6bc2d1b6e0aadbc6921bf83f063615398f6c40",
+              "evidence_hash": "480fb4898e2f1da90307a121a09a38377787bcf8b32c127f952657f6e7b5150a",
               "expires_at": "2026-09-16T06:00:00Z",
               "family": "roundtrip",
               "observed_at": "2026-09-15T06:00:00Z",
@@ -3929,7 +3929,7 @@
               "passed_count": 0,
               "probe_id": "841300f81e76e8b63d6efcc2ea6f41bad78d622cda800b650d7ef2e7d75f11bb",
               "provenance": "reference-execution",
-              "run_id": "e3a659413927eade7df2f96568706a3abf6ccd994b2153c005b98a4aedec74b4",
+              "run_id": "280e41f50ff61c37e82d6aaa273ca6c3fc69e98651fbd0825088c3ad4ca1b00d",
               "sample_count": 16,
               "score": 0.0,
               "source": "independent-evaluator",
@@ -3939,17 +3939,17 @@
             }
           }
         },
-        "previous_hash": "0b0f33e5dd8f6654422f5d73b78e4dd271daad1a218efa8103397f414d283815",
+        "previous_hash": "b1d737a9503117de50c05ee00a6a0ba310d931726bb75e49c8d3b2a48121712b",
         "schema_version": "3.0",
         "sequence": 73,
         "timestamp": "2026-09-15T06:00:00Z"
       },
       {
         "aggregate_id": "7355da70fe764d0b18a0ce218fa5242b6cfa83a12de80a320ee4efc8d171d679",
-        "causation_id": "108a8bd49b7bb5e8eb7e5df4568e81b1e1f310e6fadc13039349824d35c5015d",
+        "causation_id": "6ced52768ded2b65534c63234d1b95afa89f0d141d78fea44d89871bc8dfe0e3",
         "correlation_id": "ae3520dee03151f24bed9d0a1393eb27a66a28ae324efe36bf53a52b6f8e47c2",
-        "event_hash": "b20e19b6af035f1a06c639c7158421d12a3c6345df70992d2d26f6c60c9e1ff9",
-        "event_id": "f04b8c8b2ee03e5a1a27ed9fce1577743e46f76a514c40baaa4d02ec2bae9018",
+        "event_hash": "7fc4a79393af293ccc5d70fbe1bf749564f8312a83d46c76c9e38c7af7088c57",
+        "event_id": "84cea58f68f30c20169ca75096c28f1be1a08f69a21878c5384b515c9c7d6929",
         "event_type": "ProbeProposed",
         "evidence": [
           "585733d084ad08fdddb41596bad8d1c89418896547db48d9806a367acbff02f9"
@@ -3989,26 +3989,26 @@
             }
           }
         },
-        "previous_hash": "225969d53d9a7a7d6e83cdf4dd0a01d66f74b1cb7d01b36e69c563e672f126b5",
+        "previous_hash": "135a3bf7144f6aa0d64210ffc54008866167d5281b5310faee613b05d2c17fc9",
         "schema_version": "3.0",
         "sequence": 74,
         "timestamp": "2026-09-15T06:00:00Z"
       },
       {
-        "aggregate_id": "edc4c1379abcffd251c8fcbbe649901b9ce5f8f10650cbd8882916ad09843905",
-        "causation_id": "f04b8c8b2ee03e5a1a27ed9fce1577743e46f76a514c40baaa4d02ec2bae9018",
+        "aggregate_id": "5e44b5669c531216524e1e03fdd4892b8a1a5b5bfeb2d1976e42a5651519a5c0",
+        "causation_id": "84cea58f68f30c20169ca75096c28f1be1a08f69a21878c5384b515c9c7d6929",
         "correlation_id": "ae3520dee03151f24bed9d0a1393eb27a66a28ae324efe36bf53a52b6f8e47c2",
-        "event_hash": "5a6661bb4589eea80c60d07d2afab592f16934223dbb0b63175d0cec874ce30d",
-        "event_id": "c596425f7a1d46b577e597589e21e285a0f964196ff8e77b409f71ce623e57d5",
+        "event_hash": "bb97e7861922f2882e71a2aea787fb67cdb07da77b478c29ab4508c861a862b7",
+        "event_id": "213df279502d604541c57faf9053c2b95f00682cec1d841b0fe7d3f3bf3c8aa7",
         "event_type": "ProbeRunCompleted",
         "evidence": [
-          "21800ca5cbe6efa02755c40596e2a01a1c5e0c1aa4d77d9341895ad404268eee"
+          "03eb7128ee650eeb93cc7502d04b47d5a3c1873e7cf8e0f5a26e224923bc7aa3"
         ],
         "payload": {
           "message": "regression-candidate: metamorphic probe completed",
           "mutation": {
             "collection": "probe_runs",
-            "id": "edc4c1379abcffd251c8fcbbe649901b9ce5f8f10650cbd8882916ad09843905",
+            "id": "5e44b5669c531216524e1e03fdd4892b8a1a5b5bfeb2d1976e42a5651519a5c0",
             "value": {
               "capability_id": "future.semantic_patch.v1",
               "checks": [
@@ -4026,40 +4026,40 @@
               "passed": false,
               "passed_count": 0,
               "probe_id": "7355da70fe764d0b18a0ce218fa5242b6cfa83a12de80a320ee4efc8d171d679",
-              "provenance": "executed-reference-interpreter; synthetic latency/cost budget inputs",
-              "run_id": "edc4c1379abcffd251c8fcbbe649901b9ce5f8f10650cbd8882916ad09843905",
+              "provenance": "bounded-reference-interpreter",
+              "run_id": "5e44b5669c531216524e1e03fdd4892b8a1a5b5bfeb2d1976e42a5651519a5c0",
               "sample_count": 16,
               "source": "system-generated",
               "surface_id": "881eae6f2cd78569074177aac4360f6cc3fb6123e7796f123e3e57bcc268a044"
             }
           }
         },
-        "previous_hash": "b20e19b6af035f1a06c639c7158421d12a3c6345df70992d2d26f6c60c9e1ff9",
+        "previous_hash": "7fc4a79393af293ccc5d70fbe1bf749564f8312a83d46c76c9e38c7af7088c57",
         "schema_version": "3.0",
         "sequence": 75,
         "timestamp": "2026-09-15T06:00:00Z"
       },
       {
-        "aggregate_id": "821bd215bf7210f7c2d22feea0d0558f28c75ed55f31e1ab4bb91bc43a0a2f13",
-        "causation_id": "c596425f7a1d46b577e597589e21e285a0f964196ff8e77b409f71ce623e57d5",
+        "aggregate_id": "527d2470737c22093b3e537df4e5999e75ca992507db8193d2fd8e67ef2909b1",
+        "causation_id": "213df279502d604541c57faf9053c2b95f00682cec1d841b0fe7d3f3bf3c8aa7",
         "correlation_id": "ae3520dee03151f24bed9d0a1393eb27a66a28ae324efe36bf53a52b6f8e47c2",
-        "event_hash": "803993e1d7850371b8518baa0993dd4090a57ef644c095bf75a7fd3ade102665",
-        "event_id": "9661ff34a82275e8b099ef47d446b5f5aae37672dacb8cea908e2a7f56a2c6ad",
+        "event_hash": "71d0a1ba84dd8ec4142c1fb2e8c6ec4563955394ea349c8b84d8d3d633621189",
+        "event_id": "a447b0d6e4cd62229a738e98d51812d3107a72d9e181125534d37091faab9c3f",
         "event_type": "CapabilityObserved",
         "evidence": [
-          "821bd215bf7210f7c2d22feea0d0558f28c75ed55f31e1ab4bb91bc43a0a2f13",
-          "21800ca5cbe6efa02755c40596e2a01a1c5e0c1aa4d77d9341895ad404268eee"
+          "527d2470737c22093b3e537df4e5999e75ca992507db8193d2fd8e67ef2909b1",
+          "03eb7128ee650eeb93cc7502d04b47d5a3c1873e7cf8e0f5a26e224923bc7aa3"
         ],
         "payload": {
           "message": "future.semantic_patch.v1: UNSUPPORTED",
           "mutation": {
             "collection": "evidence",
-            "id": "821bd215bf7210f7c2d22feea0d0558f28c75ed55f31e1ab4bb91bc43a0a2f13",
+            "id": "527d2470737c22093b3e537df4e5999e75ca992507db8193d2fd8e67ef2909b1",
             "value": {
               "capability_id": "future.semantic_patch.v1",
               "confidence": 0.99,
               "evaluator_version": "morphosis-reference-v3.1",
-              "evidence_hash": "21800ca5cbe6efa02755c40596e2a01a1c5e0c1aa4d77d9341895ad404268eee",
+              "evidence_hash": "03eb7128ee650eeb93cc7502d04b47d5a3c1873e7cf8e0f5a26e224923bc7aa3",
               "expires_at": "2026-09-16T06:00:00Z",
               "family": "metamorphic",
               "observed_at": "2026-09-15T06:00:00Z",
@@ -4067,7 +4067,7 @@
               "passed_count": 0,
               "probe_id": "7355da70fe764d0b18a0ce218fa5242b6cfa83a12de80a320ee4efc8d171d679",
               "provenance": "reference-execution",
-              "run_id": "edc4c1379abcffd251c8fcbbe649901b9ce5f8f10650cbd8882916ad09843905",
+              "run_id": "5e44b5669c531216524e1e03fdd4892b8a1a5b5bfeb2d1976e42a5651519a5c0",
               "sample_count": 16,
               "score": 0.0,
               "source": "independent-evaluator",
@@ -4077,17 +4077,17 @@
             }
           }
         },
-        "previous_hash": "5a6661bb4589eea80c60d07d2afab592f16934223dbb0b63175d0cec874ce30d",
+        "previous_hash": "bb97e7861922f2882e71a2aea787fb67cdb07da77b478c29ab4508c861a862b7",
         "schema_version": "3.0",
         "sequence": 76,
         "timestamp": "2026-09-15T06:00:00Z"
       },
       {
         "aggregate_id": "c9208137cdd04ba1394d7bbbba41bd9efd198135be787010975b136348ea4122",
-        "causation_id": "9661ff34a82275e8b099ef47d446b5f5aae37672dacb8cea908e2a7f56a2c6ad",
+        "causation_id": "a447b0d6e4cd62229a738e98d51812d3107a72d9e181125534d37091faab9c3f",
         "correlation_id": "ae3520dee03151f24bed9d0a1393eb27a66a28ae324efe36bf53a52b6f8e47c2",
-        "event_hash": "de41e1a16dd25ed65cada75a77c37a38fad5cdeba2b74e4230ae83a3d6611366",
-        "event_id": "dbb08f659bd6fd9b9302e1b0805e69564c7e8025007a8a733ec2cd9f57180325",
+        "event_hash": "6812c4756add16d7c70350689e2857f117fad75e548d641b8fa0d1fef149b3ae",
+        "event_id": "9923e0ad8ebef55a67912e28a2d5fca6ee66a5fce686e8c72585aba5b2a2a481",
         "event_type": "ProbeProposed",
         "evidence": [
           "c2ae7bd8e2b6f6f66e8d72432d2c0ee4998360b6503a9d7bfe6a9f97f894d355"
@@ -4127,26 +4127,26 @@
             }
           }
         },
-        "previous_hash": "803993e1d7850371b8518baa0993dd4090a57ef644c095bf75a7fd3ade102665",
+        "previous_hash": "71d0a1ba84dd8ec4142c1fb2e8c6ec4563955394ea349c8b84d8d3d633621189",
         "schema_version": "3.0",
         "sequence": 77,
         "timestamp": "2026-09-15T06:00:00Z"
       },
       {
-        "aggregate_id": "a2e8a7a625ab8dc897e19af28aa6dca98a6c4e38bbe494cf8e7e83de7b2a6399",
-        "causation_id": "dbb08f659bd6fd9b9302e1b0805e69564c7e8025007a8a733ec2cd9f57180325",
+        "aggregate_id": "2435bab03fc67587295cd87e008dc155a00c2b8e503a0741bebbbb0ad4be55a7",
+        "causation_id": "9923e0ad8ebef55a67912e28a2d5fca6ee66a5fce686e8c72585aba5b2a2a481",
         "correlation_id": "ae3520dee03151f24bed9d0a1393eb27a66a28ae324efe36bf53a52b6f8e47c2",
-        "event_hash": "61ce84f77860c79bcd142bc587d9c3b6c515d8cf75344cc6d875b8dd9a27ff81",
-        "event_id": "9fd3c94d277f8e420e4cb27f8637a8da7d777315e36ace280c8ecf63e113474d",
+        "event_hash": "cfdd851fe149038e783cf9421e1ea9e664f7e9cced24497d44563f2ae2d0c248",
+        "event_id": "0ae782fcc54a0497e19acd126084f7abf649069cf23b62a151926589a8416ef8",
         "event_type": "ProbeRunCompleted",
         "evidence": [
-          "0b75c863773a1722c658eaafe25d78e78d8296988b06a9799f898dd0b0f2ab5c"
+          "4f1d78c1facfe123101f07574cc22685ef55a262b04dc185a564213f9f69aa4f"
         ],
         "payload": {
           "message": "regression-candidate: tool-use probe completed",
           "mutation": {
             "collection": "probe_runs",
-            "id": "a2e8a7a625ab8dc897e19af28aa6dca98a6c4e38bbe494cf8e7e83de7b2a6399",
+            "id": "2435bab03fc67587295cd87e008dc155a00c2b8e503a0741bebbbb0ad4be55a7",
             "value": {
               "capability_id": "future.semantic_patch.v1",
               "checks": [
@@ -4164,40 +4164,40 @@
               "passed": false,
               "passed_count": 0,
               "probe_id": "c9208137cdd04ba1394d7bbbba41bd9efd198135be787010975b136348ea4122",
-              "provenance": "executed-reference-interpreter; synthetic latency/cost budget inputs",
-              "run_id": "a2e8a7a625ab8dc897e19af28aa6dca98a6c4e38bbe494cf8e7e83de7b2a6399",
+              "provenance": "bounded-reference-interpreter",
+              "run_id": "2435bab03fc67587295cd87e008dc155a00c2b8e503a0741bebbbb0ad4be55a7",
               "sample_count": 16,
               "source": "system-generated",
               "surface_id": "881eae6f2cd78569074177aac4360f6cc3fb6123e7796f123e3e57bcc268a044"
             }
           }
         },
-        "previous_hash": "de41e1a16dd25ed65cada75a77c37a38fad5cdeba2b74e4230ae83a3d6611366",
+        "previous_hash": "6812c4756add16d7c70350689e2857f117fad75e548d641b8fa0d1fef149b3ae",
         "schema_version": "3.0",
         "sequence": 78,
         "timestamp": "2026-09-15T06:00:00Z"
       },
       {
-        "aggregate_id": "b0b0504b3191c17f8c820386b66701d116f5cf287f079cff1d1d870df83728a1",
-        "causation_id": "9fd3c94d277f8e420e4cb27f8637a8da7d777315e36ace280c8ecf63e113474d",
+        "aggregate_id": "247ef8531c2751abb29f0857e198c8fda99f3fa8b21a8aed1a6abefad576f1fc",
+        "causation_id": "0ae782fcc54a0497e19acd126084f7abf649069cf23b62a151926589a8416ef8",
         "correlation_id": "ae3520dee03151f24bed9d0a1393eb27a66a28ae324efe36bf53a52b6f8e47c2",
-        "event_hash": "71d06e5da29a7b233034e498ad95d7c9efad968d99944e23c87289f95c3db88b",
-        "event_id": "3244c4943c12ebf0410a52c01eea6e0fbe62eb980300f46a1550eca47069e950",
+        "event_hash": "77b69fdb2eadac20d2643d5b20648c250f26d1b4911ee25154302226f0276725",
+        "event_id": "b5f725339b543a8a488a0306c9d0b739991c1722297562e3948112fd28866b58",
         "event_type": "CapabilityObserved",
         "evidence": [
-          "b0b0504b3191c17f8c820386b66701d116f5cf287f079cff1d1d870df83728a1",
-          "0b75c863773a1722c658eaafe25d78e78d8296988b06a9799f898dd0b0f2ab5c"
+          "247ef8531c2751abb29f0857e198c8fda99f3fa8b21a8aed1a6abefad576f1fc",
+          "4f1d78c1facfe123101f07574cc22685ef55a262b04dc185a564213f9f69aa4f"
         ],
         "payload": {
           "message": "future.semantic_patch.v1: UNSUPPORTED",
           "mutation": {
             "collection": "evidence",
-            "id": "b0b0504b3191c17f8c820386b66701d116f5cf287f079cff1d1d870df83728a1",
+            "id": "247ef8531c2751abb29f0857e198c8fda99f3fa8b21a8aed1a6abefad576f1fc",
             "value": {
               "capability_id": "future.semantic_patch.v1",
               "confidence": 0.99,
               "evaluator_version": "morphosis-reference-v3.1",
-              "evidence_hash": "0b75c863773a1722c658eaafe25d78e78d8296988b06a9799f898dd0b0f2ab5c",
+              "evidence_hash": "4f1d78c1facfe123101f07574cc22685ef55a262b04dc185a564213f9f69aa4f",
               "expires_at": "2026-09-16T06:00:00Z",
               "family": "tool-use",
               "observed_at": "2026-09-15T06:00:00Z",
@@ -4205,7 +4205,7 @@
               "passed_count": 0,
               "probe_id": "c9208137cdd04ba1394d7bbbba41bd9efd198135be787010975b136348ea4122",
               "provenance": "reference-execution",
-              "run_id": "a2e8a7a625ab8dc897e19af28aa6dca98a6c4e38bbe494cf8e7e83de7b2a6399",
+              "run_id": "2435bab03fc67587295cd87e008dc155a00c2b8e503a0741bebbbb0ad4be55a7",
               "sample_count": 16,
               "score": 0.0,
               "source": "independent-evaluator",
@@ -4215,17 +4215,17 @@
             }
           }
         },
-        "previous_hash": "61ce84f77860c79bcd142bc587d9c3b6c515d8cf75344cc6d875b8dd9a27ff81",
+        "previous_hash": "cfdd851fe149038e783cf9421e1ea9e664f7e9cced24497d44563f2ae2d0c248",
         "schema_version": "3.0",
         "sequence": 79,
         "timestamp": "2026-09-15T06:00:00Z"
       },
       {
         "aggregate_id": "881eae6f2cd78569074177aac4360f6cc3fb6123e7796f123e3e57bcc268a044",
-        "causation_id": "3244c4943c12ebf0410a52c01eea6e0fbe62eb980300f46a1550eca47069e950",
+        "causation_id": "b5f725339b543a8a488a0306c9d0b739991c1722297562e3948112fd28866b58",
         "correlation_id": "ae3520dee03151f24bed9d0a1393eb27a66a28ae324efe36bf53a52b6f8e47c2",
-        "event_hash": "1ed1a424f1c9caaf0f5b638649b53cbb5c9bbad184c4dbe947d2892034f98085",
-        "event_id": "969f734f433edbfef3586ed470b5ec02d3c0f09dcb9e104f970853592b40ad76",
+        "event_hash": "c2f9613c64eb1724c8161b9e1944b840966d109edac6556ccc408dc65d26a108",
+        "event_id": "8606be681dd28e9c69f35fa794da3c5756e32b2eafa9785a7319973723b5619a",
         "event_type": "AdaptationCompiled",
         "evidence": [
           "48b91ba7e8dba22a4a4c9949d67c80759f15f752ae1ab26f488bd06d383890be"
@@ -4250,17 +4250,17 @@
             }
           }
         },
-        "previous_hash": "71d06e5da29a7b233034e498ad95d7c9efad968d99944e23c87289f95c3db88b",
+        "previous_hash": "77b69fdb2eadac20d2643d5b20648c250f26d1b4911ee25154302226f0276725",
         "schema_version": "3.0",
         "sequence": 80,
         "timestamp": "2026-09-15T06:00:00Z"
       },
       {
         "aggregate_id": "881eae6f2cd78569074177aac4360f6cc3fb6123e7796f123e3e57bcc268a044",
-        "causation_id": "969f734f433edbfef3586ed470b5ec02d3c0f09dcb9e104f970853592b40ad76",
+        "causation_id": "8606be681dd28e9c69f35fa794da3c5756e32b2eafa9785a7319973723b5619a",
         "correlation_id": "ae3520dee03151f24bed9d0a1393eb27a66a28ae324efe36bf53a52b6f8e47c2",
-        "event_hash": "de843c98e873c258fa78176af4eedeaf8063fc2beabbee9e67b5c6dcc44f7e46",
-        "event_id": "a7c286bf1a0bcb877996678ef5e305e0c2d948bfb7968ab3ba5875f27947b94a",
+        "event_hash": "215978216ba2d406647a7c2127a7ca693ee7e249385ee8c74ffd83cf31730b5f",
+        "event_id": "60ab28d6497d5b824863dbd113d7377b2c0c5deefe9f67d1bd29ec647ff0bff3",
         "event_type": "AdaptationRejected",
         "evidence": [
           "d002980e77160af36af952fa14d77fe06f0da9d6a995ac4cdc91002c6c2817f4"
@@ -4318,20 +4318,20 @@
             }
           }
         },
-        "previous_hash": "1ed1a424f1c9caaf0f5b638649b53cbb5c9bbad184c4dbe947d2892034f98085",
+        "previous_hash": "c2f9613c64eb1724c8161b9e1944b840966d109edac6556ccc408dc65d26a108",
         "schema_version": "3.0",
         "sequence": 81,
         "timestamp": "2026-09-15T06:00:00Z"
       },
       {
         "aggregate_id": "881eae6f2cd78569074177aac4360f6cc3fb6123e7796f123e3e57bcc268a044:122b0185ef4538eda51bc35c319e2c50f0520232a8655d89c918f6983160d1cb",
-        "causation_id": "a7c286bf1a0bcb877996678ef5e305e0c2d948bfb7968ab3ba5875f27947b94a",
+        "causation_id": "60ab28d6497d5b824863dbd113d7377b2c0c5deefe9f67d1bd29ec647ff0bff3",
         "correlation_id": "ae3520dee03151f24bed9d0a1393eb27a66a28ae324efe36bf53a52b6f8e47c2",
-        "event_hash": "7f496a9069fc527015171999b3d9ef0ed0c2ee7c0db193f9f8103a38674ee93b",
-        "event_id": "f9a03385a5cd353aaf6b166ca8a8293ab3336f48a30ee16074806cf4810d4a69",
+        "event_hash": "0adeb3e12d0c05b414d3c04f8d24cac931a869b9e79fc035ea8dfe42db0ec004",
+        "event_id": "8b5e2be5c6dd7ba24acac115518afb399e2a595671804c47f36dba1883ae24ee",
         "event_type": "WorkloadQualificationRecorded",
         "evidence": [
-          "7ece92517dda9bb86bfbc6ce17ceec0cee57a8b0c93fa1bc059c46d52b8efa93"
+          "9dfdf7049e46faab6de9cf5ad9c4abd15dd56a4f17fd52b2c38b6a2f231ae8a1"
         ],
         "payload": {
           "message": "Workload-scoped decision: tool-roundtrip",
@@ -4340,9 +4340,9 @@
             "id": "881eae6f2cd78569074177aac4360f6cc3fb6123e7796f123e3e57bcc268a044:122b0185ef4538eda51bc35c319e2c50f0520232a8655d89c918f6983160d1cb",
             "value": {
               "evidence": [
-                "821bd215bf7210f7c2d22feea0d0558f28c75ed55f31e1ab4bb91bc43a0a2f13",
-                "b0b0504b3191c17f8c820386b66701d116f5cf287f079cff1d1d870df83728a1",
-                "fd67ea485ddac8de80996181fc1dce60cc4c641b205824bba158a86966dbdfc9"
+                "247ef8531c2751abb29f0857e198c8fda99f3fa8b21a8aed1a6abefad576f1fc",
+                "527d2470737c22093b3e537df4e5999e75ca992507db8193d2fd8e67ef2909b1",
+                "cfb86238b54c911f204ebc50c25d61ca4a447867be83f5647ecf6bd0500b5b81"
               ],
               "measurements": {
                 "adaptation_complexity": 1,
@@ -4373,20 +4373,20 @@
             }
           }
         },
-        "previous_hash": "de843c98e873c258fa78176af4eedeaf8063fc2beabbee9e67b5c6dcc44f7e46",
+        "previous_hash": "215978216ba2d406647a7c2127a7ca693ee7e249385ee8c74ffd83cf31730b5f",
         "schema_version": "3.0",
         "sequence": 82,
         "timestamp": "2026-09-15T06:00:00Z"
       },
       {
         "aggregate_id": "881eae6f2cd78569074177aac4360f6cc3fb6123e7796f123e3e57bcc268a044",
-        "causation_id": "f9a03385a5cd353aaf6b166ca8a8293ab3336f48a30ee16074806cf4810d4a69",
+        "causation_id": "8b5e2be5c6dd7ba24acac115518afb399e2a595671804c47f36dba1883ae24ee",
         "correlation_id": "ae3520dee03151f24bed9d0a1393eb27a66a28ae324efe36bf53a52b6f8e47c2",
-        "event_hash": "93b5cfdef77a8fbb29553e326ea5ffc14afa84fed82f54d763358b7a8e0b056d",
-        "event_id": "53391a51314e5bbcf8f5d01845ca8e0d16b78282009702831eb30a2321943bdb",
+        "event_hash": "8b560180567cc3bf4fb5c62ee7889b5a519772ae4c0ac9c1588ca96baac0535a",
+        "event_id": "b90608f4d19bfa1a27849e15302ff240c052d9332dd292084d39615bdc3c24bd",
         "event_type": "QualificationCompleted",
         "evidence": [
-          "7ece92517dda9bb86bfbc6ce17ceec0cee57a8b0c93fa1bc059c46d52b8efa93"
+          "9dfdf7049e46faab6de9cf5ad9c4abd15dd56a4f17fd52b2c38b6a2f231ae8a1"
         ],
         "payload": {
           "message": "regression-candidate: REJECT",
@@ -4395,9 +4395,9 @@
             "id": "881eae6f2cd78569074177aac4360f6cc3fb6123e7796f123e3e57bcc268a044",
             "value": {
               "evidence": [
-                "821bd215bf7210f7c2d22feea0d0558f28c75ed55f31e1ab4bb91bc43a0a2f13",
-                "b0b0504b3191c17f8c820386b66701d116f5cf287f079cff1d1d870df83728a1",
-                "fd67ea485ddac8de80996181fc1dce60cc4c641b205824bba158a86966dbdfc9"
+                "247ef8531c2751abb29f0857e198c8fda99f3fa8b21a8aed1a6abefad576f1fc",
+                "527d2470737c22093b3e537df4e5999e75ca992507db8193d2fd8e67ef2909b1",
+                "cfb86238b54c911f204ebc50c25d61ca4a447867be83f5647ecf6bd0500b5b81"
               ],
               "measurements": {
                 "adaptation_complexity": 1,
@@ -4428,7 +4428,7 @@
             }
           }
         },
-        "previous_hash": "7f496a9069fc527015171999b3d9ef0ed0c2ee7c0db193f9f8103a38674ee93b",
+        "previous_hash": "0adeb3e12d0c05b414d3c04f8d24cac931a869b9e79fc035ea8dfe42db0ec004",
         "schema_version": "3.0",
         "sequence": 83,
         "timestamp": "2026-09-15T06:00:00Z"
@@ -4593,15 +4593,15 @@
           },
           {
             "evidence": [
-              "49717503200e2eb8518ca4bb10cab38c9195df5620c47f91edcdd6b335cfc03f",
-              "8d98c2b93f1c7ba4c6aa5f1b7d043588ee441315ebd03ff236292c31208d22ea",
-              "63f641bae3c026bda20d4b1291a71e12e13139f2d5c8017870fdf9a2d50289bb",
-              "d0391fd6302e2f76e6f8b560f47f82dba04ebe17abe4ab8e4873c81dbf6afd6c",
-              "7a04629d69fe7f2d1e0cc43783cc01817165846e0092f3b4f4b630f71663ab90",
-              "282bb9fffecff237c41222fa88e1bec3c8d59c234df9b4a8b9d9cf9f626a85f4",
-              "108a8bd49b7bb5e8eb7e5df4568e81b1e1f310e6fadc13039349824d35c5015d",
-              "9661ff34a82275e8b099ef47d446b5f5aae37672dacb8cea908e2a7f56a2c6ad",
-              "3244c4943c12ebf0410a52c01eea6e0fbe62eb980300f46a1550eca47069e950"
+              "cbece62e2dd0a1b09169a3c7effbf9adc4cc6cd68789c5048fd270c138633b40",
+              "6ec229705f842cf74addb58788af12a76ce509a22b65656d7413e6d8f5d157a1",
+              "3fa59179a6a10eb4587692937d33bf763f8d9b620fb06e04b4b122d4f1d63a44",
+              "d75d2fd7cfd14f62d5f912e990ff92f2e5b94e359f0346be87cd6bde0b93d5c8",
+              "a5c34daf0a2b9d9afcf08830772a3bd7cd1d4567c19fd2289f3b2ca4ffd94c23",
+              "0bfc8a4d670adc1f9052db955eb456e8468b7febe297ef7eec4fc89bef0dd353",
+              "6ced52768ded2b65534c63234d1b95afa89f0d141d78fea44d89871bc8dfe0e3",
+              "a447b0d6e4cd62229a738e98d51812d3107a72d9e181125534d37091faab9c3f",
+              "b5f725339b543a8a488a0306c9d0b739991c1722297562e3948112fd28866b58"
             ],
             "id": "graph",
             "implementation": "src/morphosis/os/graph.py",
@@ -4624,14 +4624,14 @@
           {
             "evidence": [
               "16543447ce9e8f1bddc678b3c0b9ef4f8d6c0c0a531338c4fb4a16db1e1cbc4b",
-              "44e4d3748bcbde6d17316142189e827b04405734fc18f6d6f97281e0ee2d37e5",
-              "fcda64f3089425e6dd93765b60e0d9f2fe2dd78260b1c8810daa5e1423a6c38c",
-              "900c0fce75a1a668a390d90724431d969e09282de8aa17fcf80e27f8f5427a07",
-              "f4d58678d84d54e2b51378964b186849bb5b4ca74edd2aea48c6e2326dad90ba",
-              "ab838b12e8b175b93b83bfa170119ffd10dc6e1fdf37c77d6e2168c635164c07",
-              "0d8cae9cd74775bc0077d8467b2734a0f9a647daeab4eab99be2c164aa195e4f",
-              "f04b8c8b2ee03e5a1a27ed9fce1577743e46f76a514c40baaa4d02ec2bae9018",
-              "dbb08f659bd6fd9b9302e1b0805e69564c7e8025007a8a733ec2cd9f57180325"
+              "f77bc708835a1c596aea6f08acbdf234b897db5427aadbeec4d8cde1501e265d",
+              "0d0dc1172ce3853d4cc4773f031c47f5beefbeb147ddd1fef66d3177c5296e78",
+              "97ef45998085688217512557ea594f1ed8136058fb62794ac79f6b7d23457edd",
+              "b30f321cdb293608e6a1a72e570969f788ab97d71ea2a1dc8c77ac2d09ce0029",
+              "81b5581c9f939f192b5aca6398e553a51929e0b1a6402f18d9fe57bfe6836c11",
+              "5191c6f64b9e5c3e37d4755fedd9f34ac5742bede6e1628250285c24a5dc5956",
+              "84cea58f68f30c20169ca75096c28f1be1a08f69a21878c5384b515c9c7d6929",
+              "9923e0ad8ebef55a67912e28a2d5fca6ee66a5fce686e8c72585aba5b2a2a481"
             ],
             "id": "probe",
             "implementation": "src/morphosis/os/probes.py",
@@ -4669,9 +4669,9 @@
           },
           {
             "evidence": [
-              "798430e52310a0efcdd4825b77636c91b30fc6b074af4618e45c1f6b10995f73",
-              "b4f5c19bce9c8be10f4f9264d4473cda4b9c211bbecd0f010d8e67688309e836",
-              "969f734f433edbfef3586ed470b5ec02d3c0f09dcb9e104f970853592b40ad76"
+              "e8bda8121ecc2e48f618d4207e04fbf6d18f8387ff218aa893d45f0602e03938",
+              "7d818ff49cf324973aa22ab09585cb4d03c6c3f62368b09096ebbd47b4439ec0",
+              "8606be681dd28e9c69f35fa794da3c5756e32b2eafa9785a7319973723b5619a"
             ],
             "id": "compiler",
             "implementation": "src/morphosis/os/compiler.py",
@@ -4692,7 +4692,7 @@
           },
           {
             "evidence": [
-              "16631eb6a14918d7476cb8f930375372b11c3a4dcf3b6ef77b8c100bbe88771f"
+              "45ea5bc2c80db4f8979e32d4e05c338371bb94a678b50643501c5d7274f3e2d5"
             ],
             "id": "verification",
             "implementation": "src/morphosis/os/compiler.py",
@@ -4712,18 +4712,18 @@
           },
           {
             "evidence": [
-              "315a6078eaa7382ca489feae8a8388e46374567ddbd4897b07cf2e57311280e7",
-              "f0995380895ff7e7d94011bc4cae55164ae2d635cf6f380ca5ea804cfd7a6c50",
-              "bc10967b9c68ec70c57a40337d47238e11241f2f280d367fd4a4ca422954bab5",
-              "e1dd6baefb9db8c2cabe8d58fdd9c3977dfc1b17d792d0f602c882f7b18c923e",
-              "e100adbded33ecd6cd5bfb689e25945fe35314375a522c139adc5ef3ce445bb1",
-              "915e73c9c02f75e20baf749c44d8becee25cf8cc68d3d1e77d980eec58c0feaf",
-              "eadae59465293d8b33ae0e782c6596a5b253358bacec59f79682f483f06085b3",
-              "d95683a1812a9f961349d2cbe593bafcd58970f00b73a11ff1c850888428fef1",
-              "62e95fb6a3e75244a78b0d1495ab30e0940f6e11a7ce863b05d3b77f3dcd1801",
-              "c87fc26d51d6aae2c107f7169780daf847e8e34dee11a18869e0886956831149",
-              "65c7972f3fbff7391f73de512b39afee6832c705d744eb6fa9bf2bbdd610b05d",
-              "53391a51314e5bbcf8f5d01845ca8e0d16b78282009702831eb30a2321943bdb"
+              "20cd1df808539a53e6a6622e313de3126df0e8693817e81b0f851ab2ed47e371",
+              "1a415356cf797308753a6ab4e7a07702cdd7dc01aecbb9e96893381cf0743f9d",
+              "1841f10c93fd55862f0c4aa8e8d0a1c2e0b64845645e3809c53554b7c96023cc",
+              "ed6f588bc991c4b4fce4823e03f42389c6c38a05ff4e4a9147fa47cff73cc914",
+              "f6b6c4b4c523044e8f4e61fc86878e85f6a7ad8e081c3a447a1a8f1d8a06f530",
+              "34ee0d8123b4fec27597d81fe15af815995959cb966e38632c95f9cf09392f3a",
+              "e8b920feecf68d9d2f9a8283ccbff3a806b0e838bc72aba2635744e3857c4ba7",
+              "eb4cf07d33662a420b3ba2b7e6166dd994a0ca4e39bbd4cf9021701eb1f42ef9",
+              "9a7b298bf00a4973858c44c57d6ca24559cfde196c2842328bb7e92b2f2ac0c5",
+              "7a43a16c8428694e80526872dddd5a40fe44aa49917ffadeefb0bb530fbfac1d",
+              "09639e60242b4aa37f14dbe2c457f0e8a9816acb364dea11c3bfd6843693c850",
+              "b90608f4d19bfa1a27849e15302ff240c052d9332dd292084d39615bdc3c24bd"
             ],
             "id": "qualification",
             "implementation": "src/morphosis/os/qualifier.py",
@@ -4743,7 +4743,7 @@
           },
           {
             "evidence": [
-              "8e9675d0b364bbffe53ed7a3d502194ec8fe86108395e24d0cc3d98304104427"
+              "d2576837ff4bd71aff29f3400305e18770d96d460b5075c6078084670fc04c39"
             ],
             "id": "bundle",
             "implementation": "src/morphosis/os/schemas.py",
@@ -4783,7 +4783,7 @@
           },
           {
             "evidence": [
-              "4a3b0dcc7758fdc079e7c1b77dc4fa22b0888568ad8e7bd2c059420e25848612"
+              "24cdeb4dc519820ced1f5f428f86230cfe354d45665913bbbe250d9670bc7888"
             ],
             "id": "shadow",
             "implementation": "src/morphosis/os/deployment.py",
@@ -4803,7 +4803,7 @@
           },
           {
             "evidence": [
-              "735d5d7820608667e1faee2c12c4d3424117a81a10cca79e851ac0b7ca474785"
+              "ff2dc4f08aeb8dea1b4b166812573a4e6ad3ee3e3431890c839ef9fffa6b538f"
             ],
             "id": "canary",
             "implementation": "src/morphosis/os/deployment.py",
@@ -4823,7 +4823,7 @@
           },
           {
             "evidence": [
-              "854983f17249977bec6ec0c190a13d52687d735c2c507cf52738b672f8856357"
+              "fd1029c4cde7daac9bff5ce029062448a9d89d80ca6bb14312b8ab81424b31f2"
             ],
             "id": "serving",
             "implementation": "src/morphosis/os/agents.py",
@@ -4924,80 +4924,80 @@
           "d1b6d182afae180d5f77f12c2706f131c14414d021d936c3f834d01f2a78ac58",
           "3797479091c35951506dd5a25b135a89c2971c2671dbd7c3953163f59258cae9",
           "16543447ce9e8f1bddc678b3c0b9ef4f8d6c0c0a531338c4fb4a16db1e1cbc4b",
-          "5510d9d22ef79c13406930885c83080af0e34639836b549a0ee767dd2b5a6dcd",
-          "49717503200e2eb8518ca4bb10cab38c9195df5620c47f91edcdd6b335cfc03f",
-          "44e4d3748bcbde6d17316142189e827b04405734fc18f6d6f97281e0ee2d37e5",
-          "482ce9255cdecc34156d1291dd26b4c139ab74f7debaf71184547ff4c4f7a508",
-          "8d98c2b93f1c7ba4c6aa5f1b7d043588ee441315ebd03ff236292c31208d22ea",
-          "fcda64f3089425e6dd93765b60e0d9f2fe2dd78260b1c8810daa5e1423a6c38c",
-          "a259152cbb1a472d524a85911901afb777088aa3344f2919c91daf129bda3904",
-          "63f641bae3c026bda20d4b1291a71e12e13139f2d5c8017870fdf9a2d50289bb",
-          "798430e52310a0efcdd4825b77636c91b30fc6b074af4618e45c1f6b10995f73",
-          "16631eb6a14918d7476cb8f930375372b11c3a4dcf3b6ef77b8c100bbe88771f",
-          "7b608c4d288ffbe3bcf45318d8cbdd345ffb66360df74840bc578498fbdd7d99",
-          "315a6078eaa7382ca489feae8a8388e46374567ddbd4897b07cf2e57311280e7",
-          "900c0fce75a1a668a390d90724431d969e09282de8aa17fcf80e27f8f5427a07",
-          "3f38264e6cb357ab52986b6d39d7aac1c577b4738a3f7de0741eed615960ae7a",
-          "d0391fd6302e2f76e6f8b560f47f82dba04ebe17abe4ab8e4873c81dbf6afd6c",
-          "f4d58678d84d54e2b51378964b186849bb5b4ca74edd2aea48c6e2326dad90ba",
-          "33efa1fddf107ea34ea0b6f008634821b238a8454849011b8b266cbd576cf01f",
-          "7a04629d69fe7f2d1e0cc43783cc01817165846e0092f3b4f4b630f71663ab90",
-          "ab838b12e8b175b93b83bfa170119ffd10dc6e1fdf37c77d6e2168c635164c07",
-          "1795ce037bfc6480146c00ccae39cb76e90f57c7308cbae298e6705e09d34a0d",
-          "282bb9fffecff237c41222fa88e1bec3c8d59c234df9b4a8b9d9cf9f626a85f4",
-          "b4f5c19bce9c8be10f4f9264d4473cda4b9c211bbecd0f010d8e67688309e836",
-          "f11ca476467a8fa81059c389691cb36b1f8bcfb2a9c5772755f830f3e18b24fe",
-          "935378e520d63cc6fb11637ad842725c4e0a68af885e5fc156e8a492b5067033",
-          "f0995380895ff7e7d94011bc4cae55164ae2d635cf6f380ca5ea804cfd7a6c50",
-          "ba31508fabf167843ee732577b8a2fd0bb3f4f18161b22df893764b305e7c63f",
-          "bc10967b9c68ec70c57a40337d47238e11241f2f280d367fd4a4ca422954bab5",
-          "f0fefa9f9982260fd5d62de00beafa27a501726e70ce3888b7d58c12d45df5c5",
-          "e1dd6baefb9db8c2cabe8d58fdd9c3977dfc1b17d792d0f602c882f7b18c923e",
-          "8e9675d0b364bbffe53ed7a3d502194ec8fe86108395e24d0cc3d98304104427",
-          "ecbd7a164276ba5fa2dd13e7e89d1f36658d024ae225b8c328c0722434d3f7f2",
-          "3a288d46947fbcb6ea100f5a5a45be2eb0b1d77fcbe0905f8f8ed73e8a669c75",
-          "e100adbded33ecd6cd5bfb689e25945fe35314375a522c139adc5ef3ce445bb1",
-          "6c23f7f42cc60ff9dac7e303c8657162739e14308bed58319f5ad9be7618d893",
-          "67a2b48cdba7b71290bae98c13443f2c2654b20cfc17acad61d6de8497173d94",
-          "915e73c9c02f75e20baf749c44d8becee25cf8cc68d3d1e77d980eec58c0feaf",
-          "c434588055e29691e86d4e1125f39aaeaf84b669e033e46e9dfa3a5cc24f8555",
-          "8dd06dbc3cf06004ace498e741cd2c655f271111dd4b92c4ab0eff3ab124b33c",
-          "e78433af6bc39613d8e24d36daf81b0bd08add4e9d0d54014ce40b615f290c15",
-          "eadae59465293d8b33ae0e782c6596a5b253358bacec59f79682f483f06085b3",
-          "637588a6285fadd93a6e940db6fd5b096127381b960646c3d903ff48a649f66e",
-          "a8131be0acd385b346b3d4c26f6a9ca96fbacf7c31aefb87ed9ec92b25fdb921",
-          "d95683a1812a9f961349d2cbe593bafcd58970f00b73a11ff1c850888428fef1",
-          "1cfad6fe87d831827d9a91d0dc574259e6897e077f50cee5bdd4bd796c8eff12",
-          "4a3b0dcc7758fdc079e7c1b77dc4fa22b0888568ad8e7bd2c059420e25848612",
-          "c041992c797c8db58352a5a7726fdee5dd58de7cc30967520dbf24a03a386628",
-          "62e95fb6a3e75244a78b0d1495ab30e0940f6e11a7ce863b05d3b77f3dcd1801",
-          "bc4dc0ddb81fc2a77df0a2e0a84a5b3dd801d50b98b7e58d3af99584d6f88d07",
-          "735d5d7820608667e1faee2c12c4d3424117a81a10cca79e851ac0b7ca474785",
-          "7ba6393c524f35f4031f4b7125d11763fc9cea424fc6ee0e5ba7d19acdd8e1a9",
-          "c87fc26d51d6aae2c107f7169780daf847e8e34dee11a18869e0886956831149",
-          "60d7de9263700cf66737c06c9e59d5b26ef6f210cfb3dfbc53838fc5a91c36a7",
-          "24a2c0065c633fae8f9140ac8d8a81f163ce452a4e92b89d0c516ba5e73cc87a",
-          "eed13df5186b22bee143fbc3a99115e7a4bf7eec31349b02ae70c7b248948ee2",
-          "65c7972f3fbff7391f73de512b39afee6832c705d744eb6fa9bf2bbdd610b05d",
-          "a71a885f7086e07c73c154f31e6e43f27d776b7a3a9b970b45a4266c92e5c007",
-          "854983f17249977bec6ec0c190a13d52687d735c2c507cf52738b672f8856357",
-          "17bed247c8feb44b644fcc44537b023953991fcae88e607b4c0eea7af5cf2966",
-          "0d8cae9cd74775bc0077d8467b2734a0f9a647daeab4eab99be2c164aa195e4f",
-          "8b2cf3d452e1304fd27fbbfa33fd28e9dacb741cfcfcf25d63e534439cda367c",
-          "108a8bd49b7bb5e8eb7e5df4568e81b1e1f310e6fadc13039349824d35c5015d",
-          "f04b8c8b2ee03e5a1a27ed9fce1577743e46f76a514c40baaa4d02ec2bae9018",
-          "c596425f7a1d46b577e597589e21e285a0f964196ff8e77b409f71ce623e57d5",
-          "9661ff34a82275e8b099ef47d446b5f5aae37672dacb8cea908e2a7f56a2c6ad",
-          "dbb08f659bd6fd9b9302e1b0805e69564c7e8025007a8a733ec2cd9f57180325",
-          "9fd3c94d277f8e420e4cb27f8637a8da7d777315e36ace280c8ecf63e113474d",
-          "3244c4943c12ebf0410a52c01eea6e0fbe62eb980300f46a1550eca47069e950",
-          "969f734f433edbfef3586ed470b5ec02d3c0f09dcb9e104f970853592b40ad76",
-          "a7c286bf1a0bcb877996678ef5e305e0c2d948bfb7968ab3ba5875f27947b94a",
-          "f9a03385a5cd353aaf6b166ca8a8293ab3336f48a30ee16074806cf4810d4a69",
-          "53391a51314e5bbcf8f5d01845ca8e0d16b78282009702831eb30a2321943bdb"
+          "a8bde8b644694f0e2873e26740e3777ccd0471ed9616de7b67d864b2e99f30ea",
+          "cbece62e2dd0a1b09169a3c7effbf9adc4cc6cd68789c5048fd270c138633b40",
+          "f77bc708835a1c596aea6f08acbdf234b897db5427aadbeec4d8cde1501e265d",
+          "3e5a3f202dae6b49c7d43d6373dfbab9d9f74f2353d3d7c5602b5b4d14bdb03f",
+          "6ec229705f842cf74addb58788af12a76ce509a22b65656d7413e6d8f5d157a1",
+          "0d0dc1172ce3853d4cc4773f031c47f5beefbeb147ddd1fef66d3177c5296e78",
+          "1e689b3d526e0a59bf175e3cbb2f176f8872d708642b8e753923130bd8a71954",
+          "3fa59179a6a10eb4587692937d33bf763f8d9b620fb06e04b4b122d4f1d63a44",
+          "e8bda8121ecc2e48f618d4207e04fbf6d18f8387ff218aa893d45f0602e03938",
+          "45ea5bc2c80db4f8979e32d4e05c338371bb94a678b50643501c5d7274f3e2d5",
+          "f84748e5f6261ccd8c96f5ab34000f639d07d454f9e1980fbc2594975a606999",
+          "20cd1df808539a53e6a6622e313de3126df0e8693817e81b0f851ab2ed47e371",
+          "97ef45998085688217512557ea594f1ed8136058fb62794ac79f6b7d23457edd",
+          "de5af543c52d65abbdf1734bd85531dc3398acbccbcff69a718b25780b58295a",
+          "d75d2fd7cfd14f62d5f912e990ff92f2e5b94e359f0346be87cd6bde0b93d5c8",
+          "b30f321cdb293608e6a1a72e570969f788ab97d71ea2a1dc8c77ac2d09ce0029",
+          "daadbdeb30cc31742af89efc5ff064d9d00aeeb249a00f36360687a91c67810a",
+          "a5c34daf0a2b9d9afcf08830772a3bd7cd1d4567c19fd2289f3b2ca4ffd94c23",
+          "81b5581c9f939f192b5aca6398e553a51929e0b1a6402f18d9fe57bfe6836c11",
+          "1c8e59ec9dbab2535ef3ddf485d482551e36630e8404ebb2417dc3352b169804",
+          "0bfc8a4d670adc1f9052db955eb456e8468b7febe297ef7eec4fc89bef0dd353",
+          "7d818ff49cf324973aa22ab09585cb4d03c6c3f62368b09096ebbd47b4439ec0",
+          "55043ed67c9bcc6c4d2940aa9fab3e5c3d7b018c664e8d1a1f7939520382288d",
+          "8c5748c4374b3869a6a3e53c2167cca71ce0b58fd1e86f305a0e3f7e04f306d0",
+          "1a415356cf797308753a6ab4e7a07702cdd7dc01aecbb9e96893381cf0743f9d",
+          "3732dd0c9afe2e24ad691e9e2cdcf7aaf67161766ef7fc3465e8ffcfc3273a0f",
+          "1841f10c93fd55862f0c4aa8e8d0a1c2e0b64845645e3809c53554b7c96023cc",
+          "10529b58cf108c93930dc7dba2c751ca3daee2cbfc44b6cac6edf872990663f0",
+          "ed6f588bc991c4b4fce4823e03f42389c6c38a05ff4e4a9147fa47cff73cc914",
+          "d2576837ff4bd71aff29f3400305e18770d96d460b5075c6078084670fc04c39",
+          "bce0e8495dee2e86913a947190df78ddb9c046d65beda7290c1e952a5de5a58c",
+          "6415e82a0d7760383e13a6b1850cbb604ab2efa7f6db1bd0b713be55e54d5352",
+          "f6b6c4b4c523044e8f4e61fc86878e85f6a7ad8e081c3a447a1a8f1d8a06f530",
+          "db303c7c28dc949b996a465c7ec0f82c4522c788eaffa33be4c0c9f63c070291",
+          "8db6dd5d5c7bc68c447bde8c1cd9e3b07e4916da559afe8278d01825361bc77c",
+          "34ee0d8123b4fec27597d81fe15af815995959cb966e38632c95f9cf09392f3a",
+          "0ccde22dc2599803fb31cceff69bcf5cfdcfa72b750b8525bb6ed46fcf036be1",
+          "8bf243825d4f7f3f1cfc9ce1d4f1f8e2d336c5f98a3113972c7b65f2ae1af9f1",
+          "e9155d9eea6d6ef8ddf8d79139e52f4ff721913a58f816b886e6f7478f48f69d",
+          "e8b920feecf68d9d2f9a8283ccbff3a806b0e838bc72aba2635744e3857c4ba7",
+          "9ceb9e0bc8031a3ee3dd3bddf5290c8ccab2b225baa373628d0b87b67a71c8a7",
+          "aa36eae0e3d1fe03b17ca870aed04d016e99db11d4748bf7f8f33fb1efad0d38",
+          "eb4cf07d33662a420b3ba2b7e6166dd994a0ca4e39bbd4cf9021701eb1f42ef9",
+          "5c41cb0ca24d17e8dd5ea2bc5ba7a249487e416662c1a9a8cf8d493e37b06065",
+          "24cdeb4dc519820ced1f5f428f86230cfe354d45665913bbbe250d9670bc7888",
+          "bd68dd7dddb04ab6c82fb78e70e3607475f3beedd2997e92fe89e113c570e523",
+          "9a7b298bf00a4973858c44c57d6ca24559cfde196c2842328bb7e92b2f2ac0c5",
+          "3856d23a7c445c5a8818ac8cf7927735681e53344010fd863f1eca0d53bcaf92",
+          "ff2dc4f08aeb8dea1b4b166812573a4e6ad3ee3e3431890c839ef9fffa6b538f",
+          "6a76908a34fbcce2335b419201fb56293c5c7d96fac5c0b04421063247c99494",
+          "7a43a16c8428694e80526872dddd5a40fe44aa49917ffadeefb0bb530fbfac1d",
+          "a95994d30ce9b2bf5dfb3c9a55cf8f8156c72d4084d332464ea7303f6dc0d2c6",
+          "bdc4265c1cca3beb49cc347c79e21cbac4399ad207bd6902e384249e70c1e19b",
+          "52158b809e850106466e6f291b3df7dee7cb6de2947a01ab06688c4c0eecce3b",
+          "09639e60242b4aa37f14dbe2c457f0e8a9816acb364dea11c3bfd6843693c850",
+          "0b86dc9d4a6e3a617c0f09908caa5fe66bad971e3f1634e8e34eaf6487f76a36",
+          "fd1029c4cde7daac9bff5ce029062448a9d89d80ca6bb14312b8ab81424b31f2",
+          "86dbf0b2a0ea283883738f589bfc1d2c8119081671a28ec660da9c6a78021e59",
+          "5191c6f64b9e5c3e37d4755fedd9f34ac5742bede6e1628250285c24a5dc5956",
+          "9253d4651bf00572e19321dc9555c07f7f810f8f66ac576c58cdbab2164fe2ee",
+          "6ced52768ded2b65534c63234d1b95afa89f0d141d78fea44d89871bc8dfe0e3",
+          "84cea58f68f30c20169ca75096c28f1be1a08f69a21878c5384b515c9c7d6929",
+          "213df279502d604541c57faf9053c2b95f00682cec1d841b0fe7d3f3bf3c8aa7",
+          "a447b0d6e4cd62229a738e98d51812d3107a72d9e181125534d37091faab9c3f",
+          "9923e0ad8ebef55a67912e28a2d5fca6ee66a5fce686e8c72585aba5b2a2a481",
+          "0ae782fcc54a0497e19acd126084f7abf649069cf23b62a151926589a8416ef8",
+          "b5f725339b543a8a488a0306c9d0b739991c1722297562e3948112fd28866b58",
+          "8606be681dd28e9c69f35fa794da3c5756e32b2eafa9785a7319973723b5619a",
+          "60ab28d6497d5b824863dbd113d7377b2c0c5deefe9f67d1bd29ec647ff0bff3",
+          "8b5e2be5c6dd7ba24acac115518afb399e2a595671804c47f36dba1883ae24ee",
+          "b90608f4d19bfa1a27849e15302ff240c052d9332dd292084d39615bdc3c24bd"
         ]
       },
-      "ledger_head": "93b5cfdef77a8fbb29553e326ea5ffc14afa84fed82f54d763358b7a8e0b056d",
+      "ledger_head": "8b560180567cc3bf4fb5c62ee7889b5a519772ae4c0ac9c1588ca96baac0535a",
       "sequence": 83
     },
     "result": {
@@ -5062,9 +5062,9 @@
       },
       "decision": {
         "evidence": [
-          "821bd215bf7210f7c2d22feea0d0558f28c75ed55f31e1ab4bb91bc43a0a2f13",
-          "b0b0504b3191c17f8c820386b66701d116f5cf287f079cff1d1d870df83728a1",
-          "fd67ea485ddac8de80996181fc1dce60cc4c641b205824bba158a86966dbdfc9"
+          "247ef8531c2751abb29f0857e198c8fda99f3fa8b21a8aed1a6abefad576f1fc",
+          "527d2470737c22093b3e537df4e5999e75ca992507db8193d2fd8e67ef2909b1",
+          "cfb86238b54c911f204ebc50c25d61ca4a447867be83f5647ecf6bd0500b5b81"
         ],
         "measurements": {
           "adaptation_complexity": 1,
@@ -5111,8 +5111,8 @@
           "passed": false,
           "passed_count": 0,
           "probe_id": "841300f81e76e8b63d6efcc2ea6f41bad78d622cda800b650d7ef2e7d75f11bb",
-          "provenance": "executed-reference-interpreter; synthetic latency/cost budget inputs",
-          "run_id": "e3a659413927eade7df2f96568706a3abf6ccd994b2153c005b98a4aedec74b4",
+          "provenance": "bounded-reference-interpreter",
+          "run_id": "280e41f50ff61c37e82d6aaa273ca6c3fc69e98651fbd0825088c3ad4ca1b00d",
           "sample_count": 16,
           "source": "system-generated",
           "surface_id": "881eae6f2cd78569074177aac4360f6cc3fb6123e7796f123e3e57bcc268a044"
@@ -5134,8 +5134,8 @@
           "passed": false,
           "passed_count": 0,
           "probe_id": "7355da70fe764d0b18a0ce218fa5242b6cfa83a12de80a320ee4efc8d171d679",
-          "provenance": "executed-reference-interpreter; synthetic latency/cost budget inputs",
-          "run_id": "edc4c1379abcffd251c8fcbbe649901b9ce5f8f10650cbd8882916ad09843905",
+          "provenance": "bounded-reference-interpreter",
+          "run_id": "5e44b5669c531216524e1e03fdd4892b8a1a5b5bfeb2d1976e42a5651519a5c0",
           "sample_count": 16,
           "source": "system-generated",
           "surface_id": "881eae6f2cd78569074177aac4360f6cc3fb6123e7796f123e3e57bcc268a044"
@@ -5157,8 +5157,8 @@
           "passed": false,
           "passed_count": 0,
           "probe_id": "c9208137cdd04ba1394d7bbbba41bd9efd198135be787010975b136348ea4122",
-          "provenance": "executed-reference-interpreter; synthetic latency/cost budget inputs",
-          "run_id": "a2e8a7a625ab8dc897e19af28aa6dca98a6c4e38bbe494cf8e7e83de7b2a6399",
+          "provenance": "bounded-reference-interpreter",
+          "run_id": "2435bab03fc67587295cd87e008dc155a00c2b8e503a0741bebbbb0ad4be55a7",
           "sample_count": 16,
           "source": "system-generated",
           "surface_id": "881eae6f2cd78569074177aac4360f6cc3fb6123e7796f123e3e57bcc268a044"
@@ -5171,10 +5171,10 @@
     "events": [
       {
         "aggregate_id": "c262b6dfe58a7df02085490f35b0b2c3dbc641685fc34940c4b5d4c9627ac451:122b0185ef4538eda51bc35c319e2c50f0520232a8655d89c918f6983160d1cb",
-        "causation_id": "17bed247c8feb44b644fcc44537b023953991fcae88e607b4c0eea7af5cf2966",
+        "causation_id": "86dbf0b2a0ea283883738f589bfc1d2c8119081671a28ec660da9c6a78021e59",
         "correlation_id": "78f2bd01dd3e2ef5a0508a130449057930d0404f866cf548527da2cf7c4c3bd0",
-        "event_hash": "f76573d805354c27db11ec61fa66a76219f4b6d95f1350e680c4f76021d84e2a",
-        "event_id": "1b0dd9249074d9f6b94ade825e7c428f6da891513abcb6aeeeb4daf915ad4574",
+        "event_hash": "3a12cd7b49aa93b9ffcab452f08ca0419ea3abadcf083482f99f7e5563bc5384",
+        "event_id": "0699e735e60da725d51e2de0b874e69ab519c49e54d5d1d66daded0583d01a3d",
         "event_type": "WorkloadQualificationRecorded",
         "evidence": [
           "44ba1cc2e7c65acd154c9ed69a2b8c23a6327e35332c2c35dd1ea8178be52a34"
@@ -5211,17 +5211,17 @@
             }
           }
         },
-        "previous_hash": "b8a64994e432a1af1c55e17045cad9ca02aa9bf9ed0756bf975e3555844d848a",
+        "previous_hash": "6f9be4ca0a04ef56a93c248854da97df2e04ac5f65fe28452dbcdada164bb860",
         "schema_version": "3.0",
         "sequence": 71,
         "timestamp": "2026-09-15T06:00:00Z"
       },
       {
         "aggregate_id": "c262b6dfe58a7df02085490f35b0b2c3dbc641685fc34940c4b5d4c9627ac451",
-        "causation_id": "1b0dd9249074d9f6b94ade825e7c428f6da891513abcb6aeeeb4daf915ad4574",
+        "causation_id": "0699e735e60da725d51e2de0b874e69ab519c49e54d5d1d66daded0583d01a3d",
         "correlation_id": "78f2bd01dd3e2ef5a0508a130449057930d0404f866cf548527da2cf7c4c3bd0",
-        "event_hash": "52b57b05cf9bc47dcbab38780c5c5b56e74ac3fedeb5e87e3a30e28e31e06a01",
-        "event_id": "a1bd122f3c972b9b2b5cfe4fbe4f47779e5ddbe80208d2e76c57b186e912d185",
+        "event_hash": "8393f1249b07513a820d9a17b1cb8535c580b19475cb659a8b447a1f3240b1e2",
+        "event_id": "a09b895808a57b98268f47ab2932a8822d2e6b289fd91f17494b4a9bb1aaf328",
         "event_type": "QualificationCompleted",
         "evidence": [
           "44ba1cc2e7c65acd154c9ed69a2b8c23a6327e35332c2c35dd1ea8178be52a34"
@@ -5258,7 +5258,7 @@
             }
           }
         },
-        "previous_hash": "f76573d805354c27db11ec61fa66a76219f4b6d95f1350e680c4f76021d84e2a",
+        "previous_hash": "3a12cd7b49aa93b9ffcab452f08ca0419ea3abadcf083482f99f7e5563bc5384",
         "schema_version": "3.0",
         "sequence": 72,
         "timestamp": "2026-09-15T06:00:00Z"
@@ -5423,12 +5423,12 @@
           },
           {
             "evidence": [
-              "49717503200e2eb8518ca4bb10cab38c9195df5620c47f91edcdd6b335cfc03f",
-              "8d98c2b93f1c7ba4c6aa5f1b7d043588ee441315ebd03ff236292c31208d22ea",
-              "63f641bae3c026bda20d4b1291a71e12e13139f2d5c8017870fdf9a2d50289bb",
-              "d0391fd6302e2f76e6f8b560f47f82dba04ebe17abe4ab8e4873c81dbf6afd6c",
-              "7a04629d69fe7f2d1e0cc43783cc01817165846e0092f3b4f4b630f71663ab90",
-              "282bb9fffecff237c41222fa88e1bec3c8d59c234df9b4a8b9d9cf9f626a85f4"
+              "cbece62e2dd0a1b09169a3c7effbf9adc4cc6cd68789c5048fd270c138633b40",
+              "6ec229705f842cf74addb58788af12a76ce509a22b65656d7413e6d8f5d157a1",
+              "3fa59179a6a10eb4587692937d33bf763f8d9b620fb06e04b4b122d4f1d63a44",
+              "d75d2fd7cfd14f62d5f912e990ff92f2e5b94e359f0346be87cd6bde0b93d5c8",
+              "a5c34daf0a2b9d9afcf08830772a3bd7cd1d4567c19fd2289f3b2ca4ffd94c23",
+              "0bfc8a4d670adc1f9052db955eb456e8468b7febe297ef7eec4fc89bef0dd353"
             ],
             "id": "graph",
             "implementation": "src/morphosis/os/graph.py",
@@ -5451,11 +5451,11 @@
           {
             "evidence": [
               "16543447ce9e8f1bddc678b3c0b9ef4f8d6c0c0a531338c4fb4a16db1e1cbc4b",
-              "44e4d3748bcbde6d17316142189e827b04405734fc18f6d6f97281e0ee2d37e5",
-              "fcda64f3089425e6dd93765b60e0d9f2fe2dd78260b1c8810daa5e1423a6c38c",
-              "900c0fce75a1a668a390d90724431d969e09282de8aa17fcf80e27f8f5427a07",
-              "f4d58678d84d54e2b51378964b186849bb5b4ca74edd2aea48c6e2326dad90ba",
-              "ab838b12e8b175b93b83bfa170119ffd10dc6e1fdf37c77d6e2168c635164c07"
+              "f77bc708835a1c596aea6f08acbdf234b897db5427aadbeec4d8cde1501e265d",
+              "0d0dc1172ce3853d4cc4773f031c47f5beefbeb147ddd1fef66d3177c5296e78",
+              "97ef45998085688217512557ea594f1ed8136058fb62794ac79f6b7d23457edd",
+              "b30f321cdb293608e6a1a72e570969f788ab97d71ea2a1dc8c77ac2d09ce0029",
+              "81b5581c9f939f192b5aca6398e553a51929e0b1a6402f18d9fe57bfe6836c11"
             ],
             "id": "probe",
             "implementation": "src/morphosis/os/probes.py",
@@ -5493,8 +5493,8 @@
           },
           {
             "evidence": [
-              "798430e52310a0efcdd4825b77636c91b30fc6b074af4618e45c1f6b10995f73",
-              "b4f5c19bce9c8be10f4f9264d4473cda4b9c211bbecd0f010d8e67688309e836"
+              "e8bda8121ecc2e48f618d4207e04fbf6d18f8387ff218aa893d45f0602e03938",
+              "7d818ff49cf324973aa22ab09585cb4d03c6c3f62368b09096ebbd47b4439ec0"
             ],
             "id": "compiler",
             "implementation": "src/morphosis/os/compiler.py",
@@ -5515,7 +5515,7 @@
           },
           {
             "evidence": [
-              "16631eb6a14918d7476cb8f930375372b11c3a4dcf3b6ef77b8c100bbe88771f"
+              "45ea5bc2c80db4f8979e32d4e05c338371bb94a678b50643501c5d7274f3e2d5"
             ],
             "id": "verification",
             "implementation": "src/morphosis/os/compiler.py",
@@ -5535,18 +5535,18 @@
           },
           {
             "evidence": [
-              "315a6078eaa7382ca489feae8a8388e46374567ddbd4897b07cf2e57311280e7",
-              "f0995380895ff7e7d94011bc4cae55164ae2d635cf6f380ca5ea804cfd7a6c50",
-              "bc10967b9c68ec70c57a40337d47238e11241f2f280d367fd4a4ca422954bab5",
-              "e1dd6baefb9db8c2cabe8d58fdd9c3977dfc1b17d792d0f602c882f7b18c923e",
-              "e100adbded33ecd6cd5bfb689e25945fe35314375a522c139adc5ef3ce445bb1",
-              "915e73c9c02f75e20baf749c44d8becee25cf8cc68d3d1e77d980eec58c0feaf",
-              "eadae59465293d8b33ae0e782c6596a5b253358bacec59f79682f483f06085b3",
-              "d95683a1812a9f961349d2cbe593bafcd58970f00b73a11ff1c850888428fef1",
-              "62e95fb6a3e75244a78b0d1495ab30e0940f6e11a7ce863b05d3b77f3dcd1801",
-              "c87fc26d51d6aae2c107f7169780daf847e8e34dee11a18869e0886956831149",
-              "65c7972f3fbff7391f73de512b39afee6832c705d744eb6fa9bf2bbdd610b05d",
-              "a1bd122f3c972b9b2b5cfe4fbe4f47779e5ddbe80208d2e76c57b186e912d185"
+              "20cd1df808539a53e6a6622e313de3126df0e8693817e81b0f851ab2ed47e371",
+              "1a415356cf797308753a6ab4e7a07702cdd7dc01aecbb9e96893381cf0743f9d",
+              "1841f10c93fd55862f0c4aa8e8d0a1c2e0b64845645e3809c53554b7c96023cc",
+              "ed6f588bc991c4b4fce4823e03f42389c6c38a05ff4e4a9147fa47cff73cc914",
+              "f6b6c4b4c523044e8f4e61fc86878e85f6a7ad8e081c3a447a1a8f1d8a06f530",
+              "34ee0d8123b4fec27597d81fe15af815995959cb966e38632c95f9cf09392f3a",
+              "e8b920feecf68d9d2f9a8283ccbff3a806b0e838bc72aba2635744e3857c4ba7",
+              "eb4cf07d33662a420b3ba2b7e6166dd994a0ca4e39bbd4cf9021701eb1f42ef9",
+              "9a7b298bf00a4973858c44c57d6ca24559cfde196c2842328bb7e92b2f2ac0c5",
+              "7a43a16c8428694e80526872dddd5a40fe44aa49917ffadeefb0bb530fbfac1d",
+              "09639e60242b4aa37f14dbe2c457f0e8a9816acb364dea11c3bfd6843693c850",
+              "a09b895808a57b98268f47ab2932a8822d2e6b289fd91f17494b4a9bb1aaf328"
             ],
             "id": "qualification",
             "implementation": "src/morphosis/os/qualifier.py",
@@ -5566,7 +5566,7 @@
           },
           {
             "evidence": [
-              "8e9675d0b364bbffe53ed7a3d502194ec8fe86108395e24d0cc3d98304104427"
+              "d2576837ff4bd71aff29f3400305e18770d96d460b5075c6078084670fc04c39"
             ],
             "id": "bundle",
             "implementation": "src/morphosis/os/schemas.py",
@@ -5606,7 +5606,7 @@
           },
           {
             "evidence": [
-              "4a3b0dcc7758fdc079e7c1b77dc4fa22b0888568ad8e7bd2c059420e25848612"
+              "24cdeb4dc519820ced1f5f428f86230cfe354d45665913bbbe250d9670bc7888"
             ],
             "id": "shadow",
             "implementation": "src/morphosis/os/deployment.py",
@@ -5626,7 +5626,7 @@
           },
           {
             "evidence": [
-              "735d5d7820608667e1faee2c12c4d3424117a81a10cca79e851ac0b7ca474785"
+              "ff2dc4f08aeb8dea1b4b166812573a4e6ad3ee3e3431890c839ef9fffa6b538f"
             ],
             "id": "canary",
             "implementation": "src/morphosis/os/deployment.py",
@@ -5646,7 +5646,7 @@
           },
           {
             "evidence": [
-              "854983f17249977bec6ec0c190a13d52687d735c2c507cf52738b672f8856357"
+              "fd1029c4cde7daac9bff5ce029062448a9d89d80ca6bb14312b8ab81424b31f2"
             ],
             "id": "serving",
             "implementation": "src/morphosis/os/agents.py",
@@ -5747,69 +5747,69 @@
           "d1b6d182afae180d5f77f12c2706f131c14414d021d936c3f834d01f2a78ac58",
           "3797479091c35951506dd5a25b135a89c2971c2671dbd7c3953163f59258cae9",
           "16543447ce9e8f1bddc678b3c0b9ef4f8d6c0c0a531338c4fb4a16db1e1cbc4b",
-          "5510d9d22ef79c13406930885c83080af0e34639836b549a0ee767dd2b5a6dcd",
-          "49717503200e2eb8518ca4bb10cab38c9195df5620c47f91edcdd6b335cfc03f",
-          "44e4d3748bcbde6d17316142189e827b04405734fc18f6d6f97281e0ee2d37e5",
-          "482ce9255cdecc34156d1291dd26b4c139ab74f7debaf71184547ff4c4f7a508",
-          "8d98c2b93f1c7ba4c6aa5f1b7d043588ee441315ebd03ff236292c31208d22ea",
-          "fcda64f3089425e6dd93765b60e0d9f2fe2dd78260b1c8810daa5e1423a6c38c",
-          "a259152cbb1a472d524a85911901afb777088aa3344f2919c91daf129bda3904",
-          "63f641bae3c026bda20d4b1291a71e12e13139f2d5c8017870fdf9a2d50289bb",
-          "798430e52310a0efcdd4825b77636c91b30fc6b074af4618e45c1f6b10995f73",
-          "16631eb6a14918d7476cb8f930375372b11c3a4dcf3b6ef77b8c100bbe88771f",
-          "7b608c4d288ffbe3bcf45318d8cbdd345ffb66360df74840bc578498fbdd7d99",
-          "315a6078eaa7382ca489feae8a8388e46374567ddbd4897b07cf2e57311280e7",
-          "900c0fce75a1a668a390d90724431d969e09282de8aa17fcf80e27f8f5427a07",
-          "3f38264e6cb357ab52986b6d39d7aac1c577b4738a3f7de0741eed615960ae7a",
-          "d0391fd6302e2f76e6f8b560f47f82dba04ebe17abe4ab8e4873c81dbf6afd6c",
-          "f4d58678d84d54e2b51378964b186849bb5b4ca74edd2aea48c6e2326dad90ba",
-          "33efa1fddf107ea34ea0b6f008634821b238a8454849011b8b266cbd576cf01f",
-          "7a04629d69fe7f2d1e0cc43783cc01817165846e0092f3b4f4b630f71663ab90",
-          "ab838b12e8b175b93b83bfa170119ffd10dc6e1fdf37c77d6e2168c635164c07",
-          "1795ce037bfc6480146c00ccae39cb76e90f57c7308cbae298e6705e09d34a0d",
-          "282bb9fffecff237c41222fa88e1bec3c8d59c234df9b4a8b9d9cf9f626a85f4",
-          "b4f5c19bce9c8be10f4f9264d4473cda4b9c211bbecd0f010d8e67688309e836",
-          "f11ca476467a8fa81059c389691cb36b1f8bcfb2a9c5772755f830f3e18b24fe",
-          "935378e520d63cc6fb11637ad842725c4e0a68af885e5fc156e8a492b5067033",
-          "f0995380895ff7e7d94011bc4cae55164ae2d635cf6f380ca5ea804cfd7a6c50",
-          "ba31508fabf167843ee732577b8a2fd0bb3f4f18161b22df893764b305e7c63f",
-          "bc10967b9c68ec70c57a40337d47238e11241f2f280d367fd4a4ca422954bab5",
-          "f0fefa9f9982260fd5d62de00beafa27a501726e70ce3888b7d58c12d45df5c5",
-          "e1dd6baefb9db8c2cabe8d58fdd9c3977dfc1b17d792d0f602c882f7b18c923e",
-          "8e9675d0b364bbffe53ed7a3d502194ec8fe86108395e24d0cc3d98304104427",
-          "ecbd7a164276ba5fa2dd13e7e89d1f36658d024ae225b8c328c0722434d3f7f2",
-          "3a288d46947fbcb6ea100f5a5a45be2eb0b1d77fcbe0905f8f8ed73e8a669c75",
-          "e100adbded33ecd6cd5bfb689e25945fe35314375a522c139adc5ef3ce445bb1",
-          "6c23f7f42cc60ff9dac7e303c8657162739e14308bed58319f5ad9be7618d893",
-          "67a2b48cdba7b71290bae98c13443f2c2654b20cfc17acad61d6de8497173d94",
-          "915e73c9c02f75e20baf749c44d8becee25cf8cc68d3d1e77d980eec58c0feaf",
-          "c434588055e29691e86d4e1125f39aaeaf84b669e033e46e9dfa3a5cc24f8555",
-          "8dd06dbc3cf06004ace498e741cd2c655f271111dd4b92c4ab0eff3ab124b33c",
-          "e78433af6bc39613d8e24d36daf81b0bd08add4e9d0d54014ce40b615f290c15",
-          "eadae59465293d8b33ae0e782c6596a5b253358bacec59f79682f483f06085b3",
-          "637588a6285fadd93a6e940db6fd5b096127381b960646c3d903ff48a649f66e",
-          "a8131be0acd385b346b3d4c26f6a9ca96fbacf7c31aefb87ed9ec92b25fdb921",
-          "d95683a1812a9f961349d2cbe593bafcd58970f00b73a11ff1c850888428fef1",
-          "1cfad6fe87d831827d9a91d0dc574259e6897e077f50cee5bdd4bd796c8eff12",
-          "4a3b0dcc7758fdc079e7c1b77dc4fa22b0888568ad8e7bd2c059420e25848612",
-          "c041992c797c8db58352a5a7726fdee5dd58de7cc30967520dbf24a03a386628",
-          "62e95fb6a3e75244a78b0d1495ab30e0940f6e11a7ce863b05d3b77f3dcd1801",
-          "bc4dc0ddb81fc2a77df0a2e0a84a5b3dd801d50b98b7e58d3af99584d6f88d07",
-          "735d5d7820608667e1faee2c12c4d3424117a81a10cca79e851ac0b7ca474785",
-          "7ba6393c524f35f4031f4b7125d11763fc9cea424fc6ee0e5ba7d19acdd8e1a9",
-          "c87fc26d51d6aae2c107f7169780daf847e8e34dee11a18869e0886956831149",
-          "60d7de9263700cf66737c06c9e59d5b26ef6f210cfb3dfbc53838fc5a91c36a7",
-          "24a2c0065c633fae8f9140ac8d8a81f163ce452a4e92b89d0c516ba5e73cc87a",
-          "eed13df5186b22bee143fbc3a99115e7a4bf7eec31349b02ae70c7b248948ee2",
-          "65c7972f3fbff7391f73de512b39afee6832c705d744eb6fa9bf2bbdd610b05d",
-          "a71a885f7086e07c73c154f31e6e43f27d776b7a3a9b970b45a4266c92e5c007",
-          "854983f17249977bec6ec0c190a13d52687d735c2c507cf52738b672f8856357",
-          "17bed247c8feb44b644fcc44537b023953991fcae88e607b4c0eea7af5cf2966",
-          "1b0dd9249074d9f6b94ade825e7c428f6da891513abcb6aeeeb4daf915ad4574",
-          "a1bd122f3c972b9b2b5cfe4fbe4f47779e5ddbe80208d2e76c57b186e912d185"
+          "a8bde8b644694f0e2873e26740e3777ccd0471ed9616de7b67d864b2e99f30ea",
+          "cbece62e2dd0a1b09169a3c7effbf9adc4cc6cd68789c5048fd270c138633b40",
+          "f77bc708835a1c596aea6f08acbdf234b897db5427aadbeec4d8cde1501e265d",
+          "3e5a3f202dae6b49c7d43d6373dfbab9d9f74f2353d3d7c5602b5b4d14bdb03f",
+          "6ec229705f842cf74addb58788af12a76ce509a22b65656d7413e6d8f5d157a1",
+          "0d0dc1172ce3853d4cc4773f031c47f5beefbeb147ddd1fef66d3177c5296e78",
+          "1e689b3d526e0a59bf175e3cbb2f176f8872d708642b8e753923130bd8a71954",
+          "3fa59179a6a10eb4587692937d33bf763f8d9b620fb06e04b4b122d4f1d63a44",
+          "e8bda8121ecc2e48f618d4207e04fbf6d18f8387ff218aa893d45f0602e03938",
+          "45ea5bc2c80db4f8979e32d4e05c338371bb94a678b50643501c5d7274f3e2d5",
+          "f84748e5f6261ccd8c96f5ab34000f639d07d454f9e1980fbc2594975a606999",
+          "20cd1df808539a53e6a6622e313de3126df0e8693817e81b0f851ab2ed47e371",
+          "97ef45998085688217512557ea594f1ed8136058fb62794ac79f6b7d23457edd",
+          "de5af543c52d65abbdf1734bd85531dc3398acbccbcff69a718b25780b58295a",
+          "d75d2fd7cfd14f62d5f912e990ff92f2e5b94e359f0346be87cd6bde0b93d5c8",
+          "b30f321cdb293608e6a1a72e570969f788ab97d71ea2a1dc8c77ac2d09ce0029",
+          "daadbdeb30cc31742af89efc5ff064d9d00aeeb249a00f36360687a91c67810a",
+          "a5c34daf0a2b9d9afcf08830772a3bd7cd1d4567c19fd2289f3b2ca4ffd94c23",
+          "81b5581c9f939f192b5aca6398e553a51929e0b1a6402f18d9fe57bfe6836c11",
+          "1c8e59ec9dbab2535ef3ddf485d482551e36630e8404ebb2417dc3352b169804",
+          "0bfc8a4d670adc1f9052db955eb456e8468b7febe297ef7eec4fc89bef0dd353",
+          "7d818ff49cf324973aa22ab09585cb4d03c6c3f62368b09096ebbd47b4439ec0",
+          "55043ed67c9bcc6c4d2940aa9fab3e5c3d7b018c664e8d1a1f7939520382288d",
+          "8c5748c4374b3869a6a3e53c2167cca71ce0b58fd1e86f305a0e3f7e04f306d0",
+          "1a415356cf797308753a6ab4e7a07702cdd7dc01aecbb9e96893381cf0743f9d",
+          "3732dd0c9afe2e24ad691e9e2cdcf7aaf67161766ef7fc3465e8ffcfc3273a0f",
+          "1841f10c93fd55862f0c4aa8e8d0a1c2e0b64845645e3809c53554b7c96023cc",
+          "10529b58cf108c93930dc7dba2c751ca3daee2cbfc44b6cac6edf872990663f0",
+          "ed6f588bc991c4b4fce4823e03f42389c6c38a05ff4e4a9147fa47cff73cc914",
+          "d2576837ff4bd71aff29f3400305e18770d96d460b5075c6078084670fc04c39",
+          "bce0e8495dee2e86913a947190df78ddb9c046d65beda7290c1e952a5de5a58c",
+          "6415e82a0d7760383e13a6b1850cbb604ab2efa7f6db1bd0b713be55e54d5352",
+          "f6b6c4b4c523044e8f4e61fc86878e85f6a7ad8e081c3a447a1a8f1d8a06f530",
+          "db303c7c28dc949b996a465c7ec0f82c4522c788eaffa33be4c0c9f63c070291",
+          "8db6dd5d5c7bc68c447bde8c1cd9e3b07e4916da559afe8278d01825361bc77c",
+          "34ee0d8123b4fec27597d81fe15af815995959cb966e38632c95f9cf09392f3a",
+          "0ccde22dc2599803fb31cceff69bcf5cfdcfa72b750b8525bb6ed46fcf036be1",
+          "8bf243825d4f7f3f1cfc9ce1d4f1f8e2d336c5f98a3113972c7b65f2ae1af9f1",
+          "e9155d9eea6d6ef8ddf8d79139e52f4ff721913a58f816b886e6f7478f48f69d",
+          "e8b920feecf68d9d2f9a8283ccbff3a806b0e838bc72aba2635744e3857c4ba7",
+          "9ceb9e0bc8031a3ee3dd3bddf5290c8ccab2b225baa373628d0b87b67a71c8a7",
+          "aa36eae0e3d1fe03b17ca870aed04d016e99db11d4748bf7f8f33fb1efad0d38",
+          "eb4cf07d33662a420b3ba2b7e6166dd994a0ca4e39bbd4cf9021701eb1f42ef9",
+          "5c41cb0ca24d17e8dd5ea2bc5ba7a249487e416662c1a9a8cf8d493e37b06065",
+          "24cdeb4dc519820ced1f5f428f86230cfe354d45665913bbbe250d9670bc7888",
+          "bd68dd7dddb04ab6c82fb78e70e3607475f3beedd2997e92fe89e113c570e523",
+          "9a7b298bf00a4973858c44c57d6ca24559cfde196c2842328bb7e92b2f2ac0c5",
+          "3856d23a7c445c5a8818ac8cf7927735681e53344010fd863f1eca0d53bcaf92",
+          "ff2dc4f08aeb8dea1b4b166812573a4e6ad3ee3e3431890c839ef9fffa6b538f",
+          "6a76908a34fbcce2335b419201fb56293c5c7d96fac5c0b04421063247c99494",
+          "7a43a16c8428694e80526872dddd5a40fe44aa49917ffadeefb0bb530fbfac1d",
+          "a95994d30ce9b2bf5dfb3c9a55cf8f8156c72d4084d332464ea7303f6dc0d2c6",
+          "bdc4265c1cca3beb49cc347c79e21cbac4399ad207bd6902e384249e70c1e19b",
+          "52158b809e850106466e6f291b3df7dee7cb6de2947a01ab06688c4c0eecce3b",
+          "09639e60242b4aa37f14dbe2c457f0e8a9816acb364dea11c3bfd6843693c850",
+          "0b86dc9d4a6e3a617c0f09908caa5fe66bad971e3f1634e8e34eaf6487f76a36",
+          "fd1029c4cde7daac9bff5ce029062448a9d89d80ca6bb14312b8ab81424b31f2",
+          "86dbf0b2a0ea283883738f589bfc1d2c8119081671a28ec660da9c6a78021e59",
+          "0699e735e60da725d51e2de0b874e69ab519c49e54d5d1d66daded0583d01a3d",
+          "a09b895808a57b98268f47ab2932a8822d2e6b289fd91f17494b4a9bb1aaf328"
         ]
       },
-      "ledger_head": "52b57b05cf9bc47dcbab38780c5c5b56e74ac3fedeb5e87e3a30e28e31e06a01",
+      "ledger_head": "8393f1249b07513a820d9a17b1cb8535c580b19475cb659a8b447a1f3240b1e2",
       "sequence": 72
     },
     "result": {

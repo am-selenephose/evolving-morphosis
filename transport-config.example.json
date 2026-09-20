@@ -1,0 +1,11 @@
+{
+  "bindings": [
+    {
+      "provider": "example-provider",
+      "endpoint": "https://model-bridge.example.com/v1/morphosis/probe",
+      "auth_env": "MORPHOSIS_MODEL_BRIDGE_TOKEN",
+      "timeout_ms": 5000,
+      "cost_per_request_usd": 0.0
+    }
+  ]
+}

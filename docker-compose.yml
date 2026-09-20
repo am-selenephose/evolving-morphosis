@@ -1,0 +1,16 @@
+services:
+  morphosis:
+    build: .
+    ports:
+      - "8765:8765"
+    environment:
+      MORPHOSIS_HOST: "0.0.0.0"
+      MORPHOSIS_PORT: "8765"
+      MORPHOSIS_DB: "/data/morphosis.sqlite"
+      MORPHOSIS_LOG_LEVEL: "info"
+    volumes:
+      - morphosis-data:/data
+    restart: unless-stopped
+
+volumes:
+  morphosis-data:

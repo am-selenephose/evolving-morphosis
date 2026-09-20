@@ -29,7 +29,8 @@ class MorphosisApplication:
     def __init__(self,path=':memory:',*,contract=None,clock=utcnow,executor=None,controller=None,transports=None,capability_contracts=None,contracts=None):
         self.ledger=SQLiteLedger(path);self.clock=clock;self.kernel=PolicyKernel()
         self.executor=executor or LocalReferenceSandbox();self.controller=controller or ReferenceDeploymentController()
-        self.transports=dict(transports or {('reference','reference://echo'):'json-text',('reference','reference://native'):'native-json',('reference','reference://broken'):'broken-json'})
+        installed={('reference','reference://echo'):'json-text',('reference','reference://native'):'native-json',('reference','reference://broken'):'broken-json'}
+        installed.update(dict(transports or {}));self.transports=installed
         self.graph=CapabilityGraph();self.synthesizer=ProbeSynthesizer()
         requested_contracts=tuple(contracts or ())
         self._contract=contract or (requested_contracts[0] if requested_contracts else WorkloadContract())
@@ -357,6 +358,8 @@ class MorphosisApplication:
         return self._evaluate({'surface_id':sid})
 
     def events(self,after=0):return self.ledger.events(after)
+    def close(self):self.ledger.close()
+    def health(self):return self.ledger.health()
     def revision(self,bundle_id):
         with self.ledger.lock:
             state=self.ledger.replay()
@@ -379,14 +382,14 @@ class MorphosisApplication:
             counts=[('Probes',len(result['probe_runs'])),('Verification',len(result['verifications'])),('Qualification',len(result['qualifications'])),
                 ('Deployment',len(self._state.get('deployment_checks',{}))),('Discovery',len(models))]
             total=sum(n for _,n in counts)
-            result.update(schema_version='3.0',mode='LOCAL REFERENCE',sequence=events[-1]['sequence'] if events else 0,
+            result.update(schema_version='3.0',mode='EVOLUTION OS',sequence=events[-1]['sequence'] if events else 0,
                 ledger_head=events[-1]['event_hash'] if events else '0'*64,models=models,capabilities=capabilities,events=events,
                 deployment=self._state.get('deployment',{}).get('current',DeploymentState().json_value()),
                 metrics={'surfaces':len(models),'evidence':len(result['evidence']),'contracts':len(result['contracts'])},
                 workload=[{'name':name,'count':n,'percent':round(n/total*100) if total else 0} for name,n in counts],
-                agents=[{'name':'Morphosis Orchestrator','role':'Proposes commands through shared Strands tools','status':'REFERENCE TOOL LOOP','implementation':'src/morphosis/os/agents.py'},
-                    {'name':'Opportunity Workload','role':'Evidence-backed opportunity triage with human action gates','status':'REFERENCE WORKLOAD','implementation':'src/actionqueue/agent.py'}],
-                pipeline=[{'name':name,'description':desc,'status':'REFERENCE'} for name,desc in [('DISCOVER','Surface + claims'),('PROVE','Independent probes'),('MORPH','Verify adapter'),('GATE','Contract + kernel'),('SERVE','Shadow · canary · promote')]])
+                agents=[{'name':'Morphosis Orchestrator','role':'Proposes commands through shared Strands tools','status':'CANONICAL TOOL LOOP','implementation':'src/morphosis/os/agents.py'},
+                    {'name':'Opportunity Workload','role':'Evidence-backed opportunity triage with human action gates','status':'CANONICAL WORKLOAD','implementation':'src/actionqueue/agent.py'}],
+                pipeline=[{'name':name,'description':desc,'status':'ACTIVE'} for name,desc in [('DISCOVER','Surface + claims'),('PROVE','Independent probes'),('MORPH','Verify adapter'),('GATE','Contract + kernel'),('SERVE','Shadow · canary · promote')]])
             from .topology import topology
             result['architecture']=topology(result)
             root=Path(__file__).resolve().parents[3]
