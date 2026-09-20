@@ -1,7 +1,7 @@
 // Organic surfaces are presentation only. No visual state is domain authority.
-const TIERS={high:[128,32],balanced:[96,24],reduced:[64,16]};
+const TIERS={high:[128,32],balanced:[96,24],safe:[48,12],reduced:[64,16]};
 export function createFabricGeometry(type='workspace',quality='balanced'){
- const [nu,nv]=TIERS[quality]||TIERS.balanced,layers=type==='workspace'?6:3;
+ const [nu,nv]=TIERS[quality]||TIERS.balanced,layers=type==='workspace'?(quality==='safe'?4:quality==='balanced'?5:6):(quality==='safe'?2:3);
  const vertices=[],triangles=[],lines=[],nodes=[];
  for(let l=0;l<layers;l++)for(let v=0;v<=nv;v++)for(let u=0;u<=nu;u++){
   const i=vertices.length/4;vertices.push(u/nu,v/nv,l,Math.sin(i*127.1+311.7)*43758.5453%1);
@@ -135,7 +135,7 @@ function resource(gl,type,quality){
 function release(item){if(!item.resources)return;for(const buffer of Object.values(item.resources.buffers))item.gl.deleteBuffer(buffer);item.gl.deleteProgram(item.resources.program);item.resources=null;}
 export class VisualEngine{
  constructor(getSettings=()=>({})){
-  this.getSettings=getSettings;this.canvases=new Map();this.time=12;this.last=null;this.raf=0;this.running=false;this.projection=null;this.seen=new Set();this.impulse={pulse:0,convergence:0,red:0,stability:0,strand:0};this.dirty=true;
+  this.getSettings=getSettings;this.canvases=new Map();this.time=12;this.last=null;this.raf=0;this.running=false;this.projection=null;this.seen=new Set();this.impulse={pulse:0,convergence:0,red:0,stability:0,strand:0};this.dirty=true;this.autoCeiling='high';this.frameSamples=[];
   this.pointer={x:0,y:0,tx:0,ty:0};
   this.pointerMove=event=>{const w=Math.max(1,globalThis.innerWidth||1),h=Math.max(1,globalThis.innerHeight||1);this.pointer.tx=Math.max(-1,Math.min(1,event.clientX/w*2-1));this.pointer.ty=Math.max(-1,Math.min(1,event.clientY/h*2-1));};
   globalThis.addEventListener?.('pointermove',this.pointerMove,{passive:true});
@@ -149,15 +149,19 @@ export class VisualEngine{
  register(id,type){
   const canvas=document.getElementById(id);if(!canvas)return;
   const old=this.canvases.get(id);if(old?.canvas===canvas)return;if(old){release(old);this.resizeObserver?.unobserve(old.canvas);this.intersectionObserver?.unobserve(old.canvas);}
-  const gl=canvas.getContext('webgl',{alpha:true,antialias:true,premultipliedAlpha:true,powerPreference:'low-power'});
-  if(!gl){canvas.dataset.visualUnavailable='WebGL unavailable';return;}
-  const item={canvas,type,gl,visible:true,quality:null,resources:null,w:0,h:0};
-  item.lost=event=>{event.preventDefault();item.resources=null;item.lostContext=true;};
-  item.restored=()=>{item.lostContext=false;item.quality=null;this.dirty=true;this.schedule();};
+  let gl=null;
+  try{gl=canvas.getContext('webgl',{alpha:true,antialias:true,premultipliedAlpha:true,powerPreference:'high-performance',failIfMajorPerformanceCaveat:false});}catch(error){this.attachFallback(canvas,type,error?.message||'WebGL initialization failed');return;}
+  if(!gl){this.attachFallback(canvas,type,'WebGL unavailable');return;}
+  const item={canvas,type,gl,visible:true,quality:null,forcedQuality:null,resources:null,w:0,h:0,lostContext:false,restoreCount:0,remeasureAttempts:0,failed:false};
+  item.lost=event=>{event.preventDefault();item.resources=null;item.lostContext=true;item.restoreCount+=1;if(item.restoreCount>2){item.failed=true;this.attachFallback(canvas,type,'Repeated WebGL context loss');}};
+  item.restored=()=>{if(item.failed)return;item.lostContext=false;item.quality=null;item.forcedQuality='safe';item.restoreCount+=1;if(item.restoreCount>2){item.failed=true;this.attachFallback(canvas,type,'Repeated WebGL restore');return;}this.clearFallback(canvas);this.dirty=true;this.schedule();};
   canvas.addEventListener('webglcontextlost',item.lost);canvas.addEventListener('webglcontextrestored',item.restored);
   this.canvases.set(id,item);this.resizeObserver?.observe(canvas);this.intersectionObserver?.observe(canvas);this.sizeOne(item,canvas.getBoundingClientRect());this.dirty=true;this.schedule();
  }
- sizeOne(item,rect){item.w=rect.width;item.h=rect.height;item.dpr=Math.min(globalThis.devicePixelRatio||1,1.5);const w=Math.max(1,Math.round(rect.width*item.dpr)),h=Math.max(1,Math.round(rect.height*item.dpr));if(item.canvas.width!==w||item.canvas.height!==h){item.canvas.width=w;item.canvas.height=h;}this.dirty=true;}
+ attachFallback(canvas,type,reason='Visual renderer unavailable'){canvas.dataset.visualUnavailable=reason;canvas.dataset.visualType=type;canvas.parentElement?.classList.add('visual-fallback');globalThis.document?.documentElement?.setAttribute('data-visuals-ready','fallback');}
+ clearFallback(canvas){delete canvas.dataset.visualUnavailable;canvas.parentElement?.classList.remove('visual-fallback');}
+ sizeOne(item,rect){const width=Math.max(0,rect?.width||item.canvas.clientWidth||0),height=Math.max(0,rect?.height||item.canvas.clientHeight||0);if(width<2||height<2){if(item.remeasureAttempts<4){item.remeasureAttempts+=1;setTimeout(()=>{if(item.canvas.isConnected)this.sizeOne(item,item.canvas.getBoundingClientRect());},50*item.remeasureAttempts);}return;}item.remeasureAttempts=0;item.w=width;item.h=height;const requested=this.effectiveQuality(this.getSettings()?.quality||'balanced'),cap=requested==='high'?1.5:requested==='balanced'?1.25:1;item.dpr=Math.min(globalThis.devicePixelRatio||1,cap);const w=Math.max(1,Math.round(width*item.dpr)),h=Math.max(1,Math.round(height*item.dpr));if(item.canvas.width!==w||item.canvas.height!==h){item.canvas.width=w;item.canvas.height=h;}this.clearFallback(item.canvas);this.dirty=true;}
+ effectiveQuality(requested='balanced'){const rank={safe:0,reduced:0,balanced:1,high:2};const reverse=['safe','balanced','high'];const cap=rank[this.autoCeiling]??2,current=rank[requested]??1;return reverse[Math.min(cap,current)];}
  resize(){for(const item of this.canvases.values())this.sizeOne(item,item.canvas.getBoundingClientRect());this.schedule();}
  setProjection(projection){this.projection=projection;this.dirty=true;this.schedule();}
  consume(event){const id=event?.id||event?.event_id;if(id&&this.seen.has(id))return;const impulse=eventImpulse(event);if(!impulse)return;if(id){this.seen.add(id);if(this.seen.size>2048)this.seen.delete(this.seen.values().next().value);}Object.assign(this.impulse,impulse);this.dirty=true;this.schedule();}
@@ -173,11 +177,11 @@ export class VisualEngine{
   if(animated){const decay=Math.exp(-Math.min(delta,.05)*.65);for(const name in this.impulse)this.impulse[name]*=decay;this.schedule();}
  }
  draw(settings=this.getSettings()||{}){
-  const begin=this.debug?performance.now():0;let calls=0,triangles=0,points=0;
+  const begin=performance.now();let calls=0,triangles=0,points=0;
   for(const item of this.canvases.values()){
-   if(!item.visible||!item.w||!item.h||item.lostContext)continue;
-   const gl=item.gl,quality=TIERS[settings.quality]?settings.quality:'balanced';
-   if(item.quality!==quality){release(item);item.resources=resource(gl,item.type,quality);item.quality=quality;}
+   if(!item.visible||!item.w||!item.h||item.lostContext||item.failed)continue;
+   const gl=item.gl,quality=item.forcedQuality||this.effectiveQuality(TIERS[settings.quality]?settings.quality:'balanced');
+   try{if(item.quality!==quality){release(item);item.resources=resource(gl,item.type,quality);item.quality=quality;}
    const r=item.resources,u=r.uniforms;
    gl.viewport(0,0,item.canvas.width,item.canvas.height);gl.clearColor(0,0,0,0);gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);gl.disable(gl.DEPTH_TEST);gl.enable(gl.BLEND);gl.blendFuncSeparate(gl.SRC_ALPHA,gl.ONE_MINUS_SRC_ALPHA,gl.ONE,gl.ONE_MINUS_SRC_ALPHA);gl.useProgram(r.program);
    gl.bindBuffer(gl.ARRAY_BUFFER,r.buffers.vertices);gl.enableVertexAttribArray(r.attribute);gl.vertexAttribPointer(r.attribute,4,gl.FLOAT,false,16,0);
@@ -190,8 +194,10 @@ export class VisualEngine{
    gl.blendFuncSeparate(gl.SRC_ALPHA,gl.ONE,gl.ONE,gl.ONE_MINUS_SRC_ALPHA);gl.uniform1f(u.Pass,1);gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER,r.buffers.lines);gl.drawElements(gl.LINES,r.geometry.lines.length,gl.UNSIGNED_SHORT,0);
    gl.uniform1f(u.Pass,2);gl.drawArrays(gl.POINTS,0,r.geometry.vertices.length/4);points+=r.geometry.vertices.length/4;
    gl.uniform1f(u.Pass,3);gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER,r.buffers.nodes);gl.drawElements(gl.POINTS,r.geometry.nodes.length,gl.UNSIGNED_SHORT,0);points+=r.geometry.nodes.length;calls+=4;
+   }catch(error){item.failed=true;release(item);this.attachFallback(item.canvas,item.type,error?.message||'WebGL render failure');console.error('Morphosis visual fallback',item.type,error);continue;}
   }
-  if(this.debug){const frameTime=performance.now()-begin;Object.assign(this.performance,{frameTime,drawCalls:calls,triangles,points,quality:settings.quality||'balanced',fps:this.last&&this.previousTimestamp?1000/(this.last-this.previousTimestamp):0});this.previousTimestamp=this.last;}
+  const frameTime=performance.now()-begin;this.frameSamples.push(frameTime);if(this.frameSamples.length>36)this.frameSamples.shift();if(this.frameSamples.length===36){const avg=this.frameSamples.reduce((a,b)=>a+b,0)/this.frameSamples.length;if(avg>30&&this.autoCeiling!=='safe'){this.autoCeiling='safe';for(const item of this.canvases.values())item.quality=null;this.dirty=true;}else if(avg>20&&this.autoCeiling==='high'){this.autoCeiling='balanced';for(const item of this.canvases.values())item.quality=null;this.dirty=true;}}
+  if(this.debug){Object.assign(this.performance,{frameTime,drawCalls:calls,triangles,points,quality:this.effectiveQuality(settings.quality||'balanced'),fps:this.last&&this.previousTimestamp?1000/(this.last-this.previousTimestamp):0});this.previousTimestamp=this.last;}
  }
  dispose(){this.stop();this.resizeObserver?.disconnect();this.intersectionObserver?.disconnect();globalThis.document?.removeEventListener('visibilitychange',this.visibility);globalThis.removeEventListener?.('pointermove',this.pointerMove);for(const item of this.canvases.values()){item.canvas.removeEventListener('webglcontextlost',item.lost);item.canvas.removeEventListener('webglcontextrestored',item.restored);release(item);}this.canvases.clear();this.seen.clear();}
 }
