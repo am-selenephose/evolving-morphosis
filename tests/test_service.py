@@ -1,5 +1,6 @@
 import json
 
+import pytest
 from fastapi.testclient import TestClient
 
 from morphosis.os.application import MorphosisApplication
@@ -93,3 +94,20 @@ def test_unknown_projection_and_request_limit(tmp_path):
         assert response.status_code == 413
         assert response.json()["error"]["code"] == "REQUEST_TOO_LARGE"
     app.close()
+
+
+def test_bedrock_discovery_enablement_fails_closed_without_region(monkeypatch):
+    monkeypatch.setenv("MORPHOSIS_BEDROCK_DISCOVERY", "true")
+    monkeypatch.delenv("MORPHOSIS_AWS_REGION", raising=False)
+    monkeypatch.delenv("AWS_REGION", raising=False)
+    monkeypatch.delenv("AWS_DEFAULT_REGION", raising=False)
+    with pytest.raises(ValueError, match="Bedrock discovery requires"):
+        ServiceSettings.from_env()
+
+
+def test_bedrock_discovery_enablement_uses_explicit_host_region(monkeypatch):
+    monkeypatch.setenv("MORPHOSIS_BEDROCK_DISCOVERY", "true")
+    monkeypatch.setenv("MORPHOSIS_AWS_REGION", "eu-west-1")
+    settings = ServiceSettings.from_env()
+    assert settings.bedrock_discovery is True
+    assert settings.aws_region == "eu-west-1"
