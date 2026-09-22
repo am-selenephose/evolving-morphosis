@@ -418,8 +418,9 @@ class MorphosisApplication:
     def snapshot(self):
         with self.ledger.lock:
             self._state=self.ledger.replay();now=self.clock()
-            events=self.ledger.events();collections=('catalog','evidence','probes','probe_runs','adaptations','verifications','qualifications','bundles','transactions','telemetry','requalifications','contracts')
+            events=self.ledger.events();collections=('evidence','probes','probe_runs','adaptations','verifications','qualifications','bundles','transactions','telemetry','requalifications','contracts')
             result={name:list(self._state.get(name,{}).values()) for name in collections}
+            if self._state.get('catalog'):result['catalog']=list(self._state['catalog'].values())
             models=[];capabilities=[]
             for sid,surface in self._state.get('models',{}).items():
                 states=self._states(sid,now);capabilities.extend(c.json_value() for c in states)
