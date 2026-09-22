@@ -218,6 +218,7 @@ def test_bedrock_converse_end_to_end_requires_claim_then_independent_evidence(tm
         assert len(result["probe_runs"]) == 3
         assert all(run["passed"] for run in result["probe_runs"])
         assert all(run["provenance"] == "host-managed-bedrock-converse" for run in result["probe_runs"])
+        assert result["adaptation"]["capability_id"] == "future.semantic_patch.v1"
         assert result["adaptation_verification"]["passed"] is True
         assert len(runtime.calls) == 6
         assert {call["modelId"] for call in runtime.calls} == {"vendor.alpha-v1:0"}

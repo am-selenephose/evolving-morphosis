@@ -257,7 +257,9 @@ class MorphosisApplication:
         missing=[c for c in required if c not in by or by[c].status=='UNKNOWN']
         verification=self._state.get('verifications',{}).get(sid)
         adaptation=self._state.get('adaptations',{}).get(sid)
-        adapter_matches=verification and adaptation and verification['adaptation_id']==MorphIR.model_validate(adaptation).digest()
+        adapter_matches=(verification and adaptation
+            and adaptation.get('capability_id') in required
+            and verification['adaptation_id']==MorphIR.model_validate(adaptation).digest())
         current=[by[c] for c in required if c in by]
         failure=any(x.status in ('UNSUPPORTED','DEGRADED','CONFLICTED') for x in current)
         selected_evidence={h for state in current for h in state.evidence}
@@ -294,8 +296,12 @@ class MorphosisApplication:
                 self._emit('ProbeProposed','probes',spec.probe_id,spec,f'{surface.model}: independent {spec.family} probe synthesized')
                 runs.append(self._run_probe({'probe_id':spec.probe_id}).json_value())
         if not runs:return {'surface_id':sid,'decision':self._qualify(data),'probe_runs':[],'adaptation':None,'adaptation_verification':None}
+        proven_caps={run['capability_id'] for run in runs if run.get('passed')}
+        adaptation_cap=next((cap for cap in self._contract.required if cap in proven_caps),None)
+        if adaptation_cap is None:
+            return {'surface_id':sid,'decision':self._qualify(data),'probe_runs':runs,'adaptation':None,'adaptation_verification':None}
         native=self._transport(surface)=='native-json'
-        ir=self._compile({'surface_id':sid,'mode':'NATIVE' if native else 'ADAPTED','nodes':[] if native else [{'op':'parse_json'}]})
+        ir=self._compile({'surface_id':sid,'capability_id':adaptation_cap,'mode':'NATIVE' if native else 'ADAPTED','nodes':[] if native else [{'op':'parse_json'}]})
         verification=self._verify_adaptation(data)
         decision=self._qualify(data)
         return {'surface_id':sid,'decision':decision,'probe_runs':runs,'adaptation':ir,'adaptation_verification':verification}
