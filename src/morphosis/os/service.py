@@ -102,10 +102,15 @@ def create_app(
             else {}
         )
         executor = HostTransportExecutor() if bindings else None
+        discoverers = {}
+        if settings.bedrock_discovery:
+            from .discovery import BedrockDiscoverer
+            discoverers["bedrock"] = BedrockDiscoverer(region_name=settings.aws_region)
         app_state = MorphosisApplication(
             settings.db_path,
             transports=bindings,
             executor=executor,
+            discoverers=discoverers,
         )
     else:
         app_state = application
@@ -331,6 +336,8 @@ def main() -> None:
     parser.add_argument("--db")
     parser.add_argument("--site")
     parser.add_argument("--seed-reference", action="store_true")
+    parser.add_argument("--bedrock-discovery", action="store_true")
+    parser.add_argument("--aws-region")
     parser.add_argument("--log-level")
     args = parser.parse_args()
 
@@ -340,6 +347,8 @@ def main() -> None:
         port=args.port,
         db_path=args.db,
         site_dir=args.site,
+        bedrock_discovery=True if args.bedrock_discovery else None,
+        aws_region=args.aws_region,
         seed_reference=True if args.seed_reference else None,
         log_level=args.log_level,
     )
