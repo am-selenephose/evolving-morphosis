@@ -84,7 +84,7 @@ class BedrockConverseBinding:
 
 
 class HostTransportExecutor:
-    """Execute installed reference transports or explicit HTTP bridge bindings."""
+    """Execute installed reference transports or explicit host-owned provider bindings."""
 
     def __init__(self, bedrock_client_factory=None):
         self.reference = LocalReferenceSandbox()
