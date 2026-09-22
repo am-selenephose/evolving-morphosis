@@ -7,6 +7,7 @@ import json
 import logging
 import re
 import time
+from pathlib import Path
 from contextlib import asynccontextmanager
 from dataclasses import dataclass, field
 from threading import Lock
@@ -23,6 +24,7 @@ from .application import MorphosisApplication
 from .config import ServiceSettings
 from .logging import configure_logging
 from .transports import HostTransportExecutor, load_transport_bindings
+from .schemas import WorkloadContract
 
 LOGGER = logging.getLogger("morphosis.service")
 _REQUEST_ID = re.compile(r"^[A-Za-z0-9._:-]{1,128}$")
@@ -106,8 +108,15 @@ def create_app(
         if settings.bedrock_discovery:
             from .discovery import BedrockDiscoverer
             discoverers["bedrock"] = BedrockDiscoverer(region_name=settings.aws_region)
+        contract = None
+        if settings.contract_file:
+            contract_payload = json.loads(
+                Path(settings.contract_file).expanduser().read_text()
+            )
+            contract = WorkloadContract.model_validate(contract_payload)
         app_state = MorphosisApplication(
             settings.db_path,
+            contract=contract,
             transports=bindings,
             executor=executor,
             discoverers=discoverers,
@@ -335,6 +344,7 @@ def main() -> None:
     parser.add_argument("--port", type=int)
     parser.add_argument("--db")
     parser.add_argument("--site")
+    parser.add_argument("--contract-file")
     parser.add_argument("--seed-reference", action="store_true")
     parser.add_argument("--bedrock-discovery", action="store_true")
     parser.add_argument("--aws-region")
@@ -347,6 +357,7 @@ def main() -> None:
         port=args.port,
         db_path=args.db,
         site_dir=args.site,
+        contract_file=args.contract_file,
         bedrock_discovery=True if args.bedrock_discovery else None,
         aws_region=args.aws_region,
         seed_reference=True if args.seed_reference else None,

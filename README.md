@@ -262,3 +262,9 @@ Discovery and execution are separate authorities. A Bedrock model or inference p
 A caller may then propose an installed semantic capability for testing with the normal command boundary, for example `{"name":"claim","payload":{"surface_id":"...","capability_id":"future.semantic_patch.v1"}}`. That claim is persisted as `request-proposed` and remains non-authoritative. Only independently generated probes, exact JSON output checks, separate adapter verification, provider allow-list policy, and the normal promotion gates can move the surface beyond `UNKNOWN`.
 
 The Converse adapter currently tests the installed `json-patch-v1` and `json-tool-v1` semantic contracts through strict JSON-only responses. Passing `json-tool-v1` here proves JSON/tool-envelope fidelity through Converse; it must not be described as proof of Bedrock-native tool invocation. Native Bedrock tool-use support requires its own `toolConfig` evidence lane.
+
+## Host-owned workload contract
+
+Provider admission is policy, not discovery metadata. The default Evolution OS contract allows only the reference provider. To qualify Bedrock (or any other real provider), supply an explicit operator-owned contract with `MORPHOSIS_CONTRACT_FILE=/path/to/workload-contract.json` or `morphosis-server --contract-file /path/to/workload-contract.json`. The file is parsed as the canonical `WorkloadContract` schema before the service starts and is persisted in the evidence ledger. Reopening an existing database with different explicit contract content is rejected rather than silently changing policy.
+
+`workload-contract.example.json` shows the exact v3 schema with `reference` and `bedrock` explicitly allowed. This is intentionally separate from the older CLI fixture contract format under `fixtures/`.

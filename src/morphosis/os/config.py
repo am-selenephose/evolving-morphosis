@@ -33,6 +33,7 @@ class ServiceSettings:
     db_path: str = "morphosis.sqlite"
     site_dir: str | None = None
     transport_config: str | None = None
+    contract_file: str | None = None
     bedrock_discovery: bool = False
     aws_region: str | None = None
     seed_reference: bool = False
@@ -56,6 +57,7 @@ class ServiceSettings:
             db_path=os.getenv("MORPHOSIS_DB", "morphosis.sqlite"),
             site_dir=os.getenv("MORPHOSIS_SITE_DIR") or None,
             transport_config=os.getenv("MORPHOSIS_TRANSPORTS_FILE") or None,
+            contract_file=os.getenv("MORPHOSIS_CONTRACT_FILE") or None,
             bedrock_discovery=_bool("MORPHOSIS_BEDROCK_DISCOVERY", False),
             aws_region=(os.getenv("MORPHOSIS_AWS_REGION") or os.getenv("AWS_REGION") or os.getenv("AWS_DEFAULT_REGION") or None),
             seed_reference=_bool("MORPHOSIS_SEED_REFERENCE", False),
@@ -87,6 +89,8 @@ class ServiceSettings:
             raise ValueError("configured site directory does not exist")
         if self.transport_config is not None and not Path(self.transport_config).expanduser().is_file():
             raise ValueError("configured transport file does not exist")
+        if self.contract_file is not None and not Path(self.contract_file).expanduser().is_file():
+            raise ValueError("configured workload contract file does not exist")
         if self.bedrock_discovery and not self.aws_region:
             raise ValueError("Bedrock discovery requires MORPHOSIS_AWS_REGION or AWS_REGION")
         return self
