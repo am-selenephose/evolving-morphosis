@@ -15,7 +15,7 @@ from .graph import CapabilityGraph,date
 from .probes import ProbeSynthesizer,LocalReferenceSandbox,run_probe
 from .compiler import compile_ir,verify_adapter
 from .qualifier import qualify
-from .deployment import ReferenceDeploymentController,STAGES
+from .deployment import ReferenceDeploymentController,TrafficPolicy,STAGES
 
 
 def utcnow():return datetime.now(timezone.utc).isoformat().replace('+00:00','Z')
@@ -26,9 +26,10 @@ def fields(data,allowed,required=()):
 
 
 class MorphosisApplication:
-    def __init__(self,path=':memory:',*,contract=None,clock=utcnow,executor=None,controller=None,transports=None,capability_contracts=None,contracts=None,discoverers=None):
+    def __init__(self,path=':memory:',*,contract=None,clock=utcnow,executor=None,controller=None,transports=None,capability_contracts=None,contracts=None,discoverers=None,traffic_policy=None):
         self.ledger=SQLiteLedger(path);self.clock=clock;self.kernel=PolicyKernel()
         self.executor=executor or LocalReferenceSandbox();self.controller=controller or ReferenceDeploymentController()
+        self.traffic_policy=(traffic_policy or TrafficPolicy()).validate()
         installed={('reference','reference://echo'):'json-text',('reference','reference://native'):'native-json',('reference','reference://broken'):'broken-json'}
         installed.update(dict(transports or {}));self.transports=installed
         self.discoverers=dict(discoverers or {})
@@ -70,7 +71,7 @@ class MorphosisApplication:
         self._default_contract=self._contract
 
     def command(self,name,payload,command_id=None):
-        if name.startswith('_') or name not in ('discover','claim','bootstrap','evaluate','propose_probe','run_probe','compile','verify_adaptation','qualify','bundle','advance','rollback','telemetry','requalify'):
+        if name.startswith('_') or name not in ('discover','claim','bootstrap','evaluate','propose_probe','run_probe','compile','verify_adaptation','qualify','bundle','advance','rollback','serve','telemetry','requalify'):
             raise ValueError('unknown application command')
         payload=json.loads(json.dumps(payload,allow_nan=False))
         command_id=command_id or str(uuid4());input_hash=digest([name,payload])
@@ -89,7 +90,7 @@ class MorphosisApplication:
                 matching=[c for c in self._state.get('contracts',{}).values() if c['workload_id']==workload_id]
                 if len(matching)!=1:raise ValueError('workload selector missing or ambiguous')
                 self._contract=WorkloadContract.model_validate(matching[0])
-            if name in ('advance','rollback') and payload.get('transaction_id') in self._state.get('transactions',{}):
+            if name in ('advance','rollback','serve') and payload.get('transaction_id') in self._state.get('transactions',{}):
                 selected=self._state['transactions'][payload['transaction_id']]
                 self._contract=WorkloadContract.model_validate(self._state['bundles'][selected['bundle_id']]['workload_contract'])
             result=getattr(self,'_'+name)(payload)
@@ -340,6 +341,69 @@ class MorphosisApplication:
         if tuple(current['evidence'])!=bundle.capability_evidence:raise ValueError('bundle evidence differs from current qualification')
         if not bundle.adaptation_verification.passed or bundle.adaptation_verification.adaptation_id!=bundle.adaptation.digest():raise ValueError('bundle adapter unverified')
 
+    def _invoke_bundle(self,bundle,value,probe_id):
+        bundle=EvolutionBundle.model_validate(bundle)
+        surface=self._surface(bundle.surface_id);transport=self._transport(surface)
+        if transport is None:raise ValueError('serving bundle has no host-bound transport')
+        spec=ProbeSpec(probe_id=probe_id,surface_id=surface.surface_id,capability_id=bundle.adaptation.capability_id)
+        raw=self.executor.execute(spec,transport,value)
+        latency,cost=self.executor.metrics(transport)
+        return compile_ir(bundle.adaptation)(raw),latency,cost
+
+    def _live_traffic_gate(self,tx):
+        stage=tx.stage;minimum=self.traffic_policy.minimum(stage)
+        samples=[x for x in self._state.get('traffic_samples',{}).values()
+            if x['transaction_id']==tx.transaction_id and x['stage']==stage]
+        if len(samples)<minimum:
+            raise ValueError(f'{stage} requires {minimum} live traffic samples; observed {len(samples)}')
+        failures=sum(1 for x in samples if not x['matched'])
+        mismatch=failures/len(samples)
+        return {'stage':stage,'passed':mismatch<=self.traffic_policy.max_mismatch_rate,
+            'sample_count':len(samples),'mismatch_count':failures,'mismatch_rate':mismatch,
+            'max_mismatch_rate':self.traffic_policy.max_mismatch_rate,
+            'backend':'morphosis-live-traffic-gate','production_traffic':self.traffic_policy.production}
+
+    def _serve(self,data):
+        fields(data,('transaction_id','request_id','value'),('transaction_id','request_id','value'))
+        if not self.traffic_policy.enabled:raise ValueError('live traffic stages are disabled by host policy')
+        tid=data['transaction_id'];request_id=data['request_id']
+        if not isinstance(request_id,str) or not 1<=len(request_id)<=200:raise ValueError('request_id must be a 1-200 character string')
+        if len(json.dumps(data['value'],allow_nan=False).encode())>65536:raise ValueError('serving request exceeds 65536 bytes')
+        tx=EvolutionTransaction.model_validate(self._get('transactions',tid))
+        if tx.stage not in ('SHADOW','CANARY','RAMP'):raise ValueError('transaction is not in a live traffic stage')
+        if not tx.previous_bundle:raise ValueError('live traffic split requires a qualified incumbent bundle')
+        deployment=self._state.get('deployment',{}).get('current',DeploymentState().json_value())
+        if deployment['active_bundle']!=tx.previous_bundle:raise ValueError('incumbent changed; live traffic transaction is stale')
+        candidate=EvolutionBundle.model_validate(self._get('bundles',tx.bundle_id))
+        incumbent=EvolutionBundle.model_validate(self._get('bundles',tx.previous_bundle))
+        self._valid_bundle(candidate);self._valid_bundle(incumbent)
+        sample_id=digest([tid,tx.stage,request_id])
+        if sample_id in self._state.get('traffic_samples',{}):raise ValueError('traffic request_id already observed for this stage')
+        incumbent_output,inc_latency,inc_cost=self._invoke_bundle(incumbent,data['value'],'live-incumbent-'+sample_id[:12])
+        candidate_ok=True;candidate_output=None;cand_latency=0.0;cand_cost=0.0
+        try:
+            candidate_output,cand_latency,cand_cost=self._invoke_bundle(candidate,data['value'],'live-candidate-'+sample_id[:12])
+        except (ValueError,TypeError,KeyError,IndexError):
+            candidate_ok=False
+        matched=bool(candidate_ok and candidate_output==incumbent_output)
+        fraction=self.traffic_policy.fraction(tx.stage)
+        score=int(digest([tid,tx.stage,request_id,'route'])[:16],16)/float(16**16)
+        selected=tx.stage!='SHADOW' and score<fraction
+        candidate_served=bool(selected and matched)
+        served_bundle=candidate.bundle_id if candidate_served else incumbent.bundle_id
+        output=candidate_output if candidate_served else incumbent_output
+        sample={'sample_id':sample_id,'transaction_id':tid,'stage':tx.stage,'request_hash':digest(data['value']),
+            'incumbent_bundle':incumbent.bundle_id,'candidate_bundle':candidate.bundle_id,
+            'candidate_selected':selected,'candidate_ok':candidate_ok,'matched':matched,
+            'served_bundle':served_bundle,'fallback_used':bool(selected and not candidate_served),
+            'incumbent_output_hash':digest(incumbent_output),'candidate_output_hash':digest(candidate_output) if candidate_ok else None,
+            'incumbent_latency_ms':inc_latency,'candidate_latency_ms':cand_latency,
+            'incumbent_cost_usd':inc_cost,'candidate_cost_usd':cand_cost,'observed_at':self._now,
+            'production_traffic':self.traffic_policy.production}
+        self._emit('LiveTrafficSampleObserved','traffic_samples',sample_id,sample,
+            f'{tx.stage}: live traffic comparison recorded without payload retention')
+        return {'output':output,'traffic':sample}
+
     def _advance(self,data):
         fields(data,('transaction_id',),('transaction_id',));tid=data['transaction_id']
         tx=EvolutionTransaction.model_validate(self._get('transactions',tid))
@@ -349,6 +413,12 @@ class MorphosisApplication:
         if deployment['active_bundle']!=tx.previous_bundle:raise ValueError('incumbent changed; transaction must be rebased')
         target=STAGES[STAGES.index(tx.stage)+1]
         checks=tx.checks
+        if self.traffic_policy.enabled and tx.previous_bundle and tx.stage in ('SHADOW','CANARY','RAMP'):
+            live_record=self._live_traffic_gate(tx)
+            live_hash=self.ledger.put(live_record);checks=(*checks,live_hash)
+            self._emit('LiveTrafficGateCompleted','deployment_checks',live_hash,live_record,
+                f'{tx.stage}: live traffic gate {"passed" if live_record["passed"] else "failed"}')
+            if not live_record['passed']:return self._rollback({'transaction_id':tid},reason=f'{tx.stage}_LIVE_TRAFFIC_FAILED')
         if target in ('SANDBOXED','SHADOW','CANARY','RAMP','PROMOTED'):
             surface=self._surface(bundle.surface_id);transport_name=self._transport(surface)
             spec=ProbeSpec(probe_id='deployment-reference',surface_id=surface.surface_id,capability_id=bundle.adaptation.capability_id)
@@ -435,6 +505,7 @@ class MorphosisApplication:
             events=self.ledger.events();collections=('evidence','probes','probe_runs','adaptations','verifications','qualifications','bundles','transactions','telemetry','requalifications','contracts')
             result={name:list(self._state.get(name,{}).values()) for name in collections}
             if self._state.get('catalog'):result['catalog']=list(self._state['catalog'].values())
+            if self._state.get('traffic_samples'):result['traffic_samples']=list(self._state['traffic_samples'].values())
             models=[];capabilities=[]
             for sid,surface in self._state.get('models',{}).items():
                 states=self._states(sid,now);capabilities.extend(c.json_value() for c in states)
