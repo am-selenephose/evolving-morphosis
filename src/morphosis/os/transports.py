@@ -61,9 +61,12 @@ class BedrockConverseBinding:
             raise ValueError("Bedrock transport endpoint must use bedrock://REGION/...")
         if parsed.username or parsed.password or parsed.query or parsed.fragment:
             raise ValueError("Bedrock transport endpoint must not contain credentials, query, or fragment")
-        parts = [part for part in parsed.path.split("/") if part]
-        if len(parts) != 2 or parts[0] not in {"foundation-model", "inference-profile"} or not parts[1]:
+        path = parsed.path.lstrip("/")
+        kind, separator, resource_id = path.partition("/")
+        if not separator or kind not in {"foundation-model", "inference-profile"} or not resource_id:
             raise ValueError("Bedrock transport endpoint must target one discovered model or inference profile")
+        if any(ch.isspace() or ord(ch) < 32 for ch in resource_id):
+            raise ValueError("invalid Bedrock model or inference profile id")
         if not all(ch.isalnum() or ch == "-" for ch in parsed.netloc):
             raise ValueError("invalid Bedrock region")
         if not 100 <= self.timeout_ms <= 30_000:
@@ -80,7 +83,8 @@ class BedrockConverseBinding:
 
     @property
     def model_id(self) -> str:
-        return [part for part in urlparse(self.endpoint).path.split("/") if part][1]
+        path = urlparse(self.endpoint).path.lstrip("/")
+        return path.partition("/")[2]
 
 
 class HostTransportExecutor:

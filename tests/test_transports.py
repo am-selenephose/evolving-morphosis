@@ -181,6 +181,15 @@ def test_bedrock_binding_is_exact_host_authority_and_requires_cost_estimate(tmp_
     with pytest.raises(ValueError, match="cost estimate"):
         load_transport_bindings(missing_cost)
 
+    slash_id = "vendor.alpha-v1:0/123456789012"
+    slash_endpoint = f"bedrock://us-east-1/foundation-model/{slash_id}"
+    slash_binding = BedrockConverseBinding(
+        provider="bedrock",
+        endpoint=slash_endpoint,
+        cost_per_request_usd=0.001,
+    ).validate()
+    assert slash_binding.model_id == slash_id
+
 
 def test_bedrock_converse_end_to_end_requires_claim_then_independent_evidence(tmp_path):
     runtime = FakeBedrockRuntime()
