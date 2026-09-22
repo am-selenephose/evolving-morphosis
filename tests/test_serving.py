@@ -73,7 +73,7 @@ def test_router_strategy_never_retries_attempted_or_revoked_candidate(tmp_path):
     second,_=promote(app,"second-qualified")
     router=build_strands_model_router(app,"tool-roundtrip",model_factory=router_model,max_switches=1)
     strategy=MorphosisAdmissionStrategy(app,"tool-roundtrip",(second["surface_id"],first["surface_id"]))
-    attempted=SimpleNamespace(candidate=router.candidates[0])
+    attempted=SimpleNamespace(candidate=router.candidates[0],exception=None)
     context=SimpleNamespace(candidates=router.candidates,attempts=(attempted,))
     assert asyncio.run(strategy.select(context)) is router.candidates[1]
 
