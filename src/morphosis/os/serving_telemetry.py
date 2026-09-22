@@ -95,6 +95,13 @@ class ServingTelemetryRecorder:
         with app.ledger.transaction():
             app._state = app.ledger.replay()
             app._now = app.clock()
+            app._correlation = digest([
+                "host-serving-observation",
+                surface_id,
+                workload_id,
+                bundle_id,
+                len(app.ledger.events()),
+            ])
             bundle = app._state.get("bundles", {}).get(bundle_id)
             if not bundle or bundle["surface_id"] != surface_id or bundle["workload_contract"]["workload_id"] != workload_id:
                 raise ValueError("serving observation does not match a known workload bundle")
