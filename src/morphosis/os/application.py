@@ -296,8 +296,8 @@ class MorphosisApplication:
                 self._emit('ProbeProposed','probes',spec.probe_id,spec,f'{surface.model}: independent {spec.family} probe synthesized')
                 runs.append(self._run_probe({'probe_id':spec.probe_id}).json_value())
         if not runs:return {'surface_id':sid,'decision':self._qualify(data),'probe_runs':[],'adaptation':None,'adaptation_verification':None}
-        proven_caps={run['capability_id'] for run in runs if run.get('passed')}
-        adaptation_cap=next((cap for cap in self._contract.required if cap in proven_caps),None)
+        probed_caps={run['capability_id'] for run in runs}
+        adaptation_cap=next((cap for cap in self._contract.required if cap in probed_caps),None)
         if adaptation_cap is None:
             return {'surface_id':sid,'decision':self._qualify(data),'probe_runs':runs,'adaptation':None,'adaptation_verification':None}
         native=self._transport(surface)=='native-json'
