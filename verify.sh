@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
+trap 'status=$?; echo "VERIFY FAILED line ${LINENO}: ${BASH_COMMAND}" >&2; exit $status' ERR
 ROOT_DIR="$(cd "$(dirname "$0")" && pwd)"
 cd "$ROOT_DIR"
 export PYTHONPATH="$ROOT_DIR/src"
