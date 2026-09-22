@@ -105,15 +105,24 @@ class BedrockDiscoverer:
             config = (
                 ("catalog_kind", "foundation-model"),
                 ("model_arn", str(item.get("modelArn") or "")),
-                ("provider_name", str(item.get("providerName") or "")),
-                ("lifecycle_status", str(lifecycle.get("status") or "")),
-                ("start_of_life", _iso(lifecycle.get("startOfLifeTime"))),
-                ("legacy_time", _iso(lifecycle.get("legacyTime"))),
-                ("end_of_life", _iso(lifecycle.get("endOfLifeTime"))),
             )
+            metadata = {
+                "model_name": str(item.get("modelName") or ""),
+                "provider_name": str(item.get("providerName") or ""),
+                "lifecycle_status": str(lifecycle.get("status") or ""),
+                "start_of_life": _iso(lifecycle.get("startOfLifeTime")),
+                "legacy_time": _iso(lifecycle.get("legacyTime")),
+                "end_of_life": _iso(lifecycle.get("endOfLifeTime")),
+                "public_extended_access_time": _iso(lifecycle.get("publicExtendedAccessTime")),
+                "input_modalities": list(item.get("inputModalities") or ()),
+                "output_modalities": list(item.get("outputModalities") or ()),
+                "inference_types": list(item.get("inferenceTypesSupported") or ()),
+                "customizations": list(item.get("customizationsSupported") or ()),
+                "streaming": bool(item.get("responseStreamingSupported")),
+            }
             discovered.append(
                 {
-                    "model": str(item.get("modelName") or model_id),
+                    "model": str(model_id),
                     "provider": self.provider,
                     "endpoint": f"bedrock://{region}/foundation-model/{model_id}",
                     "claims": _foundation_claims(item),
@@ -121,6 +130,7 @@ class BedrockDiscoverer:
                     "model_version": str(model_id),
                     "inference_config": tuple((k, v) for k, v in config if v),
                     "tool_protocol": "unbound",
+                    "catalog_metadata": metadata,
                 }
             )
         for item in self._inference_profiles():
@@ -136,14 +146,19 @@ class BedrockDiscoverer:
                 ("catalog_kind", "inference-profile"),
                 ("profile_arn", str(item.get("inferenceProfileArn") or "")),
                 ("profile_type", str(item.get("type") or "")),
-                ("profile_status", str(item.get("status") or "")),
                 ("models", models),
-                ("created_at", _iso(item.get("createdAt"))),
-                ("updated_at", _iso(item.get("updatedAt"))),
             )
+            metadata = {
+                "profile_name": str(item.get("inferenceProfileName") or ""),
+                "profile_status": str(item.get("status") or ""),
+                "profile_type": str(item.get("type") or ""),
+                "models": [str(model.get("modelArn") or "") for model in (item.get("models") or ()) if model.get("modelArn")],
+                "created_at": _iso(item.get("createdAt")),
+                "updated_at": _iso(item.get("updatedAt")),
+            }
             discovered.append(
                 {
-                    "model": str(item.get("inferenceProfileName") or profile_id),
+                    "model": str(profile_id),
                     "provider": self.provider,
                     "endpoint": f"bedrock://{region}/inference-profile/{profile_id}",
                     "claims": _profile_claims(item),
@@ -151,6 +166,7 @@ class BedrockDiscoverer:
                     "model_version": str(profile_id),
                     "inference_config": tuple((k, v) for k, v in config if v),
                     "tool_protocol": "unbound",
+                    "catalog_metadata": metadata,
                 }
             )
         return discovered

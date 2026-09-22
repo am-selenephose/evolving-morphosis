@@ -80,7 +80,9 @@ def test_bedrock_discovery_normalizes_foundation_models_and_paginated_profiles()
     assert len(candidates) == 3
     foundation = candidates[0]
     assert foundation["provider"] == "bedrock"
+    assert foundation["model"] == "vendor.alpha-v1:0"
     assert foundation["endpoint"] == "bedrock://us-east-1/foundation-model/vendor.alpha-v1:0"
+    assert foundation["catalog_metadata"]["model_name"] == "Vendor Alpha"
     assert "bedrock.catalog.foundation_model.v1" in foundation["claims"]
     assert "bedrock.input.text.v1" in foundation["claims"]
     assert "bedrock.input.image.v1" in foundation["claims"]
@@ -116,6 +118,13 @@ def test_catalog_discovery_imports_only_unknown_claims_and_never_evidence(tmp_pa
     assert result["decision"]["outcome"] == "HOLD"
     assert result["probe_runs"] == []
     assert app.snapshot()["evidence"] == []
+    assert len(app.snapshot()["catalog"]) == 3
+
+    before_events = len(app.events())
+    repeated = app.command("discover", {"provider": "bedrock"})
+    assert [x["surface_id"] for x in repeated] == [x["surface_id"] for x in imported]
+    assert len(app.snapshot()["models"]) == 3
+    assert len(app.events()) == before_events
 
 
 def test_discovery_is_host_installed_and_request_cannot_supply_provider_config(tmp_path):

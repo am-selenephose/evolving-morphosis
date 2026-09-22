@@ -122,11 +122,13 @@ class MorphosisApplication:
         return [self.graph.derive(sid,c['capability_id'],observations,now=now) for c in self._claims(sid)]
 
     def _register_discovered_surface(self,data,claim_source):
-        allowed=('model','provider','endpoint','claims','api_surface','model_version','inference_config','tool_protocol')
+        allowed=('model','provider','endpoint','claims','api_surface','model_version','inference_config','tool_protocol','catalog_metadata')
         fields(data,allowed,('model','provider','endpoint','claims'))
         if not isinstance(data['claims'],(list,tuple)) or not 1<=len(data['claims'])<=100:
             raise ValueError('1–100 capability claims required')
-        raw={k:v for k,v in data.items() if k!='claims'}
+        catalog_metadata=data.get('catalog_metadata',{})
+        if not isinstance(catalog_metadata,dict):raise ValueError('catalog metadata must be an object')
+        raw={k:v for k,v in data.items() if k not in ('claims','catalog_metadata')}
         raw.update(
             api_surface=data.get('api_surface','provider-catalog-v1'),
             adapter=None,
@@ -140,6 +142,11 @@ class MorphosisApplication:
             self._emit('ProviderSurfaceDiscovered','models',sid,surface,f'{surface.model} discovered from {surface.provider} catalog')
         else:
             surface=self._surface(sid)
+        catalog_value={'surface_id':sid,'provider':surface.provider,'source':claim_source,'metadata':catalog_metadata}
+        existing_catalog=self._state.get('catalog',{}).get(sid)
+        if existing_catalog is None or existing_catalog.get('metadata')!=catalog_metadata:
+            catalog_value['observed_at']=self._now
+            self._emit('ProviderCatalogObserved','catalog',sid,catalog_value,f'{surface.model}: provider catalog metadata observed')
         for cap in data['claims']:
             claim=CapabilityClaim(surface_id=sid,capability_id=cap,source=claim_source)
             if claim.digest() not in self._state.get('claims',{}):
@@ -411,7 +418,7 @@ class MorphosisApplication:
     def snapshot(self):
         with self.ledger.lock:
             self._state=self.ledger.replay();now=self.clock()
-            events=self.ledger.events();collections=('evidence','probes','probe_runs','adaptations','verifications','qualifications','bundles','transactions','telemetry','requalifications','contracts')
+            events=self.ledger.events();collections=('catalog','evidence','probes','probe_runs','adaptations','verifications','qualifications','bundles','transactions','telemetry','requalifications','contracts')
             result={name:list(self._state.get(name,{}).values()) for name in collections}
             models=[];capabilities=[]
             for sid,surface in self._state.get('models',{}).items():
