@@ -195,7 +195,7 @@ Run:
 
     ./verify.sh
 
-The current productization branch verifies 81 Python tests plus 12 frontend tests and deterministic artifact parity.
+Current main verifies 81 Python tests plus 14 frontend/adapter tests and deterministic artifact parity.
 
 ## Containers
 
@@ -242,3 +242,9 @@ The default deployment controller is deliberately local and policy-gated. Cloud-
 ## License
 
 MIT
+
+## Deployment adapters
+
+The canonical Morphosis authority is the Python Evolution OS under `src/morphosis/os/`. Platform-specific deployment glue is tracked under `adapters/` and must not redefine qualification, evidence, or promotion policy.
+
+The current public AppDeploy demo uses `adapters/appdeploy/`. Its UI shell is sourced from `site/`; only transport, persistence, realtime projection, and platform QA are adapter-specific. Deterministic fixtures in that adapter are proof/demo fixtures, not external-model telemetry.
