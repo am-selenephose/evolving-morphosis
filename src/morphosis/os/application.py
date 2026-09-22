@@ -441,7 +441,8 @@ class MorphosisApplication:
                 qual=self._state.get('qualifications',{}).get(sid)
                 txs=[t for t in result['transactions'] if self._state['bundles'][t['bundle_id']]['surface_id']==sid]
                 status=txs[-1]['stage'] if txs else qual['outcome'] if qual else 'UNKNOWN'
-                if not states or any(c.status=='UNKNOWN' for c in states):status='UNKNOWN'
+                required_states=[c for c in states if c.capability_id in self._default_contract.required]
+                if not required_states or any(c.status=='UNKNOWN' for c in required_states):status='UNKNOWN'
                 models.append({**surface,'status':status,'capabilities':[c.capability_id for c in states]})
             counts=[('Probes',len(result['probe_runs'])),('Verification',len(result['verifications'])),('Qualification',len(result['qualifications'])),
                 ('Deployment',len(self._state.get('deployment_checks',{}))),('Discovery',len(models))]

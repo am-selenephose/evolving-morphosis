@@ -220,6 +220,8 @@ def test_bedrock_converse_end_to_end_requires_claim_then_independent_evidence(tm
         assert all(run["provenance"] == "host-managed-bedrock-converse" for run in result["probe_runs"])
         assert result["adaptation"]["capability_id"] == "future.semantic_patch.v1"
         assert result["adaptation_verification"]["passed"] is True
+        model = next(x for x in app.snapshot()["models"] if x["surface_id"] == surface["surface_id"])
+        assert model["status"] == "PROMOTE_TO_SHADOW"
         assert len(runtime.calls) == 6
         assert {call["modelId"] for call in runtime.calls} == {"vendor.alpha-v1:0"}
         assert all(call["inferenceConfig"]["temperature"] == 0 for call in runtime.calls)
