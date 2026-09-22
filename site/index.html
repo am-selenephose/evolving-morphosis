@@ -18,7 +18,7 @@
       <div class="sidebar-visual"><canvas id="sidebarCanvas"></canvas></div>
       <div class="side-motto">EVOLVE<br/>ADAPT<br/>ALIGN<br/>BEYOND</div>
       <div class="side-rule"></div>
-      <div class="side-foot">v3.0.0 · REFERENCE BUILD<br/>MODELS CHANGE. CONTRACTS HOLD.</div>
+      <div class="side-foot">v0.3.0 · LIVE CONTROL PLANE<br/>MODELS CHANGE. CONTRACTS HOLD.</div>
     </aside>
 
     <section class="workspace">
@@ -56,7 +56,7 @@
             </article>
 
             <article class="panel workspace-panel">
-              <div class="panel-head"><span>EVOLUTION WORKSPACE</span><div class="live-label"><span class="projectionMode">BACKEND REPLAY</span> <b>●</b></div></div>
+              <div class="panel-head"><span>EVOLUTION WORKSPACE</span><div class="live-label"><span class="projectionMode">CANONICAL STREAM</span> <b>●</b></div></div>
               <div class="evolution-stage">
                 <canvas id="workspaceCanvas"></canvas>
                 <div class="stage-labels">
@@ -72,7 +72,7 @@
             </article>
 
             <article class="panel recent-panel"><div class="panel-head"><span>RECENT EVOLUTIONS</span><button data-view-link="evolution">View All →</button></div><div id="recentList" class="recent-list"></div></article>
-            <article class="panel workload-panel"><div class="panel-head"><span>CURRENT WORKLOAD</span><div class="live-label"><span class="projectionMode">REPLAY</span></div></div><div class="workload-wrap"><div class="donut"><div><strong id="workloadTotal">—</strong><small>TASKS</small></div></div><div class="legend" id="workloadLegend"></div></div></article>
+            <article class="panel workload-panel"><div class="panel-head"><span>QUALIFICATION WORKLOAD</span><div class="live-label"><span class="projectionMode">BUNDLED PROOF</span></div></div><div class="workload-wrap"><div class="donut"><div><strong id="workloadTotal">—</strong><small>TASKS</small></div></div><div class="legend" id="workloadLegend"></div></div></article>
             <article class="panel pipeline-panel"><div class="panel-head"><span>EVOLUTION PIPELINE</span><button data-view-link="evolution">View Runs →</button></div><div id="pipeline" class="pipeline"></div></article>
             <article class="panel log-panel"><div class="panel-head"><span>LIVE EVOLUTION LOG</span><div><small id="streamLabel">Backend ledger</small><b class="pulse-dot"></b><button id="pauseLog">Pause Ⅱ</button></div></div><div id="liveLog" class="terminal"></div></article>
           </section>
@@ -93,10 +93,10 @@
 
   <div class="overlay hidden" id="searchOverlay" role="dialog" aria-modal="true" aria-label="Search projections"><div class="search-modal"><div class="search-input-wrap"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="10" cy="10" r="6"/><path d="m15 15 6 6"/></svg><input id="globalSearch" autocomplete="off" placeholder="Search models, agents, datasets, pages, runs..."/><kbd>ESC</kbd></div><div class="search-results" id="searchResults"></div></div></div>
   <aside class="notification-drawer" id="notificationDrawer"><div class="drawer-head"><div><span>NOTIFICATIONS</span><small>Evolution events and policy changes</small></div><button id="closeNotifications">×</button></div><div id="notificationList" class="notification-list"></div></aside>
-  <div class="overlay hidden" id="addModelOverlay" role="dialog" aria-modal="true" aria-label="Add model"><form class="modal-card" id="addModelForm"><div class="modal-head"><div><span>ADD MODEL TO ECOSYSTEM</span><small>Candidate claims remain unverified until evaluated.</small></div><button type="button" id="closeAddModel">×</button></div><label>Model name<input id="modelNameInput" required placeholder="future-model-y"/></label><label>Provider<input id="providerInput" required placeholder="provider-name"/></label><label>Endpoint<input id="endpointInput" required placeholder="reference://native"/><small class="endpoint-help">For bounded local tests, use reference://native or reference://echo with provider reference. HTTP(S) endpoints are validated by the backend.</small></label><label>Capability claim<input id="capabilityInput" required placeholder="future.capability.v1"/></label><div class="modal-error" id="addModelError"></div><button class="primary-btn" type="submit">Add as UNVERIFIED candidate</button></form></div>
+  <div class="overlay hidden" id="addModelOverlay" role="dialog" aria-modal="true" aria-label="Add model"><form class="modal-card" id="addModelForm"><div class="modal-head"><div><span>ADD MODEL TO ECOSYSTEM</span><small>Registration never equals trust; independent evidence is required.</small></div><button type="button" id="closeAddModel">×</button></div><label>Model name<input id="modelNameInput" required placeholder="future-model-y"/></label><label>Provider<input id="providerInput" required placeholder="provider-name"/></label><label>Endpoint<input id="endpointInput" required placeholder="https://model.example/v1"/><small class="endpoint-help">Register an HTTP(S) candidate surface. Registration stores an UNVERIFIED claim only; trust requires independent evidence.</small></label><label>Capability claim<input id="capabilityInput" required placeholder="future.capability.v1"/></label><div class="modal-error" id="addModelError"></div><button class="primary-btn" type="submit">Add as UNVERIFIED candidate</button></form></div>
 
   <div class="overlay hidden" id="detailOverlay" role="dialog" aria-modal="true" aria-label="Evidence detail"><section class="modal-card detail-card"><div class="modal-head"><strong id="detailTitle"></strong><button id="closeDetail" aria-label="Close detail">×</button></div><div id="detailBody"></div></section></div>
   <div id="notice" class="notice" role="status" hidden></div>
-  <script type="module" src="app.js"></script>
+  <script type="module" src="app.js?v=morphosis-v0.3-product"></script>
 </body>
 </html>
