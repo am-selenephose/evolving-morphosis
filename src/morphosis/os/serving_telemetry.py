@@ -6,7 +6,7 @@ prior qualification after a minimum sample window breaches the workload policy.
 """
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from time import perf_counter
 from typing import Any
 
@@ -178,9 +178,7 @@ class StrandsServingTelemetryHook:
     workload_id: str
     candidate_bindings: dict[int, tuple[str, str]]
     clock: Any = perf_counter
-
-    def __post_init__(self) -> None:
-        self._starts: dict[tuple[int, int], float] = {}
+    _starts: dict[tuple[int, int], float] = field(default_factory=dict, init=False, repr=False)
 
     def register_hooks(self, registry, **kwargs) -> None:
         from strands.hooks import BeforeModelCallEvent, AfterModelCallEvent
