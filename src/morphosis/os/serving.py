@@ -6,7 +6,7 @@ revoked candidates cannot be resurrected by router health history.
 """
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Any, Callable
 
 from .schemas import digest
@@ -65,12 +65,34 @@ class MorphosisAdmissionStrategy:
     application: Any
     workload_id: str
     surface_ids: tuple[str,...]
+    bundle_ids: tuple[str,...]=()
+    telemetry_recorder: Any=None
+    _recorded_failures: set[tuple[int,int]]=field(default_factory=set,init=False,repr=False)
 
     async def select(self, context, **kwargs):
-        allowed={row["surface_id"] for row in serving_manifest(self.application,self.workload_id)}
-        attempted={id(attempt.candidate) for attempt in context.attempts}
         if len(context.candidates)!=len(self.surface_ids):
             raise ValueError("Strands router candidate set diverged from Morphosis admission manifest")
+        if self.telemetry_recorder is not None and len(self.bundle_ids)!=len(self.surface_ids):
+            raise ValueError("telemetry bundle mapping diverged from Morphosis admission manifest")
+        if self.telemetry_recorder is not None:
+            mapping={id(candidate):(surface_id,bundle_id) for candidate,surface_id,bundle_id in zip(context.candidates,self.surface_ids,self.bundle_ids)}
+            for attempt in context.attempts:
+                if attempt.exception is None or id(attempt.candidate) not in mapping:
+                    continue
+                key=(id(attempt.candidate),id(attempt.exception))
+                if key in self._recorded_failures:
+                    continue
+                self._recorded_failures.add(key)
+                surface_id,bundle_id=mapping[id(attempt.candidate)]
+                self.telemetry_recorder.record(
+                    surface_id=surface_id,
+                    workload_id=self.workload_id,
+                    bundle_id=bundle_id,
+                    success=False,
+                    error_kind="model",
+                )
+        allowed={row["surface_id"] for row in serving_manifest(self.application,self.workload_id)}
+        attempted={id(attempt.candidate) for attempt in context.attempts}
         for candidate,surface_id in zip(context.candidates,self.surface_ids):
             if surface_id in allowed and id(candidate) not in attempted:
                 return candidate
@@ -97,6 +119,7 @@ def build_strands_model_router(
     *,
     model_factory: Callable[[dict[str,Any]],Any] | None=None,
     max_switches: int=1,
+    telemetry_recorder=None,
 ):
     if not isinstance(max_switches,int) or isinstance(max_switches,bool) or max_switches<0:
         raise ValueError("max_switches must be a non-negative integer")
@@ -110,5 +133,45 @@ def build_strands_model_router(
         application=application,
         workload_id=workload_id,
         surface_ids=tuple(entry["surface_id"] for entry in manifest),
+        bundle_ids=tuple(entry["bundle_id"] for entry in manifest),
+        telemetry_recorder=telemetry_recorder,
     )
     return ModelRouter(models=models,strategy=strategy,max_switches=max_switches)
+
+
+def build_strands_serving_agent(
+    application,
+    workload_id: str,
+    *,
+    model_factory: Callable[[dict[str,Any]],Any] | None=None,
+    max_switches: int=1,
+    telemetry_window_size: int=50,
+    telemetry_min_samples: int=20,
+    hooks=None,
+    **agent_kwargs,
+):
+    from strands import Agent
+    from .serving_telemetry import ServingTelemetryRecorder,StrandsServingTelemetryHook
+
+    recorder=ServingTelemetryRecorder(application,window_size=telemetry_window_size,min_samples=telemetry_min_samples)
+    router=build_strands_model_router(
+        application,
+        workload_id,
+        model_factory=model_factory,
+        max_switches=max_switches,
+        telemetry_recorder=recorder,
+    )
+    manifest=serving_manifest(application,workload_id)
+    if len(router.candidates)!=len(manifest):
+        raise ValueError("serving router changed while telemetry bindings were created")
+    candidate_bindings={
+        id(candidate):(entry["surface_id"],entry["bundle_id"])
+        for candidate,entry in zip(router.candidates,manifest)
+    }
+    telemetry_hook=StrandsServingTelemetryHook(
+        recorder=recorder,
+        workload_id=workload_id,
+        candidate_bindings=candidate_bindings,
+    )
+    all_hooks=[telemetry_hook,*list(hooks or ())]
+    return Agent(model=router,hooks=all_hooks,**agent_kwargs)
