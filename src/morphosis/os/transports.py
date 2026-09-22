@@ -233,6 +233,8 @@ def load_transport_bindings(path: str | Path) -> dict[tuple[str, str], object]:
     for row in rows:
         if not isinstance(row, dict):
             raise ValueError("transport binding must be an object")
+        if "provider" not in row or "endpoint" not in row:
+            raise ValueError("transport provider and endpoint are required")
         kind = row.get("kind", "http")
         if kind == "http":
             allowed = {"kind","provider","endpoint","auth_env","timeout_ms","cost_per_request_usd"}
@@ -248,8 +250,6 @@ def load_transport_bindings(path: str | Path) -> dict[tuple[str, str], object]:
             binding = BedrockConverseBinding(**payload).validate()
         else:
             raise ValueError("unsupported transport binding kind")
-        if "provider" not in row or "endpoint" not in row:
-            raise ValueError("transport provider and endpoint are required")
         key = (binding.provider, binding.endpoint)
         if key in bindings:
             raise ValueError("duplicate provider+endpoint transport binding")
