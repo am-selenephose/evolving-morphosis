@@ -81,3 +81,42 @@ def test_router_strategy_never_retries_attempted_or_revoked_candidate(tmp_path):
     # first was fallback and is now stale; candidate zero is attempted, candidate one revoked.
     assert asyncio.run(strategy.select(context)) is None
     app.close()
+
+
+def test_router_failure_is_host_observed_and_revokes_failed_active_candidate(tmp_path):
+    app=MorphosisApplication(tmp_path/"runtime-failure.db",clock=lambda:"2026-09-22T00:00:00Z")
+    first,_=promote(app,"first-qualified")
+    second,_=promote(app,"second-qualified")
+    router=build_strands_model_router(app,"tool-roundtrip",model_factory=router_model,max_switches=1)
+    strategy=MorphosisAdmissionStrategy(app,"tool-roundtrip",(second["surface_id"],first["surface_id"]))
+    failed=SimpleNamespace(candidate=router.candidates[0],exception=RuntimeError("provider secret must not persist"))
+    context=SimpleNamespace(candidates=router.candidates,attempts=(failed,))
+
+    selected=asyncio.run(strategy.select(context))
+    assert selected is router.candidates[1]
+    snapshot=app.snapshot()
+    assert [row["surface_id"] for row in snapshot["runtime_failures"]]==[second["surface_id"]]
+    failure=snapshot["runtime_failures"][0]
+    assert failure["exception_type"]=="RuntimeError"
+    assert "provider secret" not in str(failure)
+    assert snapshot["requalifications"]
+    assert snapshot["deployment"]["active_bundle"] is not None
+    active=app.revision(snapshot["deployment"]["active_bundle"])
+    assert active["surface_id"]==first["surface_id"]
+    assert any(e["event_type"]=="RoutingFailureObserved" for e in snapshot["events"])
+    app.close()
+
+
+def test_router_failure_observation_is_deduplicated_per_attempt(tmp_path):
+    app=MorphosisApplication(tmp_path/"runtime-dedupe.db",clock=lambda:"2026-09-22T00:00:00Z")
+    first,_=promote(app,"first-qualified")
+    second,_=promote(app,"second-qualified")
+    router=build_strands_model_router(app,"tool-roundtrip",model_factory=router_model,max_switches=1)
+    strategy=MorphosisAdmissionStrategy(app,"tool-roundtrip",(second["surface_id"],first["surface_id"]))
+    failed=SimpleNamespace(candidate=router.candidates[0],exception=RuntimeError("x"))
+    context=SimpleNamespace(candidates=router.candidates,attempts=(failed,))
+    asyncio.run(strategy.select(context))
+    count=len(app.snapshot()["runtime_failures"])
+    asyncio.run(strategy.select(context))
+    assert len(app.snapshot()["runtime_failures"])==count
+    app.close()

@@ -494,6 +494,25 @@ class MorphosisApplication:
         self._now=(date(self._now)+timedelta(microseconds=1)).isoformat().replace('+00:00','Z')
         return self._evaluate({'surface_id':sid})
 
+    def observe_routing_failure(self,surface_id,workload_id,exception_type):
+        if not isinstance(exception_type,str) or not 1<=len(exception_type)<=160:
+            raise ValueError('exception type must be a bounded string')
+        with self.ledger.transaction():
+            self._state=self.ledger.replay();self._now=self.clock()
+            self._correlation=digest(['strands-routing-failure',surface_id,workload_id,len(self.ledger.events())])
+            matching=[c for c in self._state.get('contracts',{}).values() if c['workload_id']==workload_id]
+            if len(matching)!=1:raise ValueError('workload selector missing or ambiguous')
+            self._contract=WorkloadContract.model_validate(matching[0])
+            self._surface(surface_id)
+            record={'surface_id':surface_id,'workload_id':workload_id,'exception_type':exception_type,
+                'source':'strands-model-router','observed_at':self._now}
+            key=digest(record)
+            if key not in self._state.get('runtime_failures',{}):
+                self._emit('RoutingFailureObserved','runtime_failures',key,record,
+                    f'{surface_id[:12]}: Strands serving failure observed')
+                return self._request_requalification(surface_id,('MODEL_RUNTIME_FAILURE',))
+            return self._state.get('requalifications',{}).get(surface_id)
+
     def events(self,after=0):return self.ledger.events(after)
     def close(self):self.ledger.close()
     def health(self):return self.ledger.health()
@@ -510,6 +529,7 @@ class MorphosisApplication:
             result={name:list(self._state.get(name,{}).values()) for name in collections}
             if self._state.get('catalog'):result['catalog']=list(self._state['catalog'].values())
             if self._state.get('traffic_samples'):result['traffic_samples']=list(self._state['traffic_samples'].values())
+            if self._state.get('runtime_failures'):result['runtime_failures']=list(self._state['runtime_failures'].values())
             models=[];capabilities=[]
             for sid,surface in self._state.get('models',{}).items():
                 states=self._states(sid,now);capabilities.extend(c.json_value() for c in states)

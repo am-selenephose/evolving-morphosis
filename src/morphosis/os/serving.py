@@ -6,7 +6,7 @@ revoked candidates cannot be resurrected by router health history.
 """
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Any, Callable
 
 from .schemas import digest
@@ -65,12 +65,24 @@ class MorphosisAdmissionStrategy:
     application: Any
     workload_id: str
     surface_ids: tuple[str,...]
+    _observed_failures: set[tuple[int,str]]=field(default_factory=set,init=False,repr=False)
 
     async def select(self, context, **kwargs):
-        allowed={row["surface_id"] for row in serving_manifest(self.application,self.workload_id)}
-        attempted={id(attempt.candidate) for attempt in context.attempts}
         if len(context.candidates)!=len(self.surface_ids):
             raise ValueError("Strands router candidate set diverged from Morphosis admission manifest")
+        candidate_to_surface={id(candidate):surface_id for candidate,surface_id in zip(context.candidates,self.surface_ids)}
+        for attempt in context.attempts:
+            if attempt.exception is None:
+                continue
+            surface_id=candidate_to_surface.get(id(attempt.candidate))
+            if surface_id is None:
+                raise ValueError("Strands routing attempt references an unknown candidate")
+            failure_key=(id(attempt),type(attempt.exception).__name__)
+            if failure_key not in self._observed_failures:
+                self.application.observe_routing_failure(surface_id,self.workload_id,type(attempt.exception).__name__)
+                self._observed_failures.add(failure_key)
+        allowed={row["surface_id"] for row in serving_manifest(self.application,self.workload_id)}
+        attempted={id(attempt.candidate) for attempt in context.attempts}
         for candidate,surface_id in zip(context.candidates,self.surface_ids):
             if surface_id in allowed and id(candidate) not in attempted:
                 return candidate
