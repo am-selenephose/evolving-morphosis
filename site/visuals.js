@@ -1,5 +1,5 @@
 // Organic surfaces are presentation only. No visual state is domain authority.
-const TIERS={high:[128,32],balanced:[96,24],safe:[48,12],reduced:[64,16]};
+const TIERS={high:[112,28],balanced:[84,22],safe:[52,14],reduced:[60,16]};
 export function createFabricGeometry(type='workspace',quality='balanced'){
  const [nu,nv]=TIERS[quality]||TIERS.balanced,layers=type==='workspace'?(quality==='safe'?4:quality==='balanced'?5:6):(quality==='safe'?2:3);
  const vertices=[],triangles=[],lines=[],nodes=[];
@@ -54,7 +54,7 @@ vec3 surface(vec2 uv,float layer){
   if(uSidebar>.5){
    y=fold*.48+v*taper*.48+sin(x*2.3+layer)*.22-.02;
   }else{
-   // Low central knot rising into the far-right arch of the reference.
+   // Low central knot rising into the far-right arch of the locked visual composition.
    float arch=exp(-pow((x-.43)*3.8,2.));
    y=-.63+fold*.38+v*taper*.31+arch*.88;
    z+=sin(x*4.+layer)*.16;
@@ -85,21 +85,21 @@ void main(){
   }
  }
  // Give the workspace a real moving camera transform instead of a flat 2D ribbon.
- float yaw=(sin(uTime*.43)*.16+uPointer.x*.22)*uMotion;
- float pitch=(cos(uTime*.31)*.07-uPointer.y*.12)*uMotion;
+ float yaw=(sin(uTime*.43)*.10+uPointer.x*.12)*uMotion;
+ float pitch=(cos(uTime*.31)*.045-uPointer.y*.07)*uMotion;
  float cy=cos(yaw),sy=sin(yaw),cx=cos(pitch),sx=sin(pitch);
  vec3 q=vec3(cy*p.x+sy*p.z,p.y,-sy*p.x+cy*p.z);
  p=vec3(q.x,cx*q.y-sx*q.z,sx*q.y+cx*q.z);
  if(uWorkspace>.5){
-  p.z+=sin(uTime*.72+layer*.9)*.09*uMotion;
-  p.y+=cos(uTime*.54+layer*.7)*.025*uMotion;
+  p.z+=sin(uTime*.72+layer*.9)*.055*uMotion;
+  p.y+=cos(uTime*.54+layer*.7)*.016*uMotion;
  }
  float cameraZ=2.65;
- float perspective=cameraZ/(cameraZ+p.z*.72);
- gl_Position=vec4(p.x*perspective,(p.y-p.z*.18)*perspective,p.z*.18,1.);
+ float perspective=cameraZ/(cameraZ+p.z*.48);
+ gl_Position=vec4(p.x*perspective,(p.y-p.z*.12)*perspective,p.z*.16,1.);
  vPosition=p;vUV=uv;vLayer=layer;vSeed=abs(aFabric.w);
  vLight=pow(1.-abs(normal.z),3.)*.8+pow(max(0.,dot(normal,normalize(vec3(-.3,.8,1.)))),9.);
- gl_PointSize=(uPass>2.5?18.:(.8+vSeed*.65))*uDpr;
+ gl_PointSize=(uPass>2.5?9.5:(1.35+vSeed*1.35))*min(uDpr,1.5);
 }`;
 const FRAGMENT=`
 precision highp float;
@@ -117,10 +117,10 @@ void main(){
  color=mix(color,pale,min(.85,vLight*.94+edge*.65+pulse*.4));
  color=mix(color,vec3(.48,.015,.045),uImpulse.z*.65);
  float alpha;
- if(uPass<.5){alpha=(.19+vLight*.48+edge*.35)*taper;if(uWorkspace<.5)alpha*=.34;}
- else if(uPass<1.5){alpha=(.014+vLight*.10+edge*.17)*taper;if(uWorkspace<.5)alpha*=1.15;}
- else if(uPass<2.5){float r=length(gl_PointCoord-.5);if(r>.5)discard;alpha=(.24+vLight*.48)*taper*(1.-r)*mix(1.,.55,vDust);color=mix(pink,pale,vLight*.30);}
- else{float r=length(gl_PointCoord-.5)*2.;if(r>1.)discard;alpha=exp(-r*r*7.)*.8*taper;color=mix(pink,pale,exp(-r*r*70.));}
+ if(uPass<.5){alpha=(.035+vLight*.12+edge*.08)*taper;if(uWorkspace<.5)alpha*=.18;}
+ else if(uPass<1.5){alpha=(.010+vLight*.055+edge*.08)*taper;if(uWorkspace<.5)alpha*=.65;}
+ else if(uPass<2.5){float r=length(gl_PointCoord-.5)*2.;if(r>1.)discard;float disc=1.-smoothstep(.36,1.,r);alpha=(.22+vLight*.34)*taper*disc*mix(.82,.34,vDust);color=mix(pink,pale,min(.68,vLight*.24+disc*.12));}
+ else{float r=length(gl_PointCoord-.5)*2.;if(r>1.)discard;float disc=1.-smoothstep(.12,1.,r);alpha=disc*.58*taper;color=mix(pink,pale,disc*.38);}
  gl_FragColor=vec4(color,alpha);
 }`;
 function compile(gl,type,source){const shader=gl.createShader(type);gl.shaderSource(shader,source);gl.compileShader(shader);if(!gl.getShaderParameter(shader,gl.COMPILE_STATUS)){const message=gl.getShaderInfoLog(shader);gl.deleteShader(shader);throw Error(message);}return shader;}
@@ -196,7 +196,7 @@ export class VisualEngine{
    gl.uniform1f(u.Pass,3);gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER,r.buffers.nodes);gl.drawElements(gl.POINTS,r.geometry.nodes.length,gl.UNSIGNED_SHORT,0);points+=r.geometry.nodes.length;calls+=4;
    }catch(error){item.failed=true;release(item);this.attachFallback(item.canvas,item.type,error?.message||'WebGL render failure');console.error('Morphosis visual fallback',item.type,error);continue;}
   }
-  const frameTime=performance.now()-begin;this.frameSamples.push(frameTime);if(this.frameSamples.length>36)this.frameSamples.shift();if(this.frameSamples.length===36){const avg=this.frameSamples.reduce((a,b)=>a+b,0)/this.frameSamples.length;if(avg>30&&this.autoCeiling!=='safe'){this.autoCeiling='safe';for(const item of this.canvases.values())item.quality=null;this.dirty=true;}else if(avg>20&&this.autoCeiling==='high'){this.autoCeiling='balanced';for(const item of this.canvases.values())item.quality=null;this.dirty=true;}}
+  const frameTime=performance.now()-begin;if(frameTime<80)this.frameSamples.push(frameTime);if(this.frameSamples.length>60)this.frameSamples.shift();if(this.frameSamples.length===60){const avg=this.frameSamples.reduce((a,b)=>a+b,0)/this.frameSamples.length;if(avg>30&&this.autoCeiling==='balanced'){this.autoCeiling='safe';this.frameSamples=[];for(const item of this.canvases.values())item.quality=null;this.dirty=true;}else if(avg>20&&this.autoCeiling==='high'){this.autoCeiling='balanced';this.frameSamples=[];for(const item of this.canvases.values())item.quality=null;this.dirty=true;}}
   if(this.debug){Object.assign(this.performance,{frameTime,drawCalls:calls,triangles,points,quality:this.effectiveQuality(settings.quality||'balanced'),fps:this.last&&this.previousTimestamp?1000/(this.last-this.previousTimestamp):0});this.previousTimestamp=this.last;}
  }
  dispose(){this.stop();this.resizeObserver?.disconnect();this.intersectionObserver?.disconnect();globalThis.document?.removeEventListener('visibilitychange',this.visibility);globalThis.removeEventListener?.('pointermove',this.pointerMove);for(const item of this.canvases.values()){item.canvas.removeEventListener('webglcontextlost',item.lost);item.canvas.removeEventListener('webglcontextrestored',item.restored);release(item);}this.canvases.clear();this.seen.clear();}
