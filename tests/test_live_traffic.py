@@ -33,11 +33,13 @@ def start_upgrade(app, model, endpoint="reference://echo"):
 
 
 def policy(**overrides):
-    return TrafficPolicy(
-        enabled=True,canary_fraction=1.0,ramp_fraction=1.0,
-        min_shadow_samples=2,min_canary_samples=2,min_ramp_samples=2,
-        max_mismatch_rate=0.0,**overrides
-    )
+    values={
+        "enabled":True,"canary_fraction":1.0,"ramp_fraction":1.0,
+        "min_shadow_samples":2,"min_canary_samples":2,"min_ramp_samples":2,
+        "max_mismatch_rate":0.0,
+    }
+    values.update(overrides)
+    return TrafficPolicy(**values)
 
 
 def test_live_traffic_samples_gate_shadow_canary_and_ramp(tmp_path):

@@ -5,6 +5,7 @@ transport bindings and deployment checks are configured by the host, not request
 """
 from __future__ import annotations
 import json
+import time
 from datetime import datetime,timedelta,timezone
 from pathlib import Path
 from uuid import uuid4
@@ -346,8 +347,11 @@ class MorphosisApplication:
         surface=self._surface(bundle.surface_id);transport=self._transport(surface)
         if transport is None:raise ValueError('serving bundle has no host-bound transport')
         spec=ProbeSpec(probe_id=probe_id,surface_id=surface.surface_id,capability_id=bundle.adaptation.capability_id)
+        started=time.perf_counter()
         raw=self.executor.execute(spec,transport,value)
-        latency,cost=self.executor.metrics(transport)
+        elapsed=(time.perf_counter()-started)*1000
+        metrics=getattr(self.executor,'metrics',None)
+        latency,cost=metrics(transport) if callable(metrics) else (elapsed,0.0)
         return compile_ir(bundle.adaptation)(raw),latency,cost
 
     def _live_traffic_gate(self,tx):
