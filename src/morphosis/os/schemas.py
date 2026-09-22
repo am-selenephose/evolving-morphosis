@@ -243,6 +243,39 @@ class DeploymentState(Record):
     backend: str='policy-gated-local-controller'
 
 
+class ServingObservation(Record):
+    observation_id: str
+    surface_id: str
+    workload_id: str
+    bundle_id: str
+    success: bool
+    error_kind: Literal['none','model','schema','tool','policy']='none'
+    latency_ms: float=Field(default=0,ge=0)
+    cost_usd: float | None=Field(default=None,ge=0)
+    input_tokens: int | None=Field(default=None,ge=0)
+    output_tokens: int | None=Field(default=None,ge=0)
+    observed_at: str
+    source: Literal['host-serving-hook']='host-serving-hook'
+
+
+class ServingWindow(Record):
+    surface_id: str
+    workload_id: str
+    sample_count: int=Field(ge=0)
+    failure_count: int=Field(ge=0)
+    failure_rate: float=Field(ge=0,le=1)
+    schema_failure_rate: float=Field(ge=0,le=1)
+    tool_failure_rate: float=Field(ge=0,le=1)
+    policy_failure_rate: float=Field(ge=0,le=1)
+    average_latency_ms: float=Field(ge=0)
+    known_cost_samples: int=Field(ge=0)
+    average_cost_usd: float | None=Field(default=None,ge=0)
+    window_size: int=Field(ge=1)
+    min_samples: int=Field(ge=1)
+    breached: bool=False
+    reasons: tuple[str,...]=()
+
+
 class TelemetryEvent(Record):
     surface_id: str
     schema_failures: int=Field(default=0,ge=0)
