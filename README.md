@@ -1,146 +1,243 @@
 # Evolving Morphosis
 
-**Models evolve. Your agents should evolve with them.**
+A policy-gated model evolution control plane for durable AI agents.
 
-Evolving Morphosis is a Strands-based **model-evolution control plane for professional AI/agent teams**. It automates the repetitive work that begins every time a new model generation appears: capability discovery, compatibility analysis, workload regression testing, adaptation, promotion, rollback, and requalification.
+Morphosis discovers model capabilities, verifies them against workload contracts, compiles bounded compatibility adaptations, and promotes qualified model revisions through evidence-backed deployment stages. It is built for long-lived agent systems that need to adopt new models without silently weakening tool, safety, determinism, or rollback guarantees.
 
-Morphosis has two ingress lanes:
+## Runtime architecture
 
-- **Known-model fast path** — optimized adapters/profiles for models and providers we already understand.
-- **Unknown future-model path** — a model that did not exist when Morphosis was written can enter through a minimal transport boundary, describe novel capabilities, propose bounded probes and compatibility changes, and teach the runtime how it needs to be integrated.
+Morphosis has four explicit planes.
 
-Neither lane inherits trust. **Metadata and self-report are priors; observed workload behavior is proof.**
+1. Control plane — FastAPI and Uvicorn service, idempotent commands, structured errors, request IDs, OpenAPI, health, readiness, and Prometheus-style metrics.
+2. Evidence plane — tamper-evident SQLite ledger, content-addressed artifacts, capability observations, independent adapter verification, and replayable domain events.
+3. Evolution plane — workload contracts, qualification, MorphIR compilation, policy kernel, bundles, shadow, canary, ramp, promotion, and rollback.
+4. Projection plane — live SSE-backed console plus deterministic signed replay artifacts for offline inspection.
 
-## The future-model proof
+## What Morphosis does
 
-The repository includes a synthetic `future-model-x` that advertises a capability that is absent from Morphosis's stable core schema:
+A candidate model never inherits trust from metadata or self-report.
 
-`future.semantic_patch.v1`
+Morphosis:
 
-Morphosis does not need a hard-coded model entry or closed capability enum. The flow is:
+- registers a model surface and its claimed capabilities;
+- generates or accepts bounded probe proposals;
+- executes probes only through host-installed transports;
+- records evidence in a hash-chained ledger;
+- derives capability state from observed results;
+- compiles compatibility transforms through a closed MorphIR instruction set;
+- independently verifies the compiled adapter;
+- qualifies the candidate against a workload contract;
+- creates content-addressed Evolution Bundles with rollback metadata;
+- promotes through staged deployment checks;
+- accepts telemetry and can trigger requalification or rollback.
 
-1. Bootstrap the unknown endpoint into `UNKNOWN_BOOTSTRAP`.
-2. Record the self-reported novel capability as `UNKNOWN / UNVERIFIED`.
-3. Accept a bounded candidate-proposed probe description, but not its verdict.
-4. Independently verify the observation and register the novel namespaced capability dynamically.
-5. Consume the model's proposed compatibility transform (`semantic-patch-wrapper`).
-6. Compile it as an **ADAPTED** capability rather than falsely calling it native.
-7. Build deterministic SHA-256 **Evolution Bundles** containing change intent, evidence, rollback metadata, lineage, and promotion state.
-8. Mark a reversible runtime/config bundle `AUTO_APPLY` only after gates pass.
-9. Mark the same model's source-code adapter proposal `HUMAN_APPROVAL_REQUIRED` even when all tests pass.
+Unknown models can enter the system. Unknown does not mean trusted.
 
-The candidate can help evolve the integration around itself. It cannot grade itself, weaken hard invariants, rewrite evidence semantics, or merge its own source changes.
+## Production service
 
-## Why it exists
+Create an environment and install dependencies:
 
-Agent code is often coupled to one model generation's assumptions about tool calling, structured output, context, reasoning controls, latency, cost, or provider quirks. AI platform engineers repeatedly inspect release notes, compare API surfaces, patch adapters, rerun evaluations, select canaries, and monitor regressions whenever the model landscape changes.
+    python3.12 -m venv .venv
+    .venv/bin/pip install -r requirements.txt
 
-A generic router solves a different problem: **which known candidate should handle this invocation?** Strands already provides `ModelRouter` for that serving layer.
+Run the service:
 
-Morphosis operates one level above routing: **which model deserves to become a candidate, what must change around it, and can that evolution be promoted without breaking the agent contract?**
+    MORPHOSIS_DB=./var/morphosis.sqlite \
+    MORPHOSIS_LOG_LEVEL=info \
+    PYTHONPATH=src .venv/bin/python -m morphosis.os.service \
+      --host 127.0.0.1 \
+      --port 8765
 
-## Architecture
+After installing the package, the dedicated executable is:
 
-![Evolving Morphosis v3 architecture](architecture.svg)
+    pip install .
+    morphosis-server --db ./var/morphosis.sqlite --host 127.0.0.1 --port 8765
 
-The public reference implementation separates these boundaries:
+The compatibility entrypoint python -m morphosis.os.api delegates to the same ASGI runtime.
 
-1. **Known Model Fast Lane** — optimized adapters accelerate models we already know.
-2. **Unknown Future Lane** — minimal bootstrap for arbitrary future endpoints; no hard-coded model name required.
-3. **Capability Evidence Graph** — namespaced capabilities with provenance, confidence, status, and evidence hashes.
-4. **Novel Capability Registry** — unknown capability identifiers can be added without editing the stable core schema.
-5. **Morphogenesis Engine** — candidate-proposed schema/tool/context/fallback adaptations are compiled around the model.
-6. **Sandbox / Independent Meta-Eval** — candidate proposals are tested outside candidate-controlled promotion logic.
-7. **Evolution Bundle** — content-addressed change + evidence + rollback + lineage + recommendation.
-8. **Promotion Boundary** — reversible runtime/config evolution may auto-apply; source evolution always stops for human merge approval.
-9. **Serving Plane** — qualified candidates can enter a Strands ModelRouter/runtime pool without rewriting the workload contract.
-10. **Observability Loop** — drift can trigger requalification or rollback.
+Operational endpoints:
 
-## Real Strands integration
+- GET /healthz — process liveness.
+- GET /readyz — SQLite quick-check, ledger integrity, and schema readiness.
+- GET /metrics — service and ledger counters.
+- GET /docs — OpenAPI UI unless disabled.
+- GET /api/v1/system — canonical projection.
+- GET /api/v1/events — resumable SSE ledger.
+- POST /api/v1/commands — idempotent command boundary.
 
-This project uses **Strands Agents SDK 1.55.1** directly. Credential-free deterministic model adapters drive real Strands tool-use loops for both:
+The UI is served by the same process:
 
-- incumbent-versus-candidate workload qualification; and
-- unknown future-model onboarding through the `evolve_future_model` tool.
+    http://127.0.0.1:8765/?live=1
 
-The deterministic policy/evidence engine remains outside model authority. Strands orchestrates the tool loop; Morphosis owns the qualification boundary.
+## Persistence and integrity
 
-## First professional workload: Evolving Morphosis
+Morphosis uses SQLite in WAL mode with:
 
-Evolving Morphosis includes a concrete professional opportunity-triage workload that turns noisy opportunity packets into evidence-backed action queues while keeping consequential actions human-authorized.
+- explicit schema metadata;
+- busy timeout and bounded WAL checkpointing;
+- idempotent command records;
+- content-addressed artifacts;
+- hash-chained domain events;
+- reconnect integrity verification;
+- graceful checkpoint and close semantics.
 
-This matters because Morphosis is not a benchmark dashboard. Its model evolution is evaluated against a real agent contract containing required capabilities, weighted quality targets, cost/latency budgets, regression tolerance, authorization, and evidence lineage.
+The readiness endpoint fails closed if the ledger is not healthy.
 
-A model can score better overall and still be **REJECTED** if it breaks authorization. A qualified model can be **PROMOTED** when it improves the workload without violating those invariants.
+## Host-managed model transports
 
-## AWS / Bedrock compatibility
+Candidate input cannot grant itself network authority.
 
-The hackathon implementation is provider-neutral but AWS-native by design:
+External model access is installed by the operator through an exact provider and endpoint binding file. See transport-config.example.json.
 
-- Amazon Bedrock can sit behind the known-model fast lane.
-- Strands is the real agent/orchestration layer used by this repository.
-- Qualified candidates are designed to feed a serving layer such as Strands ModelRouter.
-- The sandbox/evaluation boundaries map naturally to Amazon Bedrock AgentCore Code Interpreter and AgentCore Evaluations.
-- MCP/A2A-compatible tool and agent discovery can extend the same evidence model beyond foundation models.
+Example:
 
-This repository **does not claim a live AgentCore deployment that is not present**. Those AgentCore components are documented extension boundaries, while the submitted Strands paths are reproducible without cloud credentials.
+    {
+      "bindings": [
+        {
+          "provider": "example-provider",
+          "endpoint": "https://model-bridge.example.com/v1/morphosis/probe",
+          "auth_env": "MORPHOSIS_MODEL_BRIDGE_TOKEN",
+          "timeout_ms": 5000,
+          "cost_per_request_usd": 0.0
+        }
+      ]
+    }
 
-## Reproduce
+Run with:
 
-```bash
-python3.12 -m venv .venv
-.venv/bin/pip install -r requirements.txt
-./verify.sh
-```
+    export MORPHOSIS_TRANSPORTS_FILE=./transport-config.json
+    export MORPHOSIS_MODEL_BRIDGE_TOKEN=...
+    morphosis-server
 
-To run the future-model proof directly:
+The bridge receives a morphosis.probe.v1 envelope containing evaluator-owned probe metadata and input, and returns one JSON field named output.
 
-```bash
-PYTHONPATH=src .venv/bin/python -m morphosis.cli \
-  --future-model fixtures/future_model_x.json
-```
+Transport security properties:
 
-To run the canonical live control plane (frontend + Python authority + resumable SSE ledger):
+- exact provider and endpoint registration;
+- HTTPS required except localhost;
+- no credentials in URLs;
+- optional bearer secret loaded only from an environment variable;
+- ambient HTTP proxy configuration disabled;
+- redirects denied;
+- request and response byte budgets enforced;
+- probe timeout bounded by both probe policy and transport configuration.
 
-```bash
-PYTHONPATH=src .venv/bin/python -m morphosis.os.api --seed-reference --port 8765
-# open http://127.0.0.1:8765/?live=1
-```
+Reference transports remain available for deterministic verification and CI, but they are not the product boundary.
 
-The browser is a projection client only. It sends strict commands to `/api/v1/commands`, reloads canonical snapshots from `/api/v1/system`, and follows `/api/v1/events`; qualification, evidence, promotion, rollback and requalification remain Python-owned.
+## Model evolution architecture
 
-Expected future-model evidence includes:
+The evolution path is:
 
-- `Future model lane: UNKNOWN_BOOTSTRAP`
-- `Novel capability: future.semantic_patch.v1`
-- `Observed status: SUPPORTED`
-- `Adaptation: ADAPTED`
-- `Runtime gate: AUTO_APPLY`
-- `Source gate: HUMAN_APPROVAL_REQUIRED`
+1. Known-model fast lane — installed adapters for already-understood surfaces.
+2. Unknown-model bootstrap — minimal surface registration with claims remaining unverified.
+3. Capability evidence graph — namespaced capabilities, confidence, provenance, and evidence hashes.
+4. Probe execution boundary — evaluator-owned corpora and host-installed transports.
+5. MorphIR compiler — closed data transforms; no eval, import, or source execution.
+6. Independent adaptation verification — held-out roundtrip, semantic, and determinism checks.
+7. Qualification — workload quality, reliability, latency, cost, and hard-invariant gates.
+8. Evolution Bundle — content-addressed change, evidence, rollback, and lineage.
+9. Promotion controller — shadow, canary, ramp, promote, rollback.
+10. Observability loop — telemetry, drift detection, and requalification.
 
-The same CLI without `--future-model` reproduces the ordinary candidate paths, including a flashy high-scoring candidate rejected for an authorization failure and a workload-qualified candidate promoted over the incumbent.
+![Evolving Morphosis architecture](architecture.svg)
 
 ## Hard boundaries
 
 - Unknown never means supported.
 - Self-report never equals proof.
-- Candidate cannot decide its own pass/fail.
-- A higher aggregate score cannot compensate for a hard-invariant failure.
+- Candidate cannot decide its own pass or fail.
+- Higher aggregate quality cannot compensate for a failed hard invariant.
 - Failed evolution never mutates the incumbent.
-- Automatic changes require rollback metadata.
-- Source-code changes generated/proposed by a model always require explicit human merge approval.
-- Evaluator logic, evidence semantics, hard invariants, and source-merge authority are outside the auto-writable surface.
-- Fixtures are synthetic and the demo performs no unapproved external side effects.
+- Automatic runtime changes require rollback metadata.
+- Source-code changes always require explicit human merge approval.
+- Evaluator semantics, evidence rules, hard invariants, and merge authority are outside the auto-writable surface.
+- Candidate-provided endpoints are inert until an operator installs the exact transport binding.
+- Cross-origin command execution is not enabled by default.
+- Wildcard CORS is rejected by configuration.
 
-## Pre-existing work disclosure
+## Future-model proof
 
-The broader **Autonomous Morphology** research direction and name existed before this hackathon. The **Evolving Morphosis implementation submitted here** — including its Strands tool loops, future-model bootstrap, extensible capability registry, candidate-proposed compatibility path, Evolution Bundle protocol, Evolving Morphosis workload integration, tests, interface, architecture, and reproducible demo — was built during the 2026 Agents for Humans submission period.
+The repository includes future-model-x, which advertises the previously unknown capability future.semantic_patch.v1.
 
-The public repository intentionally excludes private AM/Animantum identity architecture, proprietary long-term optimization heuristics, and private cross-agent memory/research systems.
+The proof demonstrates:
 
-## Project status
+1. UNKNOWN_BOOTSTRAP.
+2. Unverified namespaced capability claim.
+3. Candidate-proposed bounded probe description.
+4. Independent observation.
+5. Dynamic capability registration.
+6. Compatibility transform compilation.
+7. Independent transform verification.
+8. Evolution Bundle creation.
+9. Runtime auto-apply only when policy allows it.
+10. Source evolution still stops at human approval.
 
-AI coding assistance was used to draft, implement, test, and review code and documentation. The project uses the open-source Strands Agents SDK and standard Python libraries.
+Run it:
+
+    PYTHONPATH=src .venv/bin/python -m morphosis.cli \
+      --future-model fixtures/future_model_x.json
+
+## Verification
+
+The repository verification suite covers:
+
+- Python domain and persistence tests;
+- production ASGI service tests;
+- HTTP transport boundary tests;
+- real Strands tool loops;
+- frontend event and visual determinism;
+- generated projection parity;
+- schema validation;
+- current-model qualification;
+- future-model onboarding and adaptation verification.
+
+Run:
+
+    ./verify.sh
+
+The current productization branch verifies 81 Python tests plus 12 frontend tests and deterministic artifact parity.
+
+## Containers
+
+Build and run:
+
+    docker compose up --build
+
+The container:
+
+- runs as a non-root user;
+- persists the ledger under /data;
+- exposes port 8765;
+- includes a /readyz health check;
+- does not enable external model egress unless a transport file is mounted and configured.
+
+## Configuration
+
+See .env.example and transport-config.example.json.
+
+Important variables:
+
+- MORPHOSIS_HOST
+- MORPHOSIS_PORT
+- MORPHOSIS_DB
+- MORPHOSIS_LOG_LEVEL
+- MORPHOSIS_REQUEST_MAX_BYTES
+- MORPHOSIS_SSE_HEARTBEAT_SECONDS
+- MORPHOSIS_ALLOWED_ORIGINS
+- MORPHOSIS_TRANSPORTS_FILE
+- MORPHOSIS_DISABLE_DOCS
+
+## Strands integration
+
+Morphosis uses the Strands Agents SDK directly. The orchestration layer and HTTP service call the same application command boundary, so HTTP, CLI, and agent-driven evolution cannot silently diverge into separate policy implementations.
+
+The broader Autonomous Morphology research direction predates this repository. Private AM and Animantum identity architecture, private memory systems, and proprietary long-term optimization work are intentionally not part of this public codebase.
+
+## Development status
+
+Version 0.3.0 is a deployable control-plane runtime with persistent state, production ASGI service, deterministic replay, host-managed HTTP transports, container packaging, CI, and end-to-end verification.
+
+The default deployment controller is deliberately local and policy-gated. Cloud-specific rollout controllers can implement the existing deployment protocol without changing qualification or evidence semantics.
 
 ## License
 

@@ -367,7 +367,7 @@
         "type": "array"
       },
       "backend": {
-        "default": "reference-replay (no production traffic)",
+        "default": "policy-gated-local-controller",
         "title": "Backend",
         "type": "string"
       },

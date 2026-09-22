@@ -4,14 +4,15 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "evolving-morphosis"
-version = "0.2.0"
+version = "0.3.0"
 description = "Evidence-driven model qualification and compatibility control plane for durable agents"
 requires-python = ">=3.11"
-dependencies = ["strands-agents==1.55.1"]
+dependencies = ["strands-agents==1.55.1", "fastapi>=0.116,<1", "uvicorn>=0.35,<1"]
 
 [project.scripts]
 actionqueue = "actionqueue.cli:main"
 morphosis = "morphosis.cli:main"
+morphosis-server = "morphosis.os.service:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

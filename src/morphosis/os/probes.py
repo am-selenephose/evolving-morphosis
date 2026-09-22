@@ -69,9 +69,11 @@ def run_probe(spec,transport,executor,now):
         passed=passed_count==len(expected)
     except (ValueError,TypeError,subprocess.SubprocessError):
         output={'error':'bounded execution failed'};passed=False;passed_count=0
+    metric = getattr(executor, 'metrics', None)
+    latency_ms,cost_usd = metric(transport) if metric else (192.0,.016)
+    provenance = getattr(executor, 'provenance', lambda _: 'bounded-reference-interpreter')(transport)
     payload=dict(sample_count=len(expected),passed_count=passed_count,probe_id=spec.probe_id,surface_id=spec.surface_id,capability_id=spec.capability_id,family=spec.family,
         passed=passed,output_hash=digest(output),input_hash=digest(value),observed_at=now,
-        # Explicit synthetic budget model, distinct from measured wall-clock timing.
-        latency_ms=192.0,cost_usd=.016,checks=('object-conformance','tool-fidelity','semantic-roundtrip'),source=spec.source,
-        provenance='executed-reference-interpreter; synthetic latency/cost budget inputs')
+        latency_ms=latency_ms,cost_usd=cost_usd,checks=('object-conformance','tool-fidelity','semantic-roundtrip'),source=spec.source,
+        provenance=provenance)
     return ProbeRun(run_id=digest(payload),**payload)

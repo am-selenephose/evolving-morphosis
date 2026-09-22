@@ -6,8 +6,9 @@ stages:
 verify:
   stage: test
   before_script:
+    - apt-get update
+    - apt-get install -y --no-install-recommends nodejs npm
     - python -m pip install --upgrade pip
     - pip install -r requirements.txt
   script:
-    - PYTHONPATH=src python -m pytest -q
-    - PYTHONPATH=src python -m morphosis.cli --contract fixtures/morphosis_contract.json --candidates fixtures/morphosis_candidates.json
+    - PYTHON=python ./verify.sh

@@ -61,14 +61,10 @@ def server(application,port=8765,site=None):
 
 
 def main():
-    parser=argparse.ArgumentParser();parser.add_argument('--db',default='morphosis.sqlite');parser.add_argument('--port',type=int,default=8765);parser.add_argument('--seed-reference',action='store_true');args=parser.parse_args()
-    app=MorphosisApplication(args.db)
-    if args.seed_reference and not app.snapshot()['models']:
-        from morphosis.export_demo import seed
-        seed(app)
-    http=server(app,args.port);print(f'Morphosis local reference API: http://127.0.0.1:{http.server_port}/?live=1',flush=True)
-    try:http.serve_forever()
-    except KeyboardInterrupt:pass
-    finally:http.server_close()
+    """Compatibility entrypoint; the production runtime is the ASGI service."""
+    from .service import main as service_main
+    service_main()
 
-if __name__=='__main__':main()
+
+if __name__=="__main__":
+    main()

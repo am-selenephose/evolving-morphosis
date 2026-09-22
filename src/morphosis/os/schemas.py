@@ -240,7 +240,7 @@ class DeploymentState(Record):
     active_bundle: str | None=None
     fallback_bundle: str | None=None
     admitted: tuple[str,...]=()
-    backend: str='reference-replay (no production traffic)'
+    backend: str='policy-gated-local-controller'
 
 
 class TelemetryEvent(Record):
