@@ -5,7 +5,15 @@
       "endpoint": "https://model-bridge.example.com/v1/morphosis/probe",
       "auth_env": "MORPHOSIS_MODEL_BRIDGE_TOKEN",
       "timeout_ms": 5000,
-      "cost_per_request_usd": 0.0
+      "cost_per_request_usd": 0.001
+    },
+    {
+      "kind": "bedrock-converse",
+      "provider": "bedrock",
+      "endpoint": "bedrock://us-east-1/foundation-model/example.model-v1:0",
+      "timeout_ms": 5000,
+      "cost_per_request_usd": 0.01,
+      "max_tokens": 8192
     }
   ]
 }

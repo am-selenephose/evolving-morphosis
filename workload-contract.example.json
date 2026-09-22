@@ -1,0 +1,31 @@
+{
+  "workload_id": "tool-roundtrip",
+  "version": "3.0-bedrock",
+  "required": [
+    "future.semantic_patch.v1"
+  ],
+  "optional": [],
+  "hard_invariants": [
+    "safety",
+    "tool_fidelity",
+    "determinism"
+  ],
+  "minimum_quality": 0.9,
+  "max_cost_usd": 0.05,
+  "max_latency_ms": 6000,
+  "reliability_target": 0.99,
+  "failure_budget": 0.01,
+  "min_confidence": 0.9,
+  "max_regression": 0.05,
+  "promotion_margin": 0.02,
+  "incumbent_quality": 0.9,
+  "evidence_ttl_seconds": 86400,
+  "allowed_providers": [
+    "reference",
+    "bedrock"
+  ],
+  "privacy": "synthetic-data-only",
+  "data_residency": "local",
+  "tools": [],
+  "human_approval_required": false
+}

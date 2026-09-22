@@ -70,7 +70,7 @@ class MorphosisApplication:
         self._default_contract=self._contract
 
     def command(self,name,payload,command_id=None):
-        if name.startswith('_') or name not in ('discover','bootstrap','evaluate','propose_probe','run_probe','compile','verify_adaptation','qualify','bundle','advance','rollback','telemetry','requalify'):
+        if name.startswith('_') or name not in ('discover','claim','bootstrap','evaluate','propose_probe','run_probe','compile','verify_adaptation','qualify','bundle','advance','rollback','telemetry','requalify'):
             raise ValueError('unknown application command')
         payload=json.loads(json.dumps(payload,allow_nan=False))
         command_id=command_id or str(uuid4());input_hash=digest([name,payload])
@@ -169,6 +169,14 @@ class MorphosisApplication:
             surfaces.append(self._register_discovered_surface(record,'provider-catalog-metadata'))
         return [surface.json_value() for surface in surfaces]
 
+    def _claim(self,data):
+        fields(data,('surface_id','capability_id'),('surface_id','capability_id'))
+        surface=self._surface(data['surface_id'])
+        claim=CapabilityClaim(surface_id=surface.surface_id,capability_id=data['capability_id'],source='request-proposed')
+        if claim.digest() not in self._state.get('claims',{}):
+            self._emit('CapabilityClaimRegistered','claims',claim.digest(),claim,f'{surface.model}: {claim.capability_id} proposed for independent testing')
+        return claim
+
     def _bootstrap(self,data):
         allowed=('model','provider','endpoint','claims','api_surface','model_version','inference_config','tool_protocol')
         fields(data,allowed,('model','provider','endpoint','claims'))
@@ -249,7 +257,9 @@ class MorphosisApplication:
         missing=[c for c in required if c not in by or by[c].status=='UNKNOWN']
         verification=self._state.get('verifications',{}).get(sid)
         adaptation=self._state.get('adaptations',{}).get(sid)
-        adapter_matches=verification and adaptation and verification['adaptation_id']==MorphIR.model_validate(adaptation).digest()
+        adapter_matches=(verification and adaptation
+            and adaptation.get('capability_id') in required
+            and verification['adaptation_id']==MorphIR.model_validate(adaptation).digest())
         current=[by[c] for c in required if c in by]
         failure=any(x.status in ('UNSUPPORTED','DEGRADED','CONFLICTED') for x in current)
         selected_evidence={h for state in current for h in state.evidence}
@@ -286,8 +296,12 @@ class MorphosisApplication:
                 self._emit('ProbeProposed','probes',spec.probe_id,spec,f'{surface.model}: independent {spec.family} probe synthesized')
                 runs.append(self._run_probe({'probe_id':spec.probe_id}).json_value())
         if not runs:return {'surface_id':sid,'decision':self._qualify(data),'probe_runs':[],'adaptation':None,'adaptation_verification':None}
+        probed_caps={run['capability_id'] for run in runs}
+        adaptation_cap=next((cap for cap in self._contract.required if cap in probed_caps),None)
+        if adaptation_cap is None:
+            return {'surface_id':sid,'decision':self._qualify(data),'probe_runs':runs,'adaptation':None,'adaptation_verification':None}
         native=self._transport(surface)=='native-json'
-        ir=self._compile({'surface_id':sid,'mode':'NATIVE' if native else 'ADAPTED','nodes':[] if native else [{'op':'parse_json'}]})
+        ir=self._compile({'surface_id':sid,'capability_id':adaptation_cap,'mode':'NATIVE' if native else 'ADAPTED','nodes':[] if native else [{'op':'parse_json'}]})
         verification=self._verify_adaptation(data)
         decision=self._qualify(data)
         return {'surface_id':sid,'decision':decision,'probe_runs':runs,'adaptation':ir,'adaptation_verification':verification}
@@ -427,7 +441,8 @@ class MorphosisApplication:
                 qual=self._state.get('qualifications',{}).get(sid)
                 txs=[t for t in result['transactions'] if self._state['bundles'][t['bundle_id']]['surface_id']==sid]
                 status=txs[-1]['stage'] if txs else qual['outcome'] if qual else 'UNKNOWN'
-                if not states or any(c.status=='UNKNOWN' for c in states):status='UNKNOWN'
+                required_states=[c for c in states if c.capability_id in self._default_contract.required]
+                if not required_states or any(c.status=='UNKNOWN' for c in required_states):status='UNKNOWN'
                 models.append({**surface,'status':status,'capabilities':[c.capability_id for c in states]})
             counts=[('Probes',len(result['probe_runs'])),('Verification',len(result['verifications'])),('Qualification',len(result['qualifications'])),
                 ('Deployment',len(self._state.get('deployment_checks',{}))),('Discovery',len(models))]

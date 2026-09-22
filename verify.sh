@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
+trap 'status=$?; echo "VERIFY FAILED line ${LINENO}: ${BASH_COMMAND}" >&2; exit $status' ERR
 ROOT_DIR="$(cd "$(dirname "$0")" && pwd)"
 cd "$ROOT_DIR"
 export PYTHONPATH="$ROOT_DIR/src"
@@ -15,7 +16,7 @@ node --check site/visuals.js
 VERIFY_DIR="$(mktemp -d)"
 trap 'rm -rf "$VERIFY_DIR"' EXIT
 "$PY" -m morphosis.export_demo --output "$VERIFY_DIR/generated" --architecture-svg "$VERIFY_DIR/architecture.svg" >/dev/null
-diff -qr site/generated "$VERIFY_DIR/generated" >/dev/null
+diff -qr site/generated "$VERIFY_DIR/generated"
 cmp -s architecture.svg "$VERIFY_DIR/architecture.svg"
 
 rm -rf demo-output

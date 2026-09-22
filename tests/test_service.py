@@ -111,3 +111,28 @@ def test_bedrock_discovery_enablement_uses_explicit_host_region(monkeypatch):
     settings = ServiceSettings.from_env()
     assert settings.bedrock_discovery is True
     assert settings.aws_region == "eu-west-1"
+
+
+def test_contract_file_is_host_owned_and_controls_provider_allow_list(tmp_path):
+    contract_file = tmp_path / "contract.json"
+    contract_file.write_text(json.dumps({
+        "workload_id": "tool-roundtrip",
+        "version": "3.0-bedrock",
+        "required": ["future.semantic_patch.v1"],
+        "allowed_providers": ["reference", "bedrock"],
+        "max_cost_usd": 0.05,
+        "max_latency_ms": 6000
+    }))
+    settings = ServiceSettings(
+        db_path=str(tmp_path / "contract-service.db"),
+        contract_file=str(contract_file),
+    ).validate()
+    api = create_app(settings)
+    assert api.state.morphosis._default_contract.allowed_providers == ("reference", "bedrock")
+    assert api.state.morphosis._default_contract.version == "3.0-bedrock"
+    api.state.morphosis.close()
+
+
+def test_contract_file_configuration_fails_closed_when_missing(tmp_path):
+    with pytest.raises(ValueError, match="workload contract file"):
+        ServiceSettings(contract_file=str(tmp_path / "missing.json")).validate()
