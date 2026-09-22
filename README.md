@@ -195,7 +195,7 @@ Run:
 
     ./verify.sh
 
-The current productization branch verifies 81 Python tests plus 12 frontend tests and deterministic artifact parity.
+Current main verifies 81 Python tests plus 14 frontend/adapter tests and deterministic artifact parity.
 
 ## Containers
 
