@@ -1,8 +1,36 @@
 """Admission above routing; stage checks execute the compiled adapter independently."""
+from dataclasses import dataclass
 from typing import Protocol
 from .schemas import digest
 
 STAGES=('PROPOSED','VALIDATED','SANDBOXED','QUALIFIED','SHADOW','CANARY','RAMP','PROMOTED')
+
+@dataclass(frozen=True, slots=True)
+class TrafficPolicy:
+    enabled: bool=False
+    canary_fraction: float=0.05
+    ramp_fraction: float=0.25
+    min_shadow_samples: int=20
+    min_canary_samples: int=20
+    min_ramp_samples: int=20
+    max_mismatch_rate: float=0.0
+    production: bool=False
+
+    def validate(self):
+        if not 0<=self.canary_fraction<=self.ramp_fraction<=1:
+            raise ValueError('traffic fractions must satisfy 0 <= canary <= ramp <= 1')
+        if min(self.min_shadow_samples,self.min_canary_samples,self.min_ramp_samples)<1:
+            raise ValueError('live traffic sample minimums must be positive')
+        if not 0<=self.max_mismatch_rate<=1:
+            raise ValueError('live traffic mismatch rate must be between 0 and 1')
+        return self
+
+    def fraction(self,stage):
+        return {'SHADOW':0.0,'CANARY':self.canary_fraction,'RAMP':self.ramp_fraction}.get(stage,1.0)
+
+    def minimum(self,stage):
+        return {'SHADOW':self.min_shadow_samples,'CANARY':self.min_canary_samples,'RAMP':self.min_ramp_samples}.get(stage,0)
+
 
 class DeploymentController(Protocol):
     def check(self,bundle,at_stage,adapter,transport)->dict:...

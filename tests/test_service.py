@@ -136,3 +136,34 @@ def test_contract_file_is_host_owned_and_controls_provider_allow_list(tmp_path):
 def test_contract_file_configuration_fails_closed_when_missing(tmp_path):
     with pytest.raises(ValueError, match="workload contract file"):
         ServiceSettings(contract_file=str(tmp_path / "missing.json")).validate()
+
+
+def test_live_traffic_service_configuration_is_explicit_and_fail_closed(monkeypatch):
+    monkeypatch.setenv("MORPHOSIS_LIVE_TRAFFIC", "true")
+    monkeypatch.setenv("MORPHOSIS_CANARY_FRACTION", "0.10")
+    monkeypatch.setenv("MORPHOSIS_RAMP_FRACTION", "0.40")
+    monkeypatch.setenv("MORPHOSIS_MIN_SHADOW_SAMPLES", "12")
+    monkeypatch.setenv("MORPHOSIS_MIN_CANARY_SAMPLES", "13")
+    monkeypatch.setenv("MORPHOSIS_MIN_RAMP_SAMPLES", "14")
+    monkeypatch.setenv("MORPHOSIS_MAX_TRAFFIC_MISMATCH_RATE", "0.02")
+    settings = ServiceSettings.from_env()
+    assert settings.live_traffic is True
+    assert settings.live_traffic_production is False
+    assert settings.canary_fraction == 0.10
+    assert settings.ramp_fraction == 0.40
+    assert settings.min_shadow_samples == 12
+    assert settings.min_canary_samples == 13
+    assert settings.min_ramp_samples == 14
+    assert settings.max_traffic_mismatch_rate == 0.02
+
+    monkeypatch.setenv("MORPHOSIS_CANARY_FRACTION", "0.8")
+    monkeypatch.setenv("MORPHOSIS_RAMP_FRACTION", "0.2")
+    with pytest.raises(ValueError, match="canary fraction"):
+        ServiceSettings.from_env()
+
+
+def test_production_traffic_label_requires_live_traffic_mode(monkeypatch):
+    monkeypatch.setenv("MORPHOSIS_LIVE_TRAFFIC", "false")
+    monkeypatch.setenv("MORPHOSIS_LIVE_TRAFFIC_PRODUCTION", "true")
+    with pytest.raises(ValueError, match="production traffic declaration"):
+        ServiceSettings.from_env()

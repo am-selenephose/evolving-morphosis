@@ -25,6 +25,7 @@ from .config import ServiceSettings
 from .logging import configure_logging
 from .transports import HostTransportExecutor, load_transport_bindings
 from .schemas import WorkloadContract
+from .deployment import TrafficPolicy
 
 LOGGER = logging.getLogger("morphosis.service")
 _REQUEST_ID = re.compile(r"^[A-Za-z0-9._:-]{1,128}$")
@@ -114,12 +115,23 @@ def create_app(
                 Path(settings.contract_file).expanduser().read_text()
             )
             contract = WorkloadContract.model_validate(contract_payload)
+        traffic_policy = TrafficPolicy(
+            enabled=settings.live_traffic,
+            production=settings.live_traffic_production,
+            canary_fraction=settings.canary_fraction,
+            ramp_fraction=settings.ramp_fraction,
+            min_shadow_samples=settings.min_shadow_samples,
+            min_canary_samples=settings.min_canary_samples,
+            min_ramp_samples=settings.min_ramp_samples,
+            max_mismatch_rate=settings.max_traffic_mismatch_rate,
+        )
         app_state = MorphosisApplication(
             settings.db_path,
             contract=contract,
             transports=bindings,
             executor=executor,
             discoverers=discoverers,
+            traffic_policy=traffic_policy,
         )
     else:
         app_state = application
@@ -348,6 +360,14 @@ def main() -> None:
     parser.add_argument("--seed-reference", action="store_true")
     parser.add_argument("--bedrock-discovery", action="store_true")
     parser.add_argument("--aws-region")
+    parser.add_argument("--live-traffic", action="store_true")
+    parser.add_argument("--live-traffic-production", action="store_true")
+    parser.add_argument("--canary-fraction", type=float)
+    parser.add_argument("--ramp-fraction", type=float)
+    parser.add_argument("--min-shadow-samples", type=int)
+    parser.add_argument("--min-canary-samples", type=int)
+    parser.add_argument("--min-ramp-samples", type=int)
+    parser.add_argument("--max-traffic-mismatch-rate", type=float)
     parser.add_argument("--log-level")
     args = parser.parse_args()
 
@@ -360,6 +380,14 @@ def main() -> None:
         contract_file=args.contract_file,
         bedrock_discovery=True if args.bedrock_discovery else None,
         aws_region=args.aws_region,
+        live_traffic=True if args.live_traffic else None,
+        live_traffic_production=True if args.live_traffic_production else None,
+        canary_fraction=args.canary_fraction,
+        ramp_fraction=args.ramp_fraction,
+        min_shadow_samples=args.min_shadow_samples,
+        min_canary_samples=args.min_canary_samples,
+        min_ramp_samples=args.min_ramp_samples,
+        max_traffic_mismatch_rate=args.max_traffic_mismatch_rate,
         seed_reference=True if args.seed_reference else None,
         log_level=args.log_level,
     )
