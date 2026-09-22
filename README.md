@@ -195,7 +195,7 @@ Run:
 
     ./verify.sh
 
-Current main verifies 81 Python tests plus 14 frontend/adapter tests and deterministic artifact parity.
+Current main verifies 86 Python tests plus 14 frontend/adapter tests and deterministic artifact parity.
 
 ## Containers
 
@@ -248,3 +248,9 @@ MIT
 The canonical Morphosis authority is the Python Evolution OS under `src/morphosis/os/`. Platform-specific deployment glue is tracked under `adapters/` and must not redefine qualification, evidence, or promotion policy.
 
 The current public AppDeploy demo uses `adapters/appdeploy/`. Its UI shell is sourced from `site/`; only transport, persistence, realtime projection, and platform QA are adapter-specific. Deterministic fixtures in that adapter are proof/demo fixtures, not external-model telemetry.
+
+## Amazon Bedrock discovery
+
+Morphosis can import the current Amazon Bedrock control-plane catalog without treating provider metadata as evidence. Enable it with `MORPHOSIS_BEDROCK_DISCOVERY=true` and an explicit region through `MORPHOSIS_AWS_REGION` or the standard AWS region environment. Credentials and IAM are owned by the host process; no AWS secret is accepted through the Morphosis command API.
+
+Once enabled, call the normal command boundary with `{"name":"discover","payload":{"provider":"bedrock"}}`. Foundation models and inference profiles are normalized into candidate surfaces whose claims are tagged `provider-catalog-metadata`. They remain `UNKNOWN` until a separate host-bound invocation transport runs independent probes and the normal adaptation/qualification gates pass. Catalog presence, an ACTIVE Bedrock lifecycle/profile status, and streaming/inference-type metadata are never promotion authority.

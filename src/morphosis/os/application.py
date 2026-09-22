@@ -26,11 +26,12 @@ def fields(data,allowed,required=()):
 
 
 class MorphosisApplication:
-    def __init__(self,path=':memory:',*,contract=None,clock=utcnow,executor=None,controller=None,transports=None,capability_contracts=None,contracts=None):
+    def __init__(self,path=':memory:',*,contract=None,clock=utcnow,executor=None,controller=None,transports=None,capability_contracts=None,contracts=None,discoverers=None):
         self.ledger=SQLiteLedger(path);self.clock=clock;self.kernel=PolicyKernel()
         self.executor=executor or LocalReferenceSandbox();self.controller=controller or ReferenceDeploymentController()
         installed={('reference','reference://echo'):'json-text',('reference','reference://native'):'native-json',('reference','reference://broken'):'broken-json'}
         installed.update(dict(transports or {}));self.transports=installed
+        self.discoverers=dict(discoverers or {})
         self.graph=CapabilityGraph();self.synthesizer=ProbeSynthesizer()
         requested_contracts=tuple(contracts or ())
         self._contract=contract or (requested_contracts[0] if requested_contracts else WorkloadContract())
@@ -69,7 +70,7 @@ class MorphosisApplication:
         self._default_contract=self._contract
 
     def command(self,name,payload,command_id=None):
-        if name.startswith('_') or name not in ('bootstrap','evaluate','propose_probe','run_probe','compile','verify_adaptation','qualify','bundle','advance','rollback','telemetry','requalify'):
+        if name.startswith('_') or name not in ('discover','bootstrap','evaluate','propose_probe','run_probe','compile','verify_adaptation','qualify','bundle','advance','rollback','telemetry','requalify'):
             raise ValueError('unknown application command')
         payload=json.loads(json.dumps(payload,allow_nan=False))
         command_id=command_id or str(uuid4());input_hash=digest([name,payload])
@@ -119,6 +120,54 @@ class MorphosisApplication:
         if invalid:
             observations=[o for o in observations if o.surface_id!=sid or date(o.observed_at)>date(invalid['timestamp'])]
         return [self.graph.derive(sid,c['capability_id'],observations,now=now) for c in self._claims(sid)]
+
+    def _register_discovered_surface(self,data,claim_source):
+        allowed=('model','provider','endpoint','claims','api_surface','model_version','inference_config','tool_protocol','catalog_metadata')
+        fields(data,allowed,('model','provider','endpoint','claims'))
+        if not isinstance(data['claims'],(list,tuple)) or not 1<=len(data['claims'])<=100:
+            raise ValueError('1–100 capability claims required')
+        catalog_metadata=data.get('catalog_metadata',{})
+        if not isinstance(catalog_metadata,dict):raise ValueError('catalog metadata must be an object')
+        raw={k:v for k,v in data.items() if k not in ('claims','catalog_metadata')}
+        raw.update(
+            api_surface=data.get('api_surface','provider-catalog-v1'),
+            adapter=None,
+            model_version=data.get('model_version','unspecified'),
+            inference_config=tuple(tuple(x) for x in data.get('inference_config',())),
+            tool_protocol=data.get('tool_protocol','unbound'),
+            lane='UNKNOWN_BOOTSTRAP',
+        )
+        sid=digest(raw);surface=ModelSurface(**raw,surface_id=sid,observed_at=self._now)
+        if sid not in self._state.get('models',{}):
+            self._emit('ProviderSurfaceDiscovered','models',sid,surface,f'{surface.model} discovered from {surface.provider} catalog')
+        else:
+            surface=self._surface(sid)
+        catalog_value={'surface_id':sid,'provider':surface.provider,'source':claim_source,'metadata':catalog_metadata}
+        existing_catalog=self._state.get('catalog',{}).get(sid)
+        if existing_catalog is None or existing_catalog.get('metadata')!=catalog_metadata:
+            catalog_value['observed_at']=self._now
+            self._emit('ProviderCatalogObserved','catalog',sid,catalog_value,f'{surface.model}: provider catalog metadata observed')
+        for cap in data['claims']:
+            claim=CapabilityClaim(surface_id=sid,capability_id=cap,source=claim_source)
+            if claim.digest() not in self._state.get('claims',{}):
+                self._emit('CapabilityClaimRegistered','claims',claim.digest(),claim,f'{surface.model}: {cap} is UNKNOWN / UNVERIFIED')
+        return surface
+
+    def _discover(self,data):
+        fields(data,('provider',),('provider',))
+        provider=data['provider']
+        discoverer=self.discoverers.get(provider)
+        if discoverer is None:
+            raise ValueError(f'{provider} discoverer is not installed by host')
+        records=discoverer.discover()
+        if not isinstance(records,list) or len(records)>5000:
+            raise ValueError('provider discovery returned invalid result set')
+        surfaces=[]
+        for record in records:
+            if not isinstance(record,dict) or record.get('provider')!=provider:
+                raise ValueError('provider discovery returned invalid candidate')
+            surfaces.append(self._register_discovered_surface(record,'provider-catalog-metadata'))
+        return [surface.json_value() for surface in surfaces]
 
     def _bootstrap(self,data):
         allowed=('model','provider','endpoint','claims','api_surface','model_version','inference_config','tool_protocol')
@@ -371,6 +420,7 @@ class MorphosisApplication:
             self._state=self.ledger.replay();now=self.clock()
             events=self.ledger.events();collections=('evidence','probes','probe_runs','adaptations','verifications','qualifications','bundles','transactions','telemetry','requalifications','contracts')
             result={name:list(self._state.get(name,{}).values()) for name in collections}
+            if self._state.get('catalog'):result['catalog']=list(self._state['catalog'].values())
             models=[];capabilities=[]
             for sid,surface in self._state.get('models',{}).items():
                 states=self._states(sid,now);capabilities.extend(c.json_value() for c in states)
