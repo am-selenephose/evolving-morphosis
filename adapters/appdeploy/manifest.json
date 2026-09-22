@@ -1,0 +1,27 @@
+{
+  "schema": "morphosis.appdeploy.adapter.v1",
+  "app_id": "evolving-morphosis-t84odc",
+  "captured_version": "1789898522623",
+  "captured_label": "v17",
+  "canonical_authority": "src/morphosis/os",
+  "shared_ui": [
+    "site/index.html",
+    "site/app.js",
+    "site/styles.css",
+    "site/visuals.js"
+  ],
+  "adapter_files": [
+    "data.js",
+    "backend/index.ts",
+    "backend/realtime-subscribers.ts",
+    "backend/realtime.ts",
+    "package.json",
+    "vite.config.ts",
+    "tests/tests.json"
+  ],
+  "claims": {
+    "external_model_execution": false,
+    "production_agentcore": false,
+    "source_auto_merge": false
+  }
+}

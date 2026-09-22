@@ -1,0 +1,104 @@
+[
+  {
+    "name": "Run deterministic future-model proof through the live control plane",
+    "sanity": true,
+    "viewport": "desktop",
+    "covers": [
+      "GET /api/overview",
+      "POST /api/evolution/run",
+      "persisted evidence ledger",
+      "deterministic fixture labeling",
+      "Evolution Bundle runtime/source split",
+      "realtime overview refresh",
+      "WebGL workspace",
+      "soft rounded wavy speck rendering"
+    ],
+    "description": "Verifies the critical live Morphosis workflow is functional while clearly distinguishing deterministic fixture proof from external-model verification.",
+    "steps": [
+      "Open Evolution Lab and select future-model-x",
+      "Run qualification",
+      "Open Evaluation and Deployments, then return to Overview"
+    ],
+    "expected": "The run returns PROMOTE for the deterministic proof fixture, the model is labeled PROOF_PASSED rather than live ACTIVE, evidence and bundle records are visible, source authority remains HUMAN_APPROVAL_REQUIRED, and the overview remains rendered with a smooth animated wavy speck field with rounded particles rather than square or block artifacts."
+  },
+  {
+    "name": "Register an unverified model and retain it after refresh",
+    "viewport": "desktop",
+    "covers": [
+      "GET /api/models",
+      "POST /api/models",
+      "database persistence",
+      "candidate trust boundary",
+      "model ecosystem search"
+    ],
+    "description": "Verifies arbitrary registered endpoints never inherit trust from self-reported capabilities.",
+    "steps": [
+      "Click Add Model to Ecosystem",
+      "Add model name qa-persistent-model, provider qa-provider, endpoint https://qa.invalid/v1, capability qa.capability.v1",
+      "Open Model Ecosystem, search for qa-persistent-model, refresh the page"
+    ],
+    "expected": "qa-persistent-model remains visible after refresh with UNVERIFIED status and no promotion or verified-evidence claim."
+  },
+  {
+    "name": "Reject an invalid model endpoint on mobile",
+    "viewport": "mobile",
+    "covers": [
+      "POST /api/models validation",
+      "mobile form behavior",
+      "invalid-write guardrail"
+    ],
+    "description": "Verifies malformed candidate endpoints are blocked without creating a record.",
+    "steps": [
+      "Open Add Model to Ecosystem",
+      "Enter a unique model name, provider qa-provider, endpoint not-a-url, and capability qa.invalid",
+      "Submit the form"
+    ],
+    "expected": "A visible endpoint validation error is shown and the candidate is not added."
+  },
+  {
+    "name": "Persist observability controls and create requalification evidence",
+    "viewport": "desktop",
+    "covers": [
+      "GET /api/settings",
+      "POST /api/settings",
+      "POST /api/requalification",
+      "database persistence",
+      "realtime entity updates",
+      "requalification evidence and bundle persistence"
+    ],
+    "description": "Verifies persisted control-plane settings feed the same qualification and evidence path.",
+    "steps": [
+      "Open Observability and toggle Schema drift",
+      "Request requalification",
+      "Open Evaluation and Deployments, then return to Observability"
+    ],
+    "expected": "The trigger remains persisted, the requalification produces a new deterministic proof run with evidence and a rollback-backed bundle, and source authority remains human-gated."
+  },
+  {
+    "name": "Keep the product shell usable when the overview API fails",
+    "viewport": "desktop",
+    "covers": [
+      "backend error response handling",
+      "user-visible degraded state",
+      "resilient visual boot",
+      "navigation shell"
+    ],
+    "description": "Verifies a backend projection failure is visible without collapsing the interface or visual layer.",
+    "qa_faults": [
+      {
+        "method": "GET",
+        "path": "/api/overview",
+        "status": 500,
+        "body_json": {
+          "error": "simulated_failure"
+        }
+      }
+    ],
+    "steps": [
+      "Open the app",
+      "Observe the system strip and visual workspace",
+      "Use the navigation shell"
+    ],
+    "expected": "A visible projection-unavailable message appears, the shell remains usable, and the visual layer is retained or gracefully falls back instead of rendering a blank broken page."
+  }
+]
