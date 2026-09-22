@@ -26,6 +26,14 @@ def _int(name: str, default: int, *, minimum: int, maximum: int) -> int:
     return value
 
 
+def _float(name: str, default: float, *, minimum: float, maximum: float) -> float:
+    raw = os.getenv(name)
+    value = default if raw is None else float(raw)
+    if not minimum <= value <= maximum:
+        raise ValueError(f"{name} must be between {minimum} and {maximum}")
+    return value
+
+
 @dataclass(frozen=True, slots=True)
 class ServiceSettings:
     host: str = "127.0.0.1"
@@ -36,6 +44,14 @@ class ServiceSettings:
     contract_file: str | None = None
     bedrock_discovery: bool = False
     aws_region: str | None = None
+    live_traffic: bool = False
+    live_traffic_production: bool = False
+    canary_fraction: float = 0.05
+    ramp_fraction: float = 0.25
+    min_shadow_samples: int = 20
+    min_canary_samples: int = 20
+    min_ramp_samples: int = 20
+    max_traffic_mismatch_rate: float = 0.0
     seed_reference: bool = False
     log_level: str = "info"
     request_max_bytes: int = 131_072
@@ -60,6 +76,14 @@ class ServiceSettings:
             contract_file=os.getenv("MORPHOSIS_CONTRACT_FILE") or None,
             bedrock_discovery=_bool("MORPHOSIS_BEDROCK_DISCOVERY", False),
             aws_region=(os.getenv("MORPHOSIS_AWS_REGION") or os.getenv("AWS_REGION") or os.getenv("AWS_DEFAULT_REGION") or None),
+            live_traffic=_bool("MORPHOSIS_LIVE_TRAFFIC", False),
+            live_traffic_production=_bool("MORPHOSIS_LIVE_TRAFFIC_PRODUCTION", False),
+            canary_fraction=_float("MORPHOSIS_CANARY_FRACTION", 0.05, minimum=0.0, maximum=1.0),
+            ramp_fraction=_float("MORPHOSIS_RAMP_FRACTION", 0.25, minimum=0.0, maximum=1.0),
+            min_shadow_samples=_int("MORPHOSIS_MIN_SHADOW_SAMPLES", 20, minimum=1, maximum=1000000),
+            min_canary_samples=_int("MORPHOSIS_MIN_CANARY_SAMPLES", 20, minimum=1, maximum=1000000),
+            min_ramp_samples=_int("MORPHOSIS_MIN_RAMP_SAMPLES", 20, minimum=1, maximum=1000000),
+            max_traffic_mismatch_rate=_float("MORPHOSIS_MAX_TRAFFIC_MISMATCH_RATE", 0.0, minimum=0.0, maximum=1.0),
             seed_reference=_bool("MORPHOSIS_SEED_REFERENCE", False),
             log_level=os.getenv("MORPHOSIS_LOG_LEVEL", "info").lower(),
             request_max_bytes=_int(
@@ -93,6 +117,10 @@ class ServiceSettings:
             raise ValueError("configured workload contract file does not exist")
         if self.bedrock_discovery and not self.aws_region:
             raise ValueError("Bedrock discovery requires MORPHOSIS_AWS_REGION or AWS_REGION")
+        if self.canary_fraction > self.ramp_fraction:
+            raise ValueError("canary fraction must not exceed ramp fraction")
+        if self.live_traffic_production and not self.live_traffic:
+            raise ValueError("production traffic declaration requires live traffic mode")
         return self
 
     def with_overrides(self, **values) -> "ServiceSettings":

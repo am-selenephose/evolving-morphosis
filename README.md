@@ -195,7 +195,7 @@ Run:
 
     ./verify.sh
 
-Current main verifies 93 Python tests plus 14 frontend/adapter tests and deterministic artifact parity.
+Current main verifies 98 Python tests plus 14 frontend/adapter tests and deterministic artifact parity.
 
 ## Containers
 
@@ -276,3 +276,16 @@ Morphosis can now construct a Strands `ModelRouter` from its serving admission s
 The Strands router is not a second policy authority. `MorphosisAdmissionStrategy` revalidates the current Morphosis serving manifest before every opening selection and failover. A candidate that has expired evidence, failed policy, been rolled back, or been revoked by telemetry remains present in an already-created immutable router object but is no longer selectable. Router failure history therefore cannot resurrect a candidate that Morphosis no longer admits.
 
 This slice governs post-promotion serving and fallback. The existing SHADOW/CANARY/RAMP deployment checks are still controlled by the deployment controller and are not claimed to be real production traffic splitting yet; wiring real shadow/canary traffic is a separate deployment-controller integration.
+
+## Live shadow, canary, and ramp traffic
+
+Live traffic gating is opt-in. By default, Morphosis keeps the existing deterministic deployment checks and does not claim that SHADOW, CANARY, or RAMP represent production traffic.
+
+Set `MORPHOSIS_LIVE_TRAFFIC=true` (or `--live-traffic`) to require real request samples before an upgrade can progress from SHADOW to CANARY, CANARY to RAMP, and RAMP to PROMOTED when there is an incumbent bundle. SHADOW always serves the incumbent while executing the candidate for comparison. CANARY and RAMP use deterministic request-ID bucketing with host-owned fractions. A selected candidate is served only when its adapted output matches the incumbent output; candidate failure or mismatch falls back to the incumbent. The stage gate counts mismatches and rolls the transaction back when the configured mismatch budget is exceeded.
+
+Morphosis stores request/output hashes, bundle IDs, routing decisions, latency/cost measurements, and match status for these samples; it does not retain the request or response payload in the traffic ledger. Request payloads still pass through the configured model transports at execution time.
+
+`MORPHOSIS_LIVE_TRAFFIC_PRODUCTION=true` is only a host declaration that the supplied requests are actual production traffic; it is rejected unless live-traffic mode is enabled. It does not create traffic by itself and it does not make synthetic tests production evidence.
+
+The default thresholds are conservative: 20 samples per live stage, 5% canary, 25% ramp, and 0% allowed mismatch. All thresholds are host configuration, not request-controlled fields.
+
