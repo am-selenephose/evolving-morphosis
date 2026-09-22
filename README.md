@@ -195,7 +195,7 @@ Run:
 
     ./verify.sh
 
-Current main verifies 86 Python tests plus 14 frontend/adapter tests and deterministic artifact parity.
+Current main verifies 90 Python tests plus 14 frontend/adapter tests and deterministic artifact parity.
 
 ## Containers
 
